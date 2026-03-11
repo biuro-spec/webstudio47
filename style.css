@@ -2451,7 +2451,7 @@ html {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmer-swipe 8s linear infinite;
+    animation: shimmer-swipe 20s linear infinite;
 }
 
 /* Portfolio project showcase card */
