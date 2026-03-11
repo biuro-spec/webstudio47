@@ -2431,11 +2431,7 @@ html {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmerTitle 4s linear infinite;
-}
-@keyframes shimmerTitle {
-    0% { background-position: 200% center; }
-    100% { background-position: -200% center; }
+    animation: shimmer-swipe 8s linear infinite;
 }
 
 /* Portfolio project showcase card */
