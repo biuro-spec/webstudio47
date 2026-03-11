@@ -1171,12 +1171,22 @@ footer {
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .menu-toggle span {
-    width: 30px;
+    display: block;
+    width: 26px;
     height: 2px;
-    background: white;
+    background: var(--text-primary);
+    border-radius: 2px;
     transition: var(--transition);
 }
 
@@ -2399,10 +2409,10 @@ html {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at 70% 30%, rgba(124, 58, 237, 0.18), transparent 40%),
-                radial-gradient(circle at 30% 70%, rgba(6, 182, 212, 0.18), transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.08), transparent 60%);
-    animation: portfolioHeroBg 20s ease-in-out infinite alternate;
+    background: radial-gradient(circle at 70% 30%, rgba(124, 58, 237, 0.08), transparent 40%),
+                radial-gradient(circle at 30% 70%, rgba(6, 182, 212, 0.06), transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.04), transparent 60%);
+    animation: portfolioHeroBg 35s ease-in-out infinite alternate;
 }
 .portfolio-page-hero::after {
     content: '';
@@ -2411,9 +2421,9 @@ html {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at 20% 40%, rgba(6, 182, 212, 0.15), transparent 45%),
-                radial-gradient(circle at 80% 60%, rgba(124, 58, 237, 0.15), transparent 45%);
-    animation: portfolioHeroBg2 25s ease-in-out infinite alternate;
+    background: radial-gradient(circle at 20% 40%, rgba(6, 182, 212, 0.06), transparent 45%),
+                radial-gradient(circle at 80% 60%, rgba(124, 58, 237, 0.06), transparent 45%);
+    animation: portfolioHeroBg2 40s ease-in-out infinite alternate;
     opacity: 0.7;
 }
 @keyframes portfolioHeroBg {
@@ -2446,12 +2456,12 @@ html {
 
 /* Shimmer title for portfolio */
 .portfolio-title-shimmer {
-    background: linear-gradient(90deg, #fff 0%, #fff 40%, #7c3aed 50%, #06b6d4 60%, #fff 70%, #fff 100%);
+    background: linear-gradient(90deg, #c4b5fd 0%, #7c3aed 25%, #06b6d4 50%, #8b5cf6 75%, #c4b5fd 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmer-swipe 20s linear infinite;
+    animation: shimmer-swipe 35s linear infinite;
 }
 
 /* Portfolio project showcase card */
@@ -2461,7 +2471,18 @@ html {
     gap: 3rem;
     align-items: center;
     padding: 4rem 0;
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: none;
+    position: relative;
+}
+.portfolio-showcase::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 1px;
+    background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.45) 0%, rgba(124, 58, 237, 0.15) 40%, transparent 70%);
 }
 .portfolio-showcase:nth-child(even) {
     direction: rtl;
@@ -2469,8 +2490,8 @@ html {
 .portfolio-showcase:nth-child(even) > * {
     direction: ltr;
 }
-.portfolio-showcase:last-child {
-    border-bottom: none;
+.portfolio-showcase:last-child::after {
+    display: none;
 }
 .showcase-image {
     position: relative;
@@ -2485,6 +2506,7 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .showcase-image:hover img {
@@ -2583,9 +2605,9 @@ html {
     left: -25%;
     width: 150%;
     height: 100%;
-    background: radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.08), transparent 50%),
-                radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.08), transparent 50%);
-    animation: showcaseBg 30s ease-in-out infinite alternate;
+    background: radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.04), transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.04), transparent 50%);
+    animation: showcaseBg 45s ease-in-out infinite alternate;
     pointer-events: none;
     z-index: 0;
 }
@@ -2632,7 +2654,7 @@ html {
     font-size: 1.1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .portfolio-showcase {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -2641,8 +2663,53 @@ html {
     .portfolio-showcase:nth-child(even) {
         direction: ltr;
     }
+    .showcase-image {
+        aspect-ratio: 16/9;
+        border-radius: 12px;
+    }
     .showcase-info .project-number {
         font-size: 2.5rem;
+    }
+    .showcase-info h3 {
+        font-size: 1.4rem;
+    }
+}
+@media (max-width: 768px) {
+    .portfolio-page-hero {
+        min-height: 35vh;
+        padding: calc(var(--header-height) + 20px) 16px 30px;
+    }
+    .portfolio-page-hero h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+    .portfolio-showcase {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding: 2rem 0;
+    }
+    .portfolio-showcase:nth-child(even) {
+        direction: ltr;
+    }
+    .showcase-image {
+        aspect-ratio: 4/3;
+        border-radius: 10px;
+    }
+    .showcase-info {
+        padding: 0.5rem 0;
+    }
+    .showcase-info .project-number {
+        font-size: 2rem;
+        margin-bottom: 0.3rem;
+    }
+    .showcase-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.4rem;
+    }
+    .showcase-info p {
+        font-size: 0.9rem;
+    }
+    .portfolio-cta-section {
+        padding: 3rem 0;
     }
 }
 
@@ -2650,10 +2717,13 @@ html {
 @media (max-width: 768px) {
     .hero {
         align-items: flex-start !important;
-        padding-top: calc(var(--header-height) + 80px) !important;
+        padding-top: calc(var(--header-height) + 30px) !important;
         min-height: 85vh !important;
     }
     .hero-content {
-        margin-top: 2rem;
+        margin-top: 0.5rem;
+    }
+    .hero h1 {
+        font-size: clamp(2rem, 7vw, 2.9rem) !important;
     }
 }
