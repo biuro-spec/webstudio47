@@ -2400,12 +2400,12 @@ html {
 
 /* ============ PORTFOLIO PAGE ============ */
 .portfolio-page-hero {
-    min-height: 50vh;
+    min-height: 40vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: calc(var(--header-height) + 40px) 20px 40px;
+    padding: calc(var(--header-height) + 20px) 20px 30px;
     position: relative;
     overflow: hidden;
 }
@@ -2683,8 +2683,8 @@ html {
 }
 @media (max-width: 768px) {
     .portfolio-page-hero {
-        min-height: 35vh;
-        padding: calc(var(--header-height) + 20px) 16px 30px;
+        min-height: 28vh;
+        padding: calc(var(--header-height) + 10px) 16px 20px;
     }
     .portfolio-page-hero h1 {
         font-size: clamp(2rem, 8vw, 3rem);
