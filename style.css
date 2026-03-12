@@ -1233,10 +1233,10 @@ footer {
 
 /* Portfolio Thumbnails */
 .dr-kangur-thumb {
-    background-image: linear-gradient(rgba(10, 10, 15, 0.15), rgba(10, 10, 15, 0.25)), url('dr-kangur-thumb.png');
-    background-size: cover;
+    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('dr-kangur-thumb.png');
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: top center;
+    background-position: center;
 }
 
 .life-centrum-thumb {
