@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* Fonts loaded via index.html (non-blocking) */
 
 :root {
     /* Colors */
@@ -1233,49 +1233,49 @@ footer {
 
 /* Portfolio Thumbnails */
 .dr-kangur-thumb {
-    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('dr-kangur-thumb.png');
+    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('dr-kangur-thumb.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .life-centrum-thumb {
-    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('life-centrum-thumb.png');
+    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('life-centrum-thumb.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .life-ratownictwo-thumb {
-    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('life-ratownictwo-thumb.png');
+    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('life-ratownictwo-thumb.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .alaska-thumb {
-    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('alaska-thumb.png');
+    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('alaska-thumb.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .wystawfakture-thumb {
-    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('wystawfakture-thumb.png');
+    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('wystawfakture-thumb.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .foxy-thumb {
-    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('foxy-thumb.png');
+    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('foxy-thumb.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .czysto-po-thumb {
-    background-image: linear-gradient(rgba(10, 10, 15, 0.4), rgba(10, 10, 15, 0.5)), url('czysto-po-thumb.png');
+    background-image: linear-gradient(rgba(10, 10, 15, 0.4), rgba(10, 10, 15, 0.5)), url('czysto-po-thumb.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
