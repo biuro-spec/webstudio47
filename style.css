@@ -1067,8 +1067,7 @@ footer {
     max-width: 380px;
 }
 
-.footer-nav h4,
-.footer-contact-info h4 {
+.footer-heading {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 2px;
