@@ -1,0 +1,1003 @@
+/* ==========================================================================
+   page-style.css — style podstron ofertowych (usługi, cennik, kontakt)
+   Rozszerza style.css. Korzysta wyłącznie z tokenów zdefiniowanych w :root.
+   ========================================================================== */
+
+/* --- Dostępność: podstawa dla nowych podstron ---------------------------- */
+
+/* Treść tylko dla czytników ekranu */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* --- Hero podstrony ------------------------------------------------------ */
+
+.page-hero {
+    padding: calc(var(--header-height) + 70px) 0 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 600px;
+    max-width: 140vw;
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.16) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+.page-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.page-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 20px;
+    /* Celowo `em`, nie `ch`: szerokość znaku zmienia się w chwili podmiany
+       fontu na Space Grotesk, przez co nagłówek przełamywał się inaczej
+       i spychał tekst poniżej (CLS 0.18). `em` zależy tylko od rozmiaru. */
+    max-width: 13em;
+}
+
+.page-hero-lead {
+    color: var(--text-secondary);
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    max-width: 34em;
+    margin-bottom: 32px;
+}
+
+.page-hero-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+/* Pasek zaufania pod hero */
+.hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.hero-trust span {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+}
+
+.hero-trust span::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--grad-primary);
+    flex-shrink: 0;
+}
+
+/* --- Okruszki ------------------------------------------------------------ */
+
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.breadcrumbs a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumbs a:hover {
+    color: var(--accent-cyan);
+}
+
+.breadcrumbs span[aria-hidden] {
+    opacity: 0.45;
+}
+
+/* --- Treść długa (prose) ------------------------------------------------- */
+
+.prose {
+    max-width: 70ch;
+}
+
+.prose>*+* {
+    margin-top: 1.15em;
+}
+
+.prose h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.25;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+}
+
+.prose h3 {
+    font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+    margin-top: 1.6em;
+    margin-bottom: 0.4em;
+}
+
+.prose p,
+.prose li {
+    color: var(--text-secondary);
+    line-height: 1.75;
+}
+
+.prose strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+    padding-left: 1.3em;
+}
+
+.prose li+li {
+    margin-top: 0.5em;
+}
+
+.prose a:not(.btn) {
+    color: var(--accent-cyan);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: var(--transition);
+}
+
+.prose a:not(.btn):hover {
+    color: var(--accent-purple);
+}
+
+/* Wyróżniony akapit */
+.callout {
+    border-left: 3px solid var(--accent-purple);
+    background: var(--glass-bg);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    padding: 22px 26px;
+}
+
+.callout p {
+    margin: 0;
+}
+
+/* --- Lista z ptaszkami --------------------------------------------------- */
+
+.check-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+}
+
+.check-list li {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 13px;
+    align-items: start;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.check-list li::before {
+    content: '';
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(6, 182, 212, 0.22));
+    border: 1px solid var(--glass-border);
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306b6d4' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(6, 182, 212, 0.22));
+    background-size: 13px 13px, 100% 100%;
+    background-position: center, center;
+    background-repeat: no-repeat;
+}
+
+/* Lista „czego nie robię" — krzyżyki */
+.cross-list li::before {
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f87171' stroke-width='3' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, rgba(248, 113, 113, 0.16), rgba(248, 113, 113, 0.08));
+}
+
+/* --- Siatka kart (uniwersalna) ------------------------------------------ */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 26px;
+}
+
+.card-grid.cols-2 {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+}
+
+.info-card {
+    padding: 32px;
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+.info-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.info-card p {
+    color: var(--text-secondary);
+    font-size: 0.97rem;
+    line-height: 1.65;
+}
+
+.info-card .card-num {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+/* --- Tabela porównawcza -------------------------------------------------- */
+
+.table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--glass-border);
+}
+
+.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+    font-size: 0.95rem;
+}
+
+.compare-table th,
+.compare-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.compare-table thead th {
+    background: rgba(255, 255, 255, 0.04);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+}
+
+.compare-table tbody th {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-family: Inter, sans-serif;
+}
+
+.compare-table td {
+    color: var(--text-secondary);
+}
+
+.compare-table tbody tr:last-child th,
+.compare-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.compare-table .col-good {
+    color: #34d399;
+}
+
+.compare-table .col-bad {
+    color: #f87171;
+}
+
+/* --- Cennik -------------------------------------------------------------- */
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 26px;
+    align-items: start;
+}
+
+.price-card {
+    padding: 36px 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: var(--transition);
+    position: relative;
+}
+
+.price-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+.price-card.featured {
+    border-color: rgba(139, 92, 246, 0.55);
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.10) 0%, rgba(255, 255, 255, 0.03) 100%);
+}
+
+.price-badge {
+    position: absolute;
+    top: -12px;
+    left: 30px;
+    background: var(--grad-primary);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+}
+
+.price-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.price-card .price-for {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 22px;
+    min-height: 2.9em;
+}
+
+.price-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1.1;
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.price-unit {
+    display: block;
+    font-family: Inter, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    -webkit-text-fill-color: var(--text-muted);
+    margin-top: 6px;
+}
+
+.price-card .check-list {
+    margin: 26px 0 28px;
+    font-size: 0.93rem;
+    gap: 11px;
+}
+
+.price-card .btn {
+    margin-top: auto;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Nota pod cennikiem */
+.price-note {
+    margin-top: 34px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    text-align: center;
+    max-width: 68ch;
+    margin-inline: auto;
+    line-height: 1.7;
+}
+
+/* --- FAQ (natywne <details>) --------------------------------------------- */
+
+.faq-list {
+    display: grid;
+    gap: 14px;
+    max-width: 820px;
+    margin-inline: auto;
+}
+
+.faq-item {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.faq-item[open] {
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+.faq-item summary {
+    padding: 22px 58px 22px 26px;
+    cursor: pointer;
+    position: relative;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.03rem;
+    line-height: 1.45;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: '';
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    width: 11px;
+    height: 11px;
+    margin-top: -6px;
+    border-right: 2px solid var(--accent-cyan);
+    border-bottom: 2px solid var(--accent-cyan);
+    transform: rotate(45deg);
+    transition: transform 0.25s ease;
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(-135deg);
+    margin-top: -2px;
+}
+
+.faq-item summary:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.faq-answer {
+    padding: 0 26px 24px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+}
+
+.faq-answer>*+* {
+    margin-top: 0.9em;
+}
+
+.faq-answer a {
+    color: var(--accent-cyan);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* --- Obszar działania ---------------------------------------------------- */
+
+.area-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+.area-chips li {
+    list-style: none;
+    padding: 9px 18px;
+    border-radius: 100px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.area-chips li.primary {
+    border-color: rgba(139, 92, 246, 0.5);
+    color: var(--text-primary);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.14), rgba(6, 182, 212, 0.10));
+}
+
+/* --- Pas CTA ------------------------------------------------------------- */
+
+.cta-band {
+    text-align: center;
+    padding: 56px 32px;
+    margin-top: 20px;
+}
+
+.cta-band h2 {
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    margin-bottom: 14px;
+}
+
+.cta-band p {
+    color: var(--text-secondary);
+    max-width: 56ch;
+    margin: 0 auto 30px;
+}
+
+.cta-band-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+}
+
+/* --- Formularz kontaktowy ------------------------------------------------ */
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+    gap: 34px;
+    align-items: start;
+}
+
+.contact-form-wrap {
+    padding: 38px;
+}
+
+.contact-form {
+    display: grid;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.field {
+    display: grid;
+    gap: 8px;
+}
+
+.field label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.field .req {
+    color: var(--accent-cyan);
+}
+
+.field .hint {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+    font-family: Inter, sans-serif;
+    font-size: 0.97rem;
+    transition: var(--transition);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.field textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 44px;
+    cursor: pointer;
+}
+
+.field select option {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.16);
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+    border-color: #f87171;
+}
+
+.field-error {
+    font-size: 0.83rem;
+    color: #f87171;
+    min-height: 0;
+}
+
+.field-error:empty {
+    display: none;
+}
+
+/* Zgoda RODO */
+.consent {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 13px;
+    align-items: start;
+}
+
+.consent input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: var(--accent-purple);
+    cursor: pointer;
+}
+
+.consent label {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.consent a {
+    color: var(--accent-cyan);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Honeypot — pułapka na boty, niewidoczna dla ludzi i czytników ekranu */
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.form-submit {
+    justify-content: center;
+    width: 100%;
+    padding: 15px 24px;
+    font-size: 1rem;
+}
+
+.form-submit[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form-status {
+    padding: 15px 18px;
+    border-radius: 10px;
+    font-size: 0.93rem;
+    line-height: 1.6;
+}
+
+.form-status:empty {
+    display: none;
+}
+
+.form-status.ok {
+    background: rgba(52, 211, 153, 0.12);
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    color: #6ee7b7;
+}
+
+.form-status.err {
+    background: rgba(248, 113, 113, 0.12);
+    border: 1px solid rgba(248, 113, 113, 0.35);
+    color: #fca5a5;
+}
+
+/* Panel boczny kontaktu */
+.contact-aside {
+    display: grid;
+    gap: 20px;
+}
+
+.contact-aside .aside-card {
+    padding: 28px;
+}
+
+.contact-aside h2 {
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+}
+
+.contact-aside p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.contact-aside p+p {
+    margin-top: 10px;
+}
+
+.contact-aside a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+}
+
+.contact-aside a:hover {
+    text-decoration: underline;
+}
+
+.aside-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.aside-line:last-child {
+    border-bottom: none;
+}
+
+.aside-line svg {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    stroke: var(--accent-cyan);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.aside-line .big {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* --- Sekcja z tłem ------------------------------------------------------- */
+
+.section-alt {
+    background: var(--bg-secondary);
+}
+
+/* --- Odnośniki wewnątrz nowych komponentów -------------------------------
+
+   style.css nie ustawia globalnego koloru dla <a>, więc każdy odnośnik bez
+   własnej klasy dostawał domyślny niebieski przeglądarki — nieczytelny na
+   ciemnym tle. Poniżej wspólny styl dla wszystkich miejsc, w których
+   podstrony ofertowe wstawiają zwykłe linki.
+   ------------------------------------------------------------------------ */
+
+.price-note a,
+.info-card a,
+.hero-trust a,
+.callout a,
+.check-list a,
+.cta-band a:not(.btn),
+.compare-table a {
+    color: var(--accent-cyan);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: var(--transition);
+}
+
+.price-note a:hover,
+.info-card a:hover,
+.hero-trust a:hover,
+.callout a:hover,
+.check-list a:hover,
+.cta-band a:not(.btn):hover,
+.compare-table a:hover {
+    color: #67e8f9;
+}
+
+/* --- Odnośnik „dowiedz się więcej" w kartach oferty ---------------------- */
+
+.service-more {
+    margin-top: 18px;
+}
+
+.service-more a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.service-more a:hover {
+    color: var(--accent-purple);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* --- Nawigacja: 6 pozycji zamiast 4 -------------------------------------
+
+   Rozbudowane menu nie mieści się już w jednej linii tak szeroko jak dawne.
+   Poniżej 1280px przechodzimy na hamburgera (style.css robi to dopiero
+   przy 768px, przez co pozycje łamały się na dwie linie).
+   ------------------------------------------------------------------------ */
+
+/* Etykiety nawigacji nigdy nie łamią się w środku */
+.nav-links a {
+    white-space: nowrap;
+}
+
+@media (min-width: 1281px) {
+    .nav-links {
+        gap: 26px;
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1280px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: flex !important;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        flex-direction: column;
+        padding: 30px;
+        align-items: center;
+        gap: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* Hamburger — animacja krzyżyka */
+    .menu-toggle.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-last-child(1) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+}
+
+/* --- Responsywność ------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: calc(var(--header-height) + 50px) 0 40px;
+    }
+
+    .page-hero h1 {
+        max-width: none;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form-wrap {
+        padding: 26px 22px;
+    }
+
+    .info-card,
+    .price-card {
+        padding: 26px 22px;
+    }
+
+    .cta-band {
+        padding: 40px 22px;
+    }
+
+    .faq-item summary {
+        padding: 19px 50px 19px 20px;
+        font-size: 0.98rem;
+    }
+
+    .faq-answer {
+        padding: 0 20px 20px;
+    }
+
+    .prose h2 {
+        margin-top: 1.6em;
+    }
+}

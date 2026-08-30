@@ -1,19 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebStudio47 | Tworzenie Stron Internetowych Racibórz</title>
-    
+    <title>WebStudio47 — strony internetowe i pozycjonowanie | Racibórz</title>
+
     <meta name="description"
-        content="WebStudio47 - profesjonalne tworzenie nowoczesnych i szybkich stron internetowych w Raciborzu. Sprawdź moje portfolio i zainwestuj w jakość swojego wizerunku w sieci.">
+        content="WebStudio47 — strony internetowe pisane od zera i pozycjonowanie w Google dla firm z Raciborza i okolic. Zobacz realizacje, poznaj widełki cenowe i zadzwoń: 602 622 840.">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0f">
     <meta name="google-site-verification" content="5PidfDqk8Z2SE3VvdCY2Hx53pxSfZ1QIhAIog24tnqY" />
     <link rel="canonical" href="https://webstudio47.pl/">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css?v=1773430153">
+    <link rel="stylesheet" href="page-style.css?v=1">
 
     <!-- Fonts: preconnect + non-blocking load -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,14 +43,18 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://webstudio47.pl/">
-    <meta property="og:title" content="WebStudio47 | Tworzenie Stron Internetowych Racibórz">
+    <meta property="og:title" content="WebStudio47 — strony internetowe i pozycjonowanie | Racibórz">
     <meta property="og:description" content="Nowoczesne i szybkie strony internetowe premium dla firm. Racibórz i okolice. Sprawdź moje realizacje.">
     <meta property="og:image" content="https://webstudio47.pl/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="WebStudio47">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://webstudio47.pl/">
-    <meta property="twitter:title" content="WebStudio47 | Tworzenie Stron Internetowych Racibórz">
+    <meta property="twitter:title" content="WebStudio47 — strony internetowe i pozycjonowanie | Racibórz">
     <meta property="twitter:description" content="Nowoczesne i szybkie strony internetowe premium dla firm. Racibórz i okolice.">
     <meta property="twitter:image" content="https://webstudio47.pl/og-image.png">
 
@@ -59,15 +65,35 @@
       "@type": "ProfessionalService",
       "name": "WebStudio47",
       "image": "https://webstudio47.pl/og-image.png",
-      "@id": "https://webstudio47.pl",
+      "@id": "https://webstudio47.pl/#organizacja",
       "url": "https://webstudio47.pl",
       "telephone": "+48602622840",
+      "email": "kontakt@webstudio47.pl",
+      "description": "Tworzenie stron internetowych i pozycjonowanie w Google dla firm z Raciborza i okolic. Strony pisane od zera, bez gotowych szablonów.",
+      "priceRange": "600-15000 PLN",
+      "currenciesAccepted": "PLN",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Skłodowskiej 2",
         "addressLocality": "Racibórz",
         "postalCode": "47-400",
+        "addressRegion": "śląskie",
         "addressCountry": "PL"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Racibórz" },
+        { "@type": "City", "name": "Wodzisław Śląski" },
+        { "@type": "City", "name": "Rybnik" },
+        { "@type": "City", "name": "Kędzierzyn-Koźle" },
+        { "@type": "City", "name": "Głubczyce" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Usługi WebStudio47",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tworzenie stron internetowych", "url": "https://webstudio47.pl/tworzenie-stron-internetowych-raciborz/" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pozycjonowanie stron internetowych", "url": "https://webstudio47.pl/pozycjonowanie-stron-raciborz/" } }
+        ]
       },
       "geo": {
         "@type": "GeoCoordinates",
@@ -102,14 +128,16 @@
             <div class="nav-spacer"></div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#services">Oferta</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#process">Jak działam</a></li>
-                    <li><a href="blog/">Blog</a></li>
+                    <li><a href="/tworzenie-stron-internetowych-raciborz/">Strony&nbsp;WWW</a></li>
+                    <li><a href="/pozycjonowanie-stron-raciborz/">Pozycjonowanie</a></li>
+                    <li><a href="/portfolio.html">Realizacje</a></li>
+                    <li><a href="/cennik/">Cennik</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/kontakt/">Kontakt</a></li>
                     <li><a href="tel:+48602622840" class="btn btn-primary btn-sm">602 622 840</a></li>
-                    
                 </ul>
                 <button class="menu-toggle" id="mobile-menu" aria-label="Menu nawigacyjne">
+                    <span></span>
                     <span></span>
                     <span></span>
                 </button>
@@ -201,16 +229,27 @@
                     <h3>Strona firmowa</h3>
                     <p>Wizytówka Twojego biznesu w sieci. Szybka, responsywna, zoptymalizowana pod <span
                             class="term-link" data-term="seo">SEO</span>&nbsp;— żeby klienci Cię znajdowali sami.</p>
+                    <p class="service-more"><a href="/tworzenie-stron-internetowych-raciborz/">Zobacz, jak to
+                            robię&nbsp;→</a></p>
                 </div>
                 <div class="service-card glass reveal delay-1">
+                    <h3>Pozycjonowanie (SEO)</h3>
+                    <p>Strona bez odwiedzin to wizytówka schowana w&nbsp;szufladzie. Zajmuję się tym, żeby Google
+                        pokazywał Cię wtedy, gdy klient szuka Twojej usługi.</p>
+                    <p class="service-more"><a href="/pozycjonowanie-stron-raciborz/">Zobacz zakres
+                            i&nbsp;ceny&nbsp;→</a></p>
+                </div>
+                <div class="service-card glass reveal delay-2">
                     <h3>Strona z efektem „wow"</h3>
                     <p>Animacje, interaktywne elementy i&nbsp;design premium. Strona, po której klient mówi: „chcę
                         tak&nbsp;samo".</p>
+                    <p class="service-more"><a href="/portfolio.html">Zobacz realizacje&nbsp;→</a></p>
                 </div>
-                <div class="service-card glass reveal delay-2">
+                <div class="service-card glass reveal delay-3">
                     <h3>Aplikacja webowa</h3>
                     <p>Dedykowane systemy <span class="term-link" data-term="saas">SaaS</span>, panele klienta
                         i&nbsp;narzędzia wewnętrzne. Skrojone pod Twoje potrzeby.</p>
+                    <p class="service-more"><a href="/cennik/">Sprawdź widełki cenowe&nbsp;→</a></p>
                 </div>
             </div>
         </div>
@@ -518,13 +557,14 @@
                         robię stron dla każdego — i właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
                 </div>
                 <div class="footer-nav">
-                    <p class="footer-heading">Nawigacja</p>
+                    <p class="footer-heading">Oferta</p>
                     <ul>
-                        <li><a href="#services">Oferta</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#process">Jak działam</a></li>
-                        <li><a href="#what-i-need">Co potrzebuję</a></li>
-                        <li><a href="#contact">Kontakt</a></li>
+                        <li><a href="/tworzenie-stron-internetowych-raciborz/">Strony internetowe</a></li>
+                        <li><a href="/pozycjonowanie-stron-raciborz/">Pozycjonowanie</a></li>
+                        <li><a href="/cennik/">Cennik</a></li>
+                        <li><a href="/portfolio.html">Realizacje</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/kontakt/">Kontakt</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact-info">

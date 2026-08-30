@@ -57,9 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenu) {
+        // Czytnik ekranu musi wiedzieć, czy menu jest rozwinięte
+        const syncExpanded = () => {
+            mobileMenu.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        };
+
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenu.classList.toggle('open');
+            syncExpanded();
         });
 
         // Close menu when a link is clicked
@@ -68,28 +74,22 @@ document.addEventListener('DOMContentLoaded', () => {
             item.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 mobileMenu.classList.remove('open');
+                syncExpanded();
             });
         });
-    }
 
-    // 5. Submit Form (Mockup)
-    const form = document.querySelector('.contact-form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = form.querySelector('button');
-            const originalText = btn.innerText;
-            btn.innerText = 'Wysłano!';
-            btn.style.background = 'var(--accent-cyan)';
-            form.reset();
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.style.background = '';
-            }, 3000);
+        // Escape zamyka menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenu.classList.remove('open');
+                syncExpanded();
+                mobileMenu.focus();
+            }
         });
     }
 
-    // 6. Terminology Modals
+    // 5. Terminology Modals
     const termGlossary = {
         seo: {
             title: "SEO (Optymalizacja)",
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Scroll to Top Button
+    // 6. Scroll to Top Button
     const scrollTopBtn = document.getElementById('scroll-top-btn');
     if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Cookie Consent System
+    // 7. Cookie Consent System
     const cookieTrigger = document.getElementById('cookie-trigger');
     const cookieOverlay = document.getElementById('cookie-overlay');
     const cookieModal = document.getElementById('cookie-modal');
