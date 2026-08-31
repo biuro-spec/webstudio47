@@ -51,6 +51,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Zgoda na cookies (Google Consent Mode v2).
+         MUSI byc przed gtag.js: inaczej GA4 zapisze dane, zanim ktokolwiek
+         wyrazi zgode. Obsluge modala ma consent.js. -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied',
+            functionality_storage: 'denied',
+            personalization_storage: 'denied',
+            security_storage: 'granted',
+            wait_for_update: 500
+        });
+
+        // Powracajacy odwiedzajacy — przywracamy jego wczesniejszy wybor od razu,
+        // zeby nie tracic pomiaru u kogos, kto juz sie zgodzil.
+        try {
+            var wybor = JSON.parse(localStorage.getItem('cookieConsent') || 'null');
+            if (wybor) {
+                gtag('consent', 'update', {
+                    analytics_storage: wybor.analytics ? 'granted' : 'denied',
+                    functionality_storage: wybor.functional ? 'granted' : 'denied',
+                    personalization_storage: wybor.functional ? 'granted' : 'denied'
+                });
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NV6W571RJB"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-NV6W571RJB', { anonymize_ip: true });
+    </script>
 </head>
 <body>
         <header id="main-header">
@@ -263,5 +301,6 @@
         });
     }
     </script>
+    <script src="/consent.js?v=1788153168" defer></script>
 </body>
 </html>

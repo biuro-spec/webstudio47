@@ -31,13 +31,43 @@
 
     
 
+    <!-- Zgoda na cookies (Google Consent Mode v2).
+         MUSI byc przed gtag.js: inaczej GA4 zapisze dane, zanim ktokolwiek
+         wyrazi zgode. Obsluge modala ma consent.js. -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied',
+            functionality_storage: 'denied',
+            personalization_storage: 'denied',
+            security_storage: 'granted',
+            wait_for_update: 500
+        });
+
+        // Powracajacy odwiedzajacy — przywracamy jego wczesniejszy wybor od razu,
+        // zeby nie tracic pomiaru u kogos, kto juz sie zgodzil.
+        try {
+            var wybor = JSON.parse(localStorage.getItem('cookieConsent') || 'null');
+            if (wybor) {
+                gtag('consent', 'update', {
+                    analytics_storage: wybor.analytics ? 'granted' : 'denied',
+                    functionality_storage: wybor.functional ? 'granted' : 'denied',
+                    personalization_storage: wybor.functional ? 'granted' : 'denied'
+                });
+            }
+        } catch (e) { }
+    </script>
+
     <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NV6W571RJB"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-NV6W571RJB');
+        gtag('config', 'G-NV6W571RJB', { anonymize_ip: true });
     </script>
 
     <!-- Open Graph / Facebook -->
@@ -617,144 +647,9 @@
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
-    <!-- Cookie Trigger Button -->
-    <button class="cookie-trigger" id="cookie-trigger" aria-label="Ustawienia cookies">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-            stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <circle cx="8" cy="9" r="1.2" fill="currentColor" stroke="none" />
-            <circle cx="14" cy="7" r="1" fill="currentColor" stroke="none" />
-            <circle cx="16" cy="13" r="1.3" fill="currentColor" stroke="none" />
-            <circle cx="10" cy="15" r="1.1" fill="currentColor" stroke="none" />
-            <circle cx="6" cy="13" r="0.8" fill="currentColor" stroke="none" />
-            <circle cx="13" cy="11" r="0.9" fill="currentColor" stroke="none" />
-            <path d="M15.5 4.5 C17 6, 18 8, 17.5 10" opacity="0.4" />
-        </svg>
-    </button>
 
-    <!-- Cookie Consent Modal -->
-    <div class="cookie-overlay" id="cookie-overlay"></div>
-    <div class="cookie-modal" id="cookie-modal">
-        <!-- Main View -->
-        <div class="cookie-view" id="cookie-main-view">
-            <div class="cookie-modal-header">
-                <div class="cookie-modal-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="url(#cookie-grad)" stroke-width="1.5">
-                        <defs>
-                            <linearGradient id="cookie-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#7c3aed" />
-                                <stop offset="100%" stop-color="#06b6d4" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="12" cy="12" r="10" />
-                        <circle cx="8" cy="9" r="1.2" fill="#7c3aed" stroke="none" />
-                        <circle cx="14" cy="7" r="1" fill="#06b6d4" stroke="none" />
-                        <circle cx="16" cy="13" r="1.3" fill="#7c3aed" stroke="none" />
-                        <circle cx="10" cy="15" r="1.1" fill="#06b6d4" stroke="none" />
-                    </svg>
-                </div>
-                <h3>Ty kontrolujesz swoje dane</h3>
-                <button class="cookie-close" id="cookie-close" aria-label="Zamknij">&times;</button>
-            </div>
-
-            <div class="cookie-modal-body">
-                <p class="cookie-desc">Używamy plików cookie, aby zapewnić prawidłowe działanie strony i&nbsp;jej ciągłe
-                    ulepszanie. Możesz dostosować swoje preferencje&nbsp;poniżej.</p>
-
-                <div class="cookie-category">
-                    <div class="cookie-cat-header">
-                        <div>
-                            <h4>Niezbędne</h4>
-                            <p>Zapewniają podstawowe funkcje strony, takie jak nawigacja i&nbsp;bezpieczeństwo. Nie
-                                można ich wyłączyć.</p>
-                        </div>
-                        <span class="cookie-always-on">Zawsze aktywne</span>
-                    </div>
-                </div>
-
-                <div class="cookie-category">
-                    <div class="cookie-cat-header">
-                        <div>
-                            <h4>Funkcjonalne</h4>
-                            <p>Ułatwiają zapisywanie informacji, która zmienia wygląd lub działanie witryny. Na przykład
-                                wybrany język lub preferencje&nbsp;interfejsu.</p>
-                        </div>
-                        <label class="cookie-switch">
-                            <input type="checkbox" id="cookie-functional" checked aria-label="Funkcjonalne">
-                            <span class="cookie-slider"></span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="cookie-category">
-                    <div class="cookie-cat-header">
-                        <div>
-                            <h4>Statystyka</h4>
-                            <p>Pomagają zrozumieć interakcje odwiedzających z&nbsp;witryną w&nbsp;celu ciągłego
-                                ulepszania usług.</p>
-                        </div>
-                        <label class="cookie-switch">
-                            <input type="checkbox" id="cookie-analytics" checked aria-label="Statystyka">
-                            <span class="cookie-slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cookie-modal-footer">
-                <button class="cookie-btn cookie-btn-save" id="cookie-save">Zapisz ustawienia</button>
-                <button class="cookie-btn cookie-btn-reject" id="cookie-reject">Odrzuć wszystkie</button>
-                <button class="cookie-btn cookie-btn-accept" id="cookie-accept-all">Akceptuj wszystkie</button>
-            </div>
-
-            <div class="cookie-privacy-link">
-                <button id="cookie-show-privacy">Polityka prywatności</button>
-            </div>
-        </div>
-
-        <!-- Privacy Policy View -->
-        <div class="cookie-view cookie-privacy-view" id="cookie-privacy-view">
-            <div class="cookie-modal-header">
-                <button class="cookie-back" id="cookie-back" aria-label="Wróć">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 12H5M12 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <h3>Polityka prywatności</h3>
-                <button class="cookie-close" id="cookie-close-privacy" aria-label="Zamknij">&times;</button>
-            </div>
-            <div class="cookie-modal-body cookie-privacy-body">
-                <h4>1. Administrator danych</h4>
-                <p>Administratorem Twoich danych osobowych jest WebStudio47, Racibórz. Kontakt: <a
-                        href="mailto:kontakt@webstudio47.pl">kontakt@webstudio47.pl</a></p>
-
-                <h4>2. Cele przetwarzania danych</h4>
-                <p>Dane przetwarzamy w celu: świadczenia usług drogą elektroniczną, zapewnienia prawidłowego działania
-                    strony, analizy statystycznej ruchu na&nbsp;stronie oraz kontaktu w&nbsp;odpowiedzi na&nbsp;Twoje
-                    zapytania.</p>
-
-                <h4>3. Podstawa prawna</h4>
-                <p>Przetwarzanie odbywa się na&nbsp;podstawie art. 6 ust. 1 lit. a, b i&nbsp;f RODO — Twojej zgody,
-                    realizacji umowy oraz prawnie uzasadnionego interesu administratora.</p>
-
-                <h4>4. Twoje prawa</h4>
-                <p>Masz prawo do: dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania,
-                    przenoszenia danych oraz wniesienia sprzeciwu. Możesz także cofnąć zgodę w&nbsp;dowolnym momencie.
-                </p>
-
-                <h4>5. Pliki cookies</h4>
-                <p>Strona wykorzystuje pliki cookies niezbędne do jej prawidłowego funkcjonowania. Pliki funkcjonalne
-                    i&nbsp;analityczne wymagają Twojej zgody, którą możesz cofnąć w&nbsp;każdej chwili klikając ikonę
-                    ciasteczka w&nbsp;lewym dolnym rogu.</p>
-
-                <h4>6. Kontakt</h4>
-                <p>W sprawach związanych z ochroną danych osobowych prosimy o kontakt: <strong>tel. 602 622 840</strong>
-                    lub e-mail: <a href="mailto:kontakt@webstudio47.pl">kontakt@webstudio47.pl</a></p>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js?v=1788152180" defer></script>
+    <script src="script.js?v=1788153168" defer></script>
+    <script src="/consent.js?v=1788153168" defer></script>
 </body>
 
 </html>

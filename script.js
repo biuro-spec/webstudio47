@@ -151,73 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Cookie Consent System
-    const cookieTrigger = document.getElementById('cookie-trigger');
-    const cookieOverlay = document.getElementById('cookie-overlay');
-    const cookieModal = document.getElementById('cookie-modal');
-    const cookieClose = document.getElementById('cookie-close');
-    const cookieClosePrivacy = document.getElementById('cookie-close-privacy');
-    const cookieSave = document.getElementById('cookie-save');
-    const cookieReject = document.getElementById('cookie-reject');
-    const cookieAcceptAll = document.getElementById('cookie-accept-all');
-    const cookieShowPrivacy = document.getElementById('cookie-show-privacy');
-    const cookieBack = document.getElementById('cookie-back');
-    const cookieMainView = document.getElementById('cookie-main-view');
-    const cookiePrivacyView = document.getElementById('cookie-privacy-view');
+    // Zgoda na cookies zyje teraz w consent.js — razem z Consent Mode v2
+    // i modalem wstrzykiwanym na kazdej podstronie. Wczesniejsza wersja
+    // zapisywala wybor do localStorage i nie robila z nim nic wiecej.
 
-    function openCookieModal() {
-        cookieOverlay.classList.add('active');
-        cookieModal.classList.add('active');
-        // Reset to main view
-        cookieMainView.classList.remove('cookie-main-view-hidden');
-        cookiePrivacyView.classList.remove('active');
-    }
-
-    function closeCookieModal() {
-        cookieOverlay.classList.remove('active');
-        cookieModal.classList.remove('active');
-    }
-
-    function saveCookiePreferences(choice) {
-        const functional = document.getElementById('cookie-functional');
-        const analytics = document.getElementById('cookie-analytics');
-        const prefs = {
-            choice: choice,
-            functional: choice === 'all' ? true : (choice === 'none' ? false : (functional ? functional.checked : false)),
-            analytics: choice === 'all' ? true : (choice === 'none' ? false : (analytics ? analytics.checked : false)),
-            timestamp: Date.now()
-        };
-        localStorage.setItem('cookieConsent', JSON.stringify(prefs));
-        closeCookieModal();
-    }
-
-    if (cookieTrigger) {
-        // Show modal on first visit (no consent stored)
-        if (!localStorage.getItem('cookieConsent')) {
-            setTimeout(() => { openCookieModal(); }, 1500);
-        }
-
-        cookieTrigger.addEventListener('click', openCookieModal);
-        cookieOverlay.addEventListener('click', closeCookieModal);
-        cookieClose.addEventListener('click', closeCookieModal);
-        if (cookieClosePrivacy) cookieClosePrivacy.addEventListener('click', closeCookieModal);
-
-        cookieAcceptAll.addEventListener('click', () => saveCookiePreferences('all'));
-        cookieReject.addEventListener('click', () => saveCookiePreferences('none'));
-        cookieSave.addEventListener('click', () => saveCookiePreferences('custom'));
-
-        // Privacy policy sub-view toggle
-        cookieShowPrivacy.addEventListener('click', () => {
-            cookieMainView.classList.add('cookie-main-view-hidden');
-            cookiePrivacyView.classList.add('active');
-        });
-
-        cookieBack.addEventListener('click', () => {
-            cookiePrivacyView.classList.remove('active');
-            cookieMainView.classList.remove('cookie-main-view-hidden');
-        });
-    }
-
-
-
-    });
+});

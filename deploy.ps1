@@ -29,6 +29,7 @@ $Pliki = @(
   'portfolio.html',
   'script.js',
   'style.css',
+  'consent.js',
   'page-script.js',
   'page-style.css',
   'sitemap.xml',
@@ -63,7 +64,7 @@ if ($ps -match 'WSTAW_TUTAJ_ID_WDROZENIA') {
 # .htaccess kaze trzymac CSS i JS w cache przez ROK. Jesli zmienisz ktorys
 # z tych plikow, a nie podbijesz "?v=" w HTML-ach, powracajacy odwiedzajacy
 # dostana stara wersje - lacznie z formularzem bez adresu Apps Script.
-foreach ($zasob in @('page-style.css', 'page-script.js', 'script.js')) {
+foreach ($zasob in @('page-style.css', 'page-script.js', 'script.js', 'consent.js')) {
   $stempel = (Select-String -Path "$PSScriptRoot\index.html", "$PSScriptRoot\kontakt\index.html" `
                 -Pattern ([regex]::Escape($zasob) + '\?v=(\d+)') -AllMatches -ErrorAction SilentlyContinue |
               ForEach-Object { $_.Matches } | ForEach-Object { $_.Groups[1].Value } |
