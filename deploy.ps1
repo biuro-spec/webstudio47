@@ -60,6 +60,25 @@ if ($ps -match 'WSTAW_TUTAJ_ID_WDROZENIA') {
   Write-Host ""
 }
 
+# .htaccess kaze trzymac CSS i JS w cache przez ROK. Jesli zmienisz ktorys
+# z tych plikow, a nie podbijesz "?v=" w HTML-ach, powracajacy odwiedzajacy
+# dostana stara wersje - lacznie z formularzem bez adresu Apps Script.
+foreach ($zasob in @('page-style.css', 'page-script.js', 'script.js')) {
+  $stempel = (Select-String -Path "$PSScriptRoot\index.html", "$PSScriptRoot\kontakt\index.html" `
+                -Pattern ([regex]::Escape($zasob) + '\?v=(\d+)') -AllMatches -ErrorAction SilentlyContinue |
+              ForEach-Object { $_.Matches } | ForEach-Object { $_.Groups[1].Value } |
+              Select-Object -First 1)
+  if (-not $stempel) { continue }
+  $plik = Get-Item "$PSScriptRoot\$zasob"
+  $czasStempla = [DateTimeOffset]::FromUnixTimeSeconds([int64]$stempel).LocalDateTime
+  if ($plik.LastWriteTime -gt $czasStempla.AddMinutes(5)) {
+    Write-Host "!! UWAGA: $zasob zmieniony po ostatnim podbiciu ?v=$stempel" -ForegroundColor Yellow
+    Write-Host "   Powracajacy odwiedzajacy moga dostac stara wersje z cache." -ForegroundColor Yellow
+    Write-Host "   Podbij ?v= we wszystkich plikach HTML przed wysylka." -ForegroundColor Yellow
+    Write-Host ""
+  }
+}
+
 if ($Lista) {
   Write-Host "Poleci na $Remote :" -ForegroundColor Cyan
   $Pliki | ForEach-Object { "  $_" }

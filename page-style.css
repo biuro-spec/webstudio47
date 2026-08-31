@@ -763,6 +763,19 @@
     color: #fca5a5;
 }
 
+/* Telefon i e-mail w komunikacie muszą być czytelne na kolorowym tle —
+   bez tego dziedziczą domyślny granat przeglądarki. */
+.form-status a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.form-status a:hover {
+    color: #fff;
+}
+
 /* Panel boczny kontaktu */
 .contact-aside {
     display: grid;

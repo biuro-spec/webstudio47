@@ -8,7 +8,7 @@
 
     // Adres wdrożonej aplikacji internetowej Apps Script.
     // Instrukcja wdrożenia: apps-script/README.md
-    var ENDPOINT = 'https://script.google.com/macros/s/WSTAW_TUTAJ_ID_WDROZENIA/exec';
+    var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwzi-wAEalUOHpmbZKk_f4KAaILpZRceQKtp4ETc5fFsUypla1CkzPIxp3MuIJ28cCc/exec';
 
     var form = document.getElementById('kontakt-form');
     if (!form) return;
