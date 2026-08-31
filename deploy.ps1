@@ -169,8 +169,12 @@ if ($Sprzataj) {
   $odp = Read-Host "Na pewno? Wpisz TAK, zeby potwierdzic"
   if ($odp -ne 'TAK') { Write-Host "Przerwane - nic nie usunieto." -ForegroundColor Cyan; return }
 
-  # -nofail: plik moze juz nie istniec i to nie jest blad
-  $DoUsuniecia | ForEach-Object { $lines.Add('rm -nofail "' + $Remote + '/' + $_ + '"') }
+  # `rm` w WinSCP nie zna przelacznika -nofail. Brak pliku sygnalizujemy
+  # przez opcje sesji: `failonnomatch off` sprawia, ze nietrafiony wzorzec
+  # nie jest bledem, a `batch continue` nie przerywa calej listy na pierwszym.
+  $lines.Insert(1, 'option failonnomatch off')
+  $lines[0] = 'option batch continue'
+  $DoUsuniecia | ForEach-Object { $lines.Add('rm "' + $Remote + '/' + $_ + '"') }
   $lines.Add('exit')
 
   $tmpS = "$env:TEMP\ws_sprzatanie_webstudio47.txt"
