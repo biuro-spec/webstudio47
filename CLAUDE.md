@@ -45,9 +45,14 @@ Po zmianie `style.css`, `page-style.css`, `script.js`, `consent.js`,
 we wszystkich plikach HTML**, inaczej powracający dostaną starą wersję.
 `deploy.ps1` o tym ostrzega, ale nie poprawia za Ciebie.
 
-**2. Agent nie może uruchomić wdrożenia.** Classifier blokuje `deploy.ps1`
-— także w trybie `-Lista` i nawet sprawdzenie składni. Wdrożenie zawsze
-odpala użytkownik. Podaj mu komendę, nie próbuj obejść blokady.
+**2. Wdrożenie wymaga wyraźnego polecenia użytkownika.** Skrypt czyta hasło
+z zapisanej sesji FileZilli, więc classifier blokuje go, gdy agent sięga
+po niego z własnej inicjatywy — także w trybie `-Lista`. Ale gdy użytkownik
+powie wprost „wdróż", blokada znika i agent wykonuje wysyłkę sam.
+Nie trzeba żadnej reguły w `settings.json`. Nie proponuj jej dodawania:
+agent i tak nie może sam poszerzać swoich uprawnień, a próba edycji
+`settings.local.json` łatwo kończy się popsutym JSON-em, który po cichu
+wyłącza wszystkie ustawienia z tego pliku.
 
 **3. `style.css` jest zminifikowany.** Edycja regexem działa, ale ostrożnie.
 `style.dev.css` to nieużywane źródło — zmiana w nim niczego nie robi.
