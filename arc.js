@@ -127,38 +127,54 @@
 
     var ciagnie = false, startX = 0, startPoz = 0, ruszyl = false;
 
+    // PROG: ponizej tylu pikseli to jeszcze klikniecie, nie przeciaganie.
+    // Czlowiek klikajac myszka prawie zawsze drgnie o 2-6 px - przy zbyt
+    // niskim progu "Odwiedz strone" przestaje dzialac.
+    var PROG_PRZECIAGANIA = 9;
+
+    // UWAGA: swiadomie BEZ setPointerCapture. Przechwycenie wskaznika
+    // przekierowuje pozniejsze zdarzenie `click` na scene zamiast na karte,
+    // wiec odnosnik w karcie przestawal dzialac. Ruch sledzimy na dokumencie
+    // - dziala tak samo poza scena, a `click` zachowuje swoj prawdziwy cel.
+
     arc.addEventListener('pointerdown', function (e) {
         if (e.button !== 0) return;
         ciagnie = true;
         ruszyl = false;
         startX = e.clientX;
         startPoz = cel;
-        arc.setPointerCapture(e.pointerId);
-        arc.classList.add('is-dragging');
     });
 
-    arc.addEventListener('pointermove', function (e) {
+    document.addEventListener('pointermove', function (e) {
         if (!ciagnie) return;
         var dx = e.clientX - startX;
-        if (Math.abs(dx) > 4) ruszyl = true;
+
+        if (!ruszyl) {
+            if (Math.abs(dx) < PROG_PRZECIAGANIA) return;
+            ruszyl = true;
+            arc.classList.add('is-dragging');
+        }
+
         // 320 px przeciagniecia = jedna karta
         cel = Math.max(0, Math.min(karty.length - 1, startPoz - dx / 320));
         if (!animacja) animacja = requestAnimationFrame(animuj);
-    });
+    }, { passive: true });
 
     function koniecCiagniecia() {
         if (!ciagnie) return;
         ciagnie = false;
         arc.classList.remove('is-dragging');
-        doCelu(Math.round(cel));   // dociagniecie do najblizszej karty
+        if (ruszyl) doCelu(Math.round(cel));   // dociagniecie do najblizszej karty
     }
 
-    arc.addEventListener('pointerup', koniecCiagniecia);
-    arc.addEventListener('pointercancel', koniecCiagniecia);
+    document.addEventListener('pointerup', koniecCiagniecia);
+    document.addEventListener('pointercancel', koniecCiagniecia);
 
-    // Klikniecie po przeciagnieciu nie powinno otwierac realizacji
+    // Klikniecie po przeciagnieciu nie powinno otwierac realizacji.
+    // `ruszyl` gasimy dopiero tutaj, bo click przychodzi PO pointerup.
     arc.addEventListener('click', function (e) {
-        if (ruszyl) { e.preventDefault(); ruszyl = false; }
+        if (ruszyl) { e.preventDefault(); e.stopPropagation(); }
+        ruszyl = false;
     }, true);
 
     /* --- Kolko myszy ------------------------------------------------------ */

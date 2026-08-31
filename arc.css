@@ -354,12 +354,6 @@
     stroke-linejoin: round;
 }
 
-.arc-hint {
-    color: var(--text-muted);
-    font-size: 0.87rem;
-    margin: 0;
-}
-
 .arc-licznik {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.9rem;
