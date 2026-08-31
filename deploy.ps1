@@ -43,6 +43,10 @@ $Pliki = @(
 
 $Katalogi = @(
   'blog',
+  'strony-internetowe-glubczyce',
+  'strony-internetowe-kedzierzyn-kozle',
+  'strony-internetowe-rybnik',
+  'strony-internetowe-wodzislaw-slaski',
   'realizacje',
   'cennik',
   'kontakt',
