@@ -557,7 +557,7 @@ def tresc(r, poprzednia, nastepna):
         <section style="padding-top:0">
             <div class="container">
                 <figure class="realizacja-zrzut reveal">
-                    <img src="/{r["miniatura"]}" width="800" height="450" loading="lazy" decoding="async"
+                    <img src="/{r["miniatura"].replace("-thumb.", "-hero.")}" width="1600" height="900" loading="lazy" decoding="async"
                         alt="Strona internetowa {html.escape(r["klient"])} — {html.escape(r["branza"].lower())}{html.escape(lokalizacja)}">
                     <figcaption>{html.escape(r["klient"])} — <a href="https://{r["domena"]}" target="_blank" rel="noopener">{r["domena"]}</a></figcaption>
                 </figure>

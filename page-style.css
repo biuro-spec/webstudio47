@@ -1041,6 +1041,11 @@
 
 .realizacja-zrzut {
     margin: 0;
+    /* Bez tego figura rozciagala sie do 1150 px, a zrodlo mialo 800 —
+       obraz byl rozmyty. Teraz zrodlo ma 1600 px i wyswietla sie
+       maksymalnie na 900, wiec jest ostre takze na ekranach 2x. */
+    max-width: 900px;
+    margin-inline: auto;
     border-radius: var(--border-radius);
     overflow: hidden;
     border: 1px solid var(--glass-border);
@@ -1346,4 +1351,215 @@
     margin-top: 14px;
     color: var(--text-muted);
     font-size: 0.88rem;
+}
+
+/* ==========================================================================
+   Pozioma galeria usług — wzorzec z projektu „Mapa dłoni"
+
+   Scena wysoka na kilka ekranów, w środku `position: sticky` i tor
+   przesuwany przez `animation-timeline` związany z osią przewijania.
+   Panele jadą z prawa na lewo, gdy użytkownik przewija w dół.
+   Zero JavaScriptu — cały ruch robi CSS.
+
+   Widok podstawowy (poniżej) to zwykły pion. Tryb poziomy włącza się
+   dopiero, gdy przeglądarka go obsługuje, ekran jest szeroki i użytkownik
+   nie prosił o ograniczenie ruchu.
+   ========================================================================== */
+
+.uslugi-tor {
+    display: grid;
+    gap: 28px;
+}
+
+.usluga-panel {
+    padding: 0;
+}
+
+.usluga-siatka {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 52px);
+    align-items: center;
+    max-width: 1160px;
+    margin-inline: auto;
+}
+
+.usluga-etykieta {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+.usluga-panel h3 {
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.usluga-lead {
+    font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    max-width: 46em;
+}
+
+.usluga-akapit {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    font-size: 0.97rem;
+    max-width: 52em;
+}
+
+.usluga-akapit+.usluga-akapit {
+    margin-top: 0.9em;
+}
+
+.usluga-akapit strong {
+    color: var(--text-primary);
+}
+
+.usluga-punkty {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 22px 0 0;
+}
+
+.usluga-punkty li {
+    font-size: 0.85rem;
+    padding: 7px 15px;
+    border-radius: 100px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-secondary);
+}
+
+.usluga-cel {
+    margin-top: 26px;
+}
+
+.usluga-obraz {
+    margin: 0;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+}
+
+.usluga-obraz img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: top center;
+    transition: var(--transition);
+}
+
+.usluga-obraz a:hover img {
+    transform: scale(1.02);
+}
+
+.usluga-obraz figcaption {
+    padding: 13px 18px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--glass-border);
+}
+
+.uslugi-podpowiedz {
+    display: none;
+}
+
+/* --- Tryb poziomy ------------------------------------------------------- */
+
+@media (min-width: 1000px) and (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+
+        .uslugi-scena {
+            /* Cztery panele: jeden ekran na panel plus zapas na przejazdy */
+            height: 460vh;
+            view-timeline: --uslugi block;
+            /* Pełna szerokość OKNA — sekcja siedzi w kontenerze 1200 px,
+               a panele mają 100vw. Bez tego tor startuje z wcięciem
+               i prawa część panelu ginie pod overflow: hidden. */
+            margin-inline: calc(50% - 50vw);
+        }
+
+        .uslugi-klej {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .uslugi-tor {
+            display: flex;
+            height: 100%;
+            width: max-content;
+            gap: 0;
+            will-change: transform;
+            animation: uslugi-przesun linear both;
+            animation-timeline: --uslugi;
+            /* „contain" = odcinek, w którym scena wypełnia okno w całości,
+               czyli dokładnie czas przyklejenia kadru. */
+            animation-range: contain 0% contain 100%;
+        }
+
+        .usluga-panel {
+            width: 100vw;
+            height: 100vh;
+            flex: none;
+            display: grid;
+            place-items: center;
+            /* Nagłówek jest przyklejony na górze — panel musi mu ustąpić */
+            padding: calc(var(--header-height) + 40px) 32px 40px;
+        }
+
+        .usluga-siatka {
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        }
+
+        .uslugi-podpowiedz {
+            display: block;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.87rem;
+            margin-top: 18px;
+        }
+    }
+}
+
+/* Postoje: każdy panel stoi ~15% odcinka, przejazd zajmuje ~10%.
+   Bez postojów pierwszy panel rusza od razu i nie da się nic doczytać. */
+@keyframes uslugi-przesun {
+
+    0%,
+    15% {
+        transform: translateX(0);
+    }
+
+    25%,
+    45% {
+        transform: translateX(-100vw);
+    }
+
+    55%,
+    72% {
+        transform: translateX(-200vw);
+    }
+
+    82%,
+    100% {
+        transform: translateX(-300vw);
+    }
 }
