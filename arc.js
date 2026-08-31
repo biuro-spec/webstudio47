@@ -177,6 +177,45 @@
         kolkoTimer = setTimeout(function () { doCelu(Math.round(cel)); }, 130);
     }, { passive: false });
 
+    /* --- Menu schodzi z drogi, gdy galeria wypelnia ekran ----------------
+
+       Naglowek jest przyklejony na gorze i zaslania gorna krawedz kart.
+       Chowamy go, ale NIE na stale: wraca, gdy mysz zbliza sie do gory
+       ekranu albo gdy cokolwiek w nim dostanie fokus z klawiatury.
+       Bez tego uzytkownik klawiatury zostalby bez nawigacji.
+       -------------------------------------------------------------------- */
+
+    var html = document.documentElement;
+    var naglowek = document.getElementById('main-header');
+
+    if (naglowek && 'IntersectionObserver' in window) {
+        var obserwator = new IntersectionObserver(function (wpisy) {
+            wpisy.forEach(function (w) {
+                // Chowamy dopiero, gdy scena naprawde zajmuje ekran
+                html.classList.toggle('arc-fokus', w.intersectionRatio > 0.55);
+            });
+        }, { threshold: [0, 0.55, 1] });
+
+        obserwator.observe(arc);
+
+        // Mysz przy gornej krawedzi przywoluje menu
+        document.addEventListener('pointermove', function (e) {
+            if (!html.classList.contains('arc-fokus')) return;
+            html.classList.toggle('arc-menu-wroc', e.clientY < 110);
+        }, { passive: true });
+
+        // Fokus klawiatury w naglowku zawsze go pokazuje
+        naglowek.addEventListener('focusin', function () {
+            html.classList.add('arc-menu-wroc');
+        });
+
+        naglowek.addEventListener('focusout', function () {
+            if (!naglowek.contains(document.activeElement)) {
+                html.classList.remove('arc-menu-wroc');
+            }
+        });
+    }
+
     /* --- Reakcja na zmiane warunkow -------------------------------------- */
 
     function przelicz() {
