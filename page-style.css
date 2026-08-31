@@ -1150,3 +1150,34 @@
     color: var(--text-muted);
     font-size: 0.88rem;
 }
+
+/* --- Blok definicyjny --------------------------------------------------
+
+   To z niego wyszukiwarki AI (ChatGPT, Perplexity, AI Overviews) wyciągają
+   odpowiedź na pytanie „czym jest…". Musi być samodzielny: dać się
+   zacytować w oderwaniu od reszty strony i nadal mieć sens.
+   ------------------------------------------------------------------------ */
+
+.definicja {
+    border-left: 3px solid var(--accent-cyan);
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.09), transparent 70%);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    padding: 26px 30px;
+    margin: 36px 0 0;
+    max-width: 74ch;
+}
+
+.definicja p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    font-size: 1.02rem;
+}
+
+.definicja p+p {
+    margin-top: 0.9em;
+}
+
+.definicja strong {
+    color: var(--text-primary);
+}

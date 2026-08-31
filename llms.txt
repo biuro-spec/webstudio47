@@ -1,0 +1,55 @@
+# WebStudio47
+
+> Jednoosobowa pracownia z Raciborza tworząca strony internetowe pisane od zera
+> i prowadząca pozycjonowanie lokalne dla firm z Raciborza, Wodzisławia
+> Śląskiego, Rybnika, Kędzierzyna-Koźla i Głubczyc.
+
+Kontakt: 602 622 840 · kontakt@webstudio47.pl · Racibórz, woj. śląskie
+
+## Czym się zajmuję
+
+- **Tworzenie stron internetowych** — strony firmowe, landing page, sklepy
+  internetowe i aplikacje webowe. Pisane od zera, bez gotowych szablonów
+  i bez WordPressa (chyba że klient wyraźnie go potrzebuje).
+- **Pozycjonowanie stron (SEO)** — audyt, optymalizacja techniczna, SEO
+  lokalne i prowadzenie Profilu Firmy w Google. Rozliczenie miesięczne
+  z miesięcznym wypowiedzeniem, bez umów na rok.
+
+## Ceny (netto, 2026)
+
+| Usługa | Cena |
+| --- | --- |
+| Landing page | 1 500 – 3 500 zł jednorazowo |
+| Strona firmowa | 2 000 – 5 000 zł jednorazowo |
+| Sklep internetowy | 5 000 – 15 000 zł jednorazowo |
+| Aplikacja webowa | od 8 000 zł jednorazowo |
+| Audyt SEO | od 900 zł jednorazowo |
+| Stała opieka SEO | od 800 zł miesięcznie |
+| Profil Firmy w Google | od 600 zł jednorazowo |
+| Konsultacja (15 minut) | 0 zł |
+
+Koszty stałe płacone bezpośrednio dostawcy, nie wykonawcy: domena
+60–120 zł rocznie, hosting 150–400 zł rocznie, certyfikat SSL 0 zł.
+
+## Czego nie robię
+
+- Nie gwarantuję pierwszego miejsca w Google — o kolejności decyduje Google.
+- Nie kupuję linków w systemach wymiany.
+- Nie zamykam klientów w umowach na 12 miesięcy.
+- Nie biorę zleceń, w których nie widzę szans na efekt.
+
+## Ważne strony
+
+- [Tworzenie stron internetowych — Racibórz](https://webstudio47.pl/tworzenie-stron-internetowych-raciborz/)
+- [Pozycjonowanie stron — Racibórz](https://webstudio47.pl/pozycjonowanie-stron-raciborz/)
+- [Cennik](https://webstudio47.pl/cennik/)
+- [Realizacje](https://webstudio47.pl/portfolio.html)
+- [Kontakt](https://webstudio47.pl/kontakt/)
+- [Blog](https://webstudio47.pl/blog/)
+
+## Realizacje
+
+hOla Perros (salon groomerski), Super Irek (usługi remontowe), Czysto-Po
+(firma sprzątająca), Alaska (klimatyzacja i chłodnictwo), Life-Centrum
+(placówka medyczna), Life-Ratownictwo (transport medyczny), WystawFakture.eu
+(generator faktur), 9 Dom (kalkulatory astrologiczne), Karta Dnia (tarot online).

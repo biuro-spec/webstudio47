@@ -38,6 +38,7 @@ $Pliki = @(
   'arc.css',
   'sitemap.xml',
   'robots.txt',
+  'llms.txt',
   '.htaccess'
 )
 
