@@ -112,26 +112,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const termLinks = document.querySelectorAll('.term-link');
 
     if (termModal && termLinks.length > 0) {
+        let termOstatnioAktywny = null;
+
+        const zamknijTerm = () => {
+            termModal.classList.remove('active');
+            if (termOstatnioAktywny && termOstatnioAktywny.focus) termOstatnioAktywny.focus();
+        };
+
         termLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
+            // .term-link to <span>, wiec bez tego nie da sie go dosiegnac klawiaturą
+            link.setAttribute('tabindex', '0');
+            link.setAttribute('role', 'button');
+
+            const otworz = (e) => {
                 e.preventDefault();
                 const termKey = link.getAttribute('data-term');
-                if (termGlossary[termKey]) {
-                    termModalTitle.textContent = termGlossary[termKey].title;
-                    termModalDesc.textContent = termGlossary[termKey].desc;
-                    termModal.classList.add('active');
-                }
+                if (!termGlossary[termKey]) return;
+                termOstatnioAktywny = link;
+                termModalTitle.textContent = termGlossary[termKey].title;
+                termModalDesc.textContent = termGlossary[termKey].desc;
+                termModal.classList.add('active');
+                termModalClose.focus();
+            };
+
+            link.addEventListener('click', otworz);
+            link.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') otworz(e);
             });
         });
 
-        termModalClose.addEventListener('click', () => {
-            termModal.classList.remove('active');
-        });
+        termModalClose.addEventListener('click', zamknijTerm);
 
         termModal.addEventListener('click', (e) => {
-            if (e.target === termModal) {
-                termModal.classList.remove('active');
-            }
+            if (e.target === termModal) zamknijTerm();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && termModal.classList.contains('active')) zamknijTerm();
         });
     }
 

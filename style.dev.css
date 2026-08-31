@@ -1231,13 +1231,6 @@ footer {
 }
 
 /* Portfolio Thumbnails */
-.dr-kangur-thumb {
-    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('dr-kangur-thumb.webp');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
 .life-centrum-thumb {
     background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('life-centrum-thumb.webp');
     background-size: contain;
@@ -1261,13 +1254,6 @@ footer {
 
 .wystawfakture-thumb {
     background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('wystawfakture-thumb.webp');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.foxy-thumb {
-    background-image: linear-gradient(rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.4)), url('foxy-thumb.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

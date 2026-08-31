@@ -45,6 +45,15 @@ $Katalogi = @(
   'tworzenie-stron-internetowych-raciborz'
 )
 
+# Obrazy z katalogu glownego: miniatury realizacji, favicon, obrazek do
+# udostepnien. Wczesniej ich tu nie bylo - dzialaly tylko dlatego, ze trafily
+# na serwer recznie, przed powstaniem tego skryptu. Kazda nowa albo podmieniona
+# miniatura nie zostalaby wyslana.
+$Obrazy = @(Get-ChildItem -Path $PSScriptRoot -File |
+            Where-Object { $_.Extension -in '.webp', '.png', '.jpg', '.svg', '.ico' } |
+            Where-Object { $_.Name -ne 'favicon-original.png' } |
+            ForEach-Object { $_.Name })
+
 # --- Kontrola przed wysylka --------------------------------------------------
 
 $brakujace = @()
@@ -71,6 +80,7 @@ $doSprawdzenia = @(
   @{ Zasob = 'page-script.js';       Html = 'kontakt\index.html' },
   @{ Zasob = 'consent.js';           Html = 'index.html' },
   @{ Zasob = 'script.js';            Html = 'index.html' },
+  @{ Zasob = 'style.css';             Html = 'index.html' },
   @{ Zasob = 'blog\blog-style.css';  Html = 'blog\index.html' }
 )
 
@@ -100,6 +110,8 @@ foreach ($poz in $doSprawdzenia) {
 if ($Lista) {
   Write-Host "Poleci na $Remote :" -ForegroundColor Cyan
   $Pliki | ForEach-Object { "  $_" }
+  Write-Host "  --- obrazy ($($Obrazy.Count)) ---" -ForegroundColor DarkGray
+  $Obrazy | ForEach-Object { "  $_" }
   $Katalogi | ForEach-Object {
     $n = (Get-ChildItem "$PSScriptRoot\$_" -Recurse -File).Count
     "  $_\  ($n plikow)"
@@ -127,7 +139,7 @@ $lines.Add('option confirm off')
 $lines.Add('open ftp://ntroixgelh@s75.cyber-folks.pl:21 -passive=on -password="' + $passQ + '"')
 $lines.Add('cd "' + $Remote + '"')
 
-foreach ($p in $Pliki) {
+foreach ($p in ($Pliki + $Obrazy)) {
   $lines.Add('put "' + "$PSScriptRoot\$p" + '" "' + $Remote + '/' + $p + '"')
 }
 foreach ($k in $Katalogi) {
