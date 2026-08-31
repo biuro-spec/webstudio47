@@ -1,0 +1,374 @@
+/* ==========================================================================
+   arc.css — galeria realizacji na łuku 3D
+
+   Inspiracja: jesperlandberg.com. Tamten efekt to pełna scena WebGL —
+   6,7 MB, zero obrazów w DOM-ie. Tutaj ten sam pomysł wizualny na czystym
+   CSS: prawdziwe <img>, prawdziwe odnośniki, zero bibliotek.
+
+   Wszystko poniżej działa DOPIERO po dodaniu klasy `arc-on` przez arc.js.
+   Bez JavaScriptu, przy ograniczonym ruchu i na wąskich ekranach zostaje
+   zwykła lista kart — czyli to, co widzi Google i czytnik ekranu.
+   ========================================================================== */
+
+/* --- Widok podstawowy: lista (bez JS, mobile, reduced-motion) ------------ */
+
+.arc {
+    position: relative;
+    margin-top: 40px;
+}
+
+.arc-track {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 28px;
+}
+
+.arc-card {
+    position: relative;
+}
+
+.arc-card-inner {
+    display: block;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+.arc-shot {
+    display: block;
+    width: 100%;
+    /* height:auto MUSI tu byc - bez tego atrybut height="450" z HTML
+       ustawia wysokosc na sztywno i aspect-ratio jest ignorowane. */
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: top center;
+    background: var(--bg-secondary);
+}
+
+.arc-body {
+    padding: 26px 26px 28px;
+}
+
+.arc-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.arc-card h2 {
+    font-size: 1.35rem;
+    margin: 8px 0 12px;
+    line-height: 1.25;
+}
+
+.arc-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.arc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.arc-tags span {
+    font-size: 0.78rem;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+}
+
+.arc-go {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    font-weight: 600;
+    font-size: 0.93rem;
+    color: var(--accent-cyan);
+}
+
+.arc-go svg {
+    width: 17px;
+    height: 17px;
+    transition: transform 0.25s ease;
+}
+
+.arc-card-inner:hover {
+    border-color: rgba(139, 92, 246, 0.45);
+}
+
+.arc-card-inner:hover .arc-go svg {
+    transform: translateX(4px);
+}
+
+/* Sterowanie i podpowiedź mają sens tylko w trybie łuku */
+.arc-controls {
+    display: none;
+}
+
+/* ========================================================================
+   Tryb łuku — włączany przez arc.js
+   ======================================================================== */
+
+.arc-on .arc {
+    /* Wysokość sceny: karty muszą się zmieścić razem z odsunięciem w głąb */
+    height: 660px;
+    /* Naglowek jest przyklejony na gorze - bez tego gorna krawedz karty
+       chowa sie pod menu przy przewijaniu. */
+    margin-top: 28px;
+    perspective: 1500px;
+    perspective-origin: 50% 45%;
+    overflow: hidden;
+    touch-action: pan-y;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.arc-on .arc.is-dragging {
+    cursor: grabbing;
+}
+
+.arc-on .arc-track {
+    position: absolute;
+    inset: 0;
+    display: block;
+    transform-style: preserve-3d;
+    margin: 0;
+}
+
+.arc-on .arc-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    max-width: 76vw;
+    margin: 0;
+
+    /* --kat, --x, --z ustawia arc.js dla każdej karty osobno */
+    transform:
+        translate(-50%, -50%)
+        translateX(var(--x, 0px))
+        translateZ(var(--z, 0px))
+        rotateY(var(--kat, 0deg));
+
+    transform-style: preserve-3d;
+    transition: opacity 0.35s ease;
+    will-change: transform;
+}
+
+.arc-on .arc-card-inner {
+    /* Karty odsunięte w głąb przygasają — bez tego łuk wygląda płasko */
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.arc-on .arc-card::after {
+    /* Przyciemnienie rosnące z odległością od środka łuku */
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: var(--bg-primary);
+    opacity: var(--cien, 0);
+    pointer-events: none;
+    transition: opacity 0.2s linear;
+}
+
+.arc-on .arc-card[aria-hidden="true"] {
+    pointer-events: none;
+}
+
+.arc-on .arc-body {
+    padding: 20px 22px 22px;
+}
+
+.arc-on .arc-card h2 {
+    font-size: 1.2rem;
+}
+
+.arc-on .arc-desc {
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* --- Podłoga: siatka uciekająca w perspektywie -------------------------- */
+
+.arc-floor {
+    display: none;
+}
+
+.arc-on .arc-floor {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: -14%;
+    width: 340%;
+    height: 88%;
+    transform: translateX(-50%) rotateX(74deg);
+    transform-origin: 50% 100%;
+    background-image:
+        linear-gradient(to right, rgba(139, 92, 246, 0.42) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(6, 182, 212, 0.34) 1px, transparent 1px);
+    background-size: 64px 64px;
+    /* Bez wygaszenia ku gorze siatka wyglada jak naklejona tapeta,
+       a nie jak podloga uciekajaca w glab. */
+    -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 85%);
+    mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 85%);
+    pointer-events: none;
+}
+
+/* --- Sterowanie --------------------------------------------------------- */
+
+.arc-on .arc-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 26px;
+    flex-wrap: wrap;
+}
+
+.arc-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.arc-btn:hover:not(:disabled) {
+    border-color: var(--accent-cyan);
+    transform: translateY(-2px);
+}
+
+.arc-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.arc-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.arc-hint {
+    color: var(--text-muted);
+    font-size: 0.87rem;
+    margin: 0;
+}
+
+.arc-licznik {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    min-width: 5ch;
+    text-align: center;
+}
+
+/* --- Wąskie ekrany: łuk się nie mieści, wracamy do listy ---------------- */
+
+@media (max-width: 900px) {
+
+    .arc-on .arc {
+        height: auto;
+        perspective: none;
+        overflow: visible;
+        cursor: default;
+    }
+
+    .arc-on .arc-track {
+        position: static;
+        display: grid;
+        gap: 26px;
+    }
+
+    .arc-on .arc-card {
+        position: static;
+        width: auto;
+        max-width: none;
+        transform: none;
+    }
+
+    .arc-on .arc-card::after,
+    .arc-on .arc-floor,
+    .arc-on .arc-controls {
+        display: none;
+    }
+
+    .arc-on .arc-desc {
+        -webkit-line-clamp: unset;
+        display: block;
+    }
+}
+
+/* --- Ograniczony ruch: żadnego łuku, zwykła lista ----------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .arc-on .arc {
+        height: auto;
+        perspective: none;
+        overflow: visible;
+    }
+
+    .arc-on .arc-track {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 26px;
+    }
+
+    .arc-on .arc-card {
+        position: static;
+        width: auto;
+        max-width: none;
+        transform: none;
+    }
+
+    .arc-on .arc-card::after,
+    .arc-on .arc-floor,
+    .arc-on .arc-controls {
+        display: none;
+    }
+}
+
+/* Szerokie ekrany: lista domyślna jako siatka */
+@media (min-width: 901px) {
+    .arc-track {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}

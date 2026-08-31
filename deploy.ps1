@@ -34,6 +34,8 @@ $Pliki = @(
   'consent.js',
   'page-script.js',
   'page-style.css',
+  'arc.js',
+  'arc.css',
   'sitemap.xml',
   'robots.txt',
   '.htaccess'
@@ -83,7 +85,9 @@ $doSprawdzenia = @(
   @{ Zasob = 'consent.js';           Html = 'index.html' },
   @{ Zasob = 'script.js';            Html = 'index.html' },
   @{ Zasob = 'style.css';             Html = 'index.html' },
-  @{ Zasob = 'blog\blog-style.css';  Html = 'blog\index.html' }
+  @{ Zasob = 'blog\blog-style.css';  Html = 'blog\index.html' },
+  @{ Zasob = 'arc.css';              Html = 'portfolio.html' },
+  @{ Zasob = 'arc.js';               Html = 'portfolio.html' }
 )
 
 foreach ($poz in $doSprawdzenia) {
