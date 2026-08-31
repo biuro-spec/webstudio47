@@ -104,6 +104,19 @@ i zawsze sprawdzaj `location.href`, czy przeglądarka nie stoi na stronie błęd
 | **pricing-page** | dalsza praca nad `/cennik/` |
 | **landing-page** | struktura i copy stron ofertowych (uwaga: sama strategia, nie generator) |
 
+### Do ruchu i animacji
+
+Strona ma dziś poziomą galerię usług na `view-timeline` i łukową galerię
+realizacji w `arc.js` — obie bez jednej zewnętrznej biblioteki. Poniższe
+skille to szanują; te z GSAP-em i Lenisem są na czarnej liście niżej.
+
+| Skill | Kiedy |
+|---|---|
+| **animation-vocabulary** | „chcę efekt jak na tamtej stronie" → zamienia opis na nazwę techniki. Pierwszy krok, zanim cokolwiek napiszesz |
+| **find-animation-opportunities** | szuka miejsc, które powinny się ruszać, i — ważniejsze — odrzuca te, które nie powinny |
+| **review-animations** | ocena rzemiosła wg Emila Kowalskiego: czasy, krzywe, `will-change`, zapasy |
+| **animation-on-scroll** | IntersectionObserver, czysty JS — gdy `animation-timeline` nie wystarczy |
+
 ### Do jakości wykonania
 
 | Skill | Kiedy |
@@ -130,6 +143,18 @@ JavaScript. Nie dokładaj żadnej bez wyraźnej prośby — „strony pisane od 
 bez kilkunastu wtyczek" to dosłownie treść oferty na stronie głównej.
 
 ---
+
+## Kontrola przed wdrożeniem
+
+```bash
+python ~/.claude/skills/robienie-stron/sprawdz.py .          # pliki lokalne
+python ~/.claude/skills/robienie-stron/sprawdz.py --url webstudio47.pl
+```
+
+Zastępuje `tools/sprawdz.py` — to samo, ale działa na każdym projekcie,
+także reactowym (tryb `--url`). Skill **robienie-stron** trzyma decyzje,
+których skrypt nie podejmie: kiedy strona lokalna jest wartościowa,
+kiedy nie dokładać biblioteki, jak nie zgadywać liczb.
 
 ## Wdrażanie
 
