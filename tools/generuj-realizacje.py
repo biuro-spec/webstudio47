@@ -30,7 +30,7 @@ REALIZACJE = [
         miasto="Racibórz",
         domena="holaperros.pl",
         miniatura="holaperros-thumb.webp",
-        tytul="Strona internetowa dla salonu groomerskiego — hOla Perros",
+        tytul="Strona dla salonu groomerskiego — hOla Perros",
         opisMeta="Strona dla salonu pielęgnacji psów w Raciborzu: rezerwacja terminu, cennik usług, galeria metamorfoz i sklepik. Zobacz, jak powstała.",
         h1="Strona dla salonu groomerskiego",
         lead="Salon pielęgnacji i strzyżenia psów w Raciborzu. Marka premium, która musiała wyglądać premium także w internecie — i jednocześnie odbierać rezerwacje bez telefonu.",
@@ -55,7 +55,7 @@ REALIZACJE = [
         miasto="Racibórz",
         domena="superirek.pl",
         miniatura="superirek-thumb.webp",
-        tytul="Strona internetowa dla złotej rączki — Super Irek",
+        tytul="Strona dla złotej rączki — Super Irek",
         opisMeta="Strona dla usług remontowych i montażowych w Raciborzu, zbudowana wokół jednego celu: telefonu od klienta. Zobacz, jak powstała.",
         h1="Strona dla złotej rączki",
         lead="Montaż mebli, drobna hydraulika, lampy i gniazdka, poprawki po fachowcach. Usługa, w której klient dzwoni od razu albo nie dzwoni wcale.",
@@ -80,7 +80,7 @@ REALIZACJE = [
         miasto="Racibórz",
         domena="czysto-po.pl",
         miniatura="czysto-po-thumb.webp",
-        tytul="Strona internetowa dla firmy sprzątającej — Czysto-Po",
+        tytul="Strona dla firmy sprzątającej — Czysto-Po",
         opisMeta="Strona dla firmy sprzątającej z Raciborza: ozonowanie, dezynfekcja, sprzątanie po zgonach i po remontach. Zobacz, jak powstała.",
         h1="Strona dla firmy sprzątającej",
         lead="Sprzątanie mieszkań, ozonowanie, dezynfekcja, sprzątanie po zgonach i po zbieractwie. Usługi, których szuka się w bardzo różnych stanach emocjonalnych.",
@@ -104,7 +104,7 @@ REALIZACJE = [
         miasto="Racibórz",
         domena="alaskarp.pl",
         miniatura="alaska-thumb.webp",
-        tytul="Strona internetowa dla firmy klimatyzacyjnej — Alaska",
+        tytul="Strona dla firmy klimatyzacyjnej — Alaska",
         opisMeta="Strona dla firmy klimatyzacyjnej i chłodniczej z Raciborza działającej od 1997 roku. Animowane wejście, blog, panel realizacji. Zobacz, jak powstała.",
         h1="Strona dla firmy klimatyzacyjnej",
         lead="Montaż i serwis klimatyzacji oraz chłodnictwo przemysłowe. Firma z Raciborza działająca od 1997 roku — z dorobkiem, którego wcześniej nie było widać w internecie.",
@@ -129,7 +129,7 @@ REALIZACJE = [
         miasto="Racibórz",
         domena="life-centrum.pl",
         miniatura="life-centrum-thumb.webp",
-        tytul="Strona internetowa dla przychodni — Life-Centrum",
+        tytul="Strona dla przychodni — Life-Centrum",
         opisMeta="Strona dla centrum zdrowia w Raciborzu: usługi medyczne, punkt pobrań, lekarze specjaliści. Zobacz, jak powstała.",
         h1="Strona dla placówki medycznej",
         lead="Centrum zdrowia w Raciborzu: lekarze specjaliści, punkt pobrań krwi, usługi pielęgniarskie. Placówka, do której trafia się w konkretnej sprawie i chce się szybko wiedzieć, czy to właściwe miejsce.",
@@ -154,7 +154,7 @@ REALIZACJE = [
         miasto="Racibórz",
         domena="life-ratownictwo.pl",
         miniatura="life-ratownictwo-thumb.webp",
-        tytul="Strona internetowa dla transportu medycznego — Life-Ratownictwo",
+        tytul="Strona dla transportu medycznego",
         opisMeta="Strona dla firmy transportu medycznego i zabezpieczeń imprez: prywatna karetka, transport międzynarodowy, obsługa wydarzeń. Zobacz, jak powstała.",
         h1="Strona dla firmy transportu medycznego",
         lead="Prywatna karetka, transport międzynarodowy pacjentów i zabezpieczenie medyczne imprez masowych. Trzy usługi, trzech zupełnie różnych odbiorców.",
@@ -179,7 +179,7 @@ REALIZACJE = [
         miasto=None,
         domena="wystawfakture.eu",
         miniatura="wystawfakture-thumb.webp",
-        tytul="Aplikacja do wystawiania faktur online — WystawFakture.eu",
+        tytul="Aplikacja do faktur — WystawFakture.eu",
         opisMeta="Darmowy generator faktur online bez rejestracji: faktury VAT, proforma i korekty, gotowość na KSeF. Zobacz, jak powstała aplikacja.",
         h1="Aplikacja do wystawiania faktur",
         lead="Generator faktur działający w przeglądarce, bez zakładania konta. Faktury VAT, proformy i korekty, zgodne z polskimi przepisami i przygotowane na KSeF.",
@@ -204,7 +204,7 @@ REALIZACJE = [
         miasto=None,
         domena="9dom.pl",
         miniatura="9dom-thumb.webp",
-        tytul="Aplikacja webowa z kalkulatorami — 9 Dom, Mapa Czasu Duszy",
+        tytul="Aplikacja z kalkulatorami — 9 Dom",
         opisMeta="Aplikacja z kalkulatorami astrologii wedyjskiej i numerologii: kosmogram, astrokartografia, cykle czasu, panel użytkownika. Zobacz, jak powstała.",
         h1="Aplikacja webowa z kalkulatorami",
         lead="Kalkulatory astrologii wedyjskiej i numerologii: kosmogram, astrokartografia, cykle czasu, mapa życia. Obliczenia astronomiczne podane językiem, który da się zrozumieć bez przygotowania.",
@@ -228,7 +228,7 @@ REALIZACJE = [
         miasto=None,
         domena="karta-dnia.pl",
         miniatura="karta-dnia-thumb.webp",
-        tytul="Serwis treściowy z interaktywnym narzędziem — Karta Dnia",
+        tytul="Serwis treściowy z narzędziem — Karta Dnia",
         opisMeta="Tarot online po polsku: karta dnia, rozkłady z interpretacją i znaczenia wszystkich 78 kart. Zobacz, jak powstał serwis.",
         h1="Serwis treściowy z narzędziem",
         lead="Rozkłady tarota z interpretacją i znaczenia wszystkich 78 kart, bez rejestracji. Serwis, w którym treść i narzędzie napędzają się nawzajem.",
@@ -247,10 +247,27 @@ REALIZACJE = [
     ),
 ]
 
+# ——— Kontrola długości ————————————————————————————————————————————————
+# Google ucina tytuł ok. 60 znaków, opis ok. 155. Generator MUSI to
+# wymuszać, bo inaczej limit istnieje wyłącznie w czyjejś pamięci —
+# a tak właśnie powstało 20 stron ze ściętymi tytułami.
+
+LIMIT_TYTUL = 60
+LIMIT_OPIS = 155
+
+
+def sprawdz_dlugosc(tytul, opis, gdzie):
+    if len(tytul) > LIMIT_TYTUL:
+        raise ValueError(f'{gdzie}: tytul ma {len(tytul)} znakow, limit {LIMIT_TYTUL} -> {tytul}')
+    if len(opis) > LIMIT_OPIS:
+        raise ValueError(f'{gdzie}: opis ma {len(opis)} znakow, limit {LIMIT_OPIS}')
+
+
 # ——— Szablon ————————————————————————————————————————————————————————
 
 def naglowek_strony(r, stempel):
     url = f"{BAZA}/realizacje/{r['slug']}/"
+    sprawdz_dlugosc(f'{r["tytul"]} | WebStudio47', r["opisMeta"], r["slug"])
     schema_dzielo = {
         "@context": "https://schema.org",
         "@type": "CreativeWork",

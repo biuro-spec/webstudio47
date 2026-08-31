@@ -22,6 +22,22 @@ KATALOG = pathlib.Path(__file__).resolve().parent.parent
 BAZA = "https://webstudio47.pl"
 FB = "https://www.facebook.com/profile.php?id=61578430357755"
 
+# ——— Kontrola długości ————————————————————————————————————————————————
+# Google ucina tytuł ok. 60 znaków, opis ok. 155. Generator MUSI to
+# wymuszać, bo inaczej limit istnieje wyłącznie w czyjejś pamięci —
+# a tak właśnie powstało 20 stron ze ściętymi tytułami.
+
+LIMIT_TYTUL = 60
+LIMIT_OPIS = 155
+
+
+def sprawdz_dlugosc(tytul, opis, gdzie):
+    if len(tytul) > LIMIT_TYTUL:
+        raise ValueError(f'{gdzie}: tytul ma {len(tytul)} znakow, limit {LIMIT_TYTUL} -> {tytul}')
+    if len(opis) > LIMIT_OPIS:
+        raise ValueError(f'{gdzie}: opis ma {len(opis)} znakow, limit {LIMIT_OPIS}')
+
+
 MIASTA = [
     dict(
         slug="strony-internetowe-wodzislaw-slaski",
@@ -30,7 +46,7 @@ MIASTA = [
         miastoMs="Wodzisławiu Śląskim",    # miejscownik
         wojewodztwo="śląskie",
         dojazd="niecałe pół godziny",
-        opisMeta="Tworzenie stron internetowych w Wodzisławiu Śląskim. Strony pisane od zera dla lokalnych firm, wycena po 15-minutowej rozmowie. Racibórz obok — spotkanie na żywo bez problemu.",
+        opisMeta="Tworzenie stron internetowych w Wodzisławiu Śląskim. Strony pisane od zera, wycena po 15-minutowej rozmowie. Racibórz obok, spotkanie bez problemu.",
         lead="Wodzisław jest najbliższym sąsiadem Raciborza — dojazd zajmuje niecałe pół godziny. To jedyne miasto z tej listy, w którym spotkanie na kawie przy pierwszej rozmowie jest naprawdę bez znaczenia logistycznego.",
         rynek=[
             "Wodzisław i Racibórz to praktycznie jeden rynek pracy i usług. Klienci jeżdżą w obie strony, firmy budowlane obsługują oba miasta, a wiele zapytań w wyszukiwarce pada bez nazwy miasta w ogóle — po prostu „hydraulik” z lokalizacją ustaloną przez telefon.",
@@ -80,7 +96,7 @@ MIASTA = [
         miastoMs="Kędzierzynie-Koźlu",
         wojewodztwo="opolskie",
         dojazd="około pół godziny",
-        opisMeta="Tworzenie stron internetowych w Kędzierzynie-Koźlu. Strony pisane od zera dla firm usługowych i podwykonawców przemysłowych. Wycena po rozmowie.",
+        opisMeta="Tworzenie stron internetowych w Kędzierzynie-Koźlu. Strony od zera dla firm usługowych i podwykonawców przemysłowych. Wycena po rozmowie.",
         lead="Kędzierzyn-Koźle leży już w województwie opolskim, ale z Raciborza to wciąż pół godziny drogi. Miasto o wyraźnie przemysłowym charakterze — i to widać w tym, jakich stron się tu potrzebuje.",
         rynek=[
             "Struktura firm jest tu inna niż w Raciborzu. Obok typowych usług dla mieszkańców jest dużo <strong>podwykonawców obsługujących zakłady przemysłowe</strong> — a to zupełnie inny rodzaj klienta i inny rodzaj strony.",
@@ -105,7 +121,7 @@ MIASTA = [
         miastoMs="Głubczycach",
         wojewodztwo="opolskie",
         dojazd="około czterdziestu minut",
-        opisMeta="Tworzenie stron internetowych w Głubczycach. Małe miasto oznacza małą konkurencję w Google — i realną szansę na pierwsze miejsce. Wycena po rozmowie.",
+        opisMeta="Tworzenie stron internetowych w Głubczycach. Mała konkurencja w Google to realna szansa na pierwsze miejsce. Wycena po rozmowie.",
         lead="Głubczyce to najmniejsze miasto z tej listy — i właśnie dlatego najciekawsze pod względem widoczności w Google. Tam, gdzie konkurencja jest cienka, dobrze zrobiona strona wychodzi na pierwsze miejsce zaskakująco szybko.",
         rynek=[
             "W większości branż usługowych w Głubczycach konkurujesz z kilkoma firmami, a nierzadko <strong>z żadną, która ma porządną stronę</strong>. Zdarza się, że pierwsze miejsce w Google zajmuje wpis w katalogu sprzed lat albo profil na portalu ogłoszeniowym.",
@@ -136,6 +152,8 @@ DOWODY = [
 
 def strona(m, stempel):
     url = f"{BAZA}/{m['slug']}/"
+    TYTUL = f'Strony internetowe {m["miasto"]} | WebStudio47'
+    sprawdz_dlugosc(TYTUL, m["opisMeta"], m["slug"])
 
     schema_uslugi = {
         "@context": "https://schema.org",
@@ -214,7 +232,7 @@ def strona(m, stempel):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strony internetowe {html.escape(m["miasto"])} — tworzenie stron WWW | WebStudio47</title>
+    <title>{html.escape(TYTUL)}</title>
     <meta name="description" content="{html.escape(m["opisMeta"])}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{url}">
