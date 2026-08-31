@@ -5,12 +5,14 @@
 # Uzycie:
 #   powershell -ExecutionPolicy Bypass -File deploy.ps1 -Lista    # tylko pokaz, co poleci (nic nie wysyla)
 #   powershell -ExecutionPolicy Bypass -File deploy.ps1           # wysylka
+#   powershell -ExecutionPolicy Bypass -File deploy.ps1 -Sprzataj # usun sieroty z serwera (pyta o potwierdzenie)
 #
 # Serwis jest statyczny - nie ma builda. Zrodlem jest katalog repo.
 # Wysylamy JAWNA LISTE plikow (nie `synchronize`), zeby nic zdalnie nie skasowac.
 
 param(
   [switch]$Lista,
+  [switch]$Sprzataj,
   [string]$Remote = '/domains/webstudio47.pl/public_html'
 )
 
@@ -138,6 +140,42 @@ $lines.Add('option batch abort')
 $lines.Add('option confirm off')
 $lines.Add('open ftp://ntroixgelh@s75.cyber-folks.pl:21 -passive=on -password="' + $passQ + '"')
 $lines.Add('cd "' + $Remote + '"')
+
+# --- Tryb sprzatania ---------------------------------------------------------
+# Zwykle wdrozenie nigdy nie kasuje. Ten tryb kasuje - i tylko to, co jest
+# wypisane ponizej z nazwy. Sieroty po realizacjach usunietych z portfolio:
+# nic do nich nie linkuje, ale leza publicznie dostepne na serwerze.
+if ($Sprzataj) {
+  $DoUsuniecia = @(
+    'dr-kangur-thumb.webp',
+    'dr-kangur-thumb.png',
+    'foxy-thumb.webp',
+    'foxy-thumb.png'
+  )
+
+  Write-Host "TRYB SPRZATANIA - zostana TRWALE usuniete z $Remote :" -ForegroundColor Yellow
+  $DoUsuniecia | ForEach-Object { Write-Host "  $_" -ForegroundColor Yellow }
+  Write-Host ""
+  $odp = Read-Host "Na pewno? Wpisz TAK, zeby potwierdzic"
+  if ($odp -ne 'TAK') { Write-Host "Przerwane - nic nie usunieto." -ForegroundColor Cyan; return }
+
+  # -nofail: plik moze juz nie istniec i to nie jest blad
+  $DoUsuniecia | ForEach-Object { $lines.Add('rm -nofail "' + $Remote + '/' + $_ + '"') }
+  $lines.Add('exit')
+
+  $tmpS = "$env:TEMP\ws_sprzatanie_webstudio47.txt"
+  Set-Content $tmpS $lines -Encoding ascii
+  $logS = "$env:TEMP\ws_sprzatanie_webstudio47_out.txt"
+  cmd /c "`"C:\Program Files (x86)\WinSCP\WinSCP.com`" /script=`"$tmpS`" /ini=nul > `"$logS`" 2>&1"
+  $kodS = $LASTEXITCODE
+  Get-Content $logS | Select-Object -Last 20
+  Remove-Item $tmpS, $logS -Force
+  if ($kodS -ne 0) { throw "WinSCP zakonczyl z kodem $kodS" }
+
+  Write-Host ""
+  Write-Host ">> Posprzatane. Sprawdz, czy adresy zwracaja teraz 404." -ForegroundColor Green
+  return
+}
 
 foreach ($p in ($Pliki + $Obrazy)) {
   $lines.Add('put "' + "$PSScriptRoot\$p" + '" "' + $Remote + '/' + $p + '"')
