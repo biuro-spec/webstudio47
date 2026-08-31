@@ -15,15 +15,15 @@ Aktualizacja: uruchom pomiar ponownie i podmień słownik POMIARY.
 DATA_POMIARU = "31 sierpnia 2026"
 
 POMIARY = {
-    "hOla Perros":      {"performance": 91, "accessibility": 100, "best-practices": 100, "seo": 100},
-    "Super Irek":       {"performance": 73, "accessibility": 100, "best-practices": 100, "seo": 100},
-    "Czysto-Po":        {"performance": 57, "accessibility": 94,  "best-practices": 100, "seo": 100},
+    "hOla Perros":      {"performance": 90, "accessibility": 100, "best-practices": 100, "seo": 100},
+    "Super Irek":       {"performance": 72, "accessibility": 100, "best-practices": 100, "seo": 100},
+    "Czysto-Po":        {"performance": 64, "accessibility": 94, "best-practices": 100, "seo": 100},
     "Alaska":           {"performance": None, "accessibility": None, "best-practices": None, "seo": None},
-    "Life-Centrum":     {"performance": 90, "accessibility": 90,  "best-practices": 100, "seo": 100},
-    "Life-Ratownictwo": {"performance": 70, "accessibility": 100, "best-practices": 100, "seo": 100},
-    "WystawFakture.eu": {"performance": 62, "accessibility": 98,  "best-practices": 96,  "seo": 100},
-    "9 Dom":            {"performance": 65, "accessibility": 96,  "best-practices": 100, "seo": 100},
-    "Karta Dnia":       {"performance": 93, "accessibility": 100, "best-practices": 100, "seo": 100},
+    "Life-Centrum":     {"performance": 69, "accessibility": 90, "best-practices": 100, "seo": 100},
+    "Life-Ratownictwo": {"performance": 91, "accessibility": 100, "best-practices": 100, "seo": 100},
+    "WystawFakture.eu": {"performance": 64, "accessibility": 98, "best-practices": 96, "seo": 100},
+    "9 Dom":            {"performance": 81, "accessibility": 96, "best-practices": 100, "seo": 100},
+    "Karta Dnia":       {"performance": 84, "accessibility": 100, "best-practices": 100, "seo": 100},
 }
 
 KATEGORIE = [
