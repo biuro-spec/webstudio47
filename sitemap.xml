@@ -43,6 +43,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Narzedzie -->
+  <url>
+    <loc>https://webstudio47.pl/sprawdz-swoja-strone/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Strony lokalne -->
   <url>
     <loc>https://webstudio47.pl/strony-internetowe-glubczyce/</loc>

@@ -15,6 +15,10 @@ import html
 import json
 import pathlib
 import re
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import pomiary
 
 KATALOG = pathlib.Path(__file__).resolve().parent.parent
 BAZA = "https://webstudio47.pl"
@@ -595,7 +599,7 @@ def tresc(r, poprzednia, nastepna):
                 </div>
             </div>
         </section>
-{nawigacja_realizacji}
+{pomiary.sekcja(r['klient'], r['domena'])}{nawigacja_realizacji}
         <!-- CTA -->
         <section>
             <div class="container">

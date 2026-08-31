@@ -49,6 +49,7 @@ $Katalogi = @(
   'strony-internetowe-rybnik',
   'strony-internetowe-wodzislaw-slaski',
   'realizacje',
+  'sprawdz-swoja-strone',
   'cennik',
   'kontakt',
   'pozycjonowanie-stron-raciborz',
