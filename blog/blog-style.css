@@ -107,7 +107,9 @@
 }
 
 .blog-read-more {
-    color: var(--accent-purple);
+    /* --accent-purple (#8b5cf6) nie wyrabial kontrastu 4.5:1 na tle karty.
+       Jasniejszy odcien tej samej barwy trzyma charakter i przechodzi audyt. */
+    color: #a78bfa;
     font-weight: 600;
     font-size: 0.9rem;
     margin-top: 1.5rem;

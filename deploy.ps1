@@ -64,16 +64,33 @@ if ($ps -match 'WSTAW_TUTAJ_ID_WDROZENIA') {
 # .htaccess kaze trzymac CSS i JS w cache przez ROK. Jesli zmienisz ktorys
 # z tych plikow, a nie podbijesz "?v=" w HTML-ach, powracajacy odwiedzajacy
 # dostana stara wersje - lacznie z formularzem bez adresu Apps Script.
-foreach ($zasob in @('page-style.css', 'page-script.js', 'script.js', 'consent.js')) {
-  $stempel = (Select-String -Path "$PSScriptRoot\index.html", "$PSScriptRoot\kontakt\index.html" `
-                -Pattern ([regex]::Escape($zasob) + '\?v=(\d+)') -AllMatches -ErrorAction SilentlyContinue |
+# Kazdy zasob sprawdzamy w pliku HTML, ktory faktycznie go linkuje -
+# blog-style.css wystepuje wylacznie w blog\, nie w index.html.
+$doSprawdzenia = @(
+  @{ Zasob = 'page-style.css';       Html = 'kontakt\index.html' },
+  @{ Zasob = 'page-script.js';       Html = 'kontakt\index.html' },
+  @{ Zasob = 'consent.js';           Html = 'index.html' },
+  @{ Zasob = 'script.js';            Html = 'index.html' },
+  @{ Zasob = 'blog\blog-style.css';  Html = 'blog\index.html' }
+)
+
+foreach ($poz in $doSprawdzenia) {
+  $nazwa = Split-Path $poz.Zasob -Leaf
+  # "page-script.js" konczy sie na "script.js", wiec kotwiczymy poczatek nazwy
+  $wzor = '(?<![-\w])' + [regex]::Escape($nazwa) + '\?v=(\d+)'
+
+  $stempel = (Select-String -Path "$PSScriptRoot\$($poz.Html)" -Pattern $wzor `
+                -AllMatches -ErrorAction SilentlyContinue |
               ForEach-Object { $_.Matches } | ForEach-Object { $_.Groups[1].Value } |
               Select-Object -First 1)
   if (-not $stempel) { continue }
-  $plik = Get-Item "$PSScriptRoot\$zasob"
+
+  $plik = Get-Item "$PSScriptRoot\$($poz.Zasob)" -ErrorAction SilentlyContinue
+  if (-not $plik) { continue }
+
   $czasStempla = [DateTimeOffset]::FromUnixTimeSeconds([int64]$stempel).LocalDateTime
   if ($plik.LastWriteTime -gt $czasStempla.AddMinutes(5)) {
-    Write-Host "!! UWAGA: $zasob zmieniony po ostatnim podbiciu ?v=$stempel" -ForegroundColor Yellow
+    Write-Host "!! UWAGA: $($poz.Zasob) zmieniony po ostatnim podbiciu ?v=$stempel" -ForegroundColor Yellow
     Write-Host "   Powracajacy odwiedzajacy moga dostac stara wersje z cache." -ForegroundColor Yellow
     Write-Host "   Podbij ?v= we wszystkich plikach HTML przed wysylka." -ForegroundColor Yellow
     Write-Host ""
