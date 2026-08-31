@@ -94,8 +94,13 @@ foreach ($p in $Pliki) {
   $lines.Add('put "' + "$PSScriptRoot\$p" + '" "' + $Remote + '/' + $p + '"')
 }
 foreach ($k in $Katalogi) {
-  # -mirror wysyla tylko to, co sie zmienilo; nie kasuje niczego zdalnie
-  $lines.Add('put -mirror "' + "$PSScriptRoot\$k" + '" "' + $Remote + '/' + $k + '/"')
+  # Katalog podany BEZ gwiazdki i BEZ powtorzonej nazwy w celu:
+  # "...\cennik" -> "$Remote/" laduje jako "$Remote/cennik".
+  # Nieistniejacy katalog zostanie utworzony.
+  # Swiadomie bez przelacznikow - `put` nie zna `-mirror`, a kazdy kolejny
+  # przelacznik to ryzyko przerwania wysylki w polowie. Koszt: blog/ (3,8 MB
+  # zdjec) leci od nowa przy kazdym wdrozeniu.
+  $lines.Add('put "' + "$PSScriptRoot\$k" + '" "' + $Remote + '/"')
 }
 $lines.Add('exit')
 
