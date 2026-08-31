@@ -43,6 +43,7 @@ $Pliki = @(
 
 $Katalogi = @(
   'blog',
+  'realizacje',
   'cennik',
   'kontakt',
   'pozycjonowanie-stron-raciborz',

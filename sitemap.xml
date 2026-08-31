@@ -43,6 +43,62 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Realizacje: case studies -->
+  <url>
+    <loc>https://webstudio47.pl/realizacje/aplikacja-do-wystawiania-faktur/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://webstudio47.pl/realizacje/aplikacja-z-kalkulatorami/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://webstudio47.pl/realizacje/serwis-tresciowy-z-narzedziem/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://webstudio47.pl/realizacje/strona-dla-firmy-klimatyzacyjnej/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://webstudio47.pl/realizacje/strona-dla-firmy-sprzatajacej/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://webstudio47.pl/realizacje/strona-dla-przychodni/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://webstudio47.pl/realizacje/strona-dla-salonu-groomerskiego/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://webstudio47.pl/realizacje/strona-dla-transportu-medycznego/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://webstudio47.pl/realizacje/strona-dla-zlotej-raczki/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Blog -->
   <url>
     <loc>https://webstudio47.pl/blog/</loc>
