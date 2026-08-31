@@ -154,7 +154,13 @@ if ($Sprzataj) {
     'dr-kangur-thumb.webp',
     'dr-kangur-thumb.png',
     'foxy-thumb.webp',
-    'foxy-thumb.png'
+    'foxy-thumb.png',
+    'blog/img/hero-business.png',
+    'blog/img/hero-comparison.png',
+    'blog/img/hero-costs.png',
+    'blog/img/hero-responsive.png',
+    'blog/img/hero-seo.png',
+    'blog/img/hero-wordpress.png'
   )
 
   Write-Host "TRYB SPRZATANIA - zostana TRWALE usuniete z $Remote :" -ForegroundColor Yellow

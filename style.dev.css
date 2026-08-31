@@ -2719,3 +2719,5 @@ html {
         font-size: clamp(2rem, 7vw, 2.9rem) !important;
     }
 }
+
+.holaperros-thumb{background-image:linear-gradient(rgba(10,10,15,.3),rgba(10,10,15,.4)),url('holaperros-thumb.webp');background-size:contain;background-repeat:no-repeat;background-position:center}.superirek-thumb{background-image:linear-gradient(rgba(10,10,15,.3),rgba(10,10,15,.4)),url('superirek-thumb.webp');background-size:contain;background-repeat:no-repeat;background-position:center}
