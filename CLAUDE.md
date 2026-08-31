@@ -73,6 +73,13 @@ były martwe (dwie wygasłe domeny, jedna literówka: `alaska-rp.pl` zamiast
 `alaskarp.pl`). Strona obiecuje „kliknij i zobacz na żywo" — martwy link
 podważa całą jej wiarygodność.
 
+**7. Zanim uznasz cudzą stronę za zepsutą — sprawdź z niezależnej sieci.**
+home.pl blokuje ruch z tego środowiska: `curl` dostaje status `000`, a Chrome
+ląduje na `chrome-error://chromewebdata/`, gdzie `document.title` to **nazwa
+hosta**. Odczytanie tego jako tytułu witryny prowadzi do fałszywego alarmu
+„strona nie ma tytułu". Potwierdzaj przez `firecrawl_scrape` z `maxAge: 0`
+i zawsze sprawdzaj `location.href`, czy przeglądarka nie stoi na stronie błędu.
+
 ---
 
 ## Skille — co się przydaje w tym projekcie
