@@ -4,7 +4,7 @@ Wyniki Lighthouse dla realizacji — dane i renderowanie sekcji.
 
 Od 2026-09-01 dwie strategie: komórka i komputer, bo pokazywanie tylko
 korzystniejszej byłoby deklarowaniem, nie mierzeniem. Klient po kliknięciu
-„sprawdź sam" widzi w PSI obie zakładki — my też pokazujemy obie.
+„sprawdź sam” widzi w PSI obie zakładki — my też pokazujemy obie.
 
 Źródło liczb: docelowo API PageSpeed Insights (tools/zmierz-psi.py) —
 te same serwery Google, które otworzy klient. Pomiar lokalny potrafił
@@ -86,7 +86,7 @@ def sekcja(klient, domena):
         '                    <p>Lighthouse — pomiar z ' + DATA_POMIARU + '</p>\n'
         '                </div>\n'
         + ''.join(wiersze) +
-        '                <p class="wyniki-nota">Skala 0–100, im wyżej tym lepiej. Nie musisz mi wierzyć —\n'
+        '                <p class="wyniki-nota">Skala 0–100, im wyżej, tym lepiej. Nie musisz mi wierzyć —\n'
         '                    sprawdź sam w <a href="' + sprawdz + '" target="_blank" rel="noopener">PageSpeed\n'
         '                    Insights</a>. Wynik wydajności waha się między pomiarami i zależy od łącza,\n'
         '                    dlatego podaję datę.</p>\n'

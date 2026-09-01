@@ -67,7 +67,7 @@ PYTANIA = [
     ("Czy ten test coś kosztuje?",
      "Nie. To narzędzie Google, całkowicie darmowe i bez rejestracji. "
      "Nie zbieram Twojego adresu ani wyniku — po kliknięciu trafiasz wprost "
-     "na stronę Google, a ja nie dowiaduję się, że w ogóle tu byłeś."),
+     "na stronę Google, a ja nie dowiaduję się nawet o Twojej wizycie."),
     ("Mam niski wynik wydajności. To źle?",
      "Zależy jak niski i jaka to strona. Poniżej 50 na telefonie to realny "
      "problem: część odwiedzających wychodzi, zanim strona się pokaże. "
@@ -104,7 +104,7 @@ def wlasny_wynik_html():
 
 
 def zakres_wydajnosci():
-    """Zakres liczony z danych. Poprzednio „57–93" siedzialo w tekscie
+    """Zakres liczony z danych. Poprzednio „57–93” siedzialo w tekscie
     na sztywno i po aktualizacji pomiarow klamalo (realnie bylo 64–91)."""
     d = pomiary.podsumowanie()["performance"]
     return f'{d["min"]}–{d["max"]}'

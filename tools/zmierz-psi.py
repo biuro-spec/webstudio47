@@ -5,8 +5,8 @@ Pomiar realizacji przez API PageSpeed Insights — serwery Google.
 
 DLACZEGO NIE LOKALNY LIGHTHOUSE: 2026-09-01 lokalny pomiar desktop dal 97
 dla strony, ktorej PSI dawal 58 (szybki procesor tej maszyny maskuje TBT).
-Publikowanie liczb, ktorych klient nie zobaczy po kliknieciu „sprawdz sam",
-podwaza cala sekcje „Zmierzone, nie deklarowane". Stad pomiar z tego samego
+Publikowanie liczb, ktorych klient nie zobaczy po kliknieciu „sprawdz sam”,
+podwaza cala sekcje „Zmierzone, nie deklarowane”. Stad pomiar z tego samego
 zrodla, ktore otworzy klient.
 
 API bez klucza ma bardzo maly limit (429 po kilku zadaniach z IP).

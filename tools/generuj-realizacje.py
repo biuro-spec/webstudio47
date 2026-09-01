@@ -134,8 +134,8 @@ REALIZACJE = [
         domena="life-centrum.pl",
         # Projekt w toku: pod life-centrum.pl stoi jeszcze stary WordPress,
         # nasza wersja nie jest wdrozona. Bez tej flagi strona obiecywalaby
-        # „zobacz na zywo" i prowadzila na cudza prace — a oferta obok mowi
-        # „strony pisane od zera, bez kilkunastu wtyczek".
+        # „zobacz na zywo” i prowadzila na cudza prace — a oferta obok mowi
+        # „strony pisane od zera, bez kilkunastu wtyczek”.
         wRealizacji=True,
         miniatura="life-centrum-thumb.webp",
         tytul="Strona dla przychodni — Life-Centrum",
@@ -168,7 +168,7 @@ REALIZACJE = [
         h1="Strona dla firmy transportu medycznego",
         lead="Prywatna karetka, transport międzynarodowy pacjentów i zabezpieczenie medyczne imprez masowych. Trzy usługi, trzech zupełnie różnych odbiorców.",
         wyzwanie=[
-            "Na tę stronę trafiają ludzie w skrajnie różnych sytuacjach. <strong>Rodzina szukająca transportu dla chorego krewnego</strong> i <strong>organizator festynu, który musi mieć zabezpieczenie medyczne</strong> nie potrzebują tych samych informacji.",
+            "Na tę stronę trafiają ludzie w skrajnie różnych sytuacjach. <strong>Rodzina szukająca transportu dla chorego krewnego</strong> i <strong>organizator festynu, który musi mieć zabezpieczenie medyczne</strong>, nie potrzebują tych samych informacji.",
             "Pierwszy dzwoni pod wpływem stresu i chce wiedzieć, czy da się dziś. Drugi porównuje oferty i potrzebuje zakresu, uprawnień i konkretów do przetargu.",
         ],
         zbudowane=[
@@ -505,7 +505,7 @@ def tresc(r, poprzednia, nastepna):
     tagi = '\n'.join(f'                    <li>{html.escape(t)}</li>' for t in r["tagi"])
     lokalizacja = f' · {r["miasto"]}' if r["miasto"] else ''
 
-    # Realizacja w toku: nie obiecujemy „zobacz na zywo", bo pod adresem
+    # Realizacja w toku: nie obiecujemy „zobacz na zywo”, bo pod adresem
     # stoi jeszcze poprzednia strona klienta. Etykieta mowi wprost, na jakim
     # etapie jest projekt — to uczciwsze niz link, ktory prowadzi donikad,
     # i bezpieczniejsze niz zdjecie calej realizacji z portfolio.

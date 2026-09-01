@@ -3,7 +3,7 @@
 """
 Generator poziomej galerii usług na stronie głównej.
 
-Wzorzec przeniesiony z projektu „Mapa dłoni": scena wysoka na kilka ekranów,
+Wzorzec przeniesiony z projektu „Mapa dłoni”: scena wysoka na kilka ekranów,
 wewnątrz `position: sticky` i tor przesuwany przez `animation-timeline`
 związany z osią przewijania. Panele jadą z prawa na lewo, gdy użytkownik
 przewija w dół. Zero JavaScriptu — cały ruch robi CSS.
@@ -149,7 +149,7 @@ def main():
         # Druga próba: sekcja już przebudowana. Kotwicą końcową jest zamknięcie
         # samej sceny — rozpoznawane po DOKŁADNYM wcięciu 12 spacji, bo takie ma
         # tylko ona (zagnieżdżone <div> siedzą głębiej). Wcześniej kotwicą była
-        # podpowiedź „Przewijaj w dół", ale zniknęła ze strony.
+        # podpowiedź „Przewijaj w dół”, ale zniknęła ze strony.
         #
         # Nie używać tu „.*?</div>” z lookaheadem na </section>: przy pierwszym
         # uruchomieniu po usunięciu podpowiedzi wzorzec przeskoczył zamknięcie

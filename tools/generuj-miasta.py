@@ -124,7 +124,7 @@ MIASTA = [
         opisMeta="Tworzenie stron internetowych w Głubczycach. Mała konkurencja w Google to realna szansa na pierwsze miejsce. Wycena po rozmowie.",
         lead="Głubczyce to najmniejsze miasto z tej listy — i właśnie dlatego najciekawsze pod względem widoczności w Google. Tam, gdzie konkurencja jest cienka, dobrze zrobiona strona wychodzi na pierwsze miejsce zaskakująco szybko.",
         rynek=[
-            "W większości branż usługowych w Głubczycach konkurujesz z kilkoma firmami, a nierzadko <strong>z żadną, która ma porządną stronę</strong>. Zdarza się, że pierwsze miejsce w Google zajmuje wpis w katalogu sprzed lat albo profil na portalu ogłoszeniowym.",
+            "W większości branż usługowych w Głubczycach konkurujesz z kilkoma firmami, a nierzadko <strong>żadna z nich nie ma porządnej strony</strong>. Zdarza się, że pierwsze miejsce w Google zajmuje wpis w katalogu sprzed lat albo profil na portalu ogłoszeniowym.",
             "To najtańszy rynek do zdobycia z całej okolicy. Ta sama praca, która w Rybniku daje efekt po dziewięciu miesiącach, tutaj bywa widoczna po dwóch — po prostu dlatego, że nie ma z kim przegrać.",
         ],
         specyfika=[

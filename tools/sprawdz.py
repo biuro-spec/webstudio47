@@ -250,7 +250,7 @@ def sprawdz_meta():
                 bledy.append(f'{rel}: <title> ma {len(tekst)} znaków (Google ucina ok. 60)')
 
         # re.S i \s* — atrybuty bywają łamane na dwie linie przez formatery.
-        # Bez tego kontrola zgłaszała „brak opisu" na stronach, które go mają.
+        # Bez tego kontrola zgłaszała „brak opisu” na stronach, które go mają.
         d = re.search(r'<meta\s+name="description"\s+content="([^"]*)"', src, re.S)
         if not d:
             bledy.append(f'{rel}: brak meta description')
