@@ -1476,6 +1476,37 @@
 
 .usluga-panel {
     padding: 0;
+    position: relative;
+    counter-increment: uslugi-panel;
+}
+
+/* Zorza tla (2026-09-01, „troche za ciemna"): dwa miekkie radialne
+   gradienty zamiast golej czerni. STATYCZNE — zero pracy w runtime,
+   zadnych petli. Panele parzyste maja odwrocony akcent, zeby przejazd
+   galerii mial rytm barwny fiolet->cyjan->fiolet->cyjan. */
+.usluga-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(58vw 58vh at 12% 18%, rgba(139, 92, 246, 0.16), transparent 62%),
+        radial-gradient(64vw 64vh at 88% 85%, rgba(6, 182, 212, 0.11), transparent 62%);
+}
+
+.usluga-panel:nth-child(even)::before {
+    background:
+        radial-gradient(58vw 58vh at 12% 18%, rgba(6, 182, 212, 0.14), transparent 62%),
+        radial-gradient(64vw 64vh at 88% 85%, rgba(139, 92, 246, 0.13), transparent 62%);
+}
+
+.usluga-siatka {
+    position: relative;
+    z-index: 1;
+}
+
+.uslugi-tor {
+    counter-reset: uslugi-panel;
 }
 
 .usluga-siatka {
@@ -1632,6 +1663,21 @@
             grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
             width: 100%;
             max-width: 1240px;
+        }
+
+        .usluga-panel::after {
+            content: counter(uslugi-panel, decimal-leading-zero);
+            position: absolute;
+            right: 2vw;
+            bottom: -6vh;
+            font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
+            font-weight: 700;
+            font-size: 44vh;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.035);
+            letter-spacing: -0.05em;
+            pointer-events: none;
+            user-select: none;
         }
 
         .uslugi-podpowiedz {
