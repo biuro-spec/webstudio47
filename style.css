@@ -1549,7 +1549,9 @@
         }
 
         .usluga-siatka {
-            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+            width: 100%;
+            max-width: 1240px;
         }
 
         .uslugi-podpowiedz {
@@ -1637,4 +1639,62 @@
     .faq-item::details-content { transition: none; }
     /* lagodniej, nie zero: samo przenikanie, bez ruchu w pionie */
     .form-status { transition: opacity 250ms ease-out; transform: none; }
+}
+
+
+/* --- Galeria uslug: tryb ciasny dla niskich okien (2026-09-01) ----------
+   Panel ma sztywne 100vh; ponizej ~920px wysokosci okna tresc (naglowek,
+   lead, akapity, znaczniki, CTA) przestawala sie miescic i przycisk byl
+   uciety dolna krawedzia. Kompresja rytmu pionowego, nie wycinanie tresci. */
+
+@media (min-width: 1000px) and (max-height: 920px) {
+
+    .usluga-panel {
+        padding-top: calc(var(--header-height) + 20px);
+        padding-bottom: 24px;
+    }
+
+    .usluga-siatka {
+        gap: clamp(20px, 3vw, 36px);
+    }
+
+    .usluga-etykieta {
+        margin-bottom: 8px;
+        font-size: 0.74rem;
+    }
+
+    .usluga-panel h3 {
+        font-size: clamp(1.55rem, 3vw, 2.15rem);
+        margin-bottom: 10px;
+    }
+
+    .usluga-lead {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+
+    .usluga-akapit {
+        font-size: 0.91rem;
+        line-height: 1.6;
+    }
+
+    .usluga-punkty {
+        margin-top: 14px;
+        gap: 8px;
+    }
+
+    .usluga-punkty li {
+        font-size: 0.79rem;
+        padding: 5px 12px;
+    }
+
+    .usluga-cel {
+        margin-top: 16px;
+    }
+
+    .usluga-obraz figcaption {
+        padding: 9px 14px;
+        font-size: 0.8rem;
+    }
 }
