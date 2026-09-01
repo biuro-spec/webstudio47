@@ -179,17 +179,6 @@ def buduj(stempel):
     <link rel="stylesheet" href="/style.css?v={stempel}">
     <link rel="stylesheet" href="/page-style.css?v={stempel}">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-            rel="stylesheet">
-    </noscript>
-
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="WebStudio47">
@@ -273,8 +262,8 @@ def buduj(stempel):
                     <span aria-hidden="true">›</span>
                     <span>Sprawdź swoją stronę</span>
                 </nav>
-                <h1 class="reveal"><span class="text-white">Sprawdź</span> <span class="text-gradient">swoją stronę</span></h1>
-                <p class="page-hero-lead reveal delay-1">Wpisz adres i zobacz, co Google sądzi o Twojej stronie.
+                <h1 class="reveal-hero"><span class="text-white">Sprawdź</span> <span class="text-gradient">swoją stronę</span></h1>
+                <p class="page-hero-lead reveal-hero delay-1">Wpisz adres i zobacz, co Google sądzi o Twojej stronie.
                     Za darmo, bez rejestracji i bez zostawiania mi e-maila. Wynik dostajesz wprost od Google,
                     nie ode mnie.</p>
 

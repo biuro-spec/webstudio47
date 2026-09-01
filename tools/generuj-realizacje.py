@@ -328,17 +328,7 @@ def naglowek_strony(r, stempel):
     <link rel="stylesheet" href="/style.css?v={stempel}">
     <link rel="stylesheet" href="/page-style.css?v={stempel}">
 
-    <!-- Fonts: preconnect + non-blocking load -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-            rel="stylesheet">
-    </noscript>
+    <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
     <!-- Open Graph -->
     <meta property="og:type" content="article">
@@ -563,10 +553,10 @@ def tresc(r, poprzednia, nastepna):
                     <span>{html.escape(r["klient"])}</span>
                 </nav>
                 <p class="realizacja-branza">{html.escape(r["branza"])}{lokalizacja}</p>
-                <h1 class="reveal"><span class="text-white">{html.escape(r["h1"])}</span><br>
+                <h1 class="reveal-hero"><span class="text-white">{html.escape(r["h1"])}</span><br>
                     <span class="text-gradient">{html.escape(r["klient"])}</span></h1>
-                <p class="page-hero-lead reveal delay-1">{r["lead"]}</p>
-                <div class="page-hero-btns reveal delay-2">
+                <p class="page-hero-lead reveal-hero delay-1">{r["lead"]}</p>
+                <div class="page-hero-btns reveal-hero delay-2">
                     {przycisk_zywo}
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
                 </div>

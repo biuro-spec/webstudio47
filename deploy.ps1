@@ -43,6 +43,7 @@ $Pliki = @(
 )
 
 $Katalogi = @(
+  'fonty',
   'blog',
   'strony-internetowe-glubczyce',
   'strony-internetowe-kedzierzyn-kozle',

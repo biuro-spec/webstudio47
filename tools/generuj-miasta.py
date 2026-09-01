@@ -242,17 +242,6 @@ def strona(m, stempel):
     <link rel="stylesheet" href="/style.css?v={stempel}">
     <link rel="stylesheet" href="/page-style.css?v={stempel}">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-            rel="stylesheet">
-    </noscript>
-
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="WebStudio47">
@@ -347,10 +336,10 @@ def strona(m, stempel):
                     <span aria-hidden="true">›</span>
                     <span>Strony internetowe — {html.escape(m["miasto"])}</span>
                 </nav>
-                <h1 class="reveal"><span class="text-white">Strony internetowe</span><br>
+                <h1 class="reveal-hero"><span class="text-white">Strony internetowe</span><br>
                     <span class="text-gradient">{html.escape(m["miasto"])}</span></h1>
-                <p class="page-hero-lead reveal delay-1">{m["lead"]}</p>
-                <div class="page-hero-btns reveal delay-2">
+                <p class="page-hero-lead reveal-hero delay-1">{m["lead"]}</p>
+                <div class="page-hero-btns reveal-hero delay-2">
                     <a href="tel:+48602622840" class="btn btn-primary">Zadzwoń: 602 622 840</a>
                     <a href="/cennik/" class="btn btn-outline">Zobacz widełki cenowe</a>
                 </div>

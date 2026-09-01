@@ -33,7 +33,12 @@ Konwencje: wcięcia 4 spacje, style pisane ręcznie (żadnego Tailwinda),
 teksty po polsku z twardymi spacjami `&nbsp;` przed krótkimi wyrazami.
 
 Tokeny w `:root`: `--bg-primary #0a0a0f`, `--accent-purple #8b5cf6`,
-`--accent-cyan #06b6d4`. Fonty: Inter (tekst) + Space Grotesk (nagłówki).
+`--accent-cyan #06b6d4`. Fonty: Inter (tekst) + Space Grotesk (nagłówki) —
+**self-hosted w `fonty/`** (18 × woff2, @font-face na początku `style.css`).
+Google Fonts wycięte 2026-09-01: łańcuch googleapis→gstatic kosztował 2,2 s
+FCP (pomiar A/B), a serwowanie z Google to transfer IP odwiedzających —
+argument RODO sprzeczny z ofertą. NIE przywracaj linków do fonts.googleapis —
+generatory w tools/ też ich już nie mają.
 
 ---
 
