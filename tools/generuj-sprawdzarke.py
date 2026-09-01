@@ -52,7 +52,17 @@ TYTUL = "Sprawdź swoją stronę — darmowy test | WebStudio47"
 #
 # Po kazdej wiekszej zmianie: python tools/zmierz-psi.py webstudio47.pl
 # dwa razy i zaktualizuj, albo cofnij do None.
-WLASNY_WYNIK = {"komorka": 96, "komputer": 97, "data": "1 września 2026"}
+# Wieczorem doszly metakule w hero. Komputer PODNIOSL sie do 98-99
+# (Speed Index 1,1 s), komorka na rozgrzanym brzegu 95-96 — publikujemy
+# 95, czyli dolna wartosc z rozgrzanych pomiarow.
+#
+# ZAOBSERWOWANE TRZY RAZY: tuz po wdrozeniu komorka spada do 76-78,
+# bo brzeg CDN nie ma jeszcze arkusza i FCP rosnie z 0,9 s do 3,5 s.
+# Po rozgrzaniu wraca. To nie jest wylacznie artefakt pomiaru — odwiedzajacy
+# z zimnego wezla naprawde tyle czeka. Prawdziwe lekarstwo to skrocenie
+# sciezki krytycznej (wbudowany CSS krytyczny zamiast jednego blokujacego
+# arkusza 99 KB), nie kolejny pomiar. Do zrobienia.
+WLASNY_WYNIK = {"komorka": 95, "komputer": 97, "data": "1 września 2026"}
 
 OPIS = ("Sprawdź swoją stronę w Google PageSpeed Insights i dowiedz się, co "
         "znaczą wyniki. Darmowo, bez rejestracji, bez zostawiania e-maila.")
