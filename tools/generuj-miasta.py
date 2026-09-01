@@ -241,8 +241,6 @@ def strona(m, stempel):
 
     <link rel="preload" as="font" type="font/woff2" href="/fonty/spacegrotesk-700-latin.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/fonty/spacegrotesk-700-latin-ext.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="/fonty/inter-400-latin.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="/fonty/inter-400-latin-ext.woff2" crossorigin>
     <link rel="stylesheet" href="/style.css?v={stempel}">
     <link rel="stylesheet" href="/page-style.css?v={stempel}">
 
