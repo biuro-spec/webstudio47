@@ -28,6 +28,18 @@ FB = "https://www.facebook.com/profile.php?id=61578430357755"
 URL = f"{BAZA}/sprawdz-swoja-strone/"
 
 TYTUL = "Sprawdź swoją stronę — darmowy test | WebStudio47"
+# Wynik TEJ strony w PageSpeed — pomiar wlasciciela, oba profile w JEDNYM
+# przebiegu (to wazne: pojedynczy szczesliwy strzal jednej zakladki to nie
+# to samo). Po kazdej wiekszej zmianie zmierz ponownie i zaktualizuj —
+# nieaktualna liczba przy hasle „zmierzone, nie deklarowane" boli
+# podwojnie. Historia: 79 (CyberFolks) -> 96/98 (Vercel, 2026-09-01).
+# WSTRZYMANE 2026-09-01: pierwszy przebieg dal 96/98, drugi — minute
+# pozniej — 73 na komorce. Nie publikujemy liczby, ktorej kolejne
+# klikniecie klienta moze zaprzeczyc. None = blok sie nie renderuje.
+# Wroc do tego po zdiagnozowaniu wahania (podejrzany: modal cookies
+# jako element LCP na komorce) i po trzech zgodnych pomiarach z rzedu.
+WLASNY_WYNIK = None
+
 OPIS = ("Sprawdź swoją stronę w Google PageSpeed Insights i dowiedz się, co "
         "znaczą wyniki. Darmowo, bez rejestracji, bez zostawiania e-maila.")
 
@@ -80,6 +92,24 @@ PYTANIA = [
      "rozmowie mówię, w której z tych sytuacji jesteś — również wtedy, gdy "
      "odpowiedź brzmi: nic nie rób."),
 ]
+
+
+def wlasny_wynik_html():
+    """Linijka z wynikiem tej strony — tylko gdy mamy POTWIERDZONY pomiar."""
+    if not WLASNY_WYNIK:
+        return ''
+    return f'''                <p class="sprawdzarka-wlasny reveal delay-3">Strona, na której jesteś, ma w tym teście
+                    <strong>{WLASNY_WYNIK["komorka"]} na komórce i {WLASNY_WYNIK["komputer"]} na komputerze</strong>
+                    (pomiar {WLASNY_WYNIK["data"]}) —
+                    <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwebstudio47.pl%2F"
+                        target="_blank" rel="noopener">sprawdź, zanim mi uwierzysz</a>.</p>'''
+
+
+def zakres_wydajnosci():
+    """Zakres liczony z danych. Poprzednio „57–93" siedzialo w tekscie
+    na sztywno i po aktualizacji pomiarow klamalo (realnie bylo 64–91)."""
+    d = pomiary.podsumowanie()["performance"]
+    return f'{d["min"]}–{d["max"]}'
 
 
 def podsumowanie_html():
@@ -277,6 +307,7 @@ def buduj(stempel):
                 </form>
                 <p class="sprawdzarka-nota reveal delay-3">Otworzy się PageSpeed Insights — narzędzie Google.
                     Analiza trwa kilkanaście sekund.</p>
+{wlasny_wynik_html()}
             </div>
         </section>
 
@@ -310,9 +341,9 @@ def buduj(stempel):
 {podsumowanie_html()}
                 </div>
                 <p class="wyniki-nota">Podaję też słabsze wyniki, bo i tak możesz je sprawdzić.
-                    <strong>Wydajność 57–93</strong> to uczciwy obraz: przy stronach z dużą liczbą zdjęć
-                    schodzi niżej i jest to obszar, nad którym pracuję. Każdą realizację i jej wynik
-                    zobaczysz w <a href="/portfolio.html">portfolio</a>.</p>
+                    <strong>Wydajność {zakres_wydajnosci()}</strong> to uczciwy obraz: przy stronach z dużą
+                    liczbą zdjęć schodzi niżej i jest to obszar, nad którym pracuję. Każdą realizację
+                    i jej wynik zobaczysz w <a href="/portfolio.html">portfolio</a>.</p>
             </div>
         </section>
 
