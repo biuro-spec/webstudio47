@@ -1,3 +1,9 @@
+# =====================================================================
+# UWAGA (2026-09-01): RELIKT. Produkcja stoi na VERCELU (git push).
+# Ten skrypt wysyla na CyberFolks, ktorego domena juz NIE serwuje.
+# Zostaje jako awaryjny odwrot: rekord A -> 185.208.164.201 i stary
+# hosting wstaje. NIE uzywac jako normalnego wdrozenia.
+# =====================================================================
 # Deploy webstudio47.pl -> CyberFolks (WinSCP, FTP)
 # Wzorowane na supek-irek-modern/deploy.ps1 i life-ratownictwo-web/deploy.ps1.
 # Haslo pobierane W LOCIE z zapisanej sesji FileZilli (ntroixgelh@s75) - brak sekretow w repo.

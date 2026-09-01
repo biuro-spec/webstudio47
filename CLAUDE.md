@@ -163,20 +163,23 @@ kiedy nie dokładać biblioteki, jak nie zgadywać liczb.
 
 ## Wdrażanie
 
-```powershell
-powershell -ExecutionPolicy Bypass -File deploy.ps1 -Lista     # podgląd, bez łączenia
-powershell -ExecutionPolicy Bypass -File deploy.ps1            # wysyłka
-powershell -ExecutionPolicy Bypass -File deploy.ps1 -Sprzataj  # usuń sieroty (pyta o TAK)
-```
+**Od 2026-09-01 produkcja stoi na VERCELU. Wdrożenie = `git push origin main`.**
+Nic więcej — Vercel buduje i publikuje sam w ~30 s (projekt webstudio47,
+konto biuro-4614). Konfiguracja: `vercel.json` (trailingSlash, cache fonty/)
++ `.vercelignore` (odtwarza pominięcia z dawnego deploy.ps1 — bez niej
+apps-script/ i tools/ byłyby publiczne).
 
-FTP na CyberFolks, `ntroixgelh@s75.cyber-folks.pl`, katalog
-`/domains/webstudio47.pl/public_html`. Hasło pobierane w locie z zapisanej
-sesji FileZilli — w repo nie ma żadnych sekretów.
+**`deploy.ps1` to RELIKT** — wysyła na CyberFolks, którego domena już nie
+serwuje. Nie uruchamiaj go jako wdrożenia. Zostaje wyłącznie jako droga
+awaryjnego odwrotu: rekord A w CyberFolks z powrotem na 185.208.164.201
+i stary hosting wstaje z ostatnią wysłaną wersją.
 
-Wysyłka jest **nieniszcząca**: jawna lista plików przez `put`, nigdy
-`synchronize`. Nie kasuje niczego, co wgrano ręcznie.
+DNS domeny: CyberFolks (DirectAdmin, strefa webstudio47.pl). Rekord A → IP
+Vercela, CNAME www → cname.vercel-dns.com. **MX/TXT/mail NIE dotykać** —
+poczta kontakt@webstudio47.pl została na CyberFolks (s75, ntroixgelh).
 
----
+Po wdrożeniu nadal obowiązuje: podbicie `?v=` przy zmianie CSS/JS
+i `python ~/.claude/skills/robienie-stron/sprawdz.py .` przed pushem.
 
 ## Stan i punkty odniesienia
 
