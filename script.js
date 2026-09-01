@@ -173,3 +173,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // zapisywala wybor do localStorage i nie robila z nim nic wiecej.
 
 });
+
+// ===== Kafelki jak kartki papieru (inspiracja: MengTo/sketchbook) =====
+// Karta pochyla sie w 3D za kursorem, jakby byla sztywna kartka trzymana
+// w palcach. Tylko transform — kompozytor, zero layoutu/paintu w petli.
+// Wylacznie mysz (hover+fine) i tylko bez prefers-reduced-motion.
+(function () {
+    var mysz = window.matchMedia('(hover: hover) and (pointer: fine)');
+    var spokoj = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!mysz.matches || spokoj.matches) return;
+
+    var MAKS_Y = 4;   // stopnie obrotu wokol osi pionowej
+    var MAKS_X = 3;   // wokol poziomej — mniejszy, bo karty sa szersze niz wyzsze
+
+    document.querySelectorAll('.card-grid .info-card').forEach(function (karta) {
+        var klatka = null;
+
+        karta.addEventListener('pointerenter', function () {
+            karta.classList.add('karta-3d');
+        });
+
+        karta.addEventListener('pointermove', function (e) {
+            if (klatka) return;
+            klatka = requestAnimationFrame(function () {
+                klatka = null;
+                var r = karta.getBoundingClientRect();
+                var px = (e.clientX - r.left) / r.width - 0.5;   // -0.5 .. 0.5
+                var py = (e.clientY - r.top) / r.height - 0.5;
+                karta.style.transform =
+                    'perspective(900px)' +
+                    ' rotateX(' + (-py * 2 * MAKS_X).toFixed(2) + 'deg)' +
+                    ' rotateY(' + (px * 2 * MAKS_Y).toFixed(2) + 'deg)' +
+                    ' translateY(-4px)';
+            });
+        });
+
+        karta.addEventListener('pointerleave', function () {
+            if (klatka) { cancelAnimationFrame(klatka); klatka = null; }
+            karta.style.transform = '';
+            karta.classList.remove('karta-3d');
+        });
+    });
+})();

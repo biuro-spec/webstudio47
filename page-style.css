@@ -1890,3 +1890,11 @@
     position: relative;
     z-index: 1;
 }
+
+/* Kafelek-kartka: podczas jazdy kursorem transform goni mysz w 140 ms
+   (plynny, "papierowy" poslizg); powrot po zjechaniu bierze zwykla
+   var(--transition). Klase zaklada script.js tylko przy myszy
+   i bez prefers-reduced-motion. */
+.info-card.karta-3d {
+    transition: transform 140ms ease-out, border-color 0.3s ease;
+}
