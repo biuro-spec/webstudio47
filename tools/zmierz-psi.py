@@ -71,7 +71,8 @@ def main():
                     w = zmierz(domena, strategia, klucz)
                     wyniki[klient][strategia] = w
                     print(f'  {klient:18} {strategia:8} '
-                          + '  '.join(f'{k[:4]}:{v}' for k, v in w.items()))
+                          + '  '.join(f'{k[:4]}:{v}' for k, v in w.items()),
+                          flush=True)
                     break
                 except urllib.error.HTTPError as e:
                     if e.code == 429 and proba < 2:
