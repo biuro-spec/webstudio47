@@ -225,12 +225,10 @@ section {
     0%,
     100% {
         background-position: 0% 50%;
-        filter: brightness(1);
     }
 
     50% {
         background-position: 100% 50%;
-        filter: brightness(1.2);
     }
 }
 
