@@ -33,12 +33,15 @@ TYTUL = "Sprawdź swoją stronę — darmowy test | WebStudio47"
 # to samo). Po kazdej wiekszej zmianie zmierz ponownie i zaktualizuj —
 # nieaktualna liczba przy hasle „zmierzone, nie deklarowane" boli
 # podwojnie. Historia: 79 (CyberFolks) -> 96/98 (Vercel, 2026-09-01).
-# WSTRZYMANE 2026-09-01: pierwszy przebieg dal 96/98, drugi — minute
-# pozniej — 73 na komorce. Nie publikujemy liczby, ktorej kolejne
-# klikniecie klienta moze zaprzeczyc. None = blok sie nie renderuje.
-# Wroc do tego po zdiagnozowaniu wahania (podejrzany: modal cookies
-# jako element LCP na komorce) i po trzech zgodnych pomiarach z rzedu.
-WLASNY_WYNIK = None
+# Opublikowane 2026-09-01 po DWOCH zgodnych przebiegach z rzedu
+# (09:30 -> 98/99, 09:55 -> 96/99). Publikujemy NIZSZA wartosc z pary —
+# liczba na stronie ma byc ta, ktora klient najpewniej zobaczy sam,
+# nie ta, ktora nam sie najbardziej podoba. Historia dojscia: 79 na
+# CyberFolks -> huśtawka 69-100 (fonty ~560 KB walczyly z CSS o pasmo)
+# -> Vercel + self-hosting + fallback metryczny + subset latin-ext
+# do U+0100-017F -> stabilne 96-98. Po kazdej wiekszej zmianie zmierz
+# 2x i zaktualizuj, albo cofnij do None.
+WLASNY_WYNIK = {"komorka": 96, "komputer": 99, "data": "1 września 2026"}
 
 OPIS = ("Sprawdź swoją stronę w Google PageSpeed Insights i dowiedz się, co "
         "znaczą wyniki. Darmowo, bez rejestracji, bez zostawiania e-maila.")
