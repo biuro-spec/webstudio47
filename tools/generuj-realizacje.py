@@ -132,6 +132,11 @@ REALIZACJE = [
         branza="Placówka medyczna",
         miasto="Racibórz",
         domena="life-centrum.pl",
+        # Projekt w toku: pod life-centrum.pl stoi jeszcze stary WordPress,
+        # nasza wersja nie jest wdrozona. Bez tej flagi strona obiecywalaby
+        # „zobacz na zywo" i prowadzila na cudza prace — a oferta obok mowi
+        # „strony pisane od zera, bez kilkunastu wtyczek".
+        wRealizacji=True,
         miniatura="life-centrum-thumb.webp",
         tytul="Strona dla przychodni — Life-Centrum",
         opisMeta="Strona dla centrum zdrowia w Raciborzu: usługi medyczne, punkt pobrań, lekarze specjaliści. Zobacz, jak powstała.",
@@ -511,6 +516,21 @@ def tresc(r, poprzednia, nastepna):
     tagi = '\n'.join(f'                    <li>{html.escape(t)}</li>' for t in r["tagi"])
     lokalizacja = f' · {r["miasto"]}' if r["miasto"] else ''
 
+    # Realizacja w toku: nie obiecujemy „zobacz na zywo", bo pod adresem
+    # stoi jeszcze poprzednia strona klienta. Etykieta mowi wprost, na jakim
+    # etapie jest projekt — to uczciwsze niz link, ktory prowadzi donikad,
+    # i bezpieczniejsze niz zdjecie calej realizacji z portfolio.
+    if r.get("wRealizacji"):
+        przycisk_zywo = ('<span class="btn btn-primary" aria-disabled="true" '
+                         'style="opacity:.65;cursor:default">Projekt w realizacji</span>')
+        podpis_zrzutu = (f'{html.escape(r["klient"])} — projekt w realizacji, '
+                         f'strona nie jest jeszcze wdrożona')
+    else:
+        przycisk_zywo = (f'<a href="https://{r["domena"]}" target="_blank" '
+                         f'rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>')
+        podpis_zrzutu = (f'{html.escape(r["klient"])} — <a href="https://{r["domena"]}" '
+                         f'target="_blank" rel="noopener">{r["domena"]}</a>')
+
     nawigacja_realizacji = ''
     if poprzednia or nastepna:
         czesci = []
@@ -547,7 +567,7 @@ def tresc(r, poprzednia, nastepna):
                     <span class="text-gradient">{html.escape(r["klient"])}</span></h1>
                 <p class="page-hero-lead reveal delay-1">{r["lead"]}</p>
                 <div class="page-hero-btns reveal delay-2">
-                    <a href="https://{r["domena"]}" target="_blank" rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>
+                    {przycisk_zywo}
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
                 </div>
             </div>
@@ -559,7 +579,7 @@ def tresc(r, poprzednia, nastepna):
                 <figure class="realizacja-zrzut reveal">
                     <img src="/{r["miniatura"].replace("-thumb.", "-hero.")}" width="1600" height="900" loading="lazy" decoding="async"
                         alt="Strona internetowa {html.escape(r["klient"])} — {html.escape(r["branza"].lower())}{html.escape(lokalizacja)}">
-                    <figcaption>{html.escape(r["klient"])} — <a href="https://{r["domena"]}" target="_blank" rel="noopener">{r["domena"]}</a></figcaption>
+                    <figcaption>{podpis_zrzutu}</figcaption>
                 </figure>
             </div>
         </section>

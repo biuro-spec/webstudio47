@@ -6,8 +6,12 @@ Prawdziwe pomiary, wykonane lokalnie Lighthouse 12.8.2 w profilu mobilnym.
 Pokazujemy WSZYSTKIE cztery kategorie, także słabsze: strona jest zbudowana
 na mówieniu wprost, a klient i tak sprawdzi sam w PageSpeed Insights.
 
-Alaska nie ma pomiaru — home.pl blokuje ruch z tego środowiska. Zamiast
-zgadywać liczby, sekcja się dla niej po prostu nie pojawia.
+Dwie realizacje nie mają pomiaru i to jest celowe:
+  - Alaska — home.pl blokuje ruch z tego środowiska,
+  - Life-Centrum — pod adresem stoi jeszcze WordPress klienta, a nasza
+    wersja nie jest wdrożona. Pokazywanie jej wyniku jako własnego
+    byłoby przypisywaniem sobie cudzej pracy.
+Zamiast zgadywać albo mierzyć nie to co trzeba, sekcja się nie pojawia.
 
 Aktualizacja: uruchom pomiar ponownie i podmień słownik POMIARY.
 """
@@ -19,7 +23,7 @@ POMIARY = {
     "Super Irek":       {"performance": 72, "accessibility": 100, "best-practices": 100, "seo": 100},
     "Czysto-Po":        {"performance": 64, "accessibility": 94, "best-practices": 100, "seo": 100},
     "Alaska":           {"performance": None, "accessibility": None, "best-practices": None, "seo": None},
-    "Life-Centrum":     {"performance": 69, "accessibility": 90, "best-practices": 100, "seo": 100},
+    "Life-Centrum":     {"performance": None, "accessibility": None, "best-practices": None, "seo": None},
     "Life-Ratownictwo": {"performance": 91, "accessibility": 100, "best-practices": 100, "seo": 100},
     "WystawFakture.eu": {"performance": 64, "accessibility": 98, "best-practices": 96, "seo": 100},
     "9 Dom":            {"performance": 81, "accessibility": 96, "best-practices": 100, "seo": 100},
