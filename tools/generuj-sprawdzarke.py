@@ -28,15 +28,31 @@ FB = "https://www.facebook.com/profile.php?id=61578430357755"
 URL = f"{BAZA}/sprawdz-swoja-strone/"
 
 TYTUL = "Sprawdź swoją stronę — darmowy test | WebStudio47"
-# Opublikowane 2026-09-01 po DWOCH zgodnych przebiegach z rzedu
-# (09:30 -> 98/99, 09:55 -> 96/99). Publikujemy NIZSZA wartosc z pary —
-# liczba na stronie ma byc ta, ktora klient najpewniej zobaczy sam,
-# nie ta, ktora nam sie najbardziej podoba. Historia dojscia: 79 na
-# CyberFolks -> huśtawka 69-100 (fonty ~560 KB walczyly z CSS o pasmo)
-# -> Vercel + self-hosting + fallback metryczny + subset latin-ext
-# do U+0100-017F -> stabilne 96-98. Po kazdej wiekszej zmianie zmierz
-# 2x i zaktualizuj, albo cofnij do None.
-WLASNY_WYNIK = {"komorka": 96, "komputer": 99, "data": "1 września 2026"}
+# Opublikowane 2026-09-01 po DWOCH zgodnych przebiegach z rzedu na KAZDEJ
+# strategii (komorka 96/96, komputer 97/97). Publikujemy NIZSZA wartosc
+# z pary — liczba na stronie ma byc ta, ktora klient najpewniej zobaczy
+# sam, nie ta, ktora nam sie najbardziej podoba.
+#
+# Historia dojscia: 79 na CyberFolks -> huśtawka 69-100 (fonty ~560 KB
+# walczyly z CSS o pasmo) -> Vercel + self-hosting + fallback metryczny
+# + subset latin-ext do U+0100-017F -> 96-98.
+#
+# Wieczorem 2026-09-01, po dodaniu karuzeli, panelu odwracania i zorzy,
+# pomiar spadl do 78 na komorce i 81 na komputerze. Dwie przyczyny,
+# obie naprawione:
+#   * hero H1 (element LCP) czekal na Space Grotesk, bo font nie byl
+#     preloadowany — LCP 4,2 s przy FCP 2,3 s;
+#   * puls gradientu i polysk w hero chodzily w kolko, wiec Speed Index
+#     nie mial szans sie domknac (6,6 s, ocena ZERO przy LCP 0,8 s).
+# Po naprawie: komorka 96 (LCP 2,4 s), komputer 97 (SI 1,8 s).
+#
+# WNIOSEK NA PRZYSZLOSC: nieskonczona animacja nad zagieciem kosztuje
+# kilkanascie punktow, choc nic nie spowalnia — Speed Index mierzy
+# zmiennosc obrazu, nie czas ladowania.
+#
+# Po kazdej wiekszej zmianie: python tools/zmierz-psi.py webstudio47.pl
+# dwa razy i zaktualizuj, albo cofnij do None.
+WLASNY_WYNIK = {"komorka": 96, "komputer": 97, "data": "1 września 2026"}
 
 OPIS = ("Sprawdź swoją stronę w Google PageSpeed Insights i dowiedz się, co "
         "znaczą wyniki. Darmowo, bez rejestracji, bez zostawiania e-maila.")
