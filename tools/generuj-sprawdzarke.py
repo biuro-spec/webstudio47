@@ -28,11 +28,6 @@ FB = "https://www.facebook.com/profile.php?id=61578430357755"
 URL = f"{BAZA}/sprawdz-swoja-strone/"
 
 TYTUL = "Sprawdź swoją stronę — darmowy test | WebStudio47"
-# Wynik TEJ strony w PageSpeed — pomiar wlasciciela, oba profile w JEDNYM
-# przebiegu (to wazne: pojedynczy szczesliwy strzal jednej zakladki to nie
-# to samo). Po kazdej wiekszej zmianie zmierz ponownie i zaktualizuj —
-# nieaktualna liczba przy hasle „zmierzone, nie deklarowane" boli
-# podwojnie. Historia: 79 (CyberFolks) -> 96/98 (Vercel, 2026-09-01).
 # Opublikowane 2026-09-01 po DWOCH zgodnych przebiegach z rzedu
 # (09:30 -> 98/99, 09:55 -> 96/99). Publikujemy NIZSZA wartosc z pary —
 # liczba na stronie ma byc ta, ktora klient najpewniej zobaczy sam,
