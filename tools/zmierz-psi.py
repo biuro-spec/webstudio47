@@ -56,12 +56,22 @@ def zmierz(domena, strategia, klucz):
 def main():
     klucz = os.environ.get('PSI_KLUCZ', '')
     tylko = sys.argv[1] if len(sys.argv) > 1 else None
+
+    # Domena spoza listy klientow — mierzymy ja wprost. Potrzebne przede
+    # wszystkim dla webstudio47.pl: opublikowany wlasny wynik trzeba
+    # przemierzyc po kazdej wiekszej zmianie (zasada w generuj-sprawdzarke.py),
+    # a wlasnej strony celowo nie ma w STRONY, zeby nie wpadla do zestawienia
+    # realizacji.
+    strony = STRONY
+    if tylko and not any(tylko in d for d in STRONY.values()):
+        strony = {tylko: tylko}
+        tylko = None
     if not klucz:
         print('UWAGA: brak PSI_KLUCZ — limit bez klucza to kilka zadan,'
               ' potem 429.\n')
 
     wyniki = {}
-    for klient, domena in STRONY.items():
+    for klient, domena in strony.items():
         if tylko and tylko not in domena:
             continue
         wyniki[klient] = {}

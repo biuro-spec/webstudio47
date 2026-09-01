@@ -2056,20 +2056,44 @@
     margin-top: 0.25rem;
 }
 
+/* Kropka wyglada na 8 px, ale przycisk ma 26 px — norma wymaga celu
+   dotykowego minimum 24x24, a sama kropka tego nie spelniala (PSI zbilo
+   za to dostepnosc z 100 na 96). Widoczna jest pseudoelement w srodku,
+   klikalny jest caly kwadrat dookola. */
 .karuzela-kropka {
-    width: 8px;
-    height: 8px;
+    width: 26px;
+    height: 26px;
     padding: 0;
     border: 0;
+    background: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.karuzela-kropka::before {
+    content: '';
+    width: 8px;
+    height: 8px;
     border-radius: 100px;
     background: rgba(255, 255, 255, 0.18);
-    cursor: pointer;
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
 }
 
 .karuzela-kropka[aria-current="true"] {
+    width: 44px;
+}
+
+.karuzela-kropka[aria-current="true"]::before {
     width: 26px;
     background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+}
+
+.karuzela-kropka:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+    border-radius: 100px;
 }
 
 @media (max-width: 640px) {
@@ -2080,7 +2104,8 @@
 @media (prefers-reduced-motion: reduce) {
     .karuzela-tor { scroll-behavior: auto; }
     .blog-karta:hover .blog-karta-obraz img { transform: none; }
-    .karuzela-kropka { transition: none; }
+    .karuzela-kropka,
+    .karuzela-kropka::before { transition: none; }
 }
 
 /* ============================================================
