@@ -2220,3 +2220,25 @@
         }
     }
 }
+
+/* ---- Animacje ozdobne nad zagieciem: skonczona liczba przebiegow -------
+   Speed Index mierzy, jak dlugo WIDOCZNY obszar sie zmienia. Nieskonczona
+   animacja w hero sprawia, ze strona nigdy nie jest wizualnie gotowa,
+   a zaden pozniejszy fragment nie ma juz szans tego odrobic.
+
+   Zmierzone 2026-09-01 na komputerze: FCP 0,2 s i LCP 0,8 s (oceny 1,00
+   i 0,97), a mimo to wydajnosc 81 — bo Speed Index wyszedl 6,6 s z ocena
+   ZERO. Winne byly puls gradientu i polysk na naglowku hero, chodzace
+   w kolko od pierwszej klatki.
+
+   Zostaja jako efekt WEJSCIA: gradient przechodzi dwa razy, polysk raz
+   i obraz sie uspokaja. Naglowki sekcji nizej zachowuja puls bez zmian
+   — sa pod zagieciem, wiec pomiaru nie dotykaja. */
+.hero .text-gradient,
+.hero .text-gradient-alt {
+    animation-iteration-count: 2;
+}
+
+.hero .shimmer {
+    animation-iteration-count: 1;
+}
