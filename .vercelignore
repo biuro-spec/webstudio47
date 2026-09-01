@@ -1,0 +1,10 @@
+# To samo, co pomijal deploy.ps1 - Vercel serwuje caly katalog repo,
+# wiec bez tej listy backend formularza i narzedzia bylyby publiczne.
+apps-script
+tools
+zdjecia
+.pomiary
+style.dev.css
+deploy.ps1
+CLAUDE.md
+favicon-original.png
