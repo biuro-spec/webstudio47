@@ -76,14 +76,14 @@ def main():
                 except urllib.error.HTTPError as e:
                     if e.code == 429 and proba < 2:
                         czekaj = 70 * (proba + 1)
-                        print(f'  {klient:18} {strategia:8} 429 — czekam {czekaj}s')
+                        print(f'  {klient:18} {strategia:8} 429 — czekam {czekaj}s', flush=True)
                         time.sleep(czekaj)
                         continue
-                    print(f'  {klient:18} {strategia:8} BLAD: {e}')
+                    print(f'  {klient:18} {strategia:8} BLAD: {e}', flush=True)
                     wyniki[klient][strategia] = None
                     break
                 except Exception as e:
-                    print(f'  {klient:18} {strategia:8} BLAD: {e}')
+                    print(f'  {klient:18} {strategia:8} BLAD: {e}', flush=True)
                     wyniki[klient][strategia] = None
                     break
             # odstep miedzy zadaniami — grzecznosc wobec limitu
