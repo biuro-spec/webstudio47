@@ -48,10 +48,8 @@ USLUGI = [
         tytul="Pozycjonowanie (SEO)",
         lead="Strona bez odwiedzin to wizytówka schowana w szufladzie. Zajmuję się tym, żeby Google pokazywał Cię wtedy, gdy klient szuka dokładnie Twojej usługi.",
         akapity=[
-            "Pozycjonowanie to nie sztuczka ani „ustawianie się” z Google. To trzy rzeczy robione porządnie: <strong>technika</strong> — żeby strona ładowała się szybko i dała się poprawnie odczytać; <strong>treść</strong> — żeby odpowiadała na realne pytania klientów; oraz <strong>wiarygodność</strong> — czyli spójne dane firmy, opinie i Profil Firmy w Google.",
-            "Dla firmy działającej lokalnie najkrótszą drogą do telefonów jest zwykle nie sama strona, lecz <strong>Profil Firmy w Google</strong>. To on decyduje o tym, czy pojawiasz się w mapce nad zwykłymi wynikami — a tam trafia lwia część kliknięć. Dlatego zwykle od niego zaczynam, mimo że mniej się na tym zarabia.",
-            "Mówię wprost, czego nie robię: nie gwarantuję pierwszego miejsca, bo decyduje o nim Google, a nie wykonawca. Nie kupuję linków w systemach wymiany, bo to kończy się filtrem. Nie zamykam nikogo w umowie na dwanaście miesięcy. Co miesiąc dostajesz raport z Search Console: na jakie frazy się wyświetlasz, na której pozycji i co zostało zrobione.",
-            "Realny termin: pierwsze zmiany po 2–3 miesiącach, efekty po 4–6. W Rybniku dłużej, w Głubczycach szybciej — konkurencja decyduje bardziej niż budżet.",
+            "Pozycjonowanie to trzy rzeczy robione porządnie: <strong>technika</strong>, <strong>treść</strong> i <strong>wiarygodność</strong>. Dla lokalnej firmy najkrótszą drogą do telefonów jest zwykle <strong>Profil Firmy w Google</strong> — to on decyduje, czy pojawiasz się w mapce nad wynikami, i od niego zaczynam.",
+            "Bez obiecywania pierwszego miejsca i bez umowy na dwanaście miesięcy. Co miesiąc dostajesz raport z Search Console: na jakie frazy się wyświetlasz i co zostało zrobione. Realne efekty: po 4–6 miesiącach.",
         ],
         punkty=["Audyt od 900 zł", "Opieka od 800 zł miesięcznie",
                 "Wypowiedzenie w miesiąc", "Raport co miesiąc"],
