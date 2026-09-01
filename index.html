@@ -14,7 +14,7 @@
     <link rel="canonical" href="https://webstudio47.pl/">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=1788274421">
+    <link rel="stylesheet" href="style.css?v=1788275611">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -545,35 +545,118 @@
                 <h2 class="text-gradient">Blog</h2>
                 <p>Przydatna wiedza o stronach internetowych i marketingu online</p>
             </div>
-            <div class="blog-home-grid reveal delay-1">
-                <a href="blog/jak-pozycjonowac-strone-seo.html" class="blog-home-card">
-                    <div class="blog-home-card-top">
-                        <span class="blog-home-tag">SEO</span>
-                        <span class="blog-home-date">4 mar 2026</span>
+        </div>
+
+        <!-- Karuzela artykulow. Bez biblioteki: przewijanie jest natywne
+             (scroll-snap), wiec swipe na telefonie, gest na gladziku i klawisze
+             strzalek dzialaja same z siebie. Strzalki i kropki dokłada script.js
+             — kto ma wylaczony JS, dostaje sprawna karuzele bez sterowania,
+             a nie martwy widget. Obrazy: alt="" celowo, bo grafiki nic nie
+             wnosza ponad tytul i zajawke tuz obok — czytnik ekranu ma je
+             pominac zamiast czytac dwa razy to samo. -->
+        <div class="karuzela-blog reveal delay-1">
+            <div class="karuzela-tor" id="blogTor" role="region" aria-label="Artykuły na blogu" tabindex="0">
+
+                <a href="blog/jak-pozycjonowac-strone-seo.html" class="blog-karta">
+                    <div class="blog-karta-obraz">
+                        <img src="blog/img/karta-seo.webp" alt="" width="640" height="400" loading="lazy" decoding="async">
                     </div>
-                    <h3>Jak pozycjonować stronę w&nbsp;Google?</h3>
-                    <p>Kompletny poradnik SEO dla właścicieli firm.</p>
-                    <span class="blog-home-more">Czytaj dalej →</span>
-                </a>
-                <a href="blog/dlaczego-firma-potrzebuje-strony.html" class="blog-home-card">
-                    <div class="blog-home-card-top">
-                        <span class="blog-home-tag">Biznes</span>
-                        <span class="blog-home-date">20 lut 2026</span>
+                    <div class="blog-karta-tresc">
+                        <div class="blog-karta-gora">
+                            <span class="blog-home-tag">SEO</span>
+                            <time class="blog-home-date" datetime="2026-03-04">4 mar 2026</time>
+                        </div>
+                        <h3>Jak pozycjonować stronę internetową? Poradnik SEO&nbsp;2026</h3>
+                        <p>Kompletny poradnik SEO dla właścicieli firm. Słowa kluczowe, optymalizacja
+                            techniczna, SEO lokalne.</p>
+                        <span class="blog-home-more">Czytaj dalej →</span>
                     </div>
-                    <h3>Dlaczego Twoja firma potrzebuje strony?</h3>
-                    <p>Brak strony to stracone szanse. Dowiedz się, dlaczego warto zainwestować.</p>
-                    <span class="blog-home-more">Czytaj dalej →</span>
                 </a>
-                <a href="blog/strona-wizytowkowa-vs-sklep.html" class="blog-home-card">
-                    <div class="blog-home-card-top">
-                        <span class="blog-home-tag">Porównanie</span>
-                        <span class="blog-home-date">15 lut 2026</span>
+
+                <a href="blog/ile-kosztuje-strona-internetowa.html" class="blog-karta">
+                    <div class="blog-karta-obraz">
+                        <img src="blog/img/karta-koszty.webp" alt="" width="640" height="400" loading="lazy" decoding="async">
                     </div>
-                    <h3>Wizytówka vs. sklep online — co&nbsp;wybrać?</h3>
-                    <p>Porównanie obu rozwiązań z&nbsp;cenami i&nbsp;zaletami dla Twojego biznesu.</p>
-                    <span class="blog-home-more">Czytaj dalej →</span>
+                    <div class="blog-karta-tresc">
+                        <div class="blog-karta-gora">
+                            <span class="blog-home-tag">Poradnik</span>
+                            <time class="blog-home-date" datetime="2026-03-01">1 mar 2026</time>
+                        </div>
+                        <h3>Ile kosztuje strona internetowa w&nbsp;2026?</h3>
+                        <p>Realne ceny stron wizytówkowych, landing page i&nbsp;sklepów online.
+                            Konkretne widełki.</p>
+                        <span class="blog-home-more">Czytaj dalej →</span>
+                    </div>
                 </a>
+
+                <a href="blog/responsywna-strona-internetowa.html" class="blog-karta">
+                    <div class="blog-karta-obraz">
+                        <img src="blog/img/karta-responsywnosc.webp" alt="" width="640" height="400" loading="lazy" decoding="async">
+                    </div>
+                    <div class="blog-karta-tresc">
+                        <div class="blog-karta-gora">
+                            <span class="blog-home-tag">UX/UI</span>
+                            <time class="blog-home-date" datetime="2026-02-28">28 lut 2026</time>
+                        </div>
+                        <h3>Responsywna strona — dlaczego to&nbsp;konieczność?</h3>
+                        <p>Ponad 70% ruchu to telefony. Dlaczego Twoja strona musi wyglądać dobrze
+                            na każdym urządzeniu.</p>
+                        <span class="blog-home-more">Czytaj dalej →</span>
+                    </div>
+                </a>
+
+                <a href="blog/dlaczego-firma-potrzebuje-strony.html" class="blog-karta">
+                    <div class="blog-karta-obraz">
+                        <img src="blog/img/karta-biznes.webp" alt="" width="640" height="400" loading="lazy" decoding="async">
+                    </div>
+                    <div class="blog-karta-tresc">
+                        <div class="blog-karta-gora">
+                            <span class="blog-home-tag">Biznes</span>
+                            <time class="blog-home-date" datetime="2026-02-20">20 lut 2026</time>
+                        </div>
+                        <h3>Dlaczego Twoja firma potrzebuje strony internetowej?</h3>
+                        <p>Brak strony to stracone szanse. Dowiedz się, dlaczego warto
+                            zainwestować.</p>
+                        <span class="blog-home-more">Czytaj dalej →</span>
+                    </div>
+                </a>
+
+                <a href="blog/strona-wizytowkowa-vs-sklep.html" class="blog-karta">
+                    <div class="blog-karta-obraz">
+                        <img src="blog/img/karta-porownanie.webp" alt="" width="640" height="400" loading="lazy" decoding="async">
+                    </div>
+                    <div class="blog-karta-tresc">
+                        <div class="blog-karta-gora">
+                            <span class="blog-home-tag">Porównanie</span>
+                            <time class="blog-home-date" datetime="2026-02-15">15 lut 2026</time>
+                        </div>
+                        <h3>Strona wizytówkowa vs. sklep online — co&nbsp;wybrać?</h3>
+                        <p>Porównanie obu rozwiązań z&nbsp;cenami i&nbsp;zaletami dla Twojego
+                            biznesu.</p>
+                        <span class="blog-home-more">Czytaj dalej →</span>
+                    </div>
+                </a>
+
+                <a href="blog/wordpress-vs-strona-na-zamowienie.html" class="blog-karta">
+                    <div class="blog-karta-obraz">
+                        <img src="blog/img/karta-wordpress.webp" alt="" width="640" height="400" loading="lazy" decoding="async">
+                    </div>
+                    <div class="blog-karta-tresc">
+                        <div class="blog-karta-gora">
+                            <span class="blog-home-tag">Technologia</span>
+                            <time class="blog-home-date" datetime="2026-02-10">10 lut 2026</time>
+                        </div>
+                        <h3>WordPress vs. strona na zamówienie — co&nbsp;wybrać?</h3>
+                        <p>Obiektywne porównanie obu rozwiązań z&nbsp;cenami, zaletami
+                            i&nbsp;wadami.</p>
+                        <span class="blog-home-more">Czytaj dalej →</span>
+                    </div>
+                </a>
+
             </div>
+        </div>
+
+        <div class="container">
             <div class="blog-home-cta reveal delay-2">
                 <a href="blog/" class="btn btn-outline">Zobacz wszystkie artykuły →</a>
             </div>
@@ -741,8 +824,8 @@
     </aside>
 
 
-    <script src="script.js?v=1788274421" defer></script>
-    <script src="/consent.js?v=1788274421" defer></script>
+    <script src="script.js?v=1788275611" defer></script>
+    <script src="/consent.js?v=1788275611" defer></script>
 </body>
 
 </html>

@@ -215,3 +215,86 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 })();
+
+// ===== Karuzela artykulow (#blog na stronie glownej) =====
+// Przewijanie zostawiamy przegladarce (scroll-snap): swipe, gladzik,
+// Shift+kolko i strzalki klawiatury dzialaja bez naszego udzialu.
+// Tutaj dokładamy tylko to, czego CSS nie da: strzalki i kropki.
+// Kto ma wylaczony JS, dostaje sprawna karuzele bez sterowania —
+// dlatego przyciski powstaja tu, a nie w HTML.
+(function () {
+    var tor = document.getElementById('blogTor');
+    if (!tor) return;
+
+    var karty = Array.prototype.slice.call(tor.querySelectorAll('.blog-karta'));
+    if (karty.length < 2) return;
+
+    var otoczka = tor.parentElement;
+    var spokoj = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ruch = spokoj ? 'auto' : 'smooth';
+
+    // Szerokosc karty czytamy na biezaco — zmienia sie z szerokoscia okna
+    // (clamp w CSS), wiec zapisanie jej raz zepsuloby krok po obroceniu telefonu.
+    function krok() {
+        return karty[0].getBoundingClientRect().width + 24;
+    }
+
+    function strzalka(kierunek, etykieta, znak) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'karuzela-strzalka karuzela-' + kierunek;
+        b.setAttribute('aria-label', etykieta);
+        b.setAttribute('aria-controls', 'blogTor');
+        b.textContent = znak;
+        b.addEventListener('click', function () {
+            tor.scrollBy({ left: kierunek === 'dalej' ? krok() : -krok(), behavior: ruch });
+        });
+        otoczka.appendChild(b);
+        return b;
+    }
+
+    var wstecz = strzalka('wstecz', 'Poprzedni artykuł', '‹');
+    var dalej = strzalka('dalej', 'Następny artykuł', '›');
+
+    var kropki = document.createElement('div');
+    kropki.className = 'karuzela-kropki';
+    var listaKropek = karty.map(function (karta, i) {
+        var k = document.createElement('button');
+        k.type = 'button';
+        k.className = 'karuzela-kropka';
+        k.setAttribute('aria-label', 'Artykuł ' + (i + 1) + ' z ' + karty.length);
+        k.addEventListener('click', function () {
+            // block:'nearest' — inaczej przegladarka przy okazji przewinelaby
+            // strone w pionie do sekcji bloga.
+            karta.scrollIntoView({ inline: 'start', block: 'nearest', behavior: ruch });
+        });
+        kropki.appendChild(k);
+        return k;
+    });
+    otoczka.parentNode.insertBefore(kropki, otoczka.nextSibling);
+
+    var czeka = false;
+    function odswiez() {
+        var i = Math.round(tor.scrollLeft / krok());
+        if (i < 0) i = 0;
+        if (i > karty.length - 1) i = karty.length - 1;
+        listaKropek.forEach(function (k, n) {
+            if (n === i) {
+                k.setAttribute('aria-current', 'true');
+            } else {
+                k.removeAttribute('aria-current');
+            }
+        });
+        wstecz.disabled = tor.scrollLeft <= 4;
+        dalej.disabled = tor.scrollLeft + tor.clientWidth >= tor.scrollWidth - 4;
+    }
+
+    tor.addEventListener('scroll', function () {
+        if (czeka) return;
+        czeka = true;
+        requestAnimationFrame(function () { czeka = false; odswiez(); });
+    }, { passive: true });
+
+    window.addEventListener('resize', odswiez);
+    odswiez();
+})();

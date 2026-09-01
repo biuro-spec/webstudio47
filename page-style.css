@@ -1898,3 +1898,190 @@
 .info-card.karta-3d {
     transition: transform 140ms ease-out, border-color 0.3s ease;
 }
+
+/* ============================================================
+   KARUZELA ARTYKULOW (strona glowna, sekcja #blog)
+   Zero bibliotek: przewijanie jest natywne, wiec swipe, gladzik,
+   Shift+kolko i klawisze strzalek dzialaja bez naszego kodu.
+   script.js dokłada tylko strzalki i kropki.
+   ============================================================ */
+
+.karuzela-blog {
+    position: relative;
+    margin-top: 3rem;
+    /* Karty maja siegac krawedzi ekranu, ale pierwsza musi stac w linii
+       z trescia w .container (max 1200 px + 24 px oddechu). */
+    --luz: max(24px, calc((100% - 1200px) / 2 + 24px));
+}
+
+.karuzela-tor {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    padding: 6px var(--luz) 30px;
+    scroll-padding-inline: var(--luz);
+    /* Pasek przewijania chowamy — nawigacja idzie strzalkami i gestem. */
+    scrollbar-width: none;
+}
+
+.karuzela-tor::-webkit-scrollbar {
+    display: none;
+}
+
+/* Tor jest fokusowalny (tabindex=0), zeby dalo sie go przewinac klawiatura —
+   bez widocznego obrysu byloby to niewidzialne dla osoby uzywajacej Tab. */
+.karuzela-tor:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: -2px;
+    border-radius: var(--border-radius);
+}
+
+.blog-karta {
+    flex: 0 0 clamp(258px, 76vw, 348px);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.blog-karta:hover {
+    transform: translateY(-4px);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+.blog-karta-obraz {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(6, 182, 212, 0.1));
+}
+
+.blog-karta-obraz img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blog-karta:hover .blog-karta-obraz img {
+    transform: scale(1.06);
+}
+
+.blog-karta-tresc {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.4rem 1.5rem 1.6rem;
+}
+
+.blog-karta-gora {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.blog-karta h3 {
+    font-size: 1.08rem;
+    line-height: 1.35;
+    margin-bottom: 0.6rem;
+    color: var(--text-primary);
+    text-wrap: balance;
+}
+
+.blog-karta p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    /* Trzy wiersze zajawki: rowna wysokosc naglowkow miedzy kartami
+       jest wazniejsza niz ostatnie pol zdania. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blog-karta .blog-home-more {
+    margin-top: auto;
+    padding-top: 1.1rem;
+}
+
+/* ---- Strzalki (wstrzykuje script.js) ---- */
+.karuzela-strzalka {
+    position: absolute;
+    top: calc(50% - 26px);
+    z-index: 2;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: rgba(18, 18, 26, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.karuzela-strzalka:hover:not(:disabled) {
+    border-color: rgba(6, 182, 212, 0.5);
+    color: var(--accent-cyan);
+    transform: scale(1.06);
+}
+
+.karuzela-strzalka:disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.karuzela-wstecz { left: max(8px, calc(var(--luz) - 58px)); }
+.karuzela-dalej  { right: max(8px, calc(var(--luz) - 58px)); }
+
+/* ---- Kropki ---- */
+.karuzela-kropki {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 0.25rem;
+}
+
+.karuzela-kropka {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
+}
+
+.karuzela-kropka[aria-current="true"] {
+    width: 26px;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+}
+
+@media (max-width: 640px) {
+    .karuzela-blog { --luz: 16px; }
+    .karuzela-strzalka { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .karuzela-tor { scroll-behavior: auto; }
+    .blog-karta:hover .blog-karta-obraz img { transform: none; }
+    .karuzela-kropka { transition: none; }
+}
