@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -72,12 +76,12 @@
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Alaska — klimatyzacja i chłodnictwo",
+  "name": "Alaska — klimatyzacja i&nbsp;chłodnictwo",
   "headline": "Strona dla firmy klimatyzacyjnej — Alaska",
   "description": "Strona dla firmy klimatyzacyjnej i chłodniczej z Raciborza działającej od 1997 roku. Animowane wejście, blog, panel realizacji. Zobacz, jak powstała.",
   "url": "https://webstudio47.pl/realizacje/strona-dla-firmy-klimatyzacyjnej/",
   "image": "https://webstudio47.pl/alaska-thumb.webp",
-  "genre": "Klimatyzacja i chłodnictwo",
+  "genre": "Klimatyzacja i&nbsp;chłodnictwo",
   "inLanguage": "pl",
   "creator": {
     "@type": "ProfessionalService",
@@ -170,10 +174,10 @@
                     <span aria-hidden="true">›</span>
                     <span>Alaska</span>
                 </nav>
-                <p class="realizacja-branza">Klimatyzacja i chłodnictwo · Racibórz</p>
+                <p class="realizacja-branza">Klimatyzacja i&nbsp;chłodnictwo · Racibórz</p>
                 <h1 class="reveal-hero"><span class="text-white">Strona dla firmy klimatyzacyjnej</span><br>
                     <span class="text-gradient">Alaska</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Montaż i serwis klimatyzacji oraz chłodnictwo przemysłowe. Firma z Raciborza działająca od 1997 roku — z dorobkiem, którego wcześniej nie było widać w internecie.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Montaż i&nbsp;serwis klimatyzacji oraz chłodnictwo przemysłowe. Firma z&nbsp;Raciborza działająca od 1997 roku — z&nbsp;dorobkiem, którego wcześniej nie było widać w&nbsp;internecie.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="https://alaskarp.pl" target="_blank" rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
@@ -186,7 +190,7 @@
             <div class="container">
                 <figure class="realizacja-zrzut reveal">
                     <img src="/alaska-hero.webp" width="1600" height="900" loading="lazy" decoding="async"
-                        alt="Strona internetowa Alaska — klimatyzacja i chłodnictwo · Racibórz">
+                        alt="Strona internetowa Alaska — klimatyzacja i&nbsp;chłodnictwo · Racibórz">
                     <figcaption>Alaska — <a href="https://alaskarp.pl" target="_blank" rel="noopener">alaskarp.pl</a></figcaption>
                 </figure>
             </div>
@@ -197,8 +201,8 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Wyzwanie</h2>
-                    <p>Firma z takim stażem ma coś, czego nowe podmioty nie kupią za żadne pieniądze: <strong>ćwierć wieku realizacji</strong>. Problem w tym, że w internecie wyglądała jak każda inna.</p>
-                    <p>Druga rzecz: klimatyzacja to dwa różne rynki naraz. Osoba montująca split w salonie i zakład potrzebujący chłodni to inni klienci z innymi pytaniami.</p>
+                    <p>Firma z&nbsp;takim stażem ma coś, czego nowe podmioty nie kupią za żadne pieniądze: <strong>ćwierć wieku realizacji</strong>. Problem w&nbsp;tym, że w&nbsp;internecie wyglądała jak każda inna.</p>
+                    <p>Druga rzecz: klimatyzacja to dwa różne rynki naraz. Osoba montująca split w&nbsp;salonie i&nbsp;zakład potrzebujący chłodni to inni klienci z&nbsp;innymi pytaniami.</p>
                 </div>
             </div>
         </section>
@@ -212,23 +216,23 @@
                 <div class="card-grid">
                     <div class="info-card glass reveal">
                         <h3>Animowane wejście</h3>
-                        <p>Krótka sekwencja otwierająca, która buduje wrażenie firmy technologicznej, a nie zakładu usługowego z lat dziewięćdziesiątych.</p>
+                        <p>Krótka sekwencja otwierająca, która buduje wrażenie firmy technologicznej, a&nbsp;nie zakładu usługowego z&nbsp;lat dziewięćdziesiątych.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Rozdzielenie oferty</h3>
-                        <p>Klimatyzacja dla domu i chłodnictwo przemysłowe jako osobne ścieżki, każda z własnym językiem i własnymi frazami.</p>
+                        <p>Klimatyzacja dla domu i&nbsp;chłodnictwo przemysłowe jako osobne ścieżki, każda z&nbsp;własnym językiem i&nbsp;własnymi frazami.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Panel do dodawania realizacji</h3>
-                        <p>Właściciel sam wrzuca zdjęcia z montaży, bez dzwonienia do wykonawcy strony. Portfolio rośnie samo.</p>
+                        <p>Właściciel sam wrzuca zdjęcia z&nbsp;montaży, bez dzwonienia do wykonawcy strony. Portfolio rośnie samo.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Blog techniczny</h3>
-                        <p>Odpowiedzi na pytania, które klienci i tak zadają przy wycenie — a przy okazji materiał dla wyszukiwarki.</p>
+                        <p>Odpowiedzi na pytania, które klienci i&nbsp;tak zadają przy wycenie — a&nbsp;przy okazji materiał dla wyszukiwarki.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Optymalizacja wydajności</h3>
-                        <p>WebP, leniwe ładowanie obrazów i dzielenie kodu. Strona z animacjami nie musi być ciężka.</p>
+                        <p>WebP, leniwe ładowanie obrazów i&nbsp;dzielenie kodu. Strona z&nbsp;animacjami nie musi być ciężka.</p>
                     </div>
                 </div>
             </div>
@@ -239,7 +243,7 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Kierunek wizualny</h2>
-                    <p>Chłodna paleta błękitów, mocne zdjęcia urządzeń, duże liczby przy stażu firmy. Wszystko podporządkowane jednemu przekazowi: to nie jest firma założona w zeszłym roku.</p>
+                    <p>Chłodna paleta błękitów, mocne zdjęcia urządzeń, duże liczby przy stażu firmy. Wszystko podporządkowane jednemu przekazowi: to nie jest firma założona w&nbsp;zeszłym roku.</p>
                     <h3>Zakres prac</h3>
                     <ul class="check-list">
                     <li>Klimatyzacja</li>
@@ -390,8 +394,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

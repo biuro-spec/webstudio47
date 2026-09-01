@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
@@ -65,7 +69,7 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Tworzenie stron internetowych — Głubczyce",
-  "serviceType": "Projektowanie i tworzenie stron internetowych",
+  "serviceType": "Projektowanie i&nbsp;tworzenie stron internetowych",
   "url": "https://webstudio47.pl/strony-internetowe-glubczyce/",
   "description": "Tworzenie stron internetowych w Głubczycach. Mała konkurencja w Google to realna szansa na pierwsze miejsce. Wycena po rozmowie.",
   "provider": {
@@ -127,18 +131,18 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Czy w tak małym mieście strona ma sens?",
+      "name": "Czy w&nbsp;tak małym mieście strona ma sens?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ma, i to większy niż w dużym — właśnie dlatego, że mało kto ją tu ma. Przy niskiej konkurencji koszt wejścia na pierwsze miejsce jest ułamkiem tego, co trzeba wydać w Rybniku."
+        "text": "Ma, i&nbsp;to większy niż w&nbsp;dużym — właśnie dlatego, że mało kto ją tu ma. Przy niskiej konkurencji koszt wejścia na pierwsze miejsce jest ułamkiem tego, co trzeba wydać w&nbsp;Rybniku."
       }
     },
     {
       "@type": "Question",
-      "name": "Ile trwa wyjście na pierwszą stronę w Google?",
+      "name": "Ile trwa wyjście na pierwszą stronę w&nbsp;Google?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "W Głubczycach zwykle szybciej niż gdzie indziej w regionie — bywa, że dwa, trzy miesiące. Nie obiecuję konkretnej pozycji, bo decyduje o niej Google, ale realnie startujesz tu z lepszej sytuacji niż w większym mieście."
+        "text": "W&nbsp;Głubczycach zwykle szybciej niż gdzie indziej w&nbsp;regionie — bywa, że dwa, trzy miesiące. Nie obiecuję konkretnej pozycji, bo decyduje o&nbsp;niej Google, ale realnie startujesz tu z&nbsp;lepszej sytuacji niż w&nbsp;większym mieście."
       }
     }
   ]
@@ -182,7 +186,7 @@
                 </nav>
                 <h1 class="reveal-hero"><span class="text-white">Strony internetowe</span><br>
                     <span class="text-gradient">Głubczyce</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Głubczyce to najmniejsze miasto z tej listy — i właśnie dlatego najciekawsze pod względem widoczności w Google. Tam, gdzie konkurencja jest cienka, dobrze zrobiona strona wychodzi na pierwsze miejsce zaskakująco szybko.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Głubczyce to najmniejsze miasto z&nbsp;tej listy — i&nbsp;właśnie dlatego najciekawsze pod względem widoczności w&nbsp;Google. Tam, gdzie konkurencja jest cienka, dobrze zrobiona strona wychodzi na pierwsze miejsce zaskakująco szybko.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="tel:+48602622840" class="btn btn-primary">Zadzwoń: 602 622 840</a>
                     <a href="/cennik/" class="btn btn-outline">Zobacz widełki cenowe</a>
@@ -199,8 +203,8 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Jak wygląda rynek w Głubczycach</h2>
-                    <p>W większości branż usługowych w Głubczycach konkurujesz z kilkoma firmami, a nierzadko <strong>żadna z nich nie ma porządnej strony</strong>. Zdarza się, że pierwsze miejsce w Google zajmuje wpis w katalogu sprzed lat albo profil na portalu ogłoszeniowym.</p>
-                    <p>To najtańszy rynek do zdobycia z całej okolicy. Ta sama praca, która w Rybniku daje efekt po dziewięciu miesiącach, tutaj bywa widoczna po dwóch — po prostu dlatego, że nie ma z kim przegrać.</p>
+                    <p>W&nbsp;większości branż usługowych w&nbsp;Głubczycach konkurujesz z&nbsp;kilkoma firmami, a&nbsp;nierzadko <strong>żadna z&nbsp;nich nie ma porządnej strony</strong>. Zdarza się, że pierwsze miejsce w&nbsp;Google zajmuje wpis w&nbsp;katalogu sprzed lat albo profil na portalu ogłoszeniowym.</p>
+                    <p>To najtańszy rynek do zdobycia z&nbsp;całej okolicy. Ta sama praca, która w&nbsp;Rybniku daje efekt po dziewięciu miesiącach, tutaj bywa widoczna po dwóch — po prostu dlatego, że nie ma z&nbsp;kim przegrać.</p>
                 </div>
             </div>
         </section>
@@ -214,7 +218,7 @@
                 <div class="card-grid">
                     <div class="info-card glass reveal">
                         <h3>Niska konkurencja to realna przewaga</h3>
-                        <p>Sam poprawnie skonfigurowany Profil Firmy plus strona z sensowną treścią potrafią w Głubczycach wystarczyć do wejścia na pierwszą stronę wyników.</p>
+                        <p>Sam poprawnie skonfigurowany Profil Firmy plus strona z&nbsp;sensowną treścią potrafią w&nbsp;Głubczycach wystarczyć do wejścia na pierwszą stronę wyników.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Zasięg szerszy niż miasto</h3>
@@ -222,7 +226,7 @@
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Prostszy projekt bywa lepszy</h3>
-                        <p>Skoro widoczność jest tania, budżet lepiej przesunąć z efektów wizualnych na treść i Profil Firmy. Mówię o tym wprost przy wycenie.</p>
+                        <p>Skoro widoczność jest tania, budżet lepiej przesunąć z&nbsp;efektów wizualnych na treść i&nbsp;Profil Firmy. Mówię o&nbsp;tym wprost przy wycenie.</p>
                     </div>
                 </div>
             </div>
@@ -273,15 +277,15 @@
                 </div>
                 <div class="faq-list reveal">
                     <details class="faq-item glass">
-                        <summary>Czy w tak małym mieście strona ma sens?</summary>
+                        <summary>Czy w&nbsp;tak małym mieście strona ma sens?</summary>
                         <div class="faq-answer">
-                            <p>Ma, i to większy niż w dużym — właśnie dlatego, że mało kto ją tu ma. Przy niskiej konkurencji koszt wejścia na pierwsze miejsce jest ułamkiem tego, co trzeba wydać w Rybniku.</p>
+                            <p>Ma, i&nbsp;to większy niż w&nbsp;dużym — właśnie dlatego, że mało kto ją tu ma. Przy niskiej konkurencji koszt wejścia na pierwsze miejsce jest ułamkiem tego, co trzeba wydać w&nbsp;Rybniku.</p>
                         </div>
                     </details>
                     <details class="faq-item glass">
-                        <summary>Ile trwa wyjście na pierwszą stronę w Google?</summary>
+                        <summary>Ile trwa wyjście na pierwszą stronę w&nbsp;Google?</summary>
                         <div class="faq-answer">
-                            <p>W Głubczycach zwykle szybciej niż gdzie indziej w regionie — bywa, że dwa, trzy miesiące. Nie obiecuję konkretnej pozycji, bo decyduje o niej Google, ale realnie startujesz tu z lepszej sytuacji niż w większym mieście.</p>
+                            <p>W&nbsp;Głubczycach zwykle szybciej niż gdzie indziej w&nbsp;regionie — bywa, że dwa, trzy miesiące. Nie obiecuję konkretnej pozycji, bo decyduje o&nbsp;niej Google, ale realnie startujesz tu z&nbsp;lepszej sytuacji niż w&nbsp;większym mieście.</p>
                         </div>
                     </details>
                 </div>
@@ -365,8 +369,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

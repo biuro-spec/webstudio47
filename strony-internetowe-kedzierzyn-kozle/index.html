@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
@@ -65,7 +69,7 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Tworzenie stron internetowych — Kędzierzyn-Koźle",
-  "serviceType": "Projektowanie i tworzenie stron internetowych",
+  "serviceType": "Projektowanie i&nbsp;tworzenie stron internetowych",
   "url": "https://webstudio47.pl/strony-internetowe-kedzierzyn-kozle/",
   "description": "Tworzenie stron internetowych w Kędzierzynie-Koźlu. Strony od zera dla firm usługowych i podwykonawców przemysłowych. Wycena po rozmowie.",
   "provider": {
@@ -130,7 +134,7 @@
       "name": "Czy robisz strony dla firm spoza województwa śląskiego?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Tak. Cały projekt prowadzę zdalnie, a przy pozycjonowaniu lokalnym liczy się adres i obszar działania Twojej firmy, nie mój. Kędzierzyn to zresztą pół godziny drogi."
+        "text": "Tak. Cały projekt prowadzę zdalnie, a&nbsp;przy pozycjonowaniu lokalnym liczy się adres i&nbsp;obszar działania Twojej firmy, nie mój. Kędzierzyn to zresztą pół godziny drogi."
       }
     },
     {
@@ -138,7 +142,7 @@
       "name": "Czym różni się strona B2B od zwykłej firmowej?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Innym punktem ciężkości. Zamiast budowania emocji — sprawdzalne fakty: zakres, uprawnienia, referencje, dane rejestrowe. Kupujący w firmie musi móc uzasadnić wybór przełożonemu, a nie tylko sam się przekonać."
+        "text": "Innym punktem ciężkości. Zamiast budowania emocji — sprawdzalne fakty: zakres, uprawnienia, referencje, dane rejestrowe. Kupujący w&nbsp;firmie musi móc uzasadnić wybór przełożonemu, a&nbsp;nie tylko sam się przekonać."
       }
     }
   ]
@@ -182,7 +186,7 @@
                 </nav>
                 <h1 class="reveal-hero"><span class="text-white">Strony internetowe</span><br>
                     <span class="text-gradient">Kędzierzyn-Koźle</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Kędzierzyn-Koźle leży już w województwie opolskim, ale z Raciborza to wciąż pół godziny drogi. Miasto o wyraźnie przemysłowym charakterze — i to widać w tym, jakich stron się tu potrzebuje.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Kędzierzyn-Koźle leży już w&nbsp;województwie opolskim, ale z&nbsp;Raciborza to wciąż pół godziny drogi. Miasto o&nbsp;wyraźnie przemysłowym charakterze — i&nbsp;to widać w&nbsp;tym, jakich stron się tu potrzebuje.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="tel:+48602622840" class="btn btn-primary">Zadzwoń: 602 622 840</a>
                     <a href="/cennik/" class="btn btn-outline">Zobacz widełki cenowe</a>
@@ -199,8 +203,8 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Jak wygląda rynek w Kędzierzynie-Koźlu</h2>
-                    <p>Struktura firm jest tu inna niż w Raciborzu. Obok typowych usług dla mieszkańców jest dużo <strong>podwykonawców obsługujących zakłady przemysłowe</strong> — a to zupełnie inny rodzaj klienta i inny rodzaj strony.</p>
-                    <p>Firma sprzedająca usługi do zakładu nie potrzebuje efektownej animacji. Potrzebuje konkretu: zakresu prac, uprawnień, certyfikatów i referencji w formie, którą da się wkleić do dokumentacji przetargowej.</p>
+                    <p>Struktura firm jest tu inna niż w&nbsp;Raciborzu. Obok typowych usług dla mieszkańców jest dużo <strong>podwykonawców obsługujących zakłady przemysłowe</strong> — a&nbsp;to zupełnie inny rodzaj klienta i&nbsp;inny rodzaj strony.</p>
+                    <p>Firma sprzedająca usługi do zakładu nie potrzebuje efektownej animacji. Potrzebuje konkretu: zakresu prac, uprawnień, certyfikatów i&nbsp;referencji w&nbsp;formie, którą da się wkleić do dokumentacji przetargowej.</p>
                 </div>
             </div>
         </section>
@@ -214,15 +218,15 @@
                 <div class="card-grid">
                     <div class="info-card glass reveal">
                         <h3>Strona jako dokument, nie folder reklamowy</h3>
-                        <p>Przy sprzedaży B2B do przemysłu liczy się sprawdzalność: pełna nazwa, NIP, zakres uprawnień, realizacje z nazwy. To buduje wiarygodność szybciej niż jakikolwiek slogan.</p>
+                        <p>Przy sprzedaży B2B do przemysłu liczy się sprawdzalność: pełna nazwa, NIP, zakres uprawnień, realizacje z&nbsp;nazwy. To buduje wiarygodność szybciej niż jakikolwiek slogan.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Inne województwo, ten sam zasięg</h3>
                         <p>Granica administracyjna nie ma znaczenia dla Google. Znaczenie ma poprawnie ustawiony obszar działania w Profilu Firmy.</p>
                     </div>
                     <div class="info-card glass reveal">
-                        <h3>Mniejsza konkurencja niż w Rybniku</h3>
-                        <p>W wielu niszach przemysłowych wciąż da się tu zbudować widoczność szybciej i taniej niż w większych miastach regionu.</p>
+                        <h3>Mniejsza konkurencja niż w&nbsp;Rybniku</h3>
+                        <p>W&nbsp;wielu niszach przemysłowych wciąż da się tu zbudować widoczność szybciej i&nbsp;taniej niż w&nbsp;większych miastach regionu.</p>
                     </div>
                 </div>
             </div>
@@ -275,13 +279,13 @@
                     <details class="faq-item glass">
                         <summary>Czy robisz strony dla firm spoza województwa śląskiego?</summary>
                         <div class="faq-answer">
-                            <p>Tak. Cały projekt prowadzę zdalnie, a przy pozycjonowaniu lokalnym liczy się adres i obszar działania Twojej firmy, nie mój. Kędzierzyn to zresztą pół godziny drogi.</p>
+                            <p>Tak. Cały projekt prowadzę zdalnie, a&nbsp;przy pozycjonowaniu lokalnym liczy się adres i&nbsp;obszar działania Twojej firmy, nie mój. Kędzierzyn to zresztą pół godziny drogi.</p>
                         </div>
                     </details>
                     <details class="faq-item glass">
                         <summary>Czym różni się strona B2B od zwykłej firmowej?</summary>
                         <div class="faq-answer">
-                            <p>Innym punktem ciężkości. Zamiast budowania emocji — sprawdzalne fakty: zakres, uprawnienia, referencje, dane rejestrowe. Kupujący w firmie musi móc uzasadnić wybór przełożonemu, a nie tylko sam się przekonać.</p>
+                            <p>Innym punktem ciężkości. Zamiast budowania emocji — sprawdzalne fakty: zakres, uprawnienia, referencje, dane rejestrowe. Kupujący w&nbsp;firmie musi móc uzasadnić wybór przełożonemu, a&nbsp;nie tylko sam się przekonać.</p>
                         </div>
                     </details>
                 </div>
@@ -365,8 +369,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

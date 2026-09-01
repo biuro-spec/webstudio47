@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -173,7 +177,7 @@
                 <p class="realizacja-branza">Transport medyczny · Racibórz</p>
                 <h1 class="reveal-hero"><span class="text-white">Strona dla firmy transportu medycznego</span><br>
                     <span class="text-gradient">Life-Ratownictwo</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Prywatna karetka, transport międzynarodowy pacjentów i zabezpieczenie medyczne imprez masowych. Trzy usługi, trzech zupełnie różnych odbiorców.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Prywatna karetka, transport międzynarodowy pacjentów i&nbsp;zabezpieczenie medyczne imprez masowych. Trzy usługi, trzech zupełnie różnych odbiorców.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="https://life-ratownictwo.pl" target="_blank" rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
@@ -197,8 +201,8 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Wyzwanie</h2>
-                    <p>Na tę stronę trafiają ludzie w skrajnie różnych sytuacjach. <strong>Rodzina szukająca transportu dla chorego krewnego</strong> i <strong>organizator festynu, który musi mieć zabezpieczenie medyczne</strong>, nie potrzebują tych samych informacji.</p>
-                    <p>Pierwszy dzwoni pod wpływem stresu i chce wiedzieć, czy da się dziś. Drugi porównuje oferty i potrzebuje zakresu, uprawnień i konkretów do przetargu.</p>
+                    <p>Na tę stronę trafiają ludzie w&nbsp;skrajnie różnych sytuacjach. <strong>Rodzina szukająca transportu dla chorego krewnego</strong> i <strong>organizator festynu, który musi mieć zabezpieczenie medyczne</strong>, nie potrzebują tych samych informacji.</p>
+                    <p>Pierwszy dzwoni pod wpływem stresu i&nbsp;chce wiedzieć, czy da się dziś. Drugi porównuje oferty i&nbsp;potrzebuje zakresu, uprawnień i&nbsp;konkretów do przetargu.</p>
                 </div>
             </div>
         </section>
@@ -220,15 +224,15 @@
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Prosty, spokojny język przy transporcie</h3>
-                        <p>Bez żargonu medycznego. Osoba w stresie ma zrozumieć od pierwszego czytania.</p>
+                        <p>Bez żargonu medycznego. Osoba w&nbsp;stresie ma zrozumieć od pierwszego czytania.</p>
                     </div>
                     <div class="info-card glass reveal">
-                        <h3>Telefon dostępny z każdego miejsca</h3>
-                        <p>W tej branży kontakt telefoniczny wygrywa z formularzem i strona to odzwierciedla.</p>
+                        <h3>Telefon dostępny z&nbsp;każdego miejsca</h3>
+                        <p>W tej branży kontakt telefoniczny wygrywa z&nbsp;formularzem i&nbsp;strona to odzwierciedla.</p>
                     </div>
                     <div class="info-card glass reveal">
-                        <h3>Galeria z prawdziwych zabezpieczeń</h3>
-                        <p>Zdjęcia z realnych wydarzeń zamiast zdjęć stockowych karetek.</p>
+                        <h3>Galeria z&nbsp;prawdziwych zabezpieczeń</h3>
+                        <p>Zdjęcia z&nbsp;realnych wydarzeń zamiast zdjęć stockowych karetek.</p>
                     </div>
                 </div>
             </div>
@@ -239,7 +243,7 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Kierunek wizualny</h2>
-                    <p>Czerwień i granat, mocne zdjęcia, wyraźna hierarchia. Powaga bez straszenia — to usługa, przy której estetyka ma schodzić na drugi plan wobec czytelności.</p>
+                    <p>Czerwień i&nbsp;granat, mocne zdjęcia, wyraźna hierarchia. Powaga bez straszenia — to usługa, przy której estetyka ma schodzić na drugi plan wobec czytelności.</p>
                     <h3>Zakres prac</h3>
                     <ul class="check-list">
                     <li>Ratownictwo</li>
@@ -389,8 +393,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

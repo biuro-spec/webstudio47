@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -173,7 +177,7 @@
                 <p class="realizacja-branza">Placówka medyczna · Racibórz</p>
                 <h1 class="reveal-hero"><span class="text-white">Strona dla placówki medycznej</span><br>
                     <span class="text-gradient">Life-Centrum</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Centrum zdrowia w Raciborzu: lekarze specjaliści, punkt pobrań krwi, usługi pielęgniarskie. Placówka, do której trafia się w konkretnej sprawie i chce się szybko wiedzieć, czy to właściwe miejsce.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Centrum zdrowia w&nbsp;Raciborzu: lekarze specjaliści, punkt pobrań krwi, usługi pielęgniarskie. Placówka, do której trafia się w&nbsp;konkretnej sprawie i&nbsp;chce się szybko wiedzieć, czy to właściwe miejsce.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <span class="btn btn-primary" aria-disabled="true" style="opacity:.65;cursor:default">Projekt w realizacji</span>
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
@@ -197,7 +201,7 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Wyzwanie</h2>
-                    <p>Pacjent nie przegląda strony przychodni dla przyjemności. Ma pytanie — <strong>czy przyjmuje tu ortopeda, o której otwierają punkt pobrań, czy trzeba być na czczo</strong> — i chce odpowiedzi w kilkanaście sekund.</p>
+                    <p>Pacjent nie przegląda strony przychodni dla przyjemności. Ma pytanie — <strong>czy przyjmuje tu ortopeda, o&nbsp;której otwierają punkt pobrań, czy trzeba być na czczo</strong> — i&nbsp;chce odpowiedzi w&nbsp;kilkanaście sekund.</p>
                     <p>Strona medyczna ma też inny ciężar niż zwykła firmowa: musi budzić zaufanie, nie sprzedawać. Każdy element sprzedażowy działa tu przeciwko sobie.</p>
                 </div>
             </div>
@@ -215,12 +219,12 @@
                         <p>Nie wokół struktury organizacyjnej placówki. Punkt wejścia to potrzeba, nie dział.</p>
                     </div>
                     <div class="info-card glass reveal">
-                        <h3>Sekcja punktu pobrań z zasadami przygotowania</h3>
-                        <p>Najczęściej zadawane pytanie w każdej placówce z laboratorium — odpowiedź jest na stronie, nie w słuchawce.</p>
+                        <h3>Sekcja punktu pobrań z&nbsp;zasadami przygotowania</h3>
+                        <p>Najczęściej zadawane pytanie w&nbsp;każdej placówce z&nbsp;laboratorium — odpowiedź jest na stronie, nie w&nbsp;słuchawce.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Prezentacja specjalistów</h3>
-                        <p>Twarz i specjalizacja. W medycynie zaufanie buduje konkretna osoba, nie logo.</p>
+                        <p>Twarz i&nbsp;specjalizacja. W&nbsp;medycynie zaufanie buduje konkretna osoba, nie logo.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Spokojna, czytelna typografia</h3>
@@ -228,7 +232,7 @@
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Dane strukturalne placówki medycznej</h3>
-                        <p>Godziny, adres i zakres usług podane w formie, którą Google rozumie i pokazuje w wynikach.</p>
+                        <p>Godziny, adres i&nbsp;zakres usług podane w&nbsp;formie, którą Google rozumie i&nbsp;pokazuje w&nbsp;wynikach.</p>
                     </div>
                 </div>
             </div>
@@ -239,7 +243,7 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Kierunek wizualny</h2>
-                    <p>Biel, błękit i dużo przestrzeni. Świadomie bez efektów — w tej branży „wow” jest podejrzane, a spokój wiarygodny.</p>
+                    <p>Biel, błękit i&nbsp;dużo przestrzeni. Świadomie bez efektów — w&nbsp;tej branży „wow” jest podejrzane, a&nbsp;spokój wiarygodny.</p>
                     <h3>Zakres prac</h3>
                     <ul class="check-list">
                     <li>Medycyna</li>
@@ -338,8 +342,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

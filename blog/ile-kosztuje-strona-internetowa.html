@@ -47,8 +47,18 @@
 }
     </script>
     <link rel="icon" type="image/png" href="../favicon.png">
-    <link rel="stylesheet" href="../style.css?v=1788294413">
-    <link rel="stylesheet" href="blog-style.css?v=1788294413">
+    <!-- Font naglowkow wczytywany rownolegle z arkuszem. Bez tego
+         przegladarka dowiaduje sie o nim dopiero po sparsowaniu 99 KB
+         CSS-a: H1 maluje sie Arialem, a po dojechaniu Space Grotesk
+         przemalowuje sie i Chrome zapisuje NOWY, pozniejszy LCP.
+         Zmierzone 2026-09-01: FCP 2,3 s, LCP 4,2 s — dwie sekundy
+         roznicy to byla wlasnie podmiana fontu. Dwa podzbiory, bo
+         polskie „e z ogonkiem" siedzi w latin-ext. Inter (tresc)
+         celowo NIE jest preloadowany — konkurowalby o pasmo z LCP. -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../style.css?v=1788294950">
+    <link rel="stylesheet" href="blog-style.css?v=1788294950">
     <!-- Zgoda na cookies (Google Consent Mode v2).
          MUSI byc przed gtag.js: inaczej GA4 zapisze dane, zanim ktokolwiek
          wyrazi zgode. Obsluge modala ma consent.js. -->
@@ -121,14 +131,14 @@
                 <div class="blog-breadcrumb">
                     <a href="../">Strona główna</a><span>›</span>
                     <a href="./">Blog</a><span>›</span>
-                    <span>Ile kosztuje strona internetowa w 2026?</span>
+                    <span>Ile kosztuje strona internetowa w&nbsp;2026?</span>
                 </div>
                 <div class="blog-article-meta">
                     <span class="blog-tag">Poradnik</span>
                     <time datetime="2026-03-01">1 marca 2026</time>
                     <span>• 6 min czytania</span>
                 </div>
-                <h1>Ile kosztuje strona internetowa w 2026?</h1>
+                <h1>Ile kosztuje strona internetowa w&nbsp;2026?</h1>
                 <p class="blog-article-subtitle">Realne ceny, bez ściemy. Sprawdź, ile zapłacisz za stronę wizytówkową, landing page i&nbsp;sklep online.</p>
             </div>
             </div>
@@ -310,6 +320,6 @@
         });
     }
     </script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 </html>

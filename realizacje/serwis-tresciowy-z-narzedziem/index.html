@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -167,9 +171,9 @@
                     <span>Karta Dnia</span>
                 </nav>
                 <p class="realizacja-branza">Serwis treściowy</p>
-                <h1 class="reveal-hero"><span class="text-white">Serwis treściowy z narzędziem</span><br>
+                <h1 class="reveal-hero"><span class="text-white">Serwis treściowy z&nbsp;narzędziem</span><br>
                     <span class="text-gradient">Karta Dnia</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Rozkłady tarota z interpretacją i znaczenia wszystkich 78 kart, bez rejestracji. Serwis, w którym treść i narzędzie napędzają się nawzajem.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Rozkłady tarota z&nbsp;interpretacją i&nbsp;znaczenia wszystkich 78 kart, bez rejestracji. Serwis, w&nbsp;którym treść i&nbsp;narzędzie napędzają się nawzajem.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="https://karta-dnia.pl" target="_blank" rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
@@ -193,8 +197,8 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Wyzwanie</h2>
-                    <p>Sam generator rozkładów nie wystarczy — <strong>nikt go nie znajdzie</strong>. Ruch w tej niszy przychodzi z zapytań o znaczenia poszczególnych kart, a nie z zapytania o narzędzie.</p>
-                    <p>Odwrotnie też nie zadziała: serwis z samymi opisami kart to jeden z tysiąca. Potrzebny był powód, żeby zostać dłużej niż na jedno przeczytanie.</p>
+                    <p>Sam generator rozkładów nie wystarczy — <strong>nikt go nie znajdzie</strong>. Ruch w&nbsp;tej niszy przychodzi z&nbsp;zapytań o&nbsp;znaczenia poszczególnych kart, a&nbsp;nie z&nbsp;zapytania o&nbsp;narzędzie.</p>
+                    <p>Odwrotnie też nie zadziała: serwis z&nbsp;samymi opisami kart to jeden z&nbsp;tysiąca. Potrzebny był powód, żeby zostać dłużej niż na jedno przeczytanie.</p>
                 </div>
             </div>
         </section>
@@ -208,19 +212,19 @@
                 <div class="card-grid">
                     <div class="info-card glass reveal">
                         <h3>Deterministyczny silnik rozkładów</h3>
-                        <p>Losowanie i interpretacja liczone po stronie aplikacji, spójnie i powtarzalnie — bez podpinania zewnętrznych usług.</p>
+                        <p>Losowanie i&nbsp;interpretacja liczone po stronie aplikacji, spójnie i&nbsp;powtarzalnie — bez podpinania zewnętrznych usług.</p>
                     </div>
                     <div class="info-card glass reveal">
-                        <h3>Osobna strona dla każdej z 78 kart</h3>
-                        <p>Każda odpowiada na własne zapytanie w wyszukiwarce. To jest właściwy fundament ruchu w tej niszy.</p>
+                        <h3>Osobna strona dla każdej z&nbsp;78 kart</h3>
+                        <p>Każda odpowiada na własne zapytanie w&nbsp;wyszukiwarce. To jest właściwy fundament ruchu w&nbsp;tej niszy.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Brak rejestracji</h3>
-                        <p>Rozkład w minutę, bez konta i bez podawania adresu e-mail. Bariera wejścia zredukowana do zera.</p>
+                        <p>Rozkład w&nbsp;minutę, bez konta i&nbsp;bez podawania adresu e-mail. Bariera wejścia zredukowana do zera.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Wyraźne postawienie sprawy</h3>
-                        <p>„Tarot, który nie wróży — pomaga myśleć”. Deklaracja, która ustawia oczekiwania i odróżnia serwis od konkurencji.</p>
+                        <p>„Tarot, który nie wróży — pomaga myśleć”. Deklaracja, która ustawia oczekiwania i&nbsp;odróżnia serwis od konkurencji.</p>
                     </div>
                 </div>
             </div>
@@ -382,8 +386,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

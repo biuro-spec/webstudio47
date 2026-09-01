@@ -14,7 +14,17 @@
     <link rel="canonical" href="https://webstudio47.pl/">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=1788294413">
+    <!-- Font naglowkow wczytywany rownolegle z arkuszem. Bez tego
+         przegladarka dowiaduje sie o nim dopiero po sparsowaniu 99 KB
+         CSS-a: H1 maluje sie Arialem, a po dojechaniu Space Grotesk
+         przemalowuje sie i Chrome zapisuje NOWY, pozniejszy LCP.
+         Zmierzone 2026-09-01: FCP 2,3 s, LCP 4,2 s — dwie sekundy
+         roznicy to byla wlasnie podmiana fontu. Dwa podzbiory, bo
+         polskie „e z ogonkiem" siedzi w latin-ext. Inter (tresc)
+         celowo NIE jest preloadowany — konkurowalby o pasmo z LCP. -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -178,7 +188,7 @@
             <h1 class="reveal-hero">
                 <span class="text-white">Tworzę strony, które</span><br>
                 <span class="text-gradient shimmer">budują zaufanie</span>
-                <span class="text-gradient-alt">i przyciągają klientów.</span>
+                <span class="text-gradient-alt">i&nbsp;przyciągają klientów.</span>
             </h1>
             <p class="reveal-hero delay-1">Nie dla każdego. Dla firm, które wiedzą, że strona
                 to&nbsp;inwestycja,&nbsp;nie&nbsp;koszt. Jakość, z&nbsp;której jestem dumny — albo&nbsp;wcale.</p>
@@ -209,7 +219,7 @@
                 <div class="step reveal delay-1">
                     <span class="step-num">02</span>
                     <h3>Decyzja</h3>
-                    <p>Wspólnie omawiamy pomysł i ustalamy kierunek. Jeśli czuję, że mogę pomóc — ruszamy do działania.</p>
+                    <p>Wspólnie omawiamy pomysł i&nbsp;ustalamy kierunek. Jeśli czuję, że mogę pomóc — ruszamy do działania.</p>
                 </div>
                 <div class="step reveal delay-2">
                     <span class="step-num">03</span>
@@ -219,7 +229,7 @@
                 <div class="step reveal delay-3">
                     <span class="step-num">04</span>
                     <h3>Efekt</h3>
-                    <p>Gotowa strona, która pracuje na Twój biznes od pierwszego dnia w sieci.</p>
+                    <p>Gotowa strona, która pracuje na Twój biznes od pierwszego dnia w&nbsp;sieci.</p>
                 </div>
             </div>
         </div>
@@ -258,9 +268,9 @@
                             <div class="usluga-tekst">
                                 <p class="usluga-etykieta">01 / 04 · Najczęstszy wybór</p>
                                 <h3>Strona firmowa</h3>
-                                <p class="usluga-lead">Wizytówka Twojego biznesu w sieci. Szybka, czytelna i przygotowana pod wyszukiwarkę — żeby klienci znajdowali Cię sami, a nie z polecenia.</p>
-                                <p class="usluga-akapit">Dla firmy usługowej to zwykle najrozsądniejszy wybór. Pokazuje, że istniejesz naprawdę, odpowiada na pytania, które klient i tak zadałby przez telefon, i daje Google coś, co można pozycjonować.</p>
-                                <p class="usluga-akapit">W cenie dostajesz indywidualny projekt graficzny, wersję mobilną, formularz z zabezpieczeniem przed spamem, certyfikat SSL, zgodność z RODO oraz podpięte Analytics i Search Console — żebyś od pierwszego dnia widział, kto wchodzi i skąd.</p>
+                                <p class="usluga-lead">Wizytówka Twojego biznesu w&nbsp;sieci. Szybka, czytelna i&nbsp;przygotowana pod wyszukiwarkę — żeby klienci znajdowali Cię sami, a&nbsp;nie z&nbsp;polecenia.</p>
+                                <p class="usluga-akapit">Dla firmy usługowej to zwykle najrozsądniejszy wybór. Pokazuje, że istniejesz naprawdę, odpowiada na pytania, które klient i&nbsp;tak zadałby przez telefon, i&nbsp;daje Google coś, co można pozycjonować.</p>
+                                <p class="usluga-akapit">W&nbsp;cenie dostajesz indywidualny projekt graficzny, wersję mobilną, formularz z&nbsp;zabezpieczeniem przed spamem, certyfikat SSL, zgodność z&nbsp;RODO oraz podpięte Analytics i&nbsp;Search Console — żebyś od pierwszego dnia widział, kto wchodzi i&nbsp;skąd.</p>
                                 <ul class="usluga-punkty">
                                     <li>Do kilkunastu podstron</li>
                                     <li>Blog albo galeria realizacji</li>
@@ -283,16 +293,16 @@
                             <div class="usluga-tekst">
                                 <p class="usluga-etykieta">02 / 04 · Praca ciągła</p>
                                 <h3>Pozycjonowanie (SEO)</h3>
-                                <p class="usluga-lead">Strona bez odwiedzin to wizytówka schowana w szufladzie. Zajmuję się tym, żeby Google pokazywał Cię wtedy, gdy klient szuka dokładnie Twojej usługi.</p>
-                                <p class="usluga-akapit">Pozycjonowanie to trzy rzeczy robione porządnie: <strong>technika</strong>, <strong>treść</strong> i <strong>wiarygodność</strong>. Dla lokalnej firmy najkrótszą drogą do telefonów jest zwykle <strong>Profil Firmy w Google</strong> — to on decyduje, czy pojawiasz się w mapce nad wynikami, i od niego zaczynam.</p>
-                                <p class="usluga-akapit">Bez obiecywania pierwszego miejsca i bez umowy na dwanaście miesięcy. Co miesiąc dostajesz raport z Search Console: na jakie frazy się wyświetlasz i co zostało zrobione. Realne efekty: po 4–6 miesiącach.</p>
+                                <p class="usluga-lead">Strona bez odwiedzin to wizytówka schowana w&nbsp;szufladzie. Zajmuję się tym, żeby Google pokazywał Cię wtedy, gdy klient szuka dokładnie Twojej usługi.</p>
+                                <p class="usluga-akapit">Pozycjonowanie to trzy rzeczy robione porządnie: <strong>technika</strong>, <strong>treść</strong> i <strong>wiarygodność</strong>. Dla lokalnej firmy najkrótszą drogą do telefonów jest zwykle <strong>Profil Firmy w&nbsp;Google</strong> — to on decyduje, czy pojawiasz się w&nbsp;mapce nad wynikami, i&nbsp;od niego zaczynam.</p>
+                                <p class="usluga-akapit">Bez obiecywania pierwszego miejsca i&nbsp;bez umowy na dwanaście miesięcy. Co miesiąc dostajesz raport z&nbsp;Search Console: na jakie frazy się wyświetlasz i&nbsp;co zostało zrobione. Realne efekty: po 4–6 miesiącach.</p>
                                 <ul class="usluga-punkty">
                                     <li>Audyt od 900 zł</li>
                                     <li>Opieka od 800 zł miesięcznie</li>
-                                    <li>Wypowiedzenie w miesiąc</li>
+                                    <li>Wypowiedzenie w&nbsp;miesiąc</li>
                                     <li>Raport co miesiąc</li>
                                 </ul>
-                                <a href="/pozycjonowanie-stron-raciborz/" class="btn btn-primary usluga-cel">Zobacz zakres i ceny →</a>
+                                <a href="/pozycjonowanie-stron-raciborz/" class="btn btn-primary usluga-cel">Zobacz zakres i&nbsp;ceny →</a>
                             </div>
                             <figure class="usluga-obraz">
                                 <a href="/realizacje/strona-dla-firmy-sprzatajacej/" aria-label="Zobacz, jak powstała strona Czysto-Po">
@@ -308,9 +318,9 @@
                             <div class="usluga-tekst">
                                 <p class="usluga-etykieta">03 / 04 · Gdy marka ma wyróżniać</p>
                                 <h3>Strona z efektem „wow”</h3>
-                                <p class="usluga-lead">Animacje, interaktywne elementy i design premium. Strona, po której klient mówi: „chcę tak samo”.</p>
-                                <p class="usluga-akapit">Ma sens tam, gdzie sam produkt jest wizualny albo marka celuje w górną półkę — salon, detailing, wnętrza, gastronomia. Tam pierwsze wrażenie robi za połowę argumentów sprzedażowych.</p>
-                                <p class="usluga-akapit">Nie ma sensu tam, gdzie klient przychodzi z pilną potrzebą i chce numeru telefonu w piętnaście sekund. Powiem to na pierwszej rozmowie, jeśli tak wygląda Twoja sytuacja — również wtedy, gdy oznacza to tańsze zlecenie.</p>
+                                <p class="usluga-lead">Animacje, interaktywne elementy i&nbsp;design premium. Strona, po której klient mówi: „chcę tak samo”.</p>
+                                <p class="usluga-akapit">Ma sens tam, gdzie sam produkt jest wizualny albo marka celuje w&nbsp;górną półkę — salon, detailing, wnętrza, gastronomia. Tam pierwsze wrażenie robi za połowę argumentów sprzedażowych.</p>
+                                <p class="usluga-akapit">Nie ma sensu tam, gdzie klient przychodzi z&nbsp;pilną potrzebą i&nbsp;chce numeru telefonu w&nbsp;piętnaście sekund. Powiem to na pierwszej rozmowie, jeśli tak wygląda Twoja sytuacja — również wtedy, gdy oznacza to tańsze zlecenie.</p>
                                 <ul class="usluga-punkty">
                                     <li>Animowane wejście</li>
                                     <li>Efekty na przewijaniu</li>
@@ -333,12 +343,12 @@
                             <div class="usluga-tekst">
                                 <p class="usluga-etykieta">04 / 04 · Gdy gotowe nie pasuje</p>
                                 <h3>Aplikacja webowa</h3>
-                                <p class="usluga-lead">Narzędzie, a nie strona: panel klienta, system rezerwacji, wewnętrzna ewidencja, generator dokumentów.</p>
-                                <p class="usluga-akapit">Robię je wtedy, gdy gotowe programy nie pasują do sposobu, w jaki pracujesz — albo gdy abonament za nie zaczyna kosztować więcej niż napisanie własnego rozwiązania.</p>
-                                <p class="usluga-akapit">Przykład z portfolio: generator faktur działający w przeglądarce bez zakładania konta, z trzema typami dokumentów i liczeniem zgodnym z przepisami. Albo panel, w którym właściciel firmy sam dodaje realizacje, bez dzwonienia do wykonawcy strony.</p>
+                                <p class="usluga-lead">Narzędzie, a&nbsp;nie strona: panel klienta, system rezerwacji, wewnętrzna ewidencja, generator dokumentów.</p>
+                                <p class="usluga-akapit">Robię je wtedy, gdy gotowe programy nie pasują do sposobu, w&nbsp;jaki pracujesz — albo gdy abonament za nie zaczyna kosztować więcej niż napisanie własnego rozwiązania.</p>
+                                <p class="usluga-akapit">Przykład z&nbsp;portfolio: generator faktur działający w&nbsp;przeglądarce bez zakładania konta, z&nbsp;trzema typami dokumentów i&nbsp;liczeniem zgodnym z&nbsp;przepisami. Albo panel, w&nbsp;którym właściciel firmy sam dodaje realizacje, bez dzwonienia do wykonawcy strony.</p>
                                 <ul class="usluga-punkty">
-                                    <li>Logowanie i role</li>
-                                    <li>Baza danych i raporty</li>
+                                    <li>Logowanie i&nbsp;role</li>
+                                    <li>Baza danych i&nbsp;raporty</li>
                                     <li>od 8 000 zł netto</li>
                                     <li>Realizacja od 8 tygodni</li>
                                 </ul>
@@ -364,7 +374,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="text-gradient">Moje realizacje</h2>
-                <p>Nie opowiadam — pokazuję. Kliknij i zobacz na żywo.</p>
+                <p>Nie opowiadam — pokazuję. Kliknij i&nbsp;zobacz na żywo.</p>
             </div>
             <div class="portfolio-grid">
                 <div class="project-card glass reveal">
@@ -476,7 +486,7 @@
             <div class="needs-grid">
                 <div class="need-item glass reveal">
                     <div class="need-number">01</div>
-                    <h3>Logo i kolory firmy</h3>
+                    <h3>Logo i&nbsp;kolory firmy</h3>
                     <p>Jeśli masz identyfikację wizualną — świetnie. Jeśli nie — pomogę ją stworzyć.</p>
                 </div>
                 <div class="need-item glass reveal delay-1">
@@ -486,14 +496,14 @@
                 </div>
                 <div class="need-item glass reveal delay-2">
                     <div class="need-number">03</div>
-                    <h3>Teksty i opisy</h3>
+                    <h3>Teksty i&nbsp;opisy</h3>
                     <p>Co robisz, dla kogo, dlaczego jesteś lepszy. Mogę pomóc to sformułować, ale musisz znać swój
                         biznes.</p>
                 </div>
                 <div class="need-item glass reveal">
                     <div class="need-number">04</div>
                     <h3>Domena</h3>
-                    <p>Adres Twojej strony, np. twojafirma.pl. Jeśli nie masz — kupię i skonfiguruję dla Ciebie.</p>
+                    <p>Adres Twojej strony, np. twojafirma.pl. Jeśli nie masz — kupię i&nbsp;skonfiguruję dla Ciebie.</p>
                 </div>
                 <div class="need-item glass reveal delay-1">
                     <div class="need-number">05</div>
@@ -503,7 +513,7 @@
                 <div class="need-item glass reveal delay-2">
                     <div class="need-number">06</div>
                     <h3>Zaufanie</h3>
-                    <p>Resztę biorę na siebie. Hosting, konfiguracja, optymalizacja — nie musisz się w to wgłębiać.</p>
+                    <p>Resztę biorę na siebie. Hosting, konfiguracja, optymalizacja — nie musisz się w&nbsp;to wgłębiać.</p>
                 </div>
             </div>
         </div>
@@ -513,13 +523,13 @@
     <section class="why-me" id="why-me">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="text-gradient">Dlaczego ja, a nie agencja?</h2>
-                <p>Bo tu nie chodzi o procedury — chodzi o efekt</p>
+                <h2 class="text-gradient">Dlaczego ja, a&nbsp;nie agencja?</h2>
+                <p>Bo tu nie chodzi o&nbsp;procedury — chodzi o&nbsp;efekt</p>
             </div>
             <div class="why-grid">
                 <div class="why-item glass reveal">
                     <h3>Jeden człowiek, pełna odpowiedzialność</h3>
-                    <p>Nie jesteś numerem w kolejce. Rozmawiasz bezpośrednio z&nbsp;osobą, która tworzy Twoją stronę.
+                    <p>Nie jesteś numerem w&nbsp;kolejce. Rozmawiasz bezpośrednio z&nbsp;osobą, która tworzy Twoją stronę.
                         Bez pośredników, bez „przekażę zespołowi”.</p>
                 </div>
                 <div class="why-item glass reveal delay-1">
@@ -542,7 +552,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="text-gradient">Blog</h2>
-                <p>Przydatna wiedza o stronach internetowych i marketingu online</p>
+                <p>Przydatna wiedza o&nbsp;stronach internetowych i&nbsp;marketingu online</p>
             </div>
         </div>
 
@@ -726,7 +736,7 @@
                     </div>
                 </div>
 
-                <p class="contact-note">Wolisz pisać? Wyślij maila z opisem, czego potrzebujesz. Jeśli temat mnie
+                <p class="contact-note">Wolisz pisać? Wyślij maila z&nbsp;opisem, czego potrzebujesz. Jeśli temat mnie
                     zainteresuje — oddzwonię.</p>
             </div>
         </div>
@@ -740,7 +750,7 @@
                 <div class="footer-brand">
                     <div class="footer-logo font-special">&lt;WebStudio<span>47</span>&gt;</div>
                     <p class="footer-tagline">Strony internetowe dla firm, które traktują swój biznes poważnie. Nie
-                        robię stron dla każdego — i właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
+                        robię stron dla każdego — i&nbsp;właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
                 </div>
                 <div class="footer-nav">
                     <p class="footer-heading">Oferta</p>
@@ -823,8 +833,8 @@
     </aside>
 
 
-    <script src="script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

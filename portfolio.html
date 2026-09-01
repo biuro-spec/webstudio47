@@ -9,8 +9,18 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://webstudio47.pl/portfolio.html">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=1788294413">
-    <link rel="stylesheet" href="/arc.css?v=1788294413">
+    <!-- Font naglowkow wczytywany rownolegle z arkuszem. Bez tego
+         przegladarka dowiaduje sie o nim dopiero po sparsowaniu 99 KB
+         CSS-a: H1 maluje sie Arialem, a po dojechaniu Space Grotesk
+         przemalowuje sie i Chrome zapisuje NOWY, pozniejszy LCP.
+         Zmierzone 2026-09-01: FCP 2,3 s, LCP 4,2 s — dwie sekundy
+         roznicy to byla wlasnie podmiana fontu. Dwa podzbiory, bo
+         polskie „e z ogonkiem" siedzi w latin-ext. Inter (tresc)
+         celowo NIE jest preloadowany — konkurowalby o pasmo z LCP. -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="style.css?v=1788294950">
+    <link rel="stylesheet" href="/arc.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -99,7 +109,7 @@
     <section class="portfolio-page-hero">
         <div class="container">
             <h1 class="portfolio-title-shimmer reveal-hero">Moje realizacje</h1>
-            <p class="reveal-hero delay-1">Każdy projekt to unikalna historia. Zero szablonów, zero kompromisów — tylko strony, z których jestem dumny.</p>
+            <p class="reveal-hero delay-1">Każdy projekt to unikalna historia. Zero szablonów, zero kompromisów — tylko strony, z&nbsp;których jestem dumny.</p>
         </div>
     </section>
 
@@ -122,7 +132,7 @@
                             <div class="arc-body">
                                 <span class="arc-num">01</span>
                                 <h2>hOla Perros — groomer</h2>
-                                <p class="arc-desc">Salon pielęgnacji i strzyżenia psów w Raciborzu. Jasna, elegancka typografia dopasowana do charakteru marki, cennik usług, galeria metamorfoz, sklepik i rezerwacja terminu.</p>
+                                <p class="arc-desc">Salon pielęgnacji i&nbsp;strzyżenia psów w&nbsp;Raciborzu. Jasna, elegancka typografia dopasowana do charakteru marki, cennik usług, galeria metamorfoz, sklepik i&nbsp;rezerwacja terminu.</p>
                                 <div class="arc-tags">
                                 <span>Groomer</span>
                                 <span>Rezerwacje</span>
@@ -143,7 +153,7 @@
                             <div class="arc-body">
                                 <span class="arc-num">02</span>
                                 <h2>Super Irek — złota rączka</h2>
-                                <p class="arc-desc">Usługi remontowe i montażowe w Raciborzu. Strona zbudowana wokół jednego celu: telefonu od klienta. Autorska ilustracja maskotki, galeria realizacji, opinie sąsiadów i przejrzysty cennik.</p>
+                                <p class="arc-desc">Usługi remontowe i&nbsp;montażowe w&nbsp;Raciborzu. Strona zbudowana wokół jednego celu: telefonu od klienta. Autorska ilustracja maskotki, galeria realizacji, opinie sąsiadów i&nbsp;przejrzysty cennik.</p>
                                 <div class="arc-tags">
                                 <span>Usługi lokalne</span>
                                 <span>Konwersja</span>
@@ -163,7 +173,7 @@
                             <div class="arc-body">
                                 <span class="arc-num">03</span>
                                 <h2>9 Dom — Mapa Czasu Duszy</h2>
-                                <p class="arc-desc">Aplikacja webowa z kalkulatorami astrologii wedyjskiej i numerologii. Kosmogram, astrokartografia, cykle czasu i panel użytkownika — obliczenia astronomiczne podane zrozumiałym językiem.</p>
+                                <p class="arc-desc">Aplikacja webowa z&nbsp;kalkulatorami astrologii wedyjskiej i&nbsp;numerologii. Kosmogram, astrokartografia, cykle czasu i&nbsp;panel użytkownika — obliczenia astronomiczne podane zrozumiałym językiem.</p>
                                 <div class="arc-tags">
                                 <span>Aplikacja</span>
                                 <span>Kalkulatory</span>
@@ -184,7 +194,7 @@
                             <div class="arc-body">
                                 <span class="arc-num">04</span>
                                 <h2>Karta Dnia — tarot online</h2>
-                                <p class="arc-desc">Darmowe rozkłady tarota z interpretacją i znaczenia wszystkich 78 kart. Deterministyczny silnik rozkładów, bez rejestracji, z rozbudowaną częścią treściową pod wyszukiwarkę.</p>
+                                <p class="arc-desc">Darmowe rozkłady tarota z&nbsp;interpretacją i&nbsp;znaczenia wszystkich 78 kart. Deterministyczny silnik rozkładów, bez rejestracji, z&nbsp;rozbudowaną częścią treściową pod wyszukiwarkę.</p>
                                 <div class="arc-tags">
                                 <span>Aplikacja</span>
                                 <span>Treści</span>
@@ -205,7 +215,7 @@
                             <div class="arc-body">
                                 <span class="arc-num">05</span>
                                 <h2>Alaska — Klimatyzacja</h2>
-                                <p class="arc-desc">Efektowna strona dla firmy chłodniczej i klimatyzacyjnej z Raciborza. Animowane intro, sekcja blogowa, formularz kontaktowy i pełna optymalizacja wydajności (WebP, lazy loading, code splitting).</p>
+                                <p class="arc-desc">Efektowna strona dla firmy chłodniczej i&nbsp;klimatyzacyjnej z&nbsp;Raciborza. Animowane intro, sekcja blogowa, formularz kontaktowy i&nbsp;pełna optymalizacja wydajności (WebP, lazy loading, code splitting).</p>
                                 <div class="arc-tags">
                                 <span>Klimatyzacja</span>
                                 <span>Animacje</span>
@@ -226,7 +236,7 @@
                             <div class="arc-body">
                                 <span class="arc-num">06</span>
                                 <h2>Life-Centrum</h2>
-                                <p class="arc-desc">Placówka medyczna w Raciborzu. Nowoczesna prezentacja usług zdrowotnych, punktu pobrań i lekarzy specjalistów. Czytelna nawigacja, responsywność i pełna optymalizacja SEO.</p>
+                                <p class="arc-desc">Placówka medyczna w&nbsp;Raciborzu. Nowoczesna prezentacja usług zdrowotnych, punktu pobrań i&nbsp;lekarzy specjalistów. Czytelna nawigacja, responsywność i&nbsp;pełna optymalizacja SEO.</p>
                                 <div class="arc-tags">
                                 <span>Medycyna</span>
                                 <span>UX Design</span>
@@ -247,7 +257,7 @@
                             <div class="arc-body">
                                 <span class="arc-num">07</span>
                                 <h2>Life-Ratownictwo</h2>
-                                <p class="arc-desc">Transport medyczny i zabezpieczenia imprez masowych. Architektura informacji zaprojektowana tak, by ratownik i organizator wydarzenia znaleźli to, czego szukają w sekundy.</p>
+                                <p class="arc-desc">Transport medyczny i&nbsp;zabezpieczenia imprez masowych. Architektura informacji zaprojektowana tak, by ratownik i&nbsp;organizator wydarzenia znaleźli to, czego szukają w&nbsp;sekundy.</p>
                                 <div class="arc-tags">
                                 <span>Ratownictwo</span>
                                 <span>Bezpieczeństwo</span>
@@ -268,7 +278,7 @@
                             <div class="arc-body">
                                 <span class="arc-num">08</span>
                                 <h2>WystawFakture.eu</h2>
-                                <p class="arc-desc">System do wystawiania faktur online. Prosty interfejs, szybkie działanie, pełna zgodność z polskimi przepisami. Aplikacja SaaS z autoryzacją użytkowników i panelem klienta.</p>
+                                <p class="arc-desc">System do wystawiania faktur online. Prosty interfejs, szybkie działanie, pełna zgodność z&nbsp;polskimi przepisami. Aplikacja SaaS z&nbsp;autoryzacją użytkowników i&nbsp;panelem klienta.</p>
                                 <div class="arc-tags">
                                 <span>Faktury</span>
                                 <span>System</span>
@@ -289,7 +299,7 @@
                             <div class="arc-body">
                                 <span class="arc-num">09</span>
                                 <h2>Czysto-Po</h2>
-                                <p class="arc-desc">Strona usługowa nastawiona na konwersję klientów. Czytelna struktura, szybkie ładowanie i pełna widoczność w wynikach Google. Marketing i SEO w jednym.</p>
+                                <p class="arc-desc">Strona usługowa nastawiona na konwersję klientów. Czytelna struktura, szybkie ładowanie i&nbsp;pełna widoczność w&nbsp;wynikach Google. Marketing i&nbsp;SEO w&nbsp;jednym.</p>
                                 <div class="arc-tags">
                                 <span>Usługi</span>
                                 <span>Marketing</span>
@@ -341,7 +351,7 @@
                 <div class="footer-brand">
                     <div class="footer-logo font-special">&lt;WebStudio<span>47</span>&gt;</div>
                     <p class="footer-tagline">Strony internetowe dla firm, które traktują swój biznes poważnie. Nie
-                        robię stron dla każdego — i właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
+                        robię stron dla każdego — i&nbsp;właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
                 </div>
                 <div class="footer-nav">
                     <p class="footer-heading">Oferta</p>
@@ -411,8 +421,8 @@
 
 
     <script src="script.js"></script>
-    <script src="/consent.js?v=1788294413" defer></script>
-    <script src="/arc.js?v=1788294413" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
+    <script src="/arc.js?v=1788294950" defer></script>
 </body>
 
 </html>

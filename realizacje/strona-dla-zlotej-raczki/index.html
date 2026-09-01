@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -173,7 +177,7 @@
                 <p class="realizacja-branza">Usługi remontowe · Racibórz</p>
                 <h1 class="reveal-hero"><span class="text-white">Strona dla złotej rączki</span><br>
                     <span class="text-gradient">Super Irek</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Montaż mebli, drobna hydraulika, lampy i gniazdka, poprawki po fachowcach. Usługa, w której klient dzwoni od razu albo nie dzwoni wcale.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Montaż mebli, drobna hydraulika, lampy i&nbsp;gniazdka, poprawki po fachowcach. Usługa, w&nbsp;której klient dzwoni od razu albo nie dzwoni wcale.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="https://superirek.pl" target="_blank" rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
@@ -197,8 +201,8 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Wyzwanie</h2>
-                    <p>Ta branża ma jeden problem z wiarygodnością: <strong>każdy może napisać, że „montuje meble”</strong>. Klient wpuszcza obcą osobę do mieszkania, więc decyduje na podstawie zaufania, nie ceny.</p>
-                    <p>Do tego ścieżka jest krótka. Ktoś ma popsuty kran teraz i albo zadzwoni w ciągu minuty, albo pójdzie do następnego wyniku w Google.</p>
+                    <p>Ta branża ma jeden problem z&nbsp;wiarygodnością: <strong>każdy może napisać, że „montuje meble”</strong>. Klient wpuszcza obcą osobę do mieszkania, więc decyduje na podstawie zaufania, nie ceny.</p>
+                    <p>Do tego ścieżka jest krótka. Ktoś ma popsuty kran teraz i&nbsp;albo zadzwoni w&nbsp;ciągu minuty, albo pójdzie do następnego wyniku w&nbsp;Google.</p>
                 </div>
             </div>
         </section>
@@ -212,23 +216,23 @@
                 <div class="card-grid">
                     <div class="info-card glass reveal">
                         <h3>Numer telefonu jako główny element</h3>
-                        <p>Widoczny w nagłówku, w sekcji otwierającej i jako przyklejony przycisk na telefonie. Cała strona prowadzi do jednego działania.</p>
+                        <p>Widoczny w&nbsp;nagłówku, w&nbsp;sekcji otwierającej i&nbsp;jako przyklejony przycisk na telefonie. Cała strona prowadzi do jednego działania.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Autorska ilustracja maskotki</h3>
-                        <p>Zamiast zdjęć stockowych — rozpoznawalna postać, która nadaje marce twarz i odróżnia ją od konkurencji z tego samego miasta.</p>
+                        <p>Zamiast zdjęć stockowych — rozpoznawalna postać, która nadaje marce twarz i&nbsp;odróżnia ją od konkurencji z&nbsp;tego samego miasta.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Rozbicie na konkretne usługi</h3>
-                        <p>Osobne sekcje dla montażu mebli, hydrauliki, elektryki i poprawek. Każda odpowiada na inne zapytanie w wyszukiwarce.</p>
+                        <p>Osobne sekcje dla montażu mebli, hydrauliki, elektryki i&nbsp;poprawek. Każda odpowiada na inne zapytanie w&nbsp;wyszukiwarce.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Galeria realizacji</h3>
-                        <p>Zdjęcia z prawdziwych zleceń — dowód, że firma istnieje i pracuje.</p>
+                        <p>Zdjęcia z&nbsp;prawdziwych zleceń — dowód, że firma istnieje i&nbsp;pracuje.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Opinie sąsiadów</h3>
-                        <p>Społeczny dowód słuszności w formie, która pasuje do usługi lokalnej: rekomendacja od kogoś z okolicy.</p>
+                        <p>Społeczny dowód słuszności w&nbsp;formie, która pasuje do usługi lokalnej: rekomendacja od kogoś z&nbsp;okolicy.</p>
                     </div>
                 </div>
             </div>
@@ -239,7 +243,7 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Kierunek wizualny</h2>
-                    <p>Zieleń i biel, dużo powietrza, duże przyciski. Strona ma być czytelna dla osoby po pięćdziesiątce przeglądającej ją na telefonie — bo to jest realny klient tej usługi.</p>
+                    <p>Zieleń i&nbsp;biel, dużo powietrza, duże przyciski. Strona ma być czytelna dla osoby po pięćdziesiątce przeglądającej ją na telefonie — bo to jest realny klient tej usługi.</p>
                     <h3>Zakres prac</h3>
                     <ul class="check-list">
                     <li>Usługi lokalne</li>
@@ -390,8 +394,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

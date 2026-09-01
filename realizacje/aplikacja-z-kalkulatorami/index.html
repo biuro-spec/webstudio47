@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -167,9 +171,9 @@
                     <span>9 Dom</span>
                 </nav>
                 <p class="realizacja-branza">Aplikacja webowa</p>
-                <h1 class="reveal-hero"><span class="text-white">Aplikacja webowa z kalkulatorami</span><br>
+                <h1 class="reveal-hero"><span class="text-white">Aplikacja webowa z&nbsp;kalkulatorami</span><br>
                     <span class="text-gradient">9 Dom</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Kalkulatory astrologii wedyjskiej i numerologii: kosmogram, astrokartografia, cykle czasu, mapa życia. Obliczenia astronomiczne podane językiem, który da się zrozumieć bez przygotowania.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Kalkulatory astrologii wedyjskiej i&nbsp;numerologii: kosmogram, astrokartografia, cykle czasu, mapa życia. Obliczenia astronomiczne podane językiem, który da się zrozumieć bez przygotowania.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="https://9dom.pl" target="_blank" rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
@@ -193,8 +197,8 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Wyzwanie</h2>
-                    <p>To nie jest strona informacyjna, tylko <strong>zestaw narzędzi liczących</strong>. Każdy kalkulator wymaga własnej logiki, a wyniki muszą się zgadzać — błąd w obliczeniach kompromituje cały serwis.</p>
-                    <p>Druga trudność to próg wejścia. Dziedzina ma własne słownictwo, którego użytkownik z zewnątrz nie zna. Wynik obliczeń bez wyjaśnienia jest bezużyteczny.</p>
+                    <p>To nie jest strona informacyjna, tylko <strong>zestaw narzędzi liczących</strong>. Każdy kalkulator wymaga własnej logiki, a&nbsp;wyniki muszą się zgadzać — błąd w&nbsp;obliczeniach kompromituje cały serwis.</p>
+                    <p>Druga trudność to próg wejścia. Dziedzina ma własne słownictwo, którego użytkownik z&nbsp;zewnątrz nie zna. Wynik obliczeń bez wyjaśnienia jest bezużyteczny.</p>
                 </div>
             </div>
         </section>
@@ -208,19 +212,19 @@
                 <div class="card-grid">
                     <div class="info-card glass reveal">
                         <h3>Zestaw powiązanych kalkulatorów</h3>
-                        <p>Kosmogram, numerologia, astrokartografia i cykle czasu jako osobne narzędzia korzystające ze wspólnej podstawy obliczeniowej.</p>
+                        <p>Kosmogram, numerologia, astrokartografia i&nbsp;cykle czasu jako osobne narzędzia korzystające ze wspólnej podstawy obliczeniowej.</p>
                     </div>
                     <div class="info-card glass reveal">
-                        <h3>Wyjaśnienia w miejscu użycia</h3>
-                        <p>Pojęcia tłumaczone tam, gdzie się pojawiają, a nie na osobnej stronie ze słownikiem. Użytkownik uczy się przy okazji korzystania.</p>
+                        <h3>Wyjaśnienia w&nbsp;miejscu użycia</h3>
+                        <p>Pojęcia tłumaczone tam, gdzie się pojawiają, a&nbsp;nie na osobnej stronie ze słownikiem. Użytkownik uczy się przy okazji korzystania.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Panel użytkownika</h3>
-                        <p>Zapisane profile i wyniki, żeby nie wpisywać daty urodzenia przy każdej wizycie.</p>
+                        <p>Zapisane profile i&nbsp;wyniki, żeby nie wpisywać daty urodzenia przy każdej wizycie.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Rozbudowana część treściowa</h3>
-                        <p>Horoskop roczny i materiały wyjaśniające — to one przyprowadzają ruch z wyszukiwarki do narzędzi.</p>
+                        <p>Horoskop roczny i&nbsp;materiały wyjaśniające — to one przyprowadzają ruch z&nbsp;wyszukiwarki do narzędzi.</p>
                     </div>
                 </div>
             </div>
@@ -231,7 +235,7 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Kierunek wizualny</h2>
-                    <p>Ciemna, nocna paleta ze złotem i szeryfowym krojem w nagłówkach. Temat jest poważny i wyraźnie zaznaczony w komunikacie: „nie przepowiadamy przyszłości”.</p>
+                    <p>Ciemna, nocna paleta ze złotem i&nbsp;szeryfowym krojem w&nbsp;nagłówkach. Temat jest poważny i&nbsp;wyraźnie zaznaczony w&nbsp;komunikacie: „nie przepowiadamy przyszłości”.</p>
                     <h3>Zakres prac</h3>
                     <ul class="check-list">
                     <li>Aplikacja</li>
@@ -382,8 +386,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

@@ -22,6 +22,17 @@ import pomiary
 
 KATALOG = pathlib.Path(__file__).resolve().parent.parent
 BAZA = "https://webstudio47.pl"
+
+def bezp(tekst):
+    """html.escape, ale nie psuje twardych spacji wpisanych w tresci.
+
+    Bez tego „&nbsp;" wstawione przez tools/sierotki.py wychodzi z escape'a
+    jako widoczne „&amp;nbsp;" — czytelnik widzi wtedy w zdaniu doslowny
+    ciag znakow zamiast spacji. Zdarzylo sie to 2026-09-01 w opisach meta
+    i pytaniach FAQ.
+    """
+    return html.escape(tekst).replace('&amp;nbsp;', '&nbsp;')
+
 FB = "https://www.facebook.com/profile.php?id=61578430357755"
 
 # ——— Treść realizacji ————————————————————————————————————————————————
@@ -37,19 +48,19 @@ REALIZACJE = [
         tytul="Strona dla salonu groomerskiego — hOla Perros",
         opisMeta="Strona dla salonu pielęgnacji psów w Raciborzu: rezerwacja terminu, cennik usług, galeria metamorfoz i sklepik. Zobacz, jak powstała.",
         h1="Strona dla salonu groomerskiego",
-        lead="Salon pielęgnacji i strzyżenia psów w Raciborzu. Marka premium, która musiała wyglądać premium także w internecie — i jednocześnie odbierać rezerwacje bez telefonu.",
+        lead="Salon pielęgnacji i&nbsp;strzyżenia psów w&nbsp;Raciborzu. Marka premium, która musiała wyglądać premium także w&nbsp;internecie — i&nbsp;jednocześnie odbierać rezerwacje bez telefonu.",
         wyzwanie=[
-            "Groomer sprzedaje coś, czego nie widać na cenniku: <strong>spokój psa podczas wizyty</strong>. Suchy wykaz usług i cen tego nie odda — trzeba było pokazać atmosferę salonu i efekt pracy.",
-            "Drugi problem był praktyczny. Umawianie przez telefon w trakcie strzyżenia oznacza przerwanie pracy albo nieodebrane połączenie. Strona musiała przejąć część tego ruchu.",
+            "Groomer sprzedaje coś, czego nie widać na cenniku: <strong>spokój psa podczas wizyty</strong>. Suchy wykaz usług i&nbsp;cen tego nie odda — trzeba było pokazać atmosferę salonu i&nbsp;efekt pracy.",
+            "Drugi problem był praktyczny. Umawianie przez telefon w&nbsp;trakcie strzyżenia oznacza przerwanie pracy albo nieodebrane połączenie. Strona musiała przejąć część tego ruchu.",
         ],
         zbudowane=[
-            ("Rezerwacja terminu online", "Klient wybiera usługę i termin bez dzwonienia. Zgłoszenie trafia na skrzynkę salonu, a właścicielka nie przerywa pracy z psem."),
-            ("Galeria metamorfoz", "Zdjęcia przed i po są tu głównym argumentem sprzedażowym — pokazują poziom wykonania lepiej niż jakikolwiek opis."),
-            ("Przejrzysty cennik według rozmiaru psa", "Najczęstsze pytanie w tej branży brzmi „ile to będzie kosztować u mojego psa”. Odpowiedź jest na stronie, nie w rozmowie telefonicznej."),
-            ("Sklepik z kosmetykami", "Dodatkowy kanał sprzedaży dla produktów używanych w salonie."),
-            ("Blog poradnikowy", "Treści o pielęgnacji, które ściągają ruch z wyszukiwarki na długo po publikacji."),
+            ("Rezerwacja terminu online", "Klient wybiera usługę i&nbsp;termin bez dzwonienia. Zgłoszenie trafia na skrzynkę salonu, a&nbsp;właścicielka nie przerywa pracy z&nbsp;psem."),
+            ("Galeria metamorfoz", "Zdjęcia przed i&nbsp;po są tu głównym argumentem sprzedażowym — pokazują poziom wykonania lepiej niż jakikolwiek opis."),
+            ("Przejrzysty cennik według rozmiaru psa", "Najczęstsze pytanie w&nbsp;tej branży brzmi „ile to będzie kosztować u&nbsp;mojego psa”. Odpowiedź jest na stronie, nie w&nbsp;rozmowie telefonicznej."),
+            ("Sklepik z&nbsp;kosmetykami", "Dodatkowy kanał sprzedaży dla produktów używanych w&nbsp;salonie."),
+            ("Blog poradnikowy", "Treści o&nbsp;pielęgnacji, które ściągają ruch z&nbsp;wyszukiwarki na długo po publikacji."),
         ],
-        design="Jasna, elegancka typografia z krojem szeryfowym w nagłówkach — celowo bliżej estetyki salonu kosmetycznego niż sklepu zoologicznego. Marka jest premium i wygląd strony miał to potwierdzać, zanim klient przeczyta pierwsze zdanie.",
+        design="Jasna, elegancka typografia z&nbsp;krojem szeryfowym w&nbsp;nagłówkach — celowo bliżej estetyki salonu kosmetycznego niż sklepu zoologicznego. Marka jest premium i&nbsp;wygląd strony miał to potwierdzać, zanim klient przeczyta pierwsze zdanie.",
         tagi=["Groomer", "Rezerwacje online", "Sklep", "Blog", "SEO lokalne"],
     ),
     dict(
@@ -62,19 +73,19 @@ REALIZACJE = [
         tytul="Strona dla złotej rączki — Super Irek",
         opisMeta="Strona dla usług remontowych i montażowych w Raciborzu, zbudowana wokół jednego celu: telefonu od klienta. Zobacz, jak powstała.",
         h1="Strona dla złotej rączki",
-        lead="Montaż mebli, drobna hydraulika, lampy i gniazdka, poprawki po fachowcach. Usługa, w której klient dzwoni od razu albo nie dzwoni wcale.",
+        lead="Montaż mebli, drobna hydraulika, lampy i&nbsp;gniazdka, poprawki po fachowcach. Usługa, w&nbsp;której klient dzwoni od razu albo nie dzwoni wcale.",
         wyzwanie=[
-            "Ta branża ma jeden problem z wiarygodnością: <strong>każdy może napisać, że „montuje meble”</strong>. Klient wpuszcza obcą osobę do mieszkania, więc decyduje na podstawie zaufania, nie ceny.",
-            "Do tego ścieżka jest krótka. Ktoś ma popsuty kran teraz i albo zadzwoni w ciągu minuty, albo pójdzie do następnego wyniku w Google.",
+            "Ta branża ma jeden problem z&nbsp;wiarygodnością: <strong>każdy może napisać, że „montuje meble”</strong>. Klient wpuszcza obcą osobę do mieszkania, więc decyduje na podstawie zaufania, nie ceny.",
+            "Do tego ścieżka jest krótka. Ktoś ma popsuty kran teraz i&nbsp;albo zadzwoni w&nbsp;ciągu minuty, albo pójdzie do następnego wyniku w&nbsp;Google.",
         ],
         zbudowane=[
-            ("Numer telefonu jako główny element", "Widoczny w nagłówku, w sekcji otwierającej i jako przyklejony przycisk na telefonie. Cała strona prowadzi do jednego działania."),
-            ("Autorska ilustracja maskotki", "Zamiast zdjęć stockowych — rozpoznawalna postać, która nadaje marce twarz i odróżnia ją od konkurencji z tego samego miasta."),
-            ("Rozbicie na konkretne usługi", "Osobne sekcje dla montażu mebli, hydrauliki, elektryki i poprawek. Każda odpowiada na inne zapytanie w wyszukiwarce."),
-            ("Galeria realizacji", "Zdjęcia z prawdziwych zleceń — dowód, że firma istnieje i pracuje."),
-            ("Opinie sąsiadów", "Społeczny dowód słuszności w formie, która pasuje do usługi lokalnej: rekomendacja od kogoś z okolicy."),
+            ("Numer telefonu jako główny element", "Widoczny w&nbsp;nagłówku, w&nbsp;sekcji otwierającej i&nbsp;jako przyklejony przycisk na telefonie. Cała strona prowadzi do jednego działania."),
+            ("Autorska ilustracja maskotki", "Zamiast zdjęć stockowych — rozpoznawalna postać, która nadaje marce twarz i&nbsp;odróżnia ją od konkurencji z&nbsp;tego samego miasta."),
+            ("Rozbicie na konkretne usługi", "Osobne sekcje dla montażu mebli, hydrauliki, elektryki i&nbsp;poprawek. Każda odpowiada na inne zapytanie w&nbsp;wyszukiwarce."),
+            ("Galeria realizacji", "Zdjęcia z&nbsp;prawdziwych zleceń — dowód, że firma istnieje i&nbsp;pracuje."),
+            ("Opinie sąsiadów", "Społeczny dowód słuszności w&nbsp;formie, która pasuje do usługi lokalnej: rekomendacja od kogoś z&nbsp;okolicy."),
         ],
-        design="Zieleń i biel, dużo powietrza, duże przyciski. Strona ma być czytelna dla osoby po pięćdziesiątce przeglądającej ją na telefonie — bo to jest realny klient tej usługi.",
+        design="Zieleń i&nbsp;biel, dużo powietrza, duże przyciski. Strona ma być czytelna dla osoby po pięćdziesiątce przeglądającej ją na telefonie — bo to jest realny klient tej usługi.",
         tagi=["Usługi lokalne", "Konwersja", "Ilustracja", "SEO lokalne"],
     ),
     dict(
@@ -87,43 +98,43 @@ REALIZACJE = [
         tytul="Strona dla firmy sprzątającej — Czysto-Po",
         opisMeta="Strona dla firmy sprzątającej z Raciborza: ozonowanie, dezynfekcja, sprzątanie po zgonach i po remontach. Zobacz, jak powstała.",
         h1="Strona dla firmy sprzątającej",
-        lead="Sprzątanie mieszkań, ozonowanie, dezynfekcja, sprzątanie po zgonach i po zbieractwie. Usługi, których szuka się w bardzo różnych stanach emocjonalnych.",
+        lead="Sprzątanie mieszkań, ozonowanie, dezynfekcja, sprzątanie po zgonach i&nbsp;po zbieractwie. Usługi, których szuka się w&nbsp;bardzo różnych stanach emocjonalnych.",
         wyzwanie=[
-            "Ta firma świadczy usługi z dwóch zupełnie różnych światów. Sprzątanie po remoncie zamawia się na spokojnie, z wyprzedzeniem. <strong>Sprzątanie po zgonie zamawia się w najgorszym tygodniu swojego życia.</strong>",
-            "Jeden ton komunikacji nie mógł obsłużyć obu sytuacji. Strona musiała być rzeczowa tam, gdzie klient porównuje oferty, i powściągliwa tam, gdzie potrzebuje po prostu pomocy.",
+            "Ta firma świadczy usługi z&nbsp;dwóch zupełnie różnych światów. Sprzątanie po remoncie zamawia się na spokojnie, z&nbsp;wyprzedzeniem. <strong>Sprzątanie po zgonie zamawia się w&nbsp;najgorszym tygodniu swojego życia.</strong>",
+            "Jeden ton komunikacji nie mógł obsłużyć obu sytuacji. Strona musiała być rzeczowa tam, gdzie klient porównuje oferty, i&nbsp;powściągliwa tam, gdzie potrzebuje po prostu pomocy.",
         ],
         zbudowane=[
-            ("Rozdzielenie usług na osobne sekcje", "Każda usługa specjalistyczna ma własny opis i własny język. Klient trafia od razu do swojej sytuacji, nie do ogólnego cennika."),
-            ("Wyciszony ton przy usługach trudnych", "Bez wykrzykników i sprzedażowego entuzjazmu tam, gdzie byłby nie na miejscu. Konkret, dyskrecja, telefon."),
-            ("Treść pod zapytania długiego ogona", "„Sprzątanie po zbieractwie”, „ozonowanie mieszkania” — to są frazy o małym wolumenie, ale bardzo wysokiej intencji zakupowej."),
-            ("Szybkie ładowanie", "Bez zbędnych bibliotek. Ktoś w sytuacji kryzysowej nie czeka na animacje."),
+            ("Rozdzielenie usług na osobne sekcje", "Każda usługa specjalistyczna ma własny opis i&nbsp;własny język. Klient trafia od razu do swojej sytuacji, nie do ogólnego cennika."),
+            ("Wyciszony ton przy usługach trudnych", "Bez wykrzykników i&nbsp;sprzedażowego entuzjazmu tam, gdzie byłby nie na miejscu. Konkret, dyskrecja, telefon."),
+            ("Treść pod zapytania długiego ogona", "„Sprzątanie po zbieractwie”, „ozonowanie mieszkania” — to są frazy o&nbsp;małym wolumenie, ale bardzo wysokiej intencji zakupowej."),
+            ("Szybkie ładowanie", "Bez zbędnych bibliotek. Ktoś w&nbsp;sytuacji kryzysowej nie czeka na animacje."),
         ],
-        design="Czysta struktura, wyraźna hierarchia, duży kontrast. Estetyka jest tu drugorzędna — pierwszorzędne jest to, żeby w piętnaście sekund dało się znaleźć właściwą usługę i numer telefonu.",
+        design="Czysta struktura, wyraźna hierarchia, duży kontrast. Estetyka jest tu drugorzędna — pierwszorzędne jest to, żeby w&nbsp;piętnaście sekund dało się znaleźć właściwą usługę i&nbsp;numer telefonu.",
         tagi=["Usługi", "Marketing", "Konwersja", "SEO"],
     ),
     dict(
         slug="strona-dla-firmy-klimatyzacyjnej",
         klient="Alaska",
-        branza="Klimatyzacja i chłodnictwo",
+        branza="Klimatyzacja i&nbsp;chłodnictwo",
         miasto="Racibórz",
         domena="alaskarp.pl",
         miniatura="alaska-thumb.webp",
         tytul="Strona dla firmy klimatyzacyjnej — Alaska",
         opisMeta="Strona dla firmy klimatyzacyjnej i chłodniczej z Raciborza działającej od 1997 roku. Animowane wejście, blog, panel realizacji. Zobacz, jak powstała.",
         h1="Strona dla firmy klimatyzacyjnej",
-        lead="Montaż i serwis klimatyzacji oraz chłodnictwo przemysłowe. Firma z Raciborza działająca od 1997 roku — z dorobkiem, którego wcześniej nie było widać w internecie.",
+        lead="Montaż i&nbsp;serwis klimatyzacji oraz chłodnictwo przemysłowe. Firma z&nbsp;Raciborza działająca od 1997 roku — z&nbsp;dorobkiem, którego wcześniej nie było widać w&nbsp;internecie.",
         wyzwanie=[
-            "Firma z takim stażem ma coś, czego nowe podmioty nie kupią za żadne pieniądze: <strong>ćwierć wieku realizacji</strong>. Problem w tym, że w internecie wyglądała jak każda inna.",
-            "Druga rzecz: klimatyzacja to dwa różne rynki naraz. Osoba montująca split w salonie i zakład potrzebujący chłodni to inni klienci z innymi pytaniami.",
+            "Firma z&nbsp;takim stażem ma coś, czego nowe podmioty nie kupią za żadne pieniądze: <strong>ćwierć wieku realizacji</strong>. Problem w&nbsp;tym, że w&nbsp;internecie wyglądała jak każda inna.",
+            "Druga rzecz: klimatyzacja to dwa różne rynki naraz. Osoba montująca split w&nbsp;salonie i&nbsp;zakład potrzebujący chłodni to inni klienci z&nbsp;innymi pytaniami.",
         ],
         zbudowane=[
-            ("Animowane wejście", "Krótka sekwencja otwierająca, która buduje wrażenie firmy technologicznej, a nie zakładu usługowego z lat dziewięćdziesiątych."),
-            ("Rozdzielenie oferty", "Klimatyzacja dla domu i chłodnictwo przemysłowe jako osobne ścieżki, każda z własnym językiem i własnymi frazami."),
-            ("Panel do dodawania realizacji", "Właściciel sam wrzuca zdjęcia z montaży, bez dzwonienia do wykonawcy strony. Portfolio rośnie samo."),
-            ("Blog techniczny", "Odpowiedzi na pytania, które klienci i tak zadają przy wycenie — a przy okazji materiał dla wyszukiwarki."),
-            ("Optymalizacja wydajności", "WebP, leniwe ładowanie obrazów i dzielenie kodu. Strona z animacjami nie musi być ciężka."),
+            ("Animowane wejście", "Krótka sekwencja otwierająca, która buduje wrażenie firmy technologicznej, a&nbsp;nie zakładu usługowego z&nbsp;lat dziewięćdziesiątych."),
+            ("Rozdzielenie oferty", "Klimatyzacja dla domu i&nbsp;chłodnictwo przemysłowe jako osobne ścieżki, każda z&nbsp;własnym językiem i&nbsp;własnymi frazami."),
+            ("Panel do dodawania realizacji", "Właściciel sam wrzuca zdjęcia z&nbsp;montaży, bez dzwonienia do wykonawcy strony. Portfolio rośnie samo."),
+            ("Blog techniczny", "Odpowiedzi na pytania, które klienci i&nbsp;tak zadają przy wycenie — a&nbsp;przy okazji materiał dla wyszukiwarki."),
+            ("Optymalizacja wydajności", "WebP, leniwe ładowanie obrazów i&nbsp;dzielenie kodu. Strona z&nbsp;animacjami nie musi być ciężka."),
         ],
-        design="Chłodna paleta błękitów, mocne zdjęcia urządzeń, duże liczby przy stażu firmy. Wszystko podporządkowane jednemu przekazowi: to nie jest firma założona w zeszłym roku.",
+        design="Chłodna paleta błękitów, mocne zdjęcia urządzeń, duże liczby przy stażu firmy. Wszystko podporządkowane jednemu przekazowi: to nie jest firma założona w&nbsp;zeszłym roku.",
         tagi=["Klimatyzacja", "Animacje", "Panel klienta", "Blog"],
     ),
     dict(
@@ -141,19 +152,19 @@ REALIZACJE = [
         tytul="Strona dla przychodni — Life-Centrum",
         opisMeta="Strona dla centrum zdrowia w Raciborzu: usługi medyczne, punkt pobrań, lekarze specjaliści. Zobacz, jak powstała.",
         h1="Strona dla placówki medycznej",
-        lead="Centrum zdrowia w Raciborzu: lekarze specjaliści, punkt pobrań krwi, usługi pielęgniarskie. Placówka, do której trafia się w konkretnej sprawie i chce się szybko wiedzieć, czy to właściwe miejsce.",
+        lead="Centrum zdrowia w&nbsp;Raciborzu: lekarze specjaliści, punkt pobrań krwi, usługi pielęgniarskie. Placówka, do której trafia się w&nbsp;konkretnej sprawie i&nbsp;chce się szybko wiedzieć, czy to właściwe miejsce.",
         wyzwanie=[
-            "Pacjent nie przegląda strony przychodni dla przyjemności. Ma pytanie — <strong>czy przyjmuje tu ortopeda, o której otwierają punkt pobrań, czy trzeba być na czczo</strong> — i chce odpowiedzi w kilkanaście sekund.",
+            "Pacjent nie przegląda strony przychodni dla przyjemności. Ma pytanie — <strong>czy przyjmuje tu ortopeda, o&nbsp;której otwierają punkt pobrań, czy trzeba być na czczo</strong> — i&nbsp;chce odpowiedzi w&nbsp;kilkanaście sekund.",
             "Strona medyczna ma też inny ciężar niż zwykła firmowa: musi budzić zaufanie, nie sprzedawać. Każdy element sprzedażowy działa tu przeciwko sobie.",
         ],
         zbudowane=[
             ("Architektura informacji wokół pytań pacjenta", "Nie wokół struktury organizacyjnej placówki. Punkt wejścia to potrzeba, nie dział."),
-            ("Sekcja punktu pobrań z zasadami przygotowania", "Najczęściej zadawane pytanie w każdej placówce z laboratorium — odpowiedź jest na stronie, nie w słuchawce."),
-            ("Prezentacja specjalistów", "Twarz i specjalizacja. W medycynie zaufanie buduje konkretna osoba, nie logo."),
+            ("Sekcja punktu pobrań z&nbsp;zasadami przygotowania", "Najczęściej zadawane pytanie w&nbsp;każdej placówce z&nbsp;laboratorium — odpowiedź jest na stronie, nie w&nbsp;słuchawce."),
+            ("Prezentacja specjalistów", "Twarz i&nbsp;specjalizacja. W&nbsp;medycynie zaufanie buduje konkretna osoba, nie logo."),
             ("Spokojna, czytelna typografia", "Duży stopień pisma, wysoki kontrast, dużo światła. Część pacjentów to osoby starsze."),
-            ("Dane strukturalne placówki medycznej", "Godziny, adres i zakres usług podane w formie, którą Google rozumie i pokazuje w wynikach."),
+            ("Dane strukturalne placówki medycznej", "Godziny, adres i&nbsp;zakres usług podane w&nbsp;formie, którą Google rozumie i&nbsp;pokazuje w&nbsp;wynikach."),
         ],
-        design="Biel, błękit i dużo przestrzeni. Świadomie bez efektów — w tej branży „wow” jest podejrzane, a spokój wiarygodny.",
+        design="Biel, błękit i&nbsp;dużo przestrzeni. Świadomie bez efektów — w&nbsp;tej branży „wow” jest podejrzane, a&nbsp;spokój wiarygodny.",
         tagi=["Medycyna", "UX", "Dostępność", "SEO"],
     ),
     dict(
@@ -166,19 +177,19 @@ REALIZACJE = [
         tytul="Strona dla transportu medycznego",
         opisMeta="Strona dla firmy transportu medycznego i zabezpieczeń imprez: prywatna karetka, transport międzynarodowy, obsługa wydarzeń. Zobacz, jak powstała.",
         h1="Strona dla firmy transportu medycznego",
-        lead="Prywatna karetka, transport międzynarodowy pacjentów i zabezpieczenie medyczne imprez masowych. Trzy usługi, trzech zupełnie różnych odbiorców.",
+        lead="Prywatna karetka, transport międzynarodowy pacjentów i&nbsp;zabezpieczenie medyczne imprez masowych. Trzy usługi, trzech zupełnie różnych odbiorców.",
         wyzwanie=[
-            "Na tę stronę trafiają ludzie w skrajnie różnych sytuacjach. <strong>Rodzina szukająca transportu dla chorego krewnego</strong> i <strong>organizator festynu, który musi mieć zabezpieczenie medyczne</strong>, nie potrzebują tych samych informacji.",
-            "Pierwszy dzwoni pod wpływem stresu i chce wiedzieć, czy da się dziś. Drugi porównuje oferty i potrzebuje zakresu, uprawnień i konkretów do przetargu.",
+            "Na tę stronę trafiają ludzie w&nbsp;skrajnie różnych sytuacjach. <strong>Rodzina szukająca transportu dla chorego krewnego</strong> i <strong>organizator festynu, który musi mieć zabezpieczenie medyczne</strong>, nie potrzebują tych samych informacji.",
+            "Pierwszy dzwoni pod wpływem stresu i&nbsp;chce wiedzieć, czy da się dziś. Drugi porównuje oferty i&nbsp;potrzebuje zakresu, uprawnień i&nbsp;konkretów do przetargu.",
         ],
         zbudowane=[
             ("Rozdzielenie ścieżek od pierwszego ekranu", "Transport pacjenta i zabezpieczenie wydarzeń jako dwie osobne drogi. Nikt nie musi czytać nie swojej sekcji."),
             ("Konkret zamiast ogólników przy zabezpieczeniach", "Rodzaje zespołów, wyposażenie, zakres — to, czego szuka organizator wypełniający dokumentację."),
-            ("Prosty, spokojny język przy transporcie", "Bez żargonu medycznego. Osoba w stresie ma zrozumieć od pierwszego czytania."),
-            ("Telefon dostępny z każdego miejsca", "W tej branży kontakt telefoniczny wygrywa z formularzem i strona to odzwierciedla."),
-            ("Galeria z prawdziwych zabezpieczeń", "Zdjęcia z realnych wydarzeń zamiast zdjęć stockowych karetek."),
+            ("Prosty, spokojny język przy transporcie", "Bez żargonu medycznego. Osoba w&nbsp;stresie ma zrozumieć od pierwszego czytania."),
+            ("Telefon dostępny z&nbsp;każdego miejsca", "W tej branży kontakt telefoniczny wygrywa z&nbsp;formularzem i&nbsp;strona to odzwierciedla."),
+            ("Galeria z&nbsp;prawdziwych zabezpieczeń", "Zdjęcia z&nbsp;realnych wydarzeń zamiast zdjęć stockowych karetek."),
         ],
-        design="Czerwień i granat, mocne zdjęcia, wyraźna hierarchia. Powaga bez straszenia — to usługa, przy której estetyka ma schodzić na drugi plan wobec czytelności.",
+        design="Czerwień i&nbsp;granat, mocne zdjęcia, wyraźna hierarchia. Powaga bez straszenia — to usługa, przy której estetyka ma schodzić na drugi plan wobec czytelności.",
         tagi=["Ratownictwo", "Architektura informacji", "SEO"],
     ),
     dict(
@@ -191,19 +202,19 @@ REALIZACJE = [
         tytul="Aplikacja do faktur — WystawFakture.eu",
         opisMeta="Darmowy generator faktur online bez rejestracji: faktury VAT, proforma i korekty, gotowość na KSeF. Zobacz, jak powstała aplikacja.",
         h1="Aplikacja do wystawiania faktur",
-        lead="Generator faktur działający w przeglądarce, bez zakładania konta. Faktury VAT, proformy i korekty, zgodne z polskimi przepisami i przygotowane na KSeF.",
+        lead="Generator faktur działający w&nbsp;przeglądarce, bez zakładania konta. Faktury VAT, proformy i&nbsp;korekty, zgodne z&nbsp;polskimi przepisami i&nbsp;przygotowane na KSeF.",
         wyzwanie=[
             "Rynek programów do faktur jest zatłoczony, ale prawie każdy zaczyna od tego samego: <strong>załóż konto, potwierdź e-mail, wybierz plan</strong>. Dla kogoś, kto musi wystawić jedną fakturę, to bariera nie do przejścia.",
-            "Druga trudność jest merytoryczna. Faktura to dokument regulowany — układ pól, sposób liczenia VAT i wymagane oznaczenia wynikają z przepisów, nie z upodobań projektanta.",
+            "Druga trudność jest merytoryczna. Faktura to dokument regulowany — układ pól, sposób liczenia VAT i&nbsp;wymagane oznaczenia wynikają z&nbsp;przepisów, nie z&nbsp;upodobań projektanta.",
         ],
         zbudowane=[
             ("Wystawienie faktury bez rejestracji", "Wchodzisz, wypełniasz, pobierasz PDF. Konto jest opcją dla wracających, nie warunkiem wstępu."),
-            ("Trzy typy dokumentów", "Faktura VAT, proforma i korekta — każda z własnymi regułami i własnym układem pól."),
-            ("Liczenie zgodne z przepisami", "Stawki, kwoty i zaokrąglenia liczone po stronie aplikacji, żeby użytkownik nie musiał tego sprawdzać kalkulatorem."),
+            ("Trzy typy dokumentów", "Faktura VAT, proforma i&nbsp;korekta — każda z&nbsp;własnymi regułami i&nbsp;własnym układem pól."),
+            ("Liczenie zgodne z&nbsp;przepisami", "Stawki, kwoty i&nbsp;zaokrąglenia liczone po stronie aplikacji, żeby użytkownik nie musiał tego sprawdzać kalkulatorem."),
             ("Przygotowanie pod KSeF", "Struktura danych ułożona tak, żeby wejście obowiązkowego e-fakturowania nie wymagało przepisywania aplikacji od zera."),
-            ("Panel klienta dla wracających", "Zapisani kontrahenci i historia dokumentów dla tych, którzy fakturują regularnie."),
+            ("Panel klienta dla wracających", "Zapisani kontrahenci i&nbsp;historia dokumentów dla tych, którzy fakturują regularnie."),
         ],
-        design="Interfejs narzędziowy, nie marketingowy. Formularz zajmuje środek ekranu, wszystko inne schodzi z drogi. Przy aplikacji użytkowej najlepszy design to ten, którego się nie zauważa.",
+        design="Interfejs narzędziowy, nie marketingowy. Formularz zajmuje środek ekranu, wszystko inne schodzi z&nbsp;drogi. Przy aplikacji użytkowej najlepszy design to ten, którego się nie zauważa.",
         tagi=["SaaS", "Aplikacja webowa", "Panel klienta", "PDF"],
     ),
     dict(
@@ -215,19 +226,19 @@ REALIZACJE = [
         miniatura="9dom-thumb.webp",
         tytul="Aplikacja z kalkulatorami — 9 Dom",
         opisMeta="Aplikacja z kalkulatorami astrologii wedyjskiej i numerologii: kosmogram, astrokartografia, cykle czasu, panel użytkownika. Zobacz, jak powstała.",
-        h1="Aplikacja webowa z kalkulatorami",
-        lead="Kalkulatory astrologii wedyjskiej i numerologii: kosmogram, astrokartografia, cykle czasu, mapa życia. Obliczenia astronomiczne podane językiem, który da się zrozumieć bez przygotowania.",
+        h1="Aplikacja webowa z&nbsp;kalkulatorami",
+        lead="Kalkulatory astrologii wedyjskiej i&nbsp;numerologii: kosmogram, astrokartografia, cykle czasu, mapa życia. Obliczenia astronomiczne podane językiem, który da się zrozumieć bez przygotowania.",
         wyzwanie=[
-            "To nie jest strona informacyjna, tylko <strong>zestaw narzędzi liczących</strong>. Każdy kalkulator wymaga własnej logiki, a wyniki muszą się zgadzać — błąd w obliczeniach kompromituje cały serwis.",
-            "Druga trudność to próg wejścia. Dziedzina ma własne słownictwo, którego użytkownik z zewnątrz nie zna. Wynik obliczeń bez wyjaśnienia jest bezużyteczny.",
+            "To nie jest strona informacyjna, tylko <strong>zestaw narzędzi liczących</strong>. Każdy kalkulator wymaga własnej logiki, a&nbsp;wyniki muszą się zgadzać — błąd w&nbsp;obliczeniach kompromituje cały serwis.",
+            "Druga trudność to próg wejścia. Dziedzina ma własne słownictwo, którego użytkownik z&nbsp;zewnątrz nie zna. Wynik obliczeń bez wyjaśnienia jest bezużyteczny.",
         ],
         zbudowane=[
-            ("Zestaw powiązanych kalkulatorów", "Kosmogram, numerologia, astrokartografia i cykle czasu jako osobne narzędzia korzystające ze wspólnej podstawy obliczeniowej."),
-            ("Wyjaśnienia w miejscu użycia", "Pojęcia tłumaczone tam, gdzie się pojawiają, a nie na osobnej stronie ze słownikiem. Użytkownik uczy się przy okazji korzystania."),
-            ("Panel użytkownika", "Zapisane profile i wyniki, żeby nie wpisywać daty urodzenia przy każdej wizycie."),
-            ("Rozbudowana część treściowa", "Horoskop roczny i materiały wyjaśniające — to one przyprowadzają ruch z wyszukiwarki do narzędzi."),
+            ("Zestaw powiązanych kalkulatorów", "Kosmogram, numerologia, astrokartografia i&nbsp;cykle czasu jako osobne narzędzia korzystające ze wspólnej podstawy obliczeniowej."),
+            ("Wyjaśnienia w&nbsp;miejscu użycia", "Pojęcia tłumaczone tam, gdzie się pojawiają, a&nbsp;nie na osobnej stronie ze słownikiem. Użytkownik uczy się przy okazji korzystania."),
+            ("Panel użytkownika", "Zapisane profile i&nbsp;wyniki, żeby nie wpisywać daty urodzenia przy każdej wizycie."),
+            ("Rozbudowana część treściowa", "Horoskop roczny i&nbsp;materiały wyjaśniające — to one przyprowadzają ruch z&nbsp;wyszukiwarki do narzędzi."),
         ],
-        design="Ciemna, nocna paleta ze złotem i szeryfowym krojem w nagłówkach. Temat jest poważny i wyraźnie zaznaczony w komunikacie: „nie przepowiadamy przyszłości”.",
+        design="Ciemna, nocna paleta ze złotem i&nbsp;szeryfowym krojem w&nbsp;nagłówkach. Temat jest poważny i&nbsp;wyraźnie zaznaczony w&nbsp;komunikacie: „nie przepowiadamy przyszłości”.",
         tagi=["Aplikacja", "Kalkulatory", "Panel", "Treści"],
     ),
     dict(
@@ -239,17 +250,17 @@ REALIZACJE = [
         miniatura="karta-dnia-thumb.webp",
         tytul="Serwis treściowy z narzędziem — Karta Dnia",
         opisMeta="Tarot online po polsku: karta dnia, rozkłady z interpretacją i znaczenia wszystkich 78 kart. Zobacz, jak powstał serwis.",
-        h1="Serwis treściowy z narzędziem",
-        lead="Rozkłady tarota z interpretacją i znaczenia wszystkich 78 kart, bez rejestracji. Serwis, w którym treść i narzędzie napędzają się nawzajem.",
+        h1="Serwis treściowy z&nbsp;narzędziem",
+        lead="Rozkłady tarota z&nbsp;interpretacją i&nbsp;znaczenia wszystkich 78 kart, bez rejestracji. Serwis, w&nbsp;którym treść i&nbsp;narzędzie napędzają się nawzajem.",
         wyzwanie=[
-            "Sam generator rozkładów nie wystarczy — <strong>nikt go nie znajdzie</strong>. Ruch w tej niszy przychodzi z zapytań o znaczenia poszczególnych kart, a nie z zapytania o narzędzie.",
-            "Odwrotnie też nie zadziała: serwis z samymi opisami kart to jeden z tysiąca. Potrzebny był powód, żeby zostać dłużej niż na jedno przeczytanie.",
+            "Sam generator rozkładów nie wystarczy — <strong>nikt go nie znajdzie</strong>. Ruch w&nbsp;tej niszy przychodzi z&nbsp;zapytań o&nbsp;znaczenia poszczególnych kart, a&nbsp;nie z&nbsp;zapytania o&nbsp;narzędzie.",
+            "Odwrotnie też nie zadziała: serwis z&nbsp;samymi opisami kart to jeden z&nbsp;tysiąca. Potrzebny był powód, żeby zostać dłużej niż na jedno przeczytanie.",
         ],
         zbudowane=[
-            ("Deterministyczny silnik rozkładów", "Losowanie i interpretacja liczone po stronie aplikacji, spójnie i powtarzalnie — bez podpinania zewnętrznych usług."),
-            ("Osobna strona dla każdej z 78 kart", "Każda odpowiada na własne zapytanie w wyszukiwarce. To jest właściwy fundament ruchu w tej niszy."),
-            ("Brak rejestracji", "Rozkład w minutę, bez konta i bez podawania adresu e-mail. Bariera wejścia zredukowana do zera."),
-            ("Wyraźne postawienie sprawy", "„Tarot, który nie wróży — pomaga myśleć”. Deklaracja, która ustawia oczekiwania i odróżnia serwis od konkurencji."),
+            ("Deterministyczny silnik rozkładów", "Losowanie i&nbsp;interpretacja liczone po stronie aplikacji, spójnie i&nbsp;powtarzalnie — bez podpinania zewnętrznych usług."),
+            ("Osobna strona dla każdej z&nbsp;78 kart", "Każda odpowiada na własne zapytanie w&nbsp;wyszukiwarce. To jest właściwy fundament ruchu w&nbsp;tej niszy."),
+            ("Brak rejestracji", "Rozkład w&nbsp;minutę, bez konta i&nbsp;bez podawania adresu e-mail. Bariera wejścia zredukowana do zera."),
+            ("Wyraźne postawienie sprawy", "„Tarot, który nie wróży — pomaga myśleć”. Deklaracja, która ustawia oczekiwania i&nbsp;odróżnia serwis od konkurencji."),
         ],
         design="Głęboka zieleń butelkowa, złote akcenty, ilustracje kart jako główny element wizualny. Estetyka rytuału, nie jarmarku.",
         tagi=["Serwis treściowy", "Narzędzie", "SEO", "Bez rejestracji"],
@@ -265,11 +276,21 @@ LIMIT_TYTUL = 60
 LIMIT_OPIS = 155
 
 
+def _widoczna_dlugosc(t):
+    """Dlugosc tak, jak ja liczy wyszukiwarka: encja to JEDEN znak.
+
+    Tytul jest jednoczesnie tekstem do wyswietlenia i wartoscia mierzona
+    przez limit SEO. Bez tej normalizacji „&nbsp;" liczylo sie jako szesc
+    znakow i strażnik odrzucal poprawny tytul (2026-09-01).
+    """
+    return len(re.sub(r'&[a-z]+;', ' ', t))
+
+
 def sprawdz_dlugosc(tytul, opis, gdzie):
-    if len(tytul) > LIMIT_TYTUL:
-        raise ValueError(f'{gdzie}: tytul ma {len(tytul)} znakow, limit {LIMIT_TYTUL} -> {tytul}')
-    if len(opis) > LIMIT_OPIS:
-        raise ValueError(f'{gdzie}: opis ma {len(opis)} znakow, limit {LIMIT_OPIS}')
+    if _widoczna_dlugosc(tytul) > LIMIT_TYTUL:
+        raise ValueError(f'{gdzie}: tytul ma {_widoczna_dlugosc(tytul)} znakow, limit {LIMIT_TYTUL} -> {tytul}')
+    if _widoczna_dlugosc(opis) > LIMIT_OPIS:
+        raise ValueError(f'{gdzie}: opis ma {_widoczna_dlugosc(opis)} znakow, limit {LIMIT_OPIS}')
 
 
 # ——— Szablon ————————————————————————————————————————————————————————
@@ -318,13 +339,17 @@ def naglowek_strony(r, stempel):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{html.escape(r["tytul"])} | WebStudio47</title>
-    <meta name="description" content="{html.escape(r["opisMeta"])}">
+    <title>{bezp(r["tytul"])} | WebStudio47</title>
+    <meta name="description" content="{bezp(r["opisMeta"])}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{url}">
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/style.css?v={stempel}">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
@@ -334,14 +359,14 @@ def naglowek_strony(r, stempel):
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="WebStudio47">
     <meta property="og:url" content="{url}">
-    <meta property="og:title" content="{html.escape(r["tytul"])}">
-    <meta property="og:description" content="{html.escape(r["opisMeta"])}">
+    <meta property="og:title" content="{bezp(r["tytul"])}">
+    <meta property="og:description" content="{bezp(r["opisMeta"])}">
     <meta property="og:image" content="{BAZA}/{r["miniatura"]}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{html.escape(r["tytul"])}">
-    <meta name="twitter:description" content="{html.escape(r["opisMeta"])}">
+    <meta name="twitter:title" content="{bezp(r["tytul"])}">
+    <meta name="twitter:description" content="{bezp(r["opisMeta"])}">
     <meta name="twitter:image" content="{BAZA}/{r["miniatura"]}">
 
     <!-- Zgoda na cookies (Google Consent Mode v2).
@@ -499,10 +524,10 @@ def tresc(r, poprzednia, nastepna):
     wyzwanie = '\n'.join(f'                    <p>{x}</p>' for x in r["wyzwanie"])
     zbudowane = '\n'.join(
         f'''                    <div class="info-card glass reveal">
-                        <h3>{html.escape(t)}</h3>
+                        <h3>{bezp(t)}</h3>
                         <p>{o}</p>
                     </div>''' for t, o in r["zbudowane"])
-    tagi = '\n'.join(f'                    <li>{html.escape(t)}</li>' for t in r["tagi"])
+    tagi = '\n'.join(f'                    <li>{bezp(t)}</li>' for t in r["tagi"])
     lokalizacja = f' · {r["miasto"]}' if r["miasto"] else ''
 
     # Realizacja w toku: nie obiecujemy „zobacz na zywo”, bo pod adresem
@@ -512,22 +537,22 @@ def tresc(r, poprzednia, nastepna):
     if r.get("wRealizacji"):
         przycisk_zywo = ('<span class="btn btn-primary" aria-disabled="true" '
                          'style="opacity:.65;cursor:default">Projekt w realizacji</span>')
-        podpis_zrzutu = (f'{html.escape(r["klient"])} — projekt w realizacji, '
+        podpis_zrzutu = (f'{bezp(r["klient"])} — projekt w realizacji, '
                          f'strona nie jest jeszcze wdrożona')
     else:
         przycisk_zywo = (f'<a href="https://{r["domena"]}" target="_blank" '
                          f'rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>')
-        podpis_zrzutu = (f'{html.escape(r["klient"])} — <a href="https://{r["domena"]}" '
+        podpis_zrzutu = (f'{bezp(r["klient"])} — <a href="https://{r["domena"]}" '
                          f'target="_blank" rel="noopener">{r["domena"]}</a>')
 
     nawigacja_realizacji = ''
     if poprzednia or nastepna:
         czesci = []
         if poprzednia:
-            czesci.append(f'<a href="/realizacje/{poprzednia["slug"]}/">&larr; {html.escape(poprzednia["klient"])}</a>')
+            czesci.append(f'<a href="/realizacje/{poprzednia["slug"]}/">&larr; {bezp(poprzednia["klient"])}</a>')
         czesci.append('<a href="/portfolio.html">Wszystkie realizacje</a>')
         if nastepna:
-            czesci.append(f'<a href="/realizacje/{nastepna["slug"]}/">{html.escape(nastepna["klient"])} &rarr;</a>')
+            czesci.append(f'<a href="/realizacje/{nastepna["slug"]}/">{bezp(nastepna["klient"])} &rarr;</a>')
         nawigacja_realizacji = f'''
         <section class="section-alt">
             <div class="container">
@@ -549,11 +574,11 @@ def tresc(r, poprzednia, nastepna):
                     <span aria-hidden="true">›</span>
                     <a href="/portfolio.html">Realizacje</a>
                     <span aria-hidden="true">›</span>
-                    <span>{html.escape(r["klient"])}</span>
+                    <span>{bezp(r["klient"])}</span>
                 </nav>
-                <p class="realizacja-branza">{html.escape(r["branza"])}{lokalizacja}</p>
-                <h1 class="reveal-hero"><span class="text-white">{html.escape(r["h1"])}</span><br>
-                    <span class="text-gradient">{html.escape(r["klient"])}</span></h1>
+                <p class="realizacja-branza">{bezp(r["branza"])}{lokalizacja}</p>
+                <h1 class="reveal-hero"><span class="text-white">{bezp(r["h1"])}</span><br>
+                    <span class="text-gradient">{bezp(r["klient"])}</span></h1>
                 <p class="page-hero-lead reveal-hero delay-1">{r["lead"]}</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     {przycisk_zywo}
@@ -567,7 +592,7 @@ def tresc(r, poprzednia, nastepna):
             <div class="container">
                 <figure class="realizacja-zrzut reveal">
                     <img src="/{r["miniatura"].replace("-thumb.", "-hero.")}" width="1600" height="900" loading="lazy" decoding="async"
-                        alt="Strona internetowa {html.escape(r["klient"])} — {html.escape(r["branza"].lower())}{html.escape(lokalizacja)}">
+                        alt="Strona internetowa {bezp(r["klient"])} — {bezp(r["branza"].lower())}{bezp(lokalizacja)}">
                     <figcaption>{podpis_zrzutu}</figcaption>
                 </figure>
             </div>

@@ -12,7 +12,17 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow wczytywany rownolegle z arkuszem. Bez tego
+         przegladarka dowiaduje sie o nim dopiero po sparsowaniu 99 KB
+         CSS-a: H1 maluje sie Arialem, a po dojechaniu Space Grotesk
+         przemalowuje sie i Chrome zapisuje NOWY, pozniejszy LCP.
+         Zmierzone 2026-09-01: FCP 2,3 s, LCP 4,2 s — dwie sekundy
+         roznicy to byla wlasnie podmiana fontu. Dwa podzbiory, bo
+         polskie „e z ogonkiem" siedzi w latin-ext. Inter (tresc)
+         celowo NIE jest preloadowany — konkurowalby o pasmo z LCP. -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -253,7 +263,7 @@
                     <span>Cennik</span>
                 </nav>
                 <h1 class="reveal-hero"><span class="text-white">Cennik</span> <span class="text-gradient">bez
-                        „zapytaj o wycenę”</span></h1>
+                        „zapytaj o&nbsp;wycenę”</span></h1>
                 <p class="page-hero-lead reveal-hero delay-1">Wiem, po co tu jesteś: chcesz wiedzieć, czy Cię na to stać,
                     zanim zaczniesz rozmowę. Poniżej są prawdziwe widełki, według których wyceniam — a&nbsp;nie
                     formularz, po którym ktoś oddzwoni z&nbsp;niespodzianką.</p>
@@ -274,7 +284,7 @@
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="text-gradient">Strony internetowe</h2>
-                    <p>Koszt jednorazowy — po uruchomieniu płacisz tylko za domenę i hosting</p>
+                    <p>Koszt jednorazowy — po uruchomieniu płacisz tylko za domenę i&nbsp;hosting</p>
                 </div>
                 <div class="pricing-grid">
                     <div class="price-card glass reveal">
@@ -289,7 +299,7 @@
                             <li>Analytics i&nbsp;Search Console</li>
                             <li>realizacja 1–2 tygodnie</li>
                         </ul>
-                        <a href="/kontakt/?temat=landing" class="btn btn-outline">Zapytaj o wycenę</a>
+                        <a href="/kontakt/?temat=landing" class="btn btn-outline">Zapytaj o&nbsp;wycenę</a>
                     </div>
                     <div class="price-card glass featured reveal delay-1">
                         <span class="price-badge">Najczęściej wybierane</span>
@@ -304,7 +314,7 @@
                             <li>przygotowanie pod Google i&nbsp;dane strukturalne</li>
                             <li>realizacja 3–5 tygodni</li>
                         </ul>
-                        <a href="/kontakt/?temat=strona" class="btn btn-primary">Zapytaj o wycenę</a>
+                        <a href="/kontakt/?temat=strona" class="btn btn-primary">Zapytaj o&nbsp;wycenę</a>
                     </div>
                     <div class="price-card glass reveal delay-2">
                         <h3>Sklep internetowy</h3>
@@ -318,7 +328,7 @@
                             <li>panel zarządzania produktami</li>
                             <li>realizacja od 6 tygodni</li>
                         </ul>
-                        <a href="/kontakt/?temat=sklep" class="btn btn-outline">Zapytaj o wycenę</a>
+                        <a href="/kontakt/?temat=sklep" class="btn btn-outline">Zapytaj o&nbsp;wycenę</a>
                     </div>
                     <div class="price-card glass reveal delay-3">
                         <h3>Aplikacja webowa</h3>
@@ -343,8 +353,8 @@
         <section class="section-alt">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="text-gradient">Pozycjonowanie i widoczność</h2>
-                    <p>Praca ciągła — rozliczenie miesięczne, wypowiedzenie w miesiąc</p>
+                    <h2 class="text-gradient">Pozycjonowanie i&nbsp;widoczność</h2>
+                    <p>Praca ciągła — rozliczenie miesięczne, wypowiedzenie w&nbsp;miesiąc</p>
                 </div>
                 <div class="pricing-grid">
                     <div class="price-card glass reveal">
@@ -400,7 +410,7 @@
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="text-gradient">Usługi dodatkowe</h2>
-                    <p>Rzeczy, o które pytacie najczęściej przy okazji</p>
+                    <p>Rzeczy, o&nbsp;które pytacie najczęściej przy okazji</p>
                 </div>
                 <div class="table-wrap reveal">
                     <table class="compare-table">
@@ -476,8 +486,8 @@
         <section id="faq">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="text-gradient">Pytania o pieniądze</h2>
-                    <p>Te, które i tak padną — lepiej odpowiedzieć od razu</p>
+                    <h2 class="text-gradient">Pytania o&nbsp;pieniądze</h2>
+                    <p>Te, które i&nbsp;tak padną — lepiej odpowiedzieć od razu</p>
                 </div>
                 <div class="faq-list reveal">
                     <details class="faq-item glass">
@@ -490,7 +500,7 @@
                         </div>
                     </details>
                     <details class="faq-item glass">
-                        <summary>Czy cena może wzrosnąć w trakcie projektu?</summary>
+                        <summary>Czy cena może wzrosnąć w&nbsp;trakcie projektu?</summary>
                         <div class="faq-answer">
                             <p>Nie, jeśli zakres się nie zmienia. Umówiona kwota obowiązuje do końca.</p>
                             <p>Cena rośnie tylko wtedy, gdy w&nbsp;trakcie dokładamy coś, czego nie było
@@ -509,7 +519,7 @@
                         </div>
                     </details>
                     <details class="faq-item glass">
-                        <summary>Czy trzeba zapłacić wszystko z góry?</summary>
+                        <summary>Czy trzeba zapłacić wszystko z&nbsp;góry?</summary>
                         <div class="faq-answer">
                             <p>Nie. Standardowo dzielę płatność na dwie części: 40&nbsp;procent zaliczki przy starcie
                                 i&nbsp;60&nbsp;procent po uruchomieniu strony. Przy większych projektach dzielimy na
@@ -530,7 +540,7 @@
                             <p>Powiedz to wprost na pierwszej rozmowie. Czasem da się zrobić mniejszy zakres na start
                                 i&nbsp;rozbudować stronę za pół roku. Czasem lepszym pomysłem będzie zacząć od samego
                                 Profilu Firmy w&nbsp;Google za 600&nbsp;zł.</p>
-                            <p>A czasem powiem, że przy tym budżecie nie zrobię tego dobrze i&nbsp;lepiej poszukać
+                            <p>A&nbsp;czasem powiem, że przy tym budżecie nie zrobię tego dobrze i&nbsp;lepiej poszukać
                                 gdzie indziej — to też jest uczciwa odpowiedź.</p>
                         </div>
                     </details>
@@ -562,7 +572,7 @@
                 <div class="footer-brand">
                     <div class="footer-logo font-special">&lt;WebStudio<span>47</span>&gt;</div>
                     <p class="footer-tagline">Strony internetowe dla firm, które traktują swój biznes poważnie. Nie
-                        robię stron dla każdego — i właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
+                        robię stron dla każdego — i&nbsp;właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
                 </div>
                 <div class="footer-nav">
                     <p class="footer-heading">Oferta</p>
@@ -632,8 +642,8 @@
     </aside>
 
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

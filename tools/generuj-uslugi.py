@@ -23,15 +23,26 @@ import re
 
 KATALOG = pathlib.Path(__file__).resolve().parent.parent
 
+def bezp(tekst):
+    """html.escape, ale nie psuje twardych spacji wpisanych w tresci.
+
+    Bez tego „&nbsp;" wstawione przez tools/sierotki.py wychodzi z escape'a
+    jako widoczne „&amp;nbsp;" — czytelnik widzi wtedy w zdaniu doslowny
+    ciag znakow zamiast spacji. Zdarzylo sie to 2026-09-01 w opisach meta
+    i pytaniach FAQ.
+    """
+    return html.escape(tekst).replace('&amp;nbsp;', '&nbsp;')
+
+
 USLUGI = [
     dict(
         klucz="strona-firmowa",
         etykieta="01 / 04 · Najczęstszy wybór",
         tytul="Strona firmowa",
-        lead="Wizytówka Twojego biznesu w sieci. Szybka, czytelna i przygotowana pod wyszukiwarkę — żeby klienci znajdowali Cię sami, a nie z polecenia.",
+        lead="Wizytówka Twojego biznesu w&nbsp;sieci. Szybka, czytelna i&nbsp;przygotowana pod wyszukiwarkę — żeby klienci znajdowali Cię sami, a&nbsp;nie z&nbsp;polecenia.",
         akapity=[
-            "Dla firmy usługowej to zwykle najrozsądniejszy wybór. Pokazuje, że istniejesz naprawdę, odpowiada na pytania, które klient i tak zadałby przez telefon, i daje Google coś, co można pozycjonować.",
-            "W cenie dostajesz indywidualny projekt graficzny, wersję mobilną, formularz z zabezpieczeniem przed spamem, certyfikat SSL, zgodność z RODO oraz podpięte Analytics i Search Console — żebyś od pierwszego dnia widział, kto wchodzi i skąd.",
+            "Dla firmy usługowej to zwykle najrozsądniejszy wybór. Pokazuje, że istniejesz naprawdę, odpowiada na pytania, które klient i&nbsp;tak zadałby przez telefon, i&nbsp;daje Google coś, co można pozycjonować.",
+            "W&nbsp;cenie dostajesz indywidualny projekt graficzny, wersję mobilną, formularz z&nbsp;zabezpieczeniem przed spamem, certyfikat SSL, zgodność z&nbsp;RODO oraz podpięte Analytics i&nbsp;Search Console — żebyś od pierwszego dnia widział, kto wchodzi i&nbsp;skąd.",
         ],
         punkty=["Do kilkunastu podstron", "Blog albo galeria realizacji",
                 "2 000 – 5 000 zł netto", "Realizacja 3–5 tygodni"],
@@ -46,28 +57,28 @@ USLUGI = [
         klucz="pozycjonowanie",
         etykieta="02 / 04 · Praca ciągła",
         tytul="Pozycjonowanie (SEO)",
-        lead="Strona bez odwiedzin to wizytówka schowana w szufladzie. Zajmuję się tym, żeby Google pokazywał Cię wtedy, gdy klient szuka dokładnie Twojej usługi.",
+        lead="Strona bez odwiedzin to wizytówka schowana w&nbsp;szufladzie. Zajmuję się tym, żeby Google pokazywał Cię wtedy, gdy klient szuka dokładnie Twojej usługi.",
         akapity=[
-            "Pozycjonowanie to trzy rzeczy robione porządnie: <strong>technika</strong>, <strong>treść</strong> i <strong>wiarygodność</strong>. Dla lokalnej firmy najkrótszą drogą do telefonów jest zwykle <strong>Profil Firmy w Google</strong> — to on decyduje, czy pojawiasz się w mapce nad wynikami, i od niego zaczynam.",
-            "Bez obiecywania pierwszego miejsca i bez umowy na dwanaście miesięcy. Co miesiąc dostajesz raport z Search Console: na jakie frazy się wyświetlasz i co zostało zrobione. Realne efekty: po 4–6 miesiącach.",
+            "Pozycjonowanie to trzy rzeczy robione porządnie: <strong>technika</strong>, <strong>treść</strong> i <strong>wiarygodność</strong>. Dla lokalnej firmy najkrótszą drogą do telefonów jest zwykle <strong>Profil Firmy w&nbsp;Google</strong> — to on decyduje, czy pojawiasz się w&nbsp;mapce nad wynikami, i&nbsp;od niego zaczynam.",
+            "Bez obiecywania pierwszego miejsca i&nbsp;bez umowy na dwanaście miesięcy. Co miesiąc dostajesz raport z&nbsp;Search Console: na jakie frazy się wyświetlasz i&nbsp;co zostało zrobione. Realne efekty: po 4–6 miesiącach.",
         ],
         punkty=["Audyt od 900 zł", "Opieka od 800 zł miesięcznie",
-                "Wypowiedzenie w miesiąc", "Raport co miesiąc"],
+                "Wypowiedzenie w&nbsp;miesiąc", "Raport co miesiąc"],
         obraz="czysto-po-thumb.webp",
         obrazAlt="Strona internetowa Czysto-Po — firma sprzątająca z Raciborza",
         obrazPodpis="Czysto-Po — treść pod długi ogon zapytań",
         obrazLink="/realizacje/strona-dla-firmy-sprzatajacej/",
         cel="/pozycjonowanie-stron-raciborz/",
-        celTekst="Zobacz zakres i ceny",
+        celTekst="Zobacz zakres i&nbsp;ceny",
     ),
     dict(
         klucz="efekt-wow",
         etykieta="03 / 04 · Gdy marka ma wyróżniać",
         tytul="Strona z efektem „wow”",
-        lead="Animacje, interaktywne elementy i design premium. Strona, po której klient mówi: „chcę tak samo”.",
+        lead="Animacje, interaktywne elementy i&nbsp;design premium. Strona, po której klient mówi: „chcę tak samo”.",
         akapity=[
-            "Ma sens tam, gdzie sam produkt jest wizualny albo marka celuje w górną półkę — salon, detailing, wnętrza, gastronomia. Tam pierwsze wrażenie robi za połowę argumentów sprzedażowych.",
-            "Nie ma sensu tam, gdzie klient przychodzi z pilną potrzebą i chce numeru telefonu w piętnaście sekund. Powiem to na pierwszej rozmowie, jeśli tak wygląda Twoja sytuacja — również wtedy, gdy oznacza to tańsze zlecenie.",
+            "Ma sens tam, gdzie sam produkt jest wizualny albo marka celuje w&nbsp;górną półkę — salon, detailing, wnętrza, gastronomia. Tam pierwsze wrażenie robi za połowę argumentów sprzedażowych.",
+            "Nie ma sensu tam, gdzie klient przychodzi z&nbsp;pilną potrzebą i&nbsp;chce numeru telefonu w&nbsp;piętnaście sekund. Powiem to na pierwszej rozmowie, jeśli tak wygląda Twoja sytuacja — również wtedy, gdy oznacza to tańsze zlecenie.",
         ],
         punkty=["Animowane wejście", "Efekty na przewijaniu",
                 "Bez ciężkich bibliotek", "Wycena indywidualna"],
@@ -82,12 +93,12 @@ USLUGI = [
         klucz="aplikacja",
         etykieta="04 / 04 · Gdy gotowe nie pasuje",
         tytul="Aplikacja webowa",
-        lead="Narzędzie, a nie strona: panel klienta, system rezerwacji, wewnętrzna ewidencja, generator dokumentów.",
+        lead="Narzędzie, a&nbsp;nie strona: panel klienta, system rezerwacji, wewnętrzna ewidencja, generator dokumentów.",
         akapity=[
-            "Robię je wtedy, gdy gotowe programy nie pasują do sposobu, w jaki pracujesz — albo gdy abonament za nie zaczyna kosztować więcej niż napisanie własnego rozwiązania.",
-            "Przykład z portfolio: generator faktur działający w przeglądarce bez zakładania konta, z trzema typami dokumentów i liczeniem zgodnym z przepisami. Albo panel, w którym właściciel firmy sam dodaje realizacje, bez dzwonienia do wykonawcy strony.",
+            "Robię je wtedy, gdy gotowe programy nie pasują do sposobu, w&nbsp;jaki pracujesz — albo gdy abonament za nie zaczyna kosztować więcej niż napisanie własnego rozwiązania.",
+            "Przykład z&nbsp;portfolio: generator faktur działający w&nbsp;przeglądarce bez zakładania konta, z&nbsp;trzema typami dokumentów i&nbsp;liczeniem zgodnym z&nbsp;przepisami. Albo panel, w&nbsp;którym właściciel firmy sam dodaje realizacje, bez dzwonienia do wykonawcy strony.",
         ],
-        punkty=["Logowanie i role", "Baza danych i raporty",
+        punkty=["Logowanie i&nbsp;role", "Baza danych i&nbsp;raporty",
                 "od 8 000 zł netto", "Realizacja od 8 tygodni"],
         obraz="wystawfakture-thumb.webp",
         obrazAlt="WystawFakture.eu — aplikacja do wystawiania faktur online",
@@ -103,26 +114,26 @@ def panel(u):
     akapity = '\n'.join(
         f'                                <p class="usluga-akapit">{a}</p>' for a in u["akapity"])
     punkty = '\n'.join(
-        f'                                    <li>{html.escape(p)}</li>' for p in u["punkty"])
+        f'                                    <li>{bezp(p)}</li>' for p in u["punkty"])
 
     return f'''                    <article class="usluga-panel" id="usluga-{u["klucz"]}">
                         <div class="usluga-siatka">
                             <div class="usluga-tekst">
-                                <p class="usluga-etykieta">{html.escape(u["etykieta"])}</p>
+                                <p class="usluga-etykieta">{bezp(u["etykieta"])}</p>
                                 <h3>{u["tytul"]}</h3>
                                 <p class="usluga-lead">{u["lead"]}</p>
 {akapity}
                                 <ul class="usluga-punkty">
 {punkty}
                                 </ul>
-                                <a href="{u["cel"]}" class="btn btn-primary usluga-cel">{html.escape(u["celTekst"])} →</a>
+                                <a href="{u["cel"]}" class="btn btn-primary usluga-cel">{bezp(u["celTekst"])} →</a>
                             </div>
                             <figure class="usluga-obraz">
-                                <a href="{u["obrazLink"]}" aria-label="Zobacz, jak powstała strona {html.escape(u["obrazPodpis"].split(" — ")[0])}">
+                                <a href="{u["obrazLink"]}" aria-label="Zobacz, jak powstała strona {bezp(u["obrazPodpis"].split(" — ")[0])}">
                                     <img src="/{u["obraz"]}" width="800" height="450" loading="lazy" decoding="async"
-                                        alt="{html.escape(u["obrazAlt"])}">
+                                        alt="{bezp(u["obrazAlt"])}">
                                 </a>
-                                <figcaption>{html.escape(u["obrazPodpis"])}</figcaption>
+                                <figcaption>{bezp(u["obrazPodpis"])}</figcaption>
                             </figure>
                         </div>
                     </article>'''
@@ -162,13 +173,16 @@ def main():
                 r'(?:[ \t]*<p class="uslugi-podpowiedz">.*?</p>\n)?',
                 re.S)
         else:
-            raise SystemExit('nie znaleziono siatki usług w index.html')
+            raise SystemExit('nie znaleziono siatki usług w&nbsp;index.html')
 
     s = wzor.sub(sekcja(), s, count=1)
     p.write_text(s, encoding='utf-8')
     print(f'index.html: galeria usług wstawiona ({len(USLUGI)} panele)')
     for u in USLUGI:
-        slow = sum(len(re.sub(r'<[^>]+>', '', a).split()) for a in u["akapity"])
+        # Encje zamieniamy na spacje PRZED liczeniem — inaczej „i&nbsp;treść”
+        # liczy sie jako jeden wyraz i licznik zanizal wynik.
+        slow = sum(len(re.sub(r'&[a-z]+;', ' ', re.sub(r'<[^>]+>', '', a)).split())
+                   for a in u["akapity"])
         print(f'  {u["tytul"]:24} {slow:3} słów w akapitach')
 
 

@@ -49,7 +49,7 @@ KATEGORIE = [
      "zobaczy. To najczęściej wina nieskompresowanych zdjęć — i zwykle "
      "najtańsza rzecz do naprawienia."),
     ("Dostępność",
-     "Czy stronę da się obsłużyć bez myszki i czy przeczyta ją czytnik ekranu.",
+     "Czy stronę da się obsłużyć bez myszki i&nbsp;czy przeczyta ją czytnik ekranu.",
      "Dotyczy osób słabowidzących i starszych, ale nie tylko: Google używa "
      "tych samych sygnałów do oceny, czy strona jest zrobiona porządnie."),
     ("Sprawdzone metody",
@@ -58,7 +58,7 @@ KATEGORIE = [
      "podane w złych rozmiarach. Rzeczy niewidoczne dla Ciebie, widoczne "
      "dla wyszukiwarki."),
     ("SEO",
-     "Czy Google w ogóle jest w stanie zrozumieć, o czym jest ta strona.",
+     "Czy Google w&nbsp;ogóle jest w&nbsp;stanie zrozumieć, o&nbsp;czym jest ta strona.",
      "To absolutne minimum, nie pozycjonowanie. Sto punktów tutaj nie znaczy, "
      "że jesteś wysoko w wynikach — znaczy, że nic nie stoi na przeszkodzie."),
 ]
@@ -78,7 +78,7 @@ PYTANIA = [
      "Bo Google mierzy rzeczywiste ładowanie, a to zależy od obciążenia "
      "serwera i łącza w danej chwili. Wahania o kilka punktów są normalne. "
      "Jeśli chcesz mieć pewność, zmierz trzy razy i weź wynik środkowy."),
-    ("Czy 100 punktów w SEO znaczy, że będę wysoko w Google?",
+    ("Czy 100 punktów w&nbsp;SEO znaczy, że będę wysoko w&nbsp;Google?",
      "Nie. Ta kategoria sprawdza wyłącznie, czy nic nie blokuje wyszukiwarce "
      "zrozumienia strony: czy jest tytuł, opis, czy treść nie jest ukryta. "
      "To warunek konieczny, nie wystarczający. O pozycji decyduje treść, "
@@ -93,7 +93,7 @@ PYTANIA = [
 
 
 def wlasny_wynik_html():
-    """Linijka z wynikiem tej strony — tylko gdy mamy POTWIERDZONY pomiar."""
+    """Linijka z&nbsp;wynikiem tej strony — tylko gdy mamy POTWIERDZONY pomiar."""
     if not WLASNY_WYNIK:
         return ''
     return f'''                <p class="sprawdzarka-wlasny reveal delay-3">Strona, na której jesteś, ma w tym teście
@@ -204,6 +204,10 @@ def buduj(stempel):
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/style.css?v={stempel}">
 
     <meta property="og:type" content="website">

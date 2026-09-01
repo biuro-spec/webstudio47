@@ -12,7 +12,17 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow wczytywany rownolegle z arkuszem. Bez tego
+         przegladarka dowiaduje sie o nim dopiero po sparsowaniu 99 KB
+         CSS-a: H1 maluje sie Arialem, a po dojechaniu Space Grotesk
+         przemalowuje sie i Chrome zapisuje NOWY, pozniejszy LCP.
+         Zmierzone 2026-09-01: FCP 2,3 s, LCP 4,2 s — dwie sekundy
+         roznicy to byla wlasnie podmiana fontu. Dwa podzbiory, bo
+         polskie „e z ogonkiem" siedzi w latin-ext. Inter (tresc)
+         celowo NIE jest preloadowany — konkurowalby o pasmo z LCP. -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -300,15 +310,15 @@
 
                 <div class="definicja reveal-hero delay-3">
                     <p><strong>Strona internetowa pisana od zera</strong> to strona zbudowana wprost pod jedną
-                        firmę, bez gotowego szablonu i bez systemu zarządzania treścią w rodzaju WordPressa.
-                        W zamian za wyższy koszt początkowy nie wymaga comiesięcznych aktualizacji wtyczek,
-                        ładuje się szybciej i nie ma elementów, które można zaatakować.</p>
-                    <p>Ceny w Raciborzu w 2026 roku: <strong>landing page 1 500–3 500 zł</strong>,
+                        firmę, bez gotowego szablonu i&nbsp;bez systemu zarządzania treścią w&nbsp;rodzaju WordPressa.
+                        W&nbsp;zamian za wyższy koszt początkowy nie wymaga comiesięcznych aktualizacji wtyczek,
+                        ładuje się szybciej i&nbsp;nie ma elementów, które można zaatakować.</p>
+                    <p>Ceny w&nbsp;Raciborzu w&nbsp;2026 roku: <strong>landing page 1 500–3 500 zł</strong>,
                         <strong>strona firmowa 2 000–5 000 zł</strong>, <strong>sklep internetowy
                             5 000–15 000 zł</strong>, aplikacja webowa od 8 000 zł. Wszystko netto, jednorazowo.</p>
                     <p>Czas realizacji: landing page 1–2 tygodnie, strona firmowa 3–5 tygodni, sklep
                         od 6 tygodni. Koszty stałe po uruchomieniu to wyłącznie domena (60–120 zł rocznie)
-                        i hosting (150–400 zł rocznie), płacone bezpośrednio dostawcy.</p>
+                        i&nbsp;hosting (150–400 zł rocznie), płacone bezpośrednio dostawcy.</p>
                 </div>
             </div>
         </section>
@@ -363,7 +373,7 @@
         <section class="section-alt">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="text-gradient">Co jest w każdej cenie</h2>
+                    <h2 class="text-gradient">Co jest w&nbsp;każdej cenie</h2>
                     <p>Nie jako dopłata, nie jako pakiet premium — po prostu standard</p>
                 </div>
                 <div class="prose reveal" style="margin-inline:auto">
@@ -393,12 +403,12 @@
         <section>
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="text-gradient">Strona pisana od zera a szablon</h2>
+                    <h2 class="text-gradient">Strona pisana od zera a&nbsp;szablon</h2>
                     <p>Uczciwie: szablon nie jest zły dla każdego. Ale warto wiedzieć, co się wybiera</p>
                 </div>
                 <div class="table-wrap reveal">
                     <table class="compare-table">
-                        <caption class="sr-only">Porównanie strony pisanej od zera, WordPressa z szablonem i kreatora
+                        <caption class="sr-only">Porównanie strony pisanej od zera, WordPressa z&nbsp;szablonem i&nbsp;kreatora
                             stron</caption>
                         <thead>
                             <tr>
@@ -514,7 +524,7 @@
         <section>
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="text-gradient">Zobacz, jak to wygląda w praktyce</h2>
+                    <h2 class="text-gradient">Zobacz, jak to wygląda w&nbsp;praktyce</h2>
                     <p>Nie mockupy — działające strony, które możesz otworzyć</p>
                 </div>
                 <div class="card-grid">
@@ -551,7 +561,7 @@
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="text-gradient">Ile to kosztuje</h2>
-                    <p>Widełki na 2026 rok — żebyś wiedział, czy rozmawiamy o tej samej skali</p>
+                    <p>Widełki na 2026 rok — żebyś wiedział, czy rozmawiamy o&nbsp;tej samej skali</p>
                 </div>
                 <div class="pricing-grid">
                     <div class="price-card glass reveal">
@@ -564,7 +574,7 @@
                             <li>wersja mobilna</li>
                             <li>realizacja 1–2 tygodnie</li>
                         </ul>
-                        <a href="/kontakt/?temat=landing" class="btn btn-outline">Zapytaj o wycenę</a>
+                        <a href="/kontakt/?temat=landing" class="btn btn-outline">Zapytaj o&nbsp;wycenę</a>
                     </div>
                     <div class="price-card glass featured reveal delay-1">
                         <span class="price-badge">Najczęściej wybierane</span>
@@ -577,7 +587,7 @@
                             <li>przygotowanie pod Google</li>
                             <li>realizacja 3–5 tygodni</li>
                         </ul>
-                        <a href="/kontakt/?temat=strona" class="btn btn-primary">Zapytaj o wycenę</a>
+                        <a href="/kontakt/?temat=strona" class="btn btn-primary">Zapytaj o&nbsp;wycenę</a>
                     </div>
                     <div class="price-card glass reveal delay-2">
                         <h3>Sklep internetowy</h3>
@@ -589,7 +599,7 @@
                             <li>karty produktów pod Google</li>
                             <li>realizacja od 6 tygodni</li>
                         </ul>
-                        <a href="/kontakt/?temat=sklep" class="btn btn-outline">Zapytaj o wycenę</a>
+                        <a href="/kontakt/?temat=sklep" class="btn btn-outline">Zapytaj o&nbsp;wycenę</a>
                     </div>
                 </div>
                 <p class="price-note">Pełny cennik z&nbsp;aplikacjami webowymi, opieką techniczną i&nbsp;kosztami
@@ -602,7 +612,7 @@
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="text-gradient">Częste pytania</h2>
-                    <p>To, o co pytają wszyscy przy pierwszej rozmowie</p>
+                    <p>To, o&nbsp;co pytają wszyscy przy pierwszej rozmowie</p>
                 </div>
                 <div class="faq-list reveal">
                     <details class="faq-item glass">
@@ -634,7 +644,7 @@
                         </div>
                     </details>
                     <details class="faq-item glass">
-                        <summary>Co z hostingiem i domeną?</summary>
+                        <summary>Co z&nbsp;hostingiem i&nbsp;domeną?</summary>
                         <div class="faq-answer">
                             <p>Mogę kupić i&nbsp;skonfigurować jedno i&nbsp;drugie za Ciebie — domena to koszt rzędu
                                 60–120&nbsp;zł rocznie, hosting 150–400&nbsp;zł rocznie. Płacisz je bezpośrednio
@@ -644,7 +654,7 @@
                         </div>
                     </details>
                     <details class="faq-item glass">
-                        <summary>Czy strona będzie widoczna w Google?</summary>
+                        <summary>Czy strona będzie widoczna w&nbsp;Google?</summary>
                         <div class="faq-answer">
                             <p>Każdą stronę oddaję przygotowaną pod wyszukiwarkę: poprawna struktura nagłówków, meta
                                 opisy, dane strukturalne, mapa witryny, szybkie ładowanie i&nbsp;wersja mobilna. To
@@ -673,7 +683,7 @@
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="text-gradient">Gdzie działam</h2>
-                    <p>Racibórz i okolice — a przy pracy zdalnej cała Polska</p>
+                    <p>Racibórz i&nbsp;okolice — a&nbsp;przy pracy zdalnej cała Polska</p>
                 </div>
                 <ul class="area-chips reveal">
                     <li class="primary">Racibórz</li>
@@ -694,7 +704,7 @@
         <section>
             <div class="container">
                 <div class="cta-band glass reveal">
-                    <h2 class="text-gradient">Porozmawiajmy o Twojej stronie</h2>
+                    <h2 class="text-gradient">Porozmawiajmy o&nbsp;Twojej stronie</h2>
                     <p>Piętnaście minut przez telefon i&nbsp;wiesz, ile to kosztuje, ile trwa i&nbsp;czy w&nbsp;ogóle
                         warto. Bez zobowiązań.</p>
                     <div class="cta-band-btns">
@@ -714,7 +724,7 @@
                 <div class="footer-brand">
                     <div class="footer-logo font-special">&lt;WebStudio<span>47</span>&gt;</div>
                     <p class="footer-tagline">Strony internetowe dla firm, które traktują swój biznes poważnie. Nie
-                        robię stron dla każdego — i właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
+                        robię stron dla każdego — i&nbsp;właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
                 </div>
                 <div class="footer-nav">
                     <p class="footer-heading">Oferta</p>
@@ -784,8 +794,8 @@
     </aside>
 
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
@@ -65,7 +69,7 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Tworzenie stron internetowych — Wodzisław Śląski",
-  "serviceType": "Projektowanie i tworzenie stron internetowych",
+  "serviceType": "Projektowanie i&nbsp;tworzenie stron internetowych",
   "url": "https://webstudio47.pl/strony-internetowe-wodzislaw-slaski/",
   "description": "Tworzenie stron internetowych w Wodzisławiu Śląskim. Strony pisane od zera, wycena po 15-minutowej rozmowie. Racibórz obok, spotkanie bez problemu.",
   "provider": {
@@ -130,15 +134,15 @@
       "name": "Czy pracujesz zdalnie, czy trzeba się spotkać?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cały projekt da się poprowadzić zdalnie — tak robię większość zleceń. Ale przy Wodzisławiu spotkanie nie jest problemem i przy niektórych projektach po prostu przyspiesza sprawę, zwłaszcza gdy trzeba obejrzeć zakład albo zebrać zdjęcia."
+        "text": "Cały projekt da się poprowadzić zdalnie — tak robię większość zleceń. Ale przy Wodzisławiu spotkanie nie jest problemem i&nbsp;przy niektórych projektach po prostu przyspiesza sprawę, zwłaszcza gdy trzeba obejrzeć zakład albo zebrać zdjęcia."
       }
     },
     {
       "@type": "Question",
-      "name": "Czy strona z Raciborza będzie widoczna w Wodzisławiu?",
+      "name": "Czy strona z&nbsp;Raciborza będzie widoczna w&nbsp;Wodzisławiu?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "To zależy nie od tego, gdzie mieszka wykonawca, tylko gdzie działa Twoja firma. Google ustala widoczność lokalną na podstawie Profilu Firmy, adresu i obsługiwanego obszaru — a nie na podstawie tego, kto zrobił stronę."
+        "text": "To zależy nie od tego, gdzie mieszka wykonawca, tylko gdzie działa Twoja firma. Google ustala widoczność lokalną na podstawie Profilu Firmy, adresu i&nbsp;obsługiwanego obszaru — a&nbsp;nie na podstawie tego, kto zrobił stronę."
       }
     }
   ]
@@ -182,7 +186,7 @@
                 </nav>
                 <h1 class="reveal-hero"><span class="text-white">Strony internetowe</span><br>
                     <span class="text-gradient">Wodzisław Śląski</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Wodzisław jest najbliższym sąsiadem Raciborza — dojazd zajmuje niecałe pół godziny. To jedyne miasto z tej listy, w którym spotkanie na kawie przy pierwszej rozmowie jest naprawdę bez znaczenia logistycznego.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Wodzisław jest najbliższym sąsiadem Raciborza — dojazd zajmuje niecałe pół godziny. To jedyne miasto z&nbsp;tej listy, w&nbsp;którym spotkanie na kawie przy pierwszej rozmowie jest naprawdę bez znaczenia logistycznego.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="tel:+48602622840" class="btn btn-primary">Zadzwoń: 602 622 840</a>
                     <a href="/cennik/" class="btn btn-outline">Zobacz widełki cenowe</a>
@@ -199,8 +203,8 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Jak wygląda rynek w Wodzisławiu Śląskim</h2>
-                    <p>Wodzisław i Racibórz to praktycznie jeden rynek pracy i usług. Klienci jeżdżą w obie strony, firmy budowlane obsługują oba miasta, a wiele zapytań w wyszukiwarce pada bez nazwy miasta w ogóle — po prostu „hydraulik” z lokalizacją ustaloną przez telefon.</p>
-                    <p>Dla Ciebie oznacza to konkretną rzecz: <strong>walka o widoczność toczy się tu nie tylko z firmami z Wodzisławia, ale i z raciborskimi</strong>. Profil Firmy w Google trzeba ustawić tak, żeby obsługiwał oba obszary, a nie tylko adres siedziby.</p>
+                    <p>Wodzisław i&nbsp;Racibórz to praktycznie jeden rynek pracy i&nbsp;usług. Klienci jeżdżą w&nbsp;obie strony, firmy budowlane obsługują oba miasta, a&nbsp;wiele zapytań w&nbsp;wyszukiwarce pada bez nazwy miasta w&nbsp;ogóle — po prostu „hydraulik” z&nbsp;lokalizacją ustaloną przez telefon.</p>
+                    <p>Dla Ciebie oznacza to konkretną rzecz: <strong>walka o&nbsp;widoczność toczy się tu nie tylko z&nbsp;firmami z&nbsp;Wodzisławia, ale i&nbsp;z raciborskimi</strong>. Profil Firmy w&nbsp;Google trzeba ustawić tak, żeby obsługiwał oba obszary, a&nbsp;nie tylko adres siedziby.</p>
                 </div>
             </div>
         </section>
@@ -214,15 +218,15 @@
                 <div class="card-grid">
                     <div class="info-card glass reveal">
                         <h3>Jeden obszar, dwa miasta</h3>
-                        <p>Ustawiam obsługiwany obszar w Profilu Firmy tak, żeby obejmował Wodzisław i Racibórz. Wiele firm traci tu połowę zasięgu, zostawiając domyślny promień wokół adresu.</p>
+                        <p>Ustawiam obsługiwany obszar w&nbsp;Profilu Firmy tak, żeby obejmował Wodzisław i&nbsp;Racibórz. Wiele firm traci tu połowę zasięgu, zostawiając domyślny promień wokół adresu.</p>
                     </div>
                     <div class="info-card glass reveal">
-                        <h3>Spotkanie na żywo w cenie</h3>
-                        <p>Przy projektach ze zdjęciami i materiałami do zebrania osobiste spotkanie oszczędza tygodnie wymiany maili. Z Raciborza to rzut beretem.</p>
+                        <h3>Spotkanie na żywo w&nbsp;cenie</h3>
+                        <p>Przy projektach ze zdjęciami i&nbsp;materiałami do zebrania osobiste spotkanie oszczędza tygodnie wymiany maili. Z&nbsp;Raciborza to rzut beretem.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Konkurencja średnia</h3>
-                        <p>Mniejsza niż w Rybniku, większa niż w Głubczycach. Realny termin na pierwsze efekty pozycjonowania: cztery do sześciu miesięcy.</p>
+                        <p>Mniejsza niż w&nbsp;Rybniku, większa niż w&nbsp;Głubczycach. Realny termin na pierwsze efekty pozycjonowania: cztery do sześciu miesięcy.</p>
                     </div>
                 </div>
             </div>
@@ -275,13 +279,13 @@
                     <details class="faq-item glass">
                         <summary>Czy pracujesz zdalnie, czy trzeba się spotkać?</summary>
                         <div class="faq-answer">
-                            <p>Cały projekt da się poprowadzić zdalnie — tak robię większość zleceń. Ale przy Wodzisławiu spotkanie nie jest problemem i przy niektórych projektach po prostu przyspiesza sprawę, zwłaszcza gdy trzeba obejrzeć zakład albo zebrać zdjęcia.</p>
+                            <p>Cały projekt da się poprowadzić zdalnie — tak robię większość zleceń. Ale przy Wodzisławiu spotkanie nie jest problemem i&nbsp;przy niektórych projektach po prostu przyspiesza sprawę, zwłaszcza gdy trzeba obejrzeć zakład albo zebrać zdjęcia.</p>
                         </div>
                     </details>
                     <details class="faq-item glass">
-                        <summary>Czy strona z Raciborza będzie widoczna w Wodzisławiu?</summary>
+                        <summary>Czy strona z&nbsp;Raciborza będzie widoczna w&nbsp;Wodzisławiu?</summary>
                         <div class="faq-answer">
-                            <p>To zależy nie od tego, gdzie mieszka wykonawca, tylko gdzie działa Twoja firma. Google ustala widoczność lokalną na podstawie Profilu Firmy, adresu i obsługiwanego obszaru — a nie na podstawie tego, kto zrobił stronę.</p>
+                            <p>To zależy nie od tego, gdzie mieszka wykonawca, tylko gdzie działa Twoja firma. Google ustala widoczność lokalną na podstawie Profilu Firmy, adresu i&nbsp;obsługiwanego obszaru — a&nbsp;nie na podstawie tego, kto zrobił stronę.</p>
                         </div>
                     </details>
                 </div>
@@ -365,8 +369,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

@@ -134,7 +134,24 @@ def sprawdz_faq_zgodnosc():
             continue
 
         import html as _h
-        widoczne = [_h.unescape(re.sub(r'<[^>]+>', '', x)).strip()
+
+        def porownywalne(t):
+            """Tekst sprowadzony do postaci, w jakiej CZYTA go człowiek.
+
+            Pytanie FAQ jest jednocześnie treścią do wyświetlenia i kluczem
+            zestawianym z danymi strukturalnymi. Widoczny <summary> ma
+            twarde spacje (typografia), a JSON-LD ma zwykłe — i słusznie,
+            bo to dane dla Google, nie tekst do łamania. Bez zrównania obu
+            stron kontrola zgłaszała rozjazd przy identycznej treści
+            (2026-09-01, po przebiegu tools/sierotki.py).
+
+            `\\s` w Pythonie obejmuje twardą spację, więc jedna zamiana
+            załatwia też inne drobne różnice zapisu.
+            """
+            return re.sub(r'\s+', ' ', _h.unescape(t)).strip()
+
+        faq = [porownywalne(q) for q in faq]
+        widoczne = [porownywalne(re.sub(r'<[^>]+>', '', x))
                     for x in re.findall(r'<summary>(.*?)</summary>', src, re.S)]
         if faq != widoczne:
             bledy.append(f'{p.relative_to(KATALOG)}: FAQPage rozjeżdża się z widocznym '

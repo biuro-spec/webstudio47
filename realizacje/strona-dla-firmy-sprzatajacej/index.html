@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -173,7 +177,7 @@
                 <p class="realizacja-branza">Firma sprzątająca · Racibórz</p>
                 <h1 class="reveal-hero"><span class="text-white">Strona dla firmy sprzątającej</span><br>
                     <span class="text-gradient">Czysto-Po</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Sprzątanie mieszkań, ozonowanie, dezynfekcja, sprzątanie po zgonach i po zbieractwie. Usługi, których szuka się w bardzo różnych stanach emocjonalnych.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Sprzątanie mieszkań, ozonowanie, dezynfekcja, sprzątanie po zgonach i&nbsp;po zbieractwie. Usługi, których szuka się w&nbsp;bardzo różnych stanach emocjonalnych.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="https://czysto-po.pl" target="_blank" rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
@@ -197,8 +201,8 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Wyzwanie</h2>
-                    <p>Ta firma świadczy usługi z dwóch zupełnie różnych światów. Sprzątanie po remoncie zamawia się na spokojnie, z wyprzedzeniem. <strong>Sprzątanie po zgonie zamawia się w najgorszym tygodniu swojego życia.</strong></p>
-                    <p>Jeden ton komunikacji nie mógł obsłużyć obu sytuacji. Strona musiała być rzeczowa tam, gdzie klient porównuje oferty, i powściągliwa tam, gdzie potrzebuje po prostu pomocy.</p>
+                    <p>Ta firma świadczy usługi z&nbsp;dwóch zupełnie różnych światów. Sprzątanie po remoncie zamawia się na spokojnie, z&nbsp;wyprzedzeniem. <strong>Sprzątanie po zgonie zamawia się w&nbsp;najgorszym tygodniu swojego życia.</strong></p>
+                    <p>Jeden ton komunikacji nie mógł obsłużyć obu sytuacji. Strona musiała być rzeczowa tam, gdzie klient porównuje oferty, i&nbsp;powściągliwa tam, gdzie potrzebuje po prostu pomocy.</p>
                 </div>
             </div>
         </section>
@@ -212,19 +216,19 @@
                 <div class="card-grid">
                     <div class="info-card glass reveal">
                         <h3>Rozdzielenie usług na osobne sekcje</h3>
-                        <p>Każda usługa specjalistyczna ma własny opis i własny język. Klient trafia od razu do swojej sytuacji, nie do ogólnego cennika.</p>
+                        <p>Każda usługa specjalistyczna ma własny opis i&nbsp;własny język. Klient trafia od razu do swojej sytuacji, nie do ogólnego cennika.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Wyciszony ton przy usługach trudnych</h3>
-                        <p>Bez wykrzykników i sprzedażowego entuzjazmu tam, gdzie byłby nie na miejscu. Konkret, dyskrecja, telefon.</p>
+                        <p>Bez wykrzykników i&nbsp;sprzedażowego entuzjazmu tam, gdzie byłby nie na miejscu. Konkret, dyskrecja, telefon.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Treść pod zapytania długiego ogona</h3>
-                        <p>„Sprzątanie po zbieractwie”, „ozonowanie mieszkania” — to są frazy o małym wolumenie, ale bardzo wysokiej intencji zakupowej.</p>
+                        <p>„Sprzątanie po zbieractwie”, „ozonowanie mieszkania” — to są frazy o&nbsp;małym wolumenie, ale bardzo wysokiej intencji zakupowej.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Szybkie ładowanie</h3>
-                        <p>Bez zbędnych bibliotek. Ktoś w sytuacji kryzysowej nie czeka na animacje.</p>
+                        <p>Bez zbędnych bibliotek. Ktoś w&nbsp;sytuacji kryzysowej nie czeka na animacje.</p>
                     </div>
                 </div>
             </div>
@@ -235,7 +239,7 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Kierunek wizualny</h2>
-                    <p>Czysta struktura, wyraźna hierarchia, duży kontrast. Estetyka jest tu drugorzędna — pierwszorzędne jest to, żeby w piętnaście sekund dało się znaleźć właściwą usługę i numer telefonu.</p>
+                    <p>Czysta struktura, wyraźna hierarchia, duży kontrast. Estetyka jest tu drugorzędna — pierwszorzędne jest to, żeby w&nbsp;piętnaście sekund dało się znaleźć właściwą usługę i&nbsp;numer telefonu.</p>
                     <h3>Zakres prac</h3>
                     <ul class="check-list">
                     <li>Usługi</li>
@@ -386,8 +390,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

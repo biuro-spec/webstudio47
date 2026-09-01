@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
@@ -139,7 +143,7 @@
     },
     {
       "@type": "Question",
-      "name": "Czy 100 punktów w SEO znaczy, że będę wysoko w Google?",
+      "name": "Czy 100 punktów w&nbsp;SEO znaczy, że będę wysoko w&nbsp;Google?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Nie. Ta kategoria sprawdza wyłącznie, czy nic nie blokuje wyszukiwarce zrozumienia strony: czy jest tytuł, opis, czy treść nie jest ukryta. To warunek konieczny, nie wystarczający. O pozycji decyduje treść, konkurencja i wiarygodność strony."
@@ -236,7 +240,7 @@
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Dostępność</h3>
-                        <p><strong>Czy stronę da się obsłużyć bez myszki i czy przeczyta ją czytnik ekranu.</strong></p>
+                        <p><strong>Czy stronę da się obsłużyć bez myszki i&nbsp;czy przeczyta ją czytnik ekranu.</strong></p>
                         <p style="margin-top:10px">Dotyczy osób słabowidzących i starszych, ale nie tylko: Google używa tych samych sygnałów do oceny, czy strona jest zrobiona porządnie.</p>
                     </div>
                     <div class="info-card glass reveal">
@@ -246,7 +250,7 @@
                     </div>
                     <div class="info-card glass reveal">
                         <h3>SEO</h3>
-                        <p><strong>Czy Google w ogóle jest w stanie zrozumieć, o czym jest ta strona.</strong></p>
+                        <p><strong>Czy Google w&nbsp;ogóle jest w&nbsp;stanie zrozumieć, o&nbsp;czym jest ta strona.</strong></p>
                         <p style="margin-top:10px">To absolutne minimum, nie pozycjonowanie. Sto punktów tutaj nie znaczy, że jesteś wysoko w wynikach — znaczy, że nic nie stoi na przeszkodzie.</p>
                     </div>
                 </div>
@@ -313,7 +317,7 @@
                         </div>
                     </details>
                     <details class="faq-item glass">
-                        <summary>Czy 100 punktów w SEO znaczy, że będę wysoko w Google?</summary>
+                        <summary>Czy 100 punktów w&nbsp;SEO znaczy, że będę wysoko w&nbsp;Google?</summary>
                         <div class="faq-answer">
                             <p>Nie. Ta kategoria sprawdza wyłącznie, czy nic nie blokuje wyszukiwarce zrozumienia strony: czy jest tytuł, opis, czy treść nie jest ukryta. To warunek konieczny, nie wystarczający. O pozycji decyduje treść, konkurencja i wiarygodność strony.</p>
                         </div>
@@ -433,8 +437,8 @@
         })();
     </script>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

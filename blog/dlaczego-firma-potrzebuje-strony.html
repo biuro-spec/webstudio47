@@ -47,8 +47,18 @@
 }
     </script>
     <link rel="icon" type="image/png" href="../favicon.png">
-    <link rel="stylesheet" href="../style.css?v=1788294413">
-    <link rel="stylesheet" href="blog-style.css?v=1788294413">
+    <!-- Font naglowkow wczytywany rownolegle z arkuszem. Bez tego
+         przegladarka dowiaduje sie o nim dopiero po sparsowaniu 99 KB
+         CSS-a: H1 maluje sie Arialem, a po dojechaniu Space Grotesk
+         przemalowuje sie i Chrome zapisuje NOWY, pozniejszy LCP.
+         Zmierzone 2026-09-01: FCP 2,3 s, LCP 4,2 s — dwie sekundy
+         roznicy to byla wlasnie podmiana fontu. Dwa podzbiory, bo
+         polskie „e z ogonkiem" siedzi w latin-ext. Inter (tresc)
+         celowo NIE jest preloadowany — konkurowalby o pasmo z LCP. -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../style.css?v=1788294950">
+    <link rel="stylesheet" href="blog-style.css?v=1788294950">
     <!-- Zgoda na cookies (Google Consent Mode v2).
          MUSI byc przed gtag.js: inaczej GA4 zapisze dane, zanim ktokolwiek
          wyrazi zgode. Obsluge modala ma consent.js. -->
@@ -138,7 +148,7 @@
                 
 <p class="lead">W&nbsp;2026 roku brak strony internetowej to jak sklep bez witryny. Klienci szukają Cię w&nbsp;Google zanim zadzwonią. Co znajdą, jeśli Ciebie tam nie ma? <strong>Twoją konkurencję.</strong></p>
 
-<h2>Klienci szukają w Google — nie w gazetach</h2>
+<h2>Klienci szukają w&nbsp;Google — nie w&nbsp;gazetach</h2>
 <p>Ponad 90% konsumentów sprawdza firmę online przed zakupem. Jeśli nie masz strony, nie istniejesz dla nich. To proste.</p>
 <p>Wizytówka Google jest pomocna, ale to dopiero początek. Strona internetowa daje Ci pełną kontrolę nad tym, jak Twoja firma jest prezentowana.</p>
 
@@ -160,7 +170,7 @@
 <h2>Przewaga nad konkurencją</h2>
 <p>Jeśli Twoja konkurencja ma stronę, a&nbsp;Ty nie — przegrywasz na starcie. Ale jest i&nbsp;druga strona medalu: jeśli konkurencja ma słabą stronę, a&nbsp;Ty zainwestujesz w&nbsp;porządny projekt — wygrywasz podwójnie.</p>
 
-<h2>Kiedy warto zainwestować w stronę?</h2>
+<h2>Kiedy warto zainwestować w&nbsp;stronę?</h2>
 <p>Krótka odpowiedź: <strong>teraz</strong>. Długa odpowiedź: każdy dzień bez profesjonalnej strony to stracone zapytania, utraceni klienci i&nbsp;oddany rynek konkurencji.</p>
 
 <div class="blog-callout blog-callout-purple"><div><strong>Gotowy na zmianę?</strong> Nie musisz od razu wydawać fortuny. Nawet prosta strona wizytówkowa z&nbsp;dobrym designem może znacząco zmienić postrzeganie Twojej firmy.</div></div>
@@ -303,6 +313,6 @@
         });
     }
     </script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 </html>

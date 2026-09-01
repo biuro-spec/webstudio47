@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -169,7 +173,7 @@
                 <p class="realizacja-branza">Aplikacja SaaS</p>
                 <h1 class="reveal-hero"><span class="text-white">Aplikacja do wystawiania faktur</span><br>
                     <span class="text-gradient">WystawFakture.eu</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Generator faktur działający w przeglądarce, bez zakładania konta. Faktury VAT, proformy i korekty, zgodne z polskimi przepisami i przygotowane na KSeF.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Generator faktur działający w&nbsp;przeglądarce, bez zakładania konta. Faktury VAT, proformy i&nbsp;korekty, zgodne z&nbsp;polskimi przepisami i&nbsp;przygotowane na KSeF.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="https://wystawfakture.eu" target="_blank" rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
@@ -194,7 +198,7 @@
                 <div class="prose reveal">
                     <h2>Wyzwanie</h2>
                     <p>Rynek programów do faktur jest zatłoczony, ale prawie każdy zaczyna od tego samego: <strong>załóż konto, potwierdź e-mail, wybierz plan</strong>. Dla kogoś, kto musi wystawić jedną fakturę, to bariera nie do przejścia.</p>
-                    <p>Druga trudność jest merytoryczna. Faktura to dokument regulowany — układ pól, sposób liczenia VAT i wymagane oznaczenia wynikają z przepisów, nie z upodobań projektanta.</p>
+                    <p>Druga trudność jest merytoryczna. Faktura to dokument regulowany — układ pól, sposób liczenia VAT i&nbsp;wymagane oznaczenia wynikają z&nbsp;przepisów, nie z&nbsp;upodobań projektanta.</p>
                 </div>
             </div>
         </section>
@@ -212,11 +216,11 @@
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Trzy typy dokumentów</h3>
-                        <p>Faktura VAT, proforma i korekta — każda z własnymi regułami i własnym układem pól.</p>
+                        <p>Faktura VAT, proforma i&nbsp;korekta — każda z&nbsp;własnymi regułami i&nbsp;własnym układem pól.</p>
                     </div>
                     <div class="info-card glass reveal">
-                        <h3>Liczenie zgodne z przepisami</h3>
-                        <p>Stawki, kwoty i zaokrąglenia liczone po stronie aplikacji, żeby użytkownik nie musiał tego sprawdzać kalkulatorem.</p>
+                        <h3>Liczenie zgodne z&nbsp;przepisami</h3>
+                        <p>Stawki, kwoty i&nbsp;zaokrąglenia liczone po stronie aplikacji, żeby użytkownik nie musiał tego sprawdzać kalkulatorem.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Przygotowanie pod KSeF</h3>
@@ -224,7 +228,7 @@
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Panel klienta dla wracających</h3>
-                        <p>Zapisani kontrahenci i historia dokumentów dla tych, którzy fakturują regularnie.</p>
+                        <p>Zapisani kontrahenci i&nbsp;historia dokumentów dla tych, którzy fakturują regularnie.</p>
                     </div>
                 </div>
             </div>
@@ -235,7 +239,7 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Kierunek wizualny</h2>
-                    <p>Interfejs narzędziowy, nie marketingowy. Formularz zajmuje środek ekranu, wszystko inne schodzi z drogi. Przy aplikacji użytkowej najlepszy design to ten, którego się nie zauważa.</p>
+                    <p>Interfejs narzędziowy, nie marketingowy. Formularz zajmuje środek ekranu, wszystko inne schodzi z&nbsp;drogi. Przy aplikacji użytkowej najlepszy design to ten, którego się nie zauważa.</p>
                     <h3>Zakres prac</h3>
                     <ul class="check-list">
                     <li>SaaS</li>
@@ -386,8 +390,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

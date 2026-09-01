@@ -11,7 +11,11 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788294413">
+    <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje
+         sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=1788294950">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -173,7 +177,7 @@
                 <p class="realizacja-branza">Salon groomerski · Racibórz</p>
                 <h1 class="reveal-hero"><span class="text-white">Strona dla salonu groomerskiego</span><br>
                     <span class="text-gradient">hOla Perros</span></h1>
-                <p class="page-hero-lead reveal-hero delay-1">Salon pielęgnacji i strzyżenia psów w Raciborzu. Marka premium, która musiała wyglądać premium także w internecie — i jednocześnie odbierać rezerwacje bez telefonu.</p>
+                <p class="page-hero-lead reveal-hero delay-1">Salon pielęgnacji i&nbsp;strzyżenia psów w&nbsp;Raciborzu. Marka premium, która musiała wyglądać premium także w&nbsp;internecie — i&nbsp;jednocześnie odbierać rezerwacje bez telefonu.</p>
                 <div class="page-hero-btns reveal-hero delay-2">
                     <a href="https://holaperros.pl" target="_blank" rel="noopener" class="btn btn-primary">Zobacz stronę na żywo</a>
                     <a href="/kontakt/" class="btn btn-outline">Chcę podobną</a>
@@ -197,8 +201,8 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Wyzwanie</h2>
-                    <p>Groomer sprzedaje coś, czego nie widać na cenniku: <strong>spokój psa podczas wizyty</strong>. Suchy wykaz usług i cen tego nie odda — trzeba było pokazać atmosferę salonu i efekt pracy.</p>
-                    <p>Drugi problem był praktyczny. Umawianie przez telefon w trakcie strzyżenia oznacza przerwanie pracy albo nieodebrane połączenie. Strona musiała przejąć część tego ruchu.</p>
+                    <p>Groomer sprzedaje coś, czego nie widać na cenniku: <strong>spokój psa podczas wizyty</strong>. Suchy wykaz usług i&nbsp;cen tego nie odda — trzeba było pokazać atmosferę salonu i&nbsp;efekt pracy.</p>
+                    <p>Drugi problem był praktyczny. Umawianie przez telefon w&nbsp;trakcie strzyżenia oznacza przerwanie pracy albo nieodebrane połączenie. Strona musiała przejąć część tego ruchu.</p>
                 </div>
             </div>
         </section>
@@ -212,23 +216,23 @@
                 <div class="card-grid">
                     <div class="info-card glass reveal">
                         <h3>Rezerwacja terminu online</h3>
-                        <p>Klient wybiera usługę i termin bez dzwonienia. Zgłoszenie trafia na skrzynkę salonu, a właścicielka nie przerywa pracy z psem.</p>
+                        <p>Klient wybiera usługę i&nbsp;termin bez dzwonienia. Zgłoszenie trafia na skrzynkę salonu, a&nbsp;właścicielka nie przerywa pracy z&nbsp;psem.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Galeria metamorfoz</h3>
-                        <p>Zdjęcia przed i po są tu głównym argumentem sprzedażowym — pokazują poziom wykonania lepiej niż jakikolwiek opis.</p>
+                        <p>Zdjęcia przed i&nbsp;po są tu głównym argumentem sprzedażowym — pokazują poziom wykonania lepiej niż jakikolwiek opis.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Przejrzysty cennik według rozmiaru psa</h3>
-                        <p>Najczęstsze pytanie w tej branży brzmi „ile to będzie kosztować u mojego psa”. Odpowiedź jest na stronie, nie w rozmowie telefonicznej.</p>
+                        <p>Najczęstsze pytanie w&nbsp;tej branży brzmi „ile to będzie kosztować u&nbsp;mojego psa”. Odpowiedź jest na stronie, nie w&nbsp;rozmowie telefonicznej.</p>
                     </div>
                     <div class="info-card glass reveal">
-                        <h3>Sklepik z kosmetykami</h3>
-                        <p>Dodatkowy kanał sprzedaży dla produktów używanych w salonie.</p>
+                        <h3>Sklepik z&nbsp;kosmetykami</h3>
+                        <p>Dodatkowy kanał sprzedaży dla produktów używanych w&nbsp;salonie.</p>
                     </div>
                     <div class="info-card glass reveal">
                         <h3>Blog poradnikowy</h3>
-                        <p>Treści o pielęgnacji, które ściągają ruch z wyszukiwarki na długo po publikacji.</p>
+                        <p>Treści o&nbsp;pielęgnacji, które ściągają ruch z&nbsp;wyszukiwarki na długo po publikacji.</p>
                     </div>
                 </div>
             </div>
@@ -239,7 +243,7 @@
             <div class="container">
                 <div class="prose reveal">
                     <h2>Kierunek wizualny</h2>
-                    <p>Jasna, elegancka typografia z krojem szeryfowym w nagłówkach — celowo bliżej estetyki salonu kosmetycznego niż sklepu zoologicznego. Marka jest premium i wygląd strony miał to potwierdzać, zanim klient przeczyta pierwsze zdanie.</p>
+                    <p>Jasna, elegancka typografia z&nbsp;krojem szeryfowym w&nbsp;nagłówkach — celowo bliżej estetyki salonu kosmetycznego niż sklepu zoologicznego. Marka jest premium i&nbsp;wygląd strony miał to potwierdzać, zanim klient przeczyta pierwsze zdanie.</p>
                     <h3>Zakres prac</h3>
                     <ul class="check-list">
                     <li>Groomer</li>
@@ -391,8 +395,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788294413" defer></script>
-    <script src="/consent.js?v=1788294413" defer></script>
+    <script src="/script.js?v=1788294950" defer></script>
+    <script src="/consent.js?v=1788294950" defer></script>
 </body>
 
 </html>

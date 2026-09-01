@@ -70,7 +70,7 @@ def wiersz(w, etykieta):
 
 
 def sekcja(klient, domena):
-    """Blok z wynikami. Pusty, gdy nie ma ŻADNEGO pomiaru — nie zgadujemy."""
+    """Blok z&nbsp;wynikami. Pusty, gdy nie ma ŻADNEGO pomiaru — nie zgadujemy."""
     dane = POMIARY.get(klient) or {}
     wiersze = [wiersz(dane[s], etyk) for s, etyk in ETYKIETY_STRATEGII if dane.get(s)]
     if not wiersze:
@@ -96,7 +96,7 @@ def sekcja(klient, domena):
 
 
 def podsumowanie(strategia="mobile"):
-    """Zakresy i średnie po zmierzonych realizacjach (jedna strategia)."""
+    """Zakresy i&nbsp;średnie po zmierzonych realizacjach (jedna strategia)."""
     zmierzone = [d[strategia] for d in POMIARY.values() if d.get(strategia)]
     wynik = {}
     for klucz, etykieta in KATEGORIE:
