@@ -635,6 +635,34 @@
     font-size: 0.9rem;
 }
 
+/* Linkowane miasta dziedziczyly DOMYSLNE kolory przegladarki: granat
+   nieodwiedzonego i fiolet z podkresleniem odwiedzonego linku — na
+   ciemnym tle praktycznie niewidoczne (zgloszenie wlasciciela).
+   Link w pigulce ma wygladac jak pigulka, plus cyjan na hover,
+   zeby bylo wiadomo, ze kliknieciu cos sluzy. */
+.area-chips li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.area-chips li:has(a) {
+    padding: 0;
+}
+
+.area-chips li a {
+    display: block;
+    padding: 9px 18px;
+}
+
+.area-chips li a:hover {
+    color: var(--accent-cyan);
+}
+
+.area-chips li:has(a):hover {
+    border-color: rgba(6, 182, 212, 0.45);
+}
+
 .area-chips li.primary {
     border-color: rgba(139, 92, 246, 0.5);
     color: var(--text-primary);
