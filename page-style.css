@@ -1527,7 +1527,7 @@
             width: max-content;
             gap: 0;
             will-change: transform;
-            animation: uslugi-przesun linear both;
+            animation: uslugi-przesun cubic-bezier(0.45, 0.05, 0.15, 1) both;
             animation-timeline: --uslugi;
             /* „contain" = odcinek, w którym scena wypełnia okno w całości,
                czyli dokładnie czas przyklejenia kadru. */
@@ -1558,26 +1558,29 @@
     }
 }
 
-/* Postoje: każdy panel stoi ~15% odcinka, przejazd zajmuje ~10%.
-   Bez postojów pierwszy panel rusza od razu i nie da się nic doczytać. */
+/* Postoje i przejazdy (strojenie 2026-09-01 po uwadze wlasciciela:
+   „wjazd kolejnej jest strasznie szybki i twardy").
+   Bylo: postoj 15% / przejazd 10%, linear — panel wpadal jak winda.
+   Jest: przejazd 17% osi (~78vh scrolla na pelny ekran ruchu) + krzywa
+   na animacji, wiec kazdy segment ma rozbieg i dohamowanie. */
 @keyframes uslugi-przesun {
 
     0%,
-    15% {
+    14% {
         transform: translateX(0);
     }
 
-    25%,
-    45% {
+    31%,
+    43% {
         transform: translateX(-100vw);
     }
 
-    55%,
+    60%,
     72% {
         transform: translateX(-200vw);
     }
 
-    82%,
+    89%,
     100% {
         transform: translateX(-300vw);
     }
