@@ -2914,3 +2914,6 @@ html {
     .cookie-modal-body { max-height: 32vh; }
 }
 
+/* Telefon w menu — patrz komentarz w style.css (specyficznosc .nav-links a) */
+.nav-links a.btn-primary { color: #fff; font-weight: 600; text-shadow: none; }
+.nav-links a.btn-primary:hover { color: #fff; transform: translateY(-2px); }
