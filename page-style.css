@@ -62,6 +62,20 @@
     pointer-events: none;
 }
 
+/* Cyjanowy kontrapunkt na dole hero — ten sam dwubarwny jezyk zorzy,
+   co w panelach uslug. Statyczny gradient: maluje sie raz, zero kosztu. */
+.page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -10%;
+    width: 700px;
+    height: 480px;
+    max-width: 100vw;
+    background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.10) 0%, transparent 65%);
+    pointer-events: none;
+}
+
 .page-hero .container {
     position: relative;
     z-index: 1;
@@ -372,18 +386,6 @@
     color: var(--text-secondary);
     font-size: 0.97rem;
     line-height: 1.65;
-}
-
-.info-card .card-num {
-    display: block;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    background: var(--grad-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
 }
 
 /* --- Tabela porównawcza -------------------------------------------------- */
@@ -961,7 +963,17 @@
 /* --- Sekcja z tłem ------------------------------------------------------- */
 
 .section-alt {
-    background: var(--bg-secondary);
+    background:
+        radial-gradient(56vw 40vh at 10% 8%, rgba(139, 92, 246, 0.07), transparent 60%),
+        radial-gradient(62vw 46vh at 92% 95%, rgba(6, 182, 212, 0.05), transparent 60%),
+        var(--bg-secondary);
+}
+
+.section-alt:nth-of-type(even) {
+    background:
+        radial-gradient(56vw 40vh at 90% 8%, rgba(6, 182, 212, 0.06), transparent 60%),
+        radial-gradient(62vw 46vh at 8% 95%, rgba(139, 92, 246, 0.06), transparent 60%),
+        var(--bg-secondary);
 }
 
 /* --- Odnośniki wewnątrz nowych komponentów -------------------------------
@@ -1860,4 +1872,21 @@
         padding: 9px 14px;
         font-size: 0.8rem;
     }
+}
+
+/* CTA portfolio: zorza smielsza niz w sekcjach czytanych — to moment nacisku.
+   Sekcja ma juz position:relative + overflow:hidden w rdzeniu. */
+.portfolio-cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(50vw 60vh at 20% 20%, rgba(139, 92, 246, 0.12), transparent 62%),
+        radial-gradient(56vw 66vh at 82% 90%, rgba(6, 182, 212, 0.09), transparent 62%);
+}
+
+.portfolio-cta-section > * {
+    position: relative;
+    z-index: 1;
 }
