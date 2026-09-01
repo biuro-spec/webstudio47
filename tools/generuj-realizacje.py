@@ -325,8 +325,6 @@ def naglowek_strony(r, stempel):
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="preload" as="font" type="font/woff2" href="/fonty/spacegrotesk-700-latin.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="/fonty/spacegrotesk-700-latin-ext.woff2" crossorigin>
     <link rel="stylesheet" href="/style.css?v={stempel}">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
