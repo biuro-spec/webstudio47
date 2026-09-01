@@ -440,3 +440,33 @@
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
 }
+
+
+/* --- Dokowanie sceny przy przewijaniu (2026-09-01) -----------------------
+   Galeria przykleja sie na srodku ekranu, a przewijanie strony w czasie
+   zadokowania obraca lukiem (arc.js czyta postep sceny). 340vh sceny
+   przy 9 kartach daje ok. 30vh przewijania na karte - do strojenia tutaj.
+
+   PULAPKA: globalne `section{overflow:hidden}` w style.css ZABIJA sticky
+   (przodek z overflow innym niz visible zostaje jego scrollportem).
+   Stad nadpisanie na tej konkretnej sekcji - tylko w trybie luku. */
+
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+
+    .arc-on .portfolio-showcase-section {
+        overflow: visible;
+    }
+
+    .arc-on .arc-scena {
+        height: 340vh;
+    }
+
+    .arc-on .arc-klej {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

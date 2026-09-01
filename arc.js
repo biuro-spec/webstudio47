@@ -193,6 +193,35 @@
         kolkoTimer = setTimeout(function () { doCelu(Math.round(cel)); }, 130);
     }, { passive: false });
 
+    /* --- Dokowanie: przewijanie strony obraca luk -------------------------
+
+       Scena (340vh, arc.css) przykleja galerie na srodku ekranu. Postep
+       przewijania wewnatrz sceny mapujemy na ulamkowy `cel` - istniejace
+       wygladzanie w animuj() robi z tego plynny obrot. Poza zakresem sceny
+       nie ruszamy celu, zeby nie walczyc ze strzalkami i przeciaganiem;
+       w trakcie przeciagania rowniez oddajemy pierwszenstwo dloni.
+       -------------------------------------------------------------------- */
+
+    var scena = document.querySelector('.arc-scena');
+    var scrollTyka = false;
+
+    function obrotZeScrolla() {
+        scrollTyka = false;
+        if (!scena || mniejRuchu.matches || !szeroki.matches || ciagnie) return;
+        var zakres = scena.offsetHeight - window.innerHeight;
+        if (zakres <= 0) return;
+        var p = -scena.getBoundingClientRect().top / zakres;
+        if (p < 0 || p > 1) return;
+        cel = Math.max(0, Math.min(karty.length - 1, p * (karty.length - 1)));
+        if (!animacja) animacja = requestAnimationFrame(animuj);
+    }
+
+    window.addEventListener('scroll', function () {
+        if (scrollTyka) return;
+        scrollTyka = true;
+        requestAnimationFrame(obrotZeScrolla);
+    }, { passive: true });
+
     /* --- Menu schodzi z drogi, gdy galeria wypelnia ekran ----------------
 
        Naglowek jest przyklejony na gorze i zaslania gorna krawedz kart.
