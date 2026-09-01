@@ -155,8 +155,15 @@
             arc.classList.add('is-dragging');
         }
 
-        // 320 px przeciagniecia = jedna karta
-        cel = Math.max(0, Math.min(karty.length - 1, startPoz - dx / 320));
+        // 320 px przeciagniecia = jedna karta.
+        // Na krancach guma zamiast twardego muru: poza zakresem reka czuje
+        // opor (x0.18), a po puszczeniu koniecCiagniecia() -> doCelu()
+        // dociaga z powrotem — wygladzanie animuj() robi sprezyne za darmo.
+        var surowy = startPoz - dx / 320;
+        var kraniec = karty.length - 1;
+        cel = surowy < 0 ? surowy * 0.18
+            : surowy > kraniec ? kraniec + (surowy - kraniec) * 0.18
+            : surowy;
         if (!animacja) animacja = requestAnimationFrame(animuj);
     }, { passive: true });
 

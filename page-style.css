@@ -1582,3 +1582,52 @@
         transform: translateX(-300vw);
     }
 }
+
+
+/* --- Animacje z audytu find-animation-opportunities (2026-09-01) --------
+
+   #2 Tresc FAQ otwierala sie skokiem (strzalka juz plynela, odpowiedz
+   teleportowala). `interpolate-size` + ::details-content to czysty CSS
+   Chrome 131+; starsze przegladarki dostaja dzisiejszy skok — progresywnie,
+   zero JS. Height to layout, ale raz-na-klik, nie w petli — poza budzetem.
+
+   #3 Komunikat formularza pojawial sie z niczego w najwazniejszym
+   momencie strony kontakt. @starting-style + allow-discrete animuje
+   wejscie z display:none bez JS. */
+
+.faq-item {
+    interpolate-size: allow-keywords;
+}
+
+.faq-item::details-content {
+    opacity: 0;
+    height: 0;
+    overflow: clip;
+    transition: height 260ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 200ms ease-out,
+                content-visibility 260ms allow-discrete;
+}
+
+.faq-item[open]::details-content {
+    opacity: 1;
+    height: auto;
+}
+
+.form-status {
+    transition: opacity 250ms ease-out,
+                transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                display 250ms allow-discrete;
+}
+
+@starting-style {
+    .form-status {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .faq-item::details-content { transition: none; }
+    /* lagodniej, nie zero: samo przenikanie, bez ruchu w pionie */
+    .form-status { transition: opacity 250ms ease-out; transform: none; }
+}

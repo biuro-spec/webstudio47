@@ -2917,3 +2917,9 @@ html {
 /* Telefon w menu — patrz komentarz w style.css (specyficznosc .nav-links a) */
 .nav-links a.btn-primary { color: #fff; font-weight: 600; text-shadow: none; }
 .nav-links a.btn-primary:hover { color: #fff; transform: translateY(-2px); }
+
+/* #1 z audytu animacji — patrz komentarz w style.css */
+.btn:active, .arc-btn:active, .cookie-btn:active, .menu-toggle:active {
+    transform: scale(0.97);
+    transition-duration: 0.14s;
+}
