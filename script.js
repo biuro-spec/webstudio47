@@ -329,7 +329,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.metakule').forEach(ozyw);
 
     function ozyw(svg) {
-    var hero = svg.parentElement;
+    // Nasluch MUSI siedziec na sekcji, nie na rodzicu obrazka. Na stronie
+    // glownej rodzicem jest .hero-bg z z-index -1 — element schowany pod
+    // trescia, ktory zdarzen myszy praktycznie nie dostaje. Na portfolio
+    // rodzicem jest juz sekcja i tam dzialalo, wiec blad byl widoczny
+    // tylko na jednej z dwoch scen.
+    var hero = svg.closest('section') || svg.parentElement;
     var kursorowa = svg.querySelector('#metakula-kursor, #prace-kursor');
     var reszta = Array.prototype.slice
         .call(svg.querySelectorAll('#metakule-grupa circle, #prace-grupa circle'))
