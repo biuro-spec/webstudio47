@@ -1699,30 +1699,32 @@
     }
 }
 
-/* Osie przenikania: kazdy panel ma plato widocznosci i 17% osi na
-   krzyzowe przejscie z sasiadem (wychodzacy gasnie, wchodzacy wstaje
-   z 18px uniesienia). Wspolne okna: 14-31%, 43-60%, 72-89%. */
+/* Ruch + przenikanie (2026-09-01, iteracja z wlascicielem): kierunek
+   prawa->lewa ZOSTAJE — wchodzacy wjezdza z 34vw z prawej, wychodzacy
+   odplywa 34vw w lewo — ale oba jednoczesnie przenikaja, wiec nie ma
+   stanu "dwa pelne panele obok siebie", a tempo jest miekkie.
+   Wspolne okna przejscia: 14-31%, 43-60%, 72-89% osi. */
 
 @keyframes uslugi-panel-1 {
-    0%, 14%   { opacity: 1; visibility: visible; transform: translateY(0); }
-    31%, 100% { opacity: 0; visibility: hidden; transform: translateY(0); }
+    0%, 14%   { opacity: 1; visibility: visible; transform: translateX(0); }
+    31%, 100% { opacity: 0; visibility: hidden; transform: translateX(-34vw); }
 }
 
 @keyframes uslugi-panel-2 {
-    0%, 14%   { opacity: 0; visibility: hidden; transform: translateY(18px); }
-    31%, 43%  { opacity: 1; visibility: visible; transform: translateY(0); }
-    60%, 100% { opacity: 0; visibility: hidden; transform: translateY(0); }
+    0%, 14%   { opacity: 0; visibility: hidden; transform: translateX(34vw); }
+    31%, 43%  { opacity: 1; visibility: visible; transform: translateX(0); }
+    60%, 100% { opacity: 0; visibility: hidden; transform: translateX(-34vw); }
 }
 
 @keyframes uslugi-panel-3 {
-    0%, 43%   { opacity: 0; visibility: hidden; transform: translateY(18px); }
-    60%, 72%  { opacity: 1; visibility: visible; transform: translateY(0); }
-    89%, 100% { opacity: 0; visibility: hidden; transform: translateY(0); }
+    0%, 43%   { opacity: 0; visibility: hidden; transform: translateX(34vw); }
+    60%, 72%  { opacity: 1; visibility: visible; transform: translateX(0); }
+    89%, 100% { opacity: 0; visibility: hidden; transform: translateX(-34vw); }
 }
 
 @keyframes uslugi-panel-4 {
-    0%, 72%   { opacity: 0; visibility: hidden; transform: translateY(18px); }
-    89%, 100% { opacity: 1; visibility: visible; transform: translateY(0); }
+    0%, 72%   { opacity: 0; visibility: hidden; transform: translateX(34vw); }
+    89%, 100% { opacity: 1; visibility: visible; transform: translateX(0); }
 }
 
 

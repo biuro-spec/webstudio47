@@ -316,10 +316,20 @@
     min-height: 450px;
 }
 
+/* Scrim wzmocniony 2026-09-01: obrazy hero maja WLASNE wielkie napisy
+   (BUSINESS WEBSITE, DASHBOARD) i przy nakladce od 0.5 krzyczaly
+   rownolegle z tytulem artykulu. Mocniejszy gradient + backdrop-blur
+   robia z grafiki atmosfere, a nie konkurencje. Blur liczy sie raz
+   przy malowaniu sekcji — to statyczny naglowek, nie petla. */
 .blog-article-hero-overlay {
     position: relative;
     padding: 10rem 0 3rem;
-    background: linear-gradient(180deg, rgba(10,10,15,0.5) 0%, rgba(10,10,15,0.85) 60%, rgba(10,10,15,1) 100%);
+    background: linear-gradient(180deg,
+        rgba(10, 10, 15, 0.72) 0%,
+        rgba(10, 10, 15, 0.88) 55%,
+        rgba(10, 10, 15, 1) 100%);
+    backdrop-filter: blur(7px) saturate(0.85);
+    -webkit-backdrop-filter: blur(7px) saturate(0.85);
     min-height: 450px;
     display: flex;
     align-items: flex-end;
