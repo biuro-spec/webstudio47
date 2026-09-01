@@ -2,32 +2,36 @@
 """
 Wyniki Lighthouse dla realizacji — dane i renderowanie sekcji.
 
-Prawdziwe pomiary, wykonane lokalnie Lighthouse 12.8.2 w profilu mobilnym.
-Pokazujemy WSZYSTKIE cztery kategorie, także słabsze: strona jest zbudowana
-na mówieniu wprost, a klient i tak sprawdzi sam w PageSpeed Insights.
+Od 2026-09-01 dwie strategie: komórka i komputer, bo pokazywanie tylko
+korzystniejszej byłoby deklarowaniem, nie mierzeniem. Klient po kliknięciu
+„sprawdź sam" widzi w PSI obie zakładki — my też pokazujemy obie.
 
-Dwie realizacje nie mają pomiaru i to jest celowe:
-  - Alaska — home.pl blokuje ruch z tego środowiska,
-  - Life-Centrum — pod adresem stoi jeszcze WordPress klienta, a nasza
-    wersja nie jest wdrożona. Pokazywanie jej wyniku jako własnego
-    byłoby przypisywaniem sobie cudzej pracy.
-Zamiast zgadywać albo mierzyć nie to co trzeba, sekcja się nie pojawia.
+Źródło liczb: docelowo API PageSpeed Insights (tools/zmierz-psi.py) —
+te same serwery Google, które otworzy klient. Pomiar lokalny potrafił
+się mylić o 40 punktów przy TBT (97 vs 58 na tej samej stronie).
 
-Aktualizacja: uruchom pomiar ponownie i podmień słownik POMIARY.
+Brak pomiaru (None) = sekcja lub wiersz się nie pojawia. Nie zgadujemy:
+  - Alaska — hosting potrafi blokować pomiar,
+  - Life-Centrum — projekt w realizacji, pod domeną stoi cudzy WordPress,
+  - desktop=None — jeszcze nie zmierzony z wiarygodnego źródła.
+
+Aktualizacja: python tools/zmierz-psi.py i wklej wynik do POMIARY.
 """
 
 DATA_POMIARU = "31 sierpnia 2026"
 
+# Wartości mobile: pomiar lokalny 2026-08-31 (przed przejściem na PSI API).
+# Desktop uzupełniamy WYŁĄCZNIE z PSI API — None do tego czasu.
 POMIARY = {
-    "hOla Perros":      {"performance": 90, "accessibility": 100, "best-practices": 100, "seo": 100},
-    "Super Irek":       {"performance": 72, "accessibility": 100, "best-practices": 100, "seo": 100},
-    "Czysto-Po":        {"performance": 64, "accessibility": 94, "best-practices": 100, "seo": 100},
-    "Alaska":           {"performance": None, "accessibility": None, "best-practices": None, "seo": None},
-    "Life-Centrum":     {"performance": None, "accessibility": None, "best-practices": None, "seo": None},
-    "Life-Ratownictwo": {"performance": 91, "accessibility": 100, "best-practices": 100, "seo": 100},
-    "WystawFakture.eu": {"performance": 64, "accessibility": 98, "best-practices": 96, "seo": 100},
-    "9 Dom":            {"performance": 81, "accessibility": 96, "best-practices": 100, "seo": 100},
-    "Karta Dnia":       {"performance": 84, "accessibility": 100, "best-practices": 100, "seo": 100},
+    "hOla Perros":      {"mobile": {"performance": 90, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": None},
+    "Super Irek":       {"mobile": {"performance": 72, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": None},
+    "Czysto-Po":        {"mobile": {"performance": 64, "accessibility": 94,  "best-practices": 100, "seo": 100}, "desktop": None},
+    "Alaska":           {"mobile": None, "desktop": None},
+    "Life-Centrum":     {"mobile": None, "desktop": None},
+    "Life-Ratownictwo": {"mobile": {"performance": 91, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": None},
+    "WystawFakture.eu": {"mobile": {"performance": 64, "accessibility": 98,  "best-practices": 96,  "seo": 100}, "desktop": None},
+    "9 Dom":            {"mobile": {"performance": 81, "accessibility": 96,  "best-practices": 100, "seo": 100}, "desktop": None},
+    "Karta Dnia":       {"mobile": {"performance": 84, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": None},
 }
 
 KATEGORIE = [
@@ -36,6 +40,8 @@ KATEGORIE = [
     ("best-practices", "Sprawdzone metody"),
     ("seo", "SEO"),
 ]
+
+ETYKIETY_STRATEGII = [("mobile", "Komórka"), ("desktop", "Komputer")]
 
 
 def poziom(wynik):
@@ -47,35 +53,39 @@ def poziom(wynik):
     return "slaby"
 
 
-def sekcja(klient, domena):
-    """Blok z wynikami. Pusty, gdy pomiaru nie ma — nie zgadujemy liczb."""
-    w = POMIARY.get(klient)
-    if not w or w.get("performance") is None:
-        return ""
-
+def wiersz(w, etykieta):
     karty = []
-    for klucz, etykieta in KATEGORIE:
+    for klucz, nazwa in KATEGORIE:
         wynik = w[klucz]
         karty.append(
             '                    <div class="wynik" data-poziom="' + poziom(wynik) + '">\n'
             '                        <span class="wynik-liczba">' + str(wynik) + '</span>\n'
-            '                        <span class="wynik-nazwa">' + etykieta + '</span>\n'
+            '                        <span class="wynik-nazwa">' + nazwa + '</span>\n'
             '                    </div>'
         )
+    return ('                <p class="wyniki-tryb">' + etykieta + '</p>\n'
+            '                <div class="wyniki reveal">\n'
+            + '\n'.join(karty) + '\n'
+            '                </div>\n')
+
+
+def sekcja(klient, domena):
+    """Blok z wynikami. Pusty, gdy nie ma ŻADNEGO pomiaru — nie zgadujemy."""
+    dane = POMIARY.get(klient) or {}
+    wiersze = [wiersz(dane[s], etyk) for s, etyk in ETYKIETY_STRATEGII if dane.get(s)]
+    if not wiersze:
+        return ""
 
     sprawdz = 'https://pagespeed.web.dev/analysis?url=https%3A%2F%2F' + domena + '%2F'
-
     return (
         '\n        <!-- Pomiary Lighthouse -->\n'
         '        <section>\n'
         '            <div class="container">\n'
         '                <div class="section-header reveal">\n'
         '                    <h2 class="text-gradient">Zmierzone, nie deklarowane</h2>\n'
-        '                    <p>Lighthouse, profil mobilny — pomiar z ' + DATA_POMIARU + '</p>\n'
+        '                    <p>Lighthouse — pomiar z ' + DATA_POMIARU + '</p>\n'
         '                </div>\n'
-        '                <div class="wyniki reveal">\n'
-        + '\n'.join(karty) + '\n'
-        '                </div>\n'
+        + ''.join(wiersze) +
         '                <p class="wyniki-nota">Skala 0–100, im wyżej tym lepiej. Nie musisz mi wierzyć —\n'
         '                    sprawdź sam w <a href="' + sprawdz + '" target="_blank" rel="noopener">PageSpeed\n'
         '                    Insights</a>. Wynik wydajności waha się między pomiarami i zależy od łącza,\n'
@@ -85,9 +95,9 @@ def sekcja(klient, domena):
     )
 
 
-def podsumowanie():
-    """Zakresy i średnie po wszystkich zmierzonych realizacjach."""
-    zmierzone = [w for w in POMIARY.values() if w["performance"] is not None]
+def podsumowanie(strategia="mobile"):
+    """Zakresy i średnie po zmierzonych realizacjach (jedna strategia)."""
+    zmierzone = [d[strategia] for d in POMIARY.values() if d.get(strategia)]
     wynik = {}
     for klucz, etykieta in KATEGORIE:
         v = sorted(w[klucz] for w in zmierzone)
