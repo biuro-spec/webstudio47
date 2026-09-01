@@ -296,5 +296,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     window.addEventListener('resize', odswiez);
+
+    // Na szerokim ekranie zaczynamy od SRODKA zestawu: karuzela od razu
+    // pokazuje karty po obu stronach wyroznionej i widac, ze da sie jechac
+    // w obie strony. Na telefonie odwrotnie — miesci sie tam jedna karta,
+    // a strzalki sa schowane, wiec start od srodka chowalby dwa najnowsze
+    // wpisy bez czytelnego sposobu powrotu. Tam zaczynamy od pierwszej.
+    var szeroki = window.matchMedia('(min-width: 641px)').matches;
+    var poczatkowa = szeroki ? Math.max(0, Math.floor((karty.length - 1) / 2)) : 0;
+    if (poczatkowa) {
+        // Bez plynnego przewijania — przy wejsciu na strone nic nie ma jechac.
+        tor.scrollLeft = krok() * poczatkowa;
+    }
+
     odswiez();
 })();
