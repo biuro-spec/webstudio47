@@ -1,3 +1,18 @@
+/* Fallbacki o dopasowanych metrykach (2026-09-01). Podmiana fontu zmieniala wymiary tekstu, a Chrome liczyl to jako NOWE, wieksze malowanie LCP — naglowek malowal sie przy FCP, a LCP wskazywal 5 s. Pomiar A/B: bez fontow 94 pkt / LCP 2,9 s; z fontami 70-73 / 5,1 s. Przeskalowany Arial trzyma geometrie do czasu dojazdu webfontu. size-adjust zmierzony w przegladarce, pion z metryk hhea plikow. */
+@font-face {
+    font-family:'Space Grotesk Fallback';
+    src:local('Arial');
+    size-adjust:91.78%;
+    ascent-override:107.21%;
+    descent-override:31.82%;
+    line-gap-override:0.00%}
+@font-face {
+    font-family:'Inter Fallback';
+    src:local('Arial');
+    size-adjust:107.09%;
+    ascent-override:90.46%;
+    descent-override:22.52%;
+    line-gap-override:0.00%}
 /* Fonty self-hosted — patrz komentarz w style.css. */
 @font-face {
   font-family: 'Inter';
@@ -183,7 +198,7 @@ html {
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Inter Fallback', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -193,7 +208,7 @@ h2,
 h3,
 h4,
 .font-special {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-weight: 700;
 }
 
@@ -835,7 +850,7 @@ header:hover {
 
 .tech-track span:not(.tech-sep) {
     font-size: 1.4rem;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
     background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
@@ -868,7 +883,7 @@ header:hover {
 
 .tech-item {
     font-size: 1.5rem;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     color: var(--text-muted);
     font-weight: 600;
 }
@@ -887,7 +902,7 @@ header:hover {
 
 .step-num {
     font-size: 4rem;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     background: var(--grad-primary);
     -webkit-background-clip: text;
     background-clip: text;
@@ -1112,7 +1127,7 @@ header:hover {
 
 .phone-digits {
     font-size: 1.8rem;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-weight: 700;
     background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
     -webkit-background-clip: text;
@@ -1158,7 +1173,7 @@ header:hover {
 
 .need-number {
     font-size: 2.5rem;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-weight: 800;
     background: var(--grad-primary);
     -webkit-background-clip: text;
@@ -2450,7 +2465,7 @@ html {
 }
 
 .blog-home-card h3 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-size: 1.2rem;
     color: #fff;
     margin-bottom: 0.6rem;
@@ -2574,7 +2589,7 @@ html {
     100% { transform: translate(4%, -1%) rotate(-2deg); opacity: 0.8; }
 }
 .portfolio-page-hero h1 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 700;
     position: relative;
@@ -2663,7 +2678,7 @@ html {
     padding: 1rem 0;
 }
 .showcase-info .project-number {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-size: 4rem;
     font-weight: 700;
     background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
@@ -2674,7 +2689,7 @@ html {
     margin-bottom: 0.5rem;
 }
 .showcase-info h2 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.2rem);
     margin-bottom: 1rem;
     color: var(--text-primary);
@@ -2780,7 +2795,7 @@ html {
     100% { transform: scale(1.3); opacity: 1; }
 }
 .portfolio-cta-section h2 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     margin-bottom: 1rem;
 }
