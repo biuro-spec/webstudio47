@@ -137,7 +137,6 @@ def sekcja():
                     </div>
                 </div>
             </div>
-            <p class="uslugi-podpowiedz">Przewijaj w dół — panele przesuwają się w bok.</p>
 '''
 
 
@@ -147,9 +146,21 @@ def main():
 
     wzor = re.compile(r'[ \t]*<div class="services-grid">.*?\n[ \t]*</div>\n(?=[ \t]*</div>\n[ \t]*</section>)', re.S)
     if not wzor.search(s):
-        # druga próba: sekcja już przebudowana
+        # Druga próba: sekcja już przebudowana. Kotwicą końcową jest zamknięcie
+        # samej sceny — rozpoznawane po DOKŁADNYM wcięciu 12 spacji, bo takie ma
+        # tylko ona (zagnieżdżone <div> siedzą głębiej). Wcześniej kotwicą była
+        # podpowiedź „Przewijaj w dół", ale zniknęła ze strony.
+        #
+        # Nie używać tu „.*?</div>” z lookaheadem na </section>: przy pierwszym
+        # uruchomieniu po usunięciu podpowiedzi wzorzec przeskoczył zamknięcie
+        # sekcji usług i zjadł całą sekcję portfolio (2026-09-01).
+        #
+        # Człon opcjonalny sprząta podpowiedź, jeśli jeszcze została w pliku.
         if 'uslugi-scena' in s:
-            wzor = re.compile(r'[ \t]*<div class="uslugi-scena".*?<p class="uslugi-podpowiedz">.*?</p>\n', re.S)
+            wzor = re.compile(
+                r'[ \t]*<div class="uslugi-scena".*?\n {12}</div>\n'
+                r'(?:[ \t]*<p class="uslugi-podpowiedz">.*?</p>\n)?',
+                re.S)
         else:
             raise SystemExit('nie znaleziono siatki usług w index.html')
 

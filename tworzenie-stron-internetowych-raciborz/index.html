@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#0a0a0f">
 
-    <link rel="stylesheet" href="/style.css?v=1788275611">
+    <link rel="stylesheet" href="/style.css?v=1788292871">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -313,14 +313,22 @@
             </div>
         </section>
 
-        <!-- Rodzaje stron -->
+        <!-- Rodzaje stron.
+             Scena + klej: na szerokim ekranie panel dokuje sie na srodek okna,
+             menu chowa sie na czas pokazu, a kafelki odwracaja sie po kolei
+             w rytm przewijania. Dwa opakowujace elementy sa celowo nagie —
+             bez wsparcia dla animacji na osi przewijania, przy reduced-motion
+             albo na waskim ekranie nie maja zadnych stylow i sekcja wyglada
+             dokladnie tak jak przedtem: zwykla siatka kafelkow. -->
         <section>
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="text-gradient">Co mogę dla Ciebie zbudować</h2>
-                    <p>Cztery typy projektów — różnią się celem, nie jakością wykonania</p>
-                </div>
-                <div class="card-grid">
+            <div class="zbuduje-scena">
+              <div class="zbuduje-klej">
+                <div class="container">
+                    <div class="section-header reveal">
+                        <h2 class="text-gradient">Co mogę dla Ciebie zbudować</h2>
+                        <p>Cztery typy projektów — różnią się celem, nie jakością wykonania</p>
+                    </div>
+                    <div class="card-grid zbuduje-karty">
                     <div class="info-card glass reveal">
                         <h3>Strona firmowa</h3>
                         <p>Klasyczna wizytówka w&nbsp;sieci: o&nbsp;firmie, oferta, realizacje, kontakt. Dla firmy
@@ -345,7 +353,9 @@
                             generator dokumentów. Robię je, gdy gotowe programy nie pasują do sposobu, w&nbsp;jaki
                             pracujesz.</p>
                     </div>
+                    </div>
                 </div>
+              </div>
             </div>
         </section>
 
@@ -774,8 +784,8 @@
     </aside>
 
 
-    <script src="/script.js?v=1788275611" defer></script>
-    <script src="/consent.js?v=1788275611" defer></script>
+    <script src="/script.js?v=1788292871" defer></script>
+    <script src="/consent.js?v=1788292871" defer></script>
 </body>
 
 </html>

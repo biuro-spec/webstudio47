@@ -1646,9 +1646,6 @@
     border-top: 1px solid var(--glass-border);
 }
 
-.uslugi-podpowiedz {
-    display: none;
-}
 
 /* --- Tryb poziomy ------------------------------------------------------- */
 
@@ -1729,13 +1726,6 @@
             user-select: none;
         }
 
-        .uslugi-podpowiedz {
-            display: block;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.87rem;
-            margin-top: 18px;
-        }
     }
 }
 
@@ -2084,4 +2074,86 @@
     .karuzela-tor { scroll-behavior: auto; }
     .blog-karta:hover .blog-karta-obraz img { transform: none; }
     .karuzela-kropka { transition: none; }
+}
+
+/* ============================================================
+   PANEL „CO MOGE DLA CIEBIE ZBUDOWAC" — dokowanie i odwracanie
+   Panel zatrzymuje sie na srodku okna, menu schodzi z drogi,
+   a kafelki odwracaja sie po kolei w rytm przewijania.
+   Cala mechanika siedzi w CSS na osi przewijania — zero JS.
+   ============================================================ */
+
+@media (min-width: 1000px) and (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+
+        /* Nazwa osi musi byc widoczna takze dla naglowka strony, ktory
+           lezy POZA scena — stad timeline-scope na <body>. Warunek :has
+           ogranicza to do jedynej strony ze scena; bez niego menu na
+           pozostalych stronach dostaloby animacje z nieistniejaca osia. */
+        body:has(.zbuduje-scena) {
+            timeline-scope: --zbuduje;
+        }
+
+        .zbuduje-scena {
+            /* Cztery odwrocenia plus zapas na wejscie i zejscie */
+            height: 330vh;
+            view-timeline: --zbuduje block;
+        }
+
+        .zbuduje-klej {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+
+        /* Wspolny punkt zbiegu dla calego rzedu — kazdy kafelek z osobna
+           mialby wlasny i rzad rozjechalby sie optycznie. */
+        .zbuduje-karty {
+            width: 100%;
+            perspective: 1600px;
+        }
+
+        .zbuduje-karty .info-card {
+            transform-origin: left center;
+            backface-visibility: hidden;
+            animation: zbuduje-odsloniecie linear both;
+            animation-timeline: --zbuduje;
+        }
+
+        /* Okna odslaniaja sie po kolei, z zakladka — nastepne zaczyna,
+           zanim poprzednie skonczy, zeby ruch byl ciagly, a nie skokowy. */
+        .zbuduje-karty .info-card:nth-child(1) { animation-range: contain 4% contain 26%; }
+        .zbuduje-karty .info-card:nth-child(2) { animation-range: contain 18% contain 40%; }
+        .zbuduje-karty .info-card:nth-child(3) { animation-range: contain 32% contain 54%; }
+        .zbuduje-karty .info-card:nth-child(4) { animation-range: contain 46% contain 68%; }
+
+        @keyframes zbuduje-odsloniecie {
+            from {
+                opacity: 0;
+                transform: rotateY(-96deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotateY(0deg);
+            }
+        }
+
+        /* Menu schodzi z drogi na czas pokazu i wraca przed koncem sceny.
+           Oba skrajne klatki to stan widoczny, wiec poza zakresem sceny
+           (gdy os jest nieaktywna) naglowek zachowuje sie normalnie. */
+        body:has(.zbuduje-scena) #main-header {
+            animation: zbuduje-menu linear both;
+            animation-timeline: --zbuduje;
+            animation-range: contain 0% contain 100%;
+        }
+
+        @keyframes zbuduje-menu {
+            0%   { transform: translateY(0);     opacity: 1; }
+            7%   { transform: translateY(-130%); opacity: 0; }
+            86%  { transform: translateY(-130%); opacity: 0; }
+            100% { transform: translateY(0);     opacity: 1; }
+        }
+    }
 }
