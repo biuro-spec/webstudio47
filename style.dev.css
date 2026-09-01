@@ -332,7 +332,7 @@ header::before {
 header.scrolled {
     top: 12px;
     padding: 10px 0;
-    width: min(85%, 850px);
+    width: min(94%, 980px);
     /* Skrócone przy scrollu (z 1000px) */
 }
 
