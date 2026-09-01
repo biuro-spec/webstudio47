@@ -11,27 +11,27 @@ te same serwery Google, które otworzy klient. Pomiar lokalny potrafił
 się mylić o 40 punktów przy TBT (97 vs 58 na tej samej stronie).
 
 Brak pomiaru (None) = sekcja lub wiersz się nie pojawia. Nie zgadujemy:
-  - Alaska — hosting potrafi blokować pomiar,
-  - Life-Centrum — projekt w realizacji, pod domeną stoi cudzy WordPress,
-  - desktop=None — jeszcze nie zmierzony z wiarygodnego źródła.
+  - Life-Centrum — projekt w realizacji, pod domeną stoi cudzy WordPress.
+  Alaska od 2026-09-01 MA pomiar: serwery Google przebijają blokadę
+  home.pl, o którą rozbijał się pomiar lokalny.
 
 Aktualizacja: python tools/zmierz-psi.py i wklej wynik do POMIARY.
 """
 
-DATA_POMIARU = "31 sierpnia 2026"
+DATA_POMIARU = "1 września 2026"
 
-# Wartości mobile: pomiar lokalny 2026-08-31 (przed przejściem na PSI API).
-# Desktop uzupełniamy WYŁĄCZNIE z PSI API — None do tego czasu.
+# Obie strategie z JEDNEGO źródła: PSI API (serwery Google), 2026-09-01.
+# Odświeżenie: python tools/zmierz-psi.py (klucz w env PSI_KLUCZ) i wklej.
 POMIARY = {
-    "hOla Perros":      {"mobile": {"performance": 90, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": None},
-    "Super Irek":       {"mobile": {"performance": 72, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": None},
-    "Czysto-Po":        {"mobile": {"performance": 64, "accessibility": 94,  "best-practices": 100, "seo": 100}, "desktop": None},
-    "Alaska":           {"mobile": None, "desktop": None},
+    "hOla Perros":      {"mobile": {"performance": 92, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": {"performance": 100, "accessibility": 100, "best-practices": 100, "seo": 100}},
+    "Super Irek":       {"mobile": {"performance": 89, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": {"performance": 97, "accessibility": 100, "best-practices": 100, "seo": 100}},
+    "Czysto-Po":        {"mobile": {"performance": 77, "accessibility": 94, "best-practices": 100, "seo": 100}, "desktop": {"performance": 99, "accessibility": 94, "best-practices": 100, "seo": 100}},
+    "Alaska":           {"mobile": {"performance": 67, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": {"performance": 96, "accessibility": 100, "best-practices": 100, "seo": 100}},
     "Life-Centrum":     {"mobile": None, "desktop": None},
-    "Life-Ratownictwo": {"mobile": {"performance": 91, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": None},
-    "WystawFakture.eu": {"mobile": {"performance": 64, "accessibility": 98,  "best-practices": 96,  "seo": 100}, "desktop": None},
-    "9 Dom":            {"mobile": {"performance": 81, "accessibility": 96,  "best-practices": 100, "seo": 100}, "desktop": None},
-    "Karta Dnia":       {"mobile": {"performance": 84, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": None},
+    "Life-Ratownictwo": {"mobile": {"performance": 90, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": {"performance": 99, "accessibility": 100, "best-practices": 100, "seo": 100}},
+    "WystawFakture.eu": {"mobile": {"performance": 88, "accessibility": 98, "best-practices": 96, "seo": 100}, "desktop": {"performance": 99, "accessibility": 98, "best-practices": 96, "seo": 100}},
+    "9 Dom":            {"mobile": {"performance": 73, "accessibility": 96, "best-practices": 100, "seo": 100}, "desktop": {"performance": 94, "accessibility": 96, "best-practices": 100, "seo": 100}},
+    "Karta Dnia":       {"mobile": {"performance": 97, "accessibility": 100, "best-practices": 100, "seo": 100}, "desktop": {"performance": 100, "accessibility": 100, "best-practices": 100, "seo": 100}},
 }
 
 KATEGORIE = [
