@@ -2263,3 +2263,80 @@
 .hero .shimmer {
     animation-iteration-count: 1;
 }
+
+/* ============================================================
+   METAKULE W HERO
+   Ciecz, ktora budzi sie pod kursorem. Efekt robi filtr SVG
+   w znaczniku strony; tutaj tylko ulozenie i wygaszenie.
+   ============================================================ */
+
+.metakule {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* Nad kulami stoi tekst — poswiata ma budowac nastroj, a nie walczyc
+       o uwage z naglowkiem. Stad niskie krycie i dodatkowe rozmycie. */
+    opacity: 0.26;
+    filter: blur(14px) saturate(1.1);
+    pointer-events: none;
+}
+
+/* Kule nie sa trescia — to tlo. Gdy ktos wylaczyl ruch, zostaje sam
+   spokojny uklad; nic sie nie zmienia, bo w spoczynku i tak nic nie zylo. */
+@media (prefers-reduced-motion: reduce) {
+    .metakule {
+        opacity: 0.22;
+    }
+}
+
+/* Na waskim ekranie hero jest niskie, a kompozycja liczona dla 1200x700
+   przycielaby sie do przypadkowego fragmentu. Przesuwamy punkt kadrowania
+   i przygaszamy, zeby tekst zostal pierwszy. */
+@media (max-width: 700px) {
+    .metakule {
+        opacity: 0.2;
+    }
+}
+
+/* Wersja z fotografiami — hero portfolio. Zdjecia moga byc mocniejsze niz
+   kolorowe plamy na stronie glownej, bo naglowek jest tu krotki i stoi
+   wysoko, a cala strona jest o pracach. */
+.portfolio-page-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-page-hero > .container {
+    position: relative;
+    z-index: 1;
+}
+
+.metakule-prace {
+    /* Zrzuty realizacji bywaja jasne (hOla Perros ma biale tlo), a hero jest
+       ciemne — bez przygaszenia i przyciemnienia bryly rozswietlaly cala
+       sekcje i psuly nastroj marki. Zamiast dobierac tylko ciemne zdjecia,
+       tlumimy je filtrem: kadr zostaje rozpoznawalny, ale nie krzyczy. */
+    opacity: 0.7;
+    filter: blur(2px) saturate(1.15) brightness(0.95) contrast(1.05);
+}
+
+/* Dodatkowy welon od gory, zeby bryly nie wchodzily w pasek nawigacji. */
+.portfolio-page-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+        rgba(10, 10, 15, 0.82) 0%,
+        rgba(10, 10, 15, 0.28) 45%,
+        rgba(10, 10, 15, 0.9) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .metakule-prace { opacity: 0.3; }
+}
+
+@media (max-width: 700px) {
+    .metakule-prace { opacity: 0.22; }
+}
