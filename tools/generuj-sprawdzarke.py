@@ -25,6 +25,7 @@ import pomiary
 KATALOG = pathlib.Path(__file__).resolve().parent.parent
 BAZA = "https://webstudio47.pl"
 FB = "https://www.facebook.com/profile.php?id=61578430357755"
+PROFIL_GOOGLE = "https://g.page/r/CVsouTPJEV0VEBM"
 URL = f"{BAZA}/sprawdz-swoja-strone/"
 
 TYTUL = "Sprawdź swoją stronę — darmowy test | WebStudio47"
@@ -126,6 +127,20 @@ PYTANIA = [
 ]
 
 
+def stempel_z_glownej():
+    """Stempel cache ?v= bierzemy ze strony glownej, NIE z zegara.
+    Zegar sprawial, ze kazda przebudowa rozjezdzala strony generowane wzgledem
+    pisanych recznie (sprawdz.py: "rozjechane stemple w roznych plikach").
+    Podbicie stempla to osobna operacja na wszystkich 27 plikach po zmianie
+    CSS/JS, a nie efekt uboczny generatora."""
+    s = (KATALOG / "index.html").read_text(encoding="utf-8")
+    i = s.index("style.css?v=") + len("style.css?v=")
+    j = i
+    while s[j].isdigit():
+        j += 1
+    return int(s[i:j])
+
+
 def wlasny_wynik_html():
     """Linijka z&nbsp;wynikiem tej strony — tylko gdy mamy POTWIERDZONY pomiar."""
     if not WLASNY_WYNIK:
@@ -215,7 +230,7 @@ def schematy(stempel):
             "@id": f"{BAZA}/#organizacja",
             "url": BAZA,
             "telephone": "+48602622840",
-            "sameAs": [FB],
+            "sameAs": [FB, PROFIL_GOOGLE],
         },
     }
     return '\n'.join(
@@ -507,7 +522,7 @@ def buduj(stempel):
 
 
 def main():
-    stempel = int(time.time())
+    stempel = stempel_z_glownej()
     cel = KATALOG / 'sprawdz-swoja-strone'
     cel.mkdir(exist_ok=True)
     tresc = buduj(stempel)

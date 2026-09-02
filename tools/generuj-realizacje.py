@@ -23,6 +23,20 @@ import pomiary
 KATALOG = pathlib.Path(__file__).resolve().parent.parent
 BAZA = "https://webstudio47.pl"
 
+def stempel_z_glownej():
+    """Stempel cache ?v= bierzemy ze strony glownej, NIE z zegara.
+    Zegar sprawial, ze kazda przebudowa rozjezdzala strony generowane wzgledem
+    pisanych recznie (sprawdz.py: "rozjechane stemple w roznych plikach").
+    Podbicie stempla to osobna operacja na wszystkich 27 plikach po zmianie
+    CSS/JS, a nie efekt uboczny generatora."""
+    s = (KATALOG / "index.html").read_text(encoding="utf-8")
+    i = s.index("style.css?v=") + len("style.css?v=")
+    j = i
+    while s[j].isdigit():
+        j += 1
+    return int(s[i:j])
+
+
 def sekcja_dlaczego(r):
     """Sekcja „Dlaczego tak, a nie inaczej" — rozumowanie stojące za projektem.
 
@@ -70,6 +84,7 @@ def bezp(tekst):
     return html.escape(tekst).replace('&amp;nbsp;', '&nbsp;')
 
 FB = "https://www.facebook.com/profile.php?id=61578430357755"
+PROFIL_GOOGLE = "https://g.page/r/CVsouTPJEV0VEBM"
 
 # ——— Treść realizacji ————————————————————————————————————————————————
 
@@ -410,7 +425,7 @@ def naglowek_strony(r, stempel):
             "url": BAZA,
             "telephone": "+48602622840",
             "email": "kontakt@webstudio47.pl",
-            "sameAs": [FB],
+            "sameAs": [FB, PROFIL_GOOGLE],
         },
         "about": {"@type": "Organization", "name": r["klient"], "url": f"https://{r['domena']}"},
         "keywords": ", ".join(r["tagi"]),
@@ -751,7 +766,7 @@ def tresc(r, poprzednia, nastepna):
 
 def main():
     import time
-    stempel = int(time.time())
+    stempel = stempel_z_glownej()
     kat = KATALOG / 'realizacje'
     kat.mkdir(exist_ok=True)
 

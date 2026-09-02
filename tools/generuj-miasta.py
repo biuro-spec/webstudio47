@@ -21,6 +21,20 @@ import time
 KATALOG = pathlib.Path(__file__).resolve().parent.parent
 BAZA = "https://webstudio47.pl"
 
+def stempel_z_glownej():
+    """Stempel cache ?v= bierzemy ze strony glownej, NIE z zegara.
+    Zegar sprawial, ze kazda przebudowa rozjezdzala strony generowane wzgledem
+    pisanych recznie (sprawdz.py: "rozjechane stemple w roznych plikach").
+    Podbicie stempla to osobna operacja na wszystkich 27 plikach po zmianie
+    CSS/JS, a nie efekt uboczny generatora."""
+    s = (KATALOG / "index.html").read_text(encoding="utf-8")
+    i = s.index("style.css?v=") + len("style.css?v=")
+    j = i
+    while s[j].isdigit():
+        j += 1
+    return int(s[i:j])
+
+
 def bezp(tekst):
     """html.escape, ale nie psuje twardych spacji wpisanych w tresci.
 
@@ -32,6 +46,7 @@ def bezp(tekst):
     return html.escape(tekst).replace('&amp;nbsp;', '&nbsp;')
 
 FB = "https://www.facebook.com/profile.php?id=61578430357755"
+PROFIL_GOOGLE = "https://g.page/r/CVsouTPJEV0VEBM"
 
 # ——— Kontrola długości ————————————————————————————————————————————————
 # Google ucina tytuł ok. 60 znaków, opis ok. 155. Generator MUSI to
@@ -197,7 +212,7 @@ def strona(m, stempel):
             "telephone": "+48602622840",
             "email": "kontakt@webstudio47.pl",
             "priceRange": "600-15000 PLN",
-            "sameAs": [FB],
+            "sameAs": [FB, PROFIL_GOOGLE],
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Skłodowskiej 2",
@@ -515,7 +530,7 @@ def strona(m, stempel):
 
 
 def main():
-    stempel = int(time.time())
+    stempel = stempel_z_glownej()
     for m in MIASTA:
         cel = KATALOG / m['slug']
         cel.mkdir(exist_ok=True)
