@@ -24,7 +24,7 @@
          celowo NIE jest preloadowany — konkurowalby o pasmo z LCP. -->
     <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="style.css?v=1788297392">
+    <link rel="stylesheet" href="style.css?v=1788323117">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -183,50 +183,7 @@
     <main>
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg" id="hero-canvas">
-            <!-- Metakule. Sedno efektu to filtr: rozmycie plus brutalny kontrast
-                 na kanale alfa. Rozmyte krawedzie kul zachodza na siebie,
-                 a kontrast wycina z tej sumy jeden ostry ksztalt — dlatego
-                 zlewaja sie w ciecz, zamiast tylko na siebie nachodzic.
-                 Liczy to karta graficzna, nie JavaScript.
-
-                 W SPOCZYNKU NIC SIE NIE RUSZA. Uklad jest zaprojektowany
-                 i statyczny, budzi go dopiero ruch myszy (script.js).
-                 To nie sztuczka na pomiar, tylko decyzja projektowa: strona
-                 jest spokojna, dopoki jej nie dotkniesz. Skutek uboczny jest
-                 taki, ze Speed Index — ktory mierzy, jak dlugo widoczny obszar
-                 sie zmienia — zostaje nietkniety. Dzis kosztowalo nas 16 punktow
-                 odkrycie, ze nieskonczona animacja nad zagieciem go rujnuje.
-
-                 Bez zdjec pod spodem, wbrew pierwowzorowi: nad kulami stoi H1,
-                 lead i dwa przyciski. Fotografie bilyby sie z kontrastem tekstu,
-                 a dostepnosc ma zostac na 100. -->
-            <svg class="metakule" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice"
-                aria-hidden="true" focusable="false">
-                <defs>
-                    <filter id="metakule-klej" x="-15%" y="-15%" width="130%" height="130%">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="26" result="rozmyte" />
-                        <feColorMatrix in="rozmyte" mode="matrix" result="sklejone" values="
-                            1 0 0 0 0
-                            0 1 0 0 0
-                            0 0 1 0 0
-                            0 0 0 24 -10" />
-                    </filter>
-                </defs>
-                <!-- Dwa skupiska przy krawedziach, srodkowy pas ZOSTAJE PUSTY:
-                     tam stoi naglowek i lead. Pierwsza wersja miala bryly
-                     na srodku i tekst przestawal byc czytelny. -->
-                <g filter="url(#metakule-klej)" id="metakule-grupa">
-                    <circle r="128" cx="105" cy="215" fill="#8b5cf6" />
-                    <circle r="96" cx="215" cy="415" fill="#7c3aed" />
-                    <circle r="74" cx="60" cy="520" fill="#06b6d4" />
-                    <circle r="120" cx="1120" cy="270" fill="#06b6d4" />
-                    <circle r="98" cx="1010" cy="470" fill="#8b5cf6" />
-                    <circle r="68" cx="1150" cy="600" fill="#7c3aed" />
-                    <circle r="86" cx="1055" cy="365" fill="#8b5cf6" id="metakula-kursor" />
-                </g>
-            </svg>
-        </div>
+        <div class="hero-bg" id="hero-canvas"></div>
         <div class="container hero-content">
             <h1 class="reveal-hero">
                 <span class="text-white">Tworzę strony, które</span><br>
@@ -876,8 +833,8 @@
     </aside>
 
 
-    <script src="script.js?v=1788297392" defer></script>
-    <script src="/consent.js?v=1788297392" defer></script>
+    <script src="script.js?v=1788323117" defer></script>
+    <script src="/consent.js?v=1788323117" defer></script>
 </body>
 
 </html>

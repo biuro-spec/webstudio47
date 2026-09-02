@@ -19,8 +19,8 @@
          celowo NIE jest preloadowany — konkurowalby o pasmo z LCP. -->
     <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="style.css?v=1788297392">
-    <link rel="stylesheet" href="/arc.css?v=1788297392">
+    <link rel="stylesheet" href="style.css?v=1788323117">
+    <link rel="stylesheet" href="/arc.css?v=1788323117">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -107,47 +107,6 @@
     <main>
     <!-- Hero -->
     <section class="portfolio-page-hero">
-        <!-- Metakule odslaniajace realizacje. Ta sama mechanika co w hero
-             strony glownej (rozmycie + kontrast na alfie), ale TUTAJ kule sa
-             maska na zdjeciach, a nie kolorowa plama: na tej stronie chodzi
-             wylacznie o prace, wiec przeswitujace przez ciecz zrzuty stron sa
-             trescia, nie dekoracja. Naglowek jest krotki i stoi wysoko, wiec
-             obrazy nie wchodza mu pod litery.
-
-             W spoczynku nieruchome — budzi je dopiero ruch myszy. -->
-        <svg class="metakule metakule-prace" viewBox="0 0 1200 460"
-            preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-            <defs>
-                <filter id="prace-klej" x="-15%" y="-15%" width="130%" height="130%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="rozmyte" />
-                    <feColorMatrix in="rozmyte" mode="matrix" result="sklejone" values="
-                        1 0 0 0 0
-                        0 1 0 0 0
-                        0 0 1 0 0
-                        0 0 0 24 -10" />
-                </filter>
-                <mask id="prace-maska">
-                    <g filter="url(#prace-klej)" fill="#fff" id="prace-grupa">
-                        <circle r="118" cx="130" cy="150" />
-                        <circle r="88" cx="255" cy="320" />
-                        <circle r="66" cx="70" cy="360" />
-                        <circle r="112" cx="1090" cy="190" />
-                        <circle r="86" cx="960" cy="350" />
-                        <circle r="70" cx="1160" cy="380" />
-                        <circle r="92" cx="1030" cy="255" id="prace-kursor" />
-                    </g>
-                </mask>
-            </defs>
-            <g mask="url(#prace-maska)">
-                <!-- Dobor zrzutu jest tu decyzja projektowa, nie przypadkiem.
-                     Zmierzona srednia jasnosc naszych zrzutow: hOla Perros 223
-                     (rozswietlal cale hero i zabijal nastroj), 9 Dom 29 (ginal
-                     w czerni), Alaska 108. Alaska trafia w srodek i sama jest
-                     ciemna strona z neonami, czyli w naszej palecie. -->
-                <image href="/alaska-hero.webp" x="0" y="0" width="1200" height="460"
-                    preserveAspectRatio="xMidYMid slice" />
-            </g>
-        </svg>
         <div class="container">
             <h1 class="portfolio-title-shimmer reveal-hero">Moje realizacje</h1>
             <p class="reveal-hero delay-1">Każdy projekt to unikalna historia. Zero szablonów, zero kompromisów — tylko strony, z&nbsp;których jestem dumny.</p>
@@ -462,8 +421,8 @@
 
 
     <script src="script.js"></script>
-    <script src="/consent.js?v=1788297392" defer></script>
-    <script src="/arc.js?v=1788297392" defer></script>
+    <script src="/consent.js?v=1788323117" defer></script>
+    <script src="/arc.js?v=1788323117" defer></script>
 </body>
 
 </html>
