@@ -90,7 +90,12 @@ REALIZACJE = [
             "Drugi problem był praktyczny. Najczęstsze pytania — ile trwa zabieg i&nbsp;ile kosztuje przy takim psie — wracały w&nbsp;każdej rozmowie. Strona musiała odpowiedzieć na nie, zanim ktokolwiek podniesie słuchawkę.",
         ],
         zbudowane=[
-            ("Trzy drogi do umówienia wizyty", "Telefon, WhatsApp z&nbsp;gotową treścią wiadomości i&nbsp;Instagram, obok siebie w&nbsp;jednej sekcji. Świadomie bez kalendarza z&nbsp;automatycznym wyborem godziny: czas zabiegu waha się od&nbsp;1,5 do&nbsp;4 godzin i&nbsp;zależy od psa, więc automat obiecywałby termin, którego nie zawsze da się dotrzymać."),
+            ("Rezerwacja terminu — zbudowana, na razie wyłączona",
+             "Moduł rezerwacji jest gotowy i&nbsp;czeka na jedną decyzję: właścicielka woli "
+             "na tym etapie umawiać wizyty osobiście, bo czas zabiegu waha się od&nbsp;1,5 "
+             "do&nbsp;4 godzin i&nbsp;zależy od psa. Dlatego na stronie widać dziś trzy drogi "
+             "kontaktu — telefon, WhatsApp z&nbsp;gotową treścią wiadomości i&nbsp;Instagram. "
+             "Włączenie rezerwacji to przełącznik, nie nowy projekt."),
             ("Galeria metamorfoz", "Zdjęcia przed i&nbsp;po są tu głównym argumentem sprzedażowym — pokazują poziom wykonania lepiej niż jakikolwiek opis."),
             ("Przejrzysty cennik według rozmiaru psa", "Najczęstsze pytanie w&nbsp;tej branży brzmi „ile to będzie kosztować u&nbsp;mojego psa”. Odpowiedź jest na stronie, nie w&nbsp;rozmowie telefonicznej."),
             ("Sklepik z&nbsp;akcesoriami", "Ręcznie zdobione obroże i&nbsp;złote zawieszki z&nbsp;grawerem — dodatkowy kanał sprzedaży obok samych zabiegów."),
@@ -99,11 +104,11 @@ REALIZACJE = [
         design="Jasna, elegancka typografia z&nbsp;krojem szeryfowym w&nbsp;nagłówkach — celowo bliżej estetyki salonu kosmetycznego niż sklepu zoologicznego. Marka jest premium i&nbsp;wygląd strony miał to potwierdzać, zanim klient przeczyta pierwsze zdanie.",
         dlaczego=[
             "Strona główna to jedna długa strona i kolejność sekcji nie jest przypadkowa: kto prowadzi salon, menu zabiegów, cennik, sklepik, najczęstsze pytania, kontakt. Blog i metamorfozy dostały osobne adresy, poza tą stroną.",
-            "Nie zrobiłem kalendarza z automatycznym wyborem godziny ani formularza rezerwacji. Czas zabiegu jest różny i cennik podaje go przy każdej pozycji: od 1,5 do 4 godzin. Umawianie prowadzą trzy przyciski: telefon, WhatsApp z gotową treścią wiadomości i Instagram. Sklepik też został bez koszyka: trzy pozycje i jeden przycisk „Zapytaj o dostępne wzory”, zamiast udawanego sklepu internetowego.",
+            "Rezerwacja terminu jest zbudowana, ale dziś jej nie widać — i to nie jest przeoczenie. Właścicielka woli na tym etapie umawiać wizyty sama, bo czas zabiegu jest różny; cennik podaje go przy każdej pozycji, od 1,5 do 4 godzin. Umawianie prowadzą więc trzy przyciski: telefon, WhatsApp z gotową treścią wiadomości i Instagram. Wolę zostawić gotowy moduł wyłączony niż zmuszać kogoś do narzędzia, którego jeszcze nie chce. Sklepik też został bez koszyka: trzy pozycje i jeden przycisk „Zapytaj o dostępne wzory”, zamiast udawanego sklepu internetowego.",
             "Kompromis dotyczył wyglądu. Marka jest premium, więc chciałem dużego zdjęcia na wejściu, szeryfowych nagłówków i złota — a to kosztuje czas ładowania. Zdjęcie otwierające ma podane wymiary i jest wczytywane z najwyższym priorytetem. Ceny podałem widełkami, nie jedną kwotą, razem z orientacyjnym czasem zabiegu. Wolałem napisać to wprost na stronie niż tłumaczyć przy odbiorze psa.",
             "PageSpeed Insights zmierzył 92 na telefonie i 100 na komputerze. To pomiar z jednego dnia, nie dowód na sprzedaż.",
         ],
-        tagi=["Groomer", "Cennik z czasem zabiegu", "Sklepik", "Blog", "SEO lokalne"],
+        tagi=["Groomer", "Rezerwacja (wyłączona)", "Cennik z czasem zabiegu", "Sklepik", "Blog", "SEO lokalne"],
     ),
     dict(
         slug="strona-dla-zlotej-raczki",
