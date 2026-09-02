@@ -56,12 +56,20 @@ TYTUL = "Sprawdź swoją stronę — darmowy test | WebStudio47"
 # (Speed Index 1,1 s), komorka na rozgrzanym brzegu 95-96 — publikujemy
 # 95, czyli dolna wartosc z rozgrzanych pomiarow.
 #
-# ZAOBSERWOWANE TRZY RAZY: tuz po wdrozeniu komorka spada do 76-78,
-# bo brzeg CDN nie ma jeszcze arkusza i FCP rosnie z 0,9 s do 3,5 s.
-# Po rozgrzaniu wraca. To nie jest wylacznie artefakt pomiaru — odwiedzajacy
-# z zimnego wezla naprawde tyle czeka. Prawdziwe lekarstwo to skrocenie
-# sciezki krytycznej (wbudowany CSS krytyczny zamiast jednego blokujacego
-# arkusza 99 KB), nie kolejny pomiar. Do zrobienia.
+# ZAOBSERWOWANE WIELOKROTNIE: tuz po wdrozeniu komorka spada do 74-83,
+# a FCP rosnie z 0,9 s do 3,5-3,8 s. Po rozgrzaniu wraca do 95.
+#
+# HIPOTEZA SPRAWDZONA I ODRZUCONA (2026-09-02): zakladalem, ze kosztuje
+# lot po arkusz 101 KB, wiec wbudowalem CSS krytyczny (16,3 KB) w <head>
+# wszystkich stron, a reszte przelaczylem na ladowanie bez blokowania.
+# Pomiar po wdrozeniu: 83 i 74, FCP 2,1 s i 3,8 s — czyli TA SAMA hustawka.
+# Zero poprawy, za to CLS wyskoczyl z 0 na 0,04-0,09, bo po dojechaniu
+# pelnego arkusza uklad sie przesuwal. Zmiana cofnieta.
+#
+# WNIOSEK: waskim gardlem nie jest arkusz, tylko TTFB samego HTML-a na
+# zimnym wezle brzegowym — a tego wbudowanie czegokolwiek nie naprawi,
+# bo HTML i tak musi najpierw dojechac. Nie probowac tego drugi raz
+# bez nowego dowodu, ze przyczyna jest inna.
 WLASNY_WYNIK = {"komorka": 95, "komputer": 97, "data": "1 września 2026"}
 
 OPIS = ("Sprawdź swoją stronę w Google PageSpeed Insights i dowiedz się, co "
