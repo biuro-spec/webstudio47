@@ -264,6 +264,7 @@ def strona(m, stempel):
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{url}">
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0a0a0f">
 
     <!-- Font naglowkow rownolegle z arkuszem: bez tego H1 przemalowuje

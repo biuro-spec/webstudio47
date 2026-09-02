@@ -312,3 +312,15 @@ document.addEventListener('DOMContentLoaded', () => {
     odswiez();
 })();
 
+
+// ===== Rejestracja workera — wylacznie po to, zeby dalo sie zainstalowac =====
+// Chrome proponuje „zainstaluj aplikacje" dopiero, gdy widzi workera z obsluga
+// fetch. Sam worker nic nie cache'uje (patrz komentarz w sw.js), wiec nie ma
+// ryzyka, ze ktos zostanie ze stara wersja strony.
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').catch(function () {
+            // brak workera nie psuje niczego — strona dziala normalnie
+        });
+    });
+}
