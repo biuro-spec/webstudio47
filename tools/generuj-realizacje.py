@@ -23,6 +23,32 @@ import pomiary
 KATALOG = pathlib.Path(__file__).resolve().parent.parent
 BAZA = "https://webstudio47.pl"
 
+def sekcja_dlaczego(r):
+    """Sekcja „Dlaczego tak, a nie inaczej" — rozumowanie stojące za projektem.
+
+    Case studies miały po 250–330 słów i sprowadzały się do wyliczenia funkcji,
+    czyli do tego, co każdy konkurent może napisać o sobie tak samo. Rozumowanie
+    jest jedyną częścią, której nie da się skopiować, bo trzeba było te decyzje
+    faktycznie podjąć. Realizacja bez tego pola po prostu nie dostaje sekcji —
+    lepiej brak sekcji niż sekcja wypełniona ogólnikami.
+    """
+    akapity = r.get("dlaczego") or []
+    if not akapity:
+        return ""
+    tresc = "\n".join(f'                    <p>{a}</p>' for a in akapity)
+    return (
+        "\n        <!-- Dlaczego tak -->\n"
+        '        <section>\n'
+        '            <div class="container">\n'
+        '                <div class="prose reveal">\n'
+        '                    <h2>Dlaczego tak, a&nbsp;nie inaczej</h2>\n'
+        f'{tresc}\n'
+        '                </div>\n'
+        '            </div>\n'
+        '        </section>\n'
+    )
+
+
 def mala_pierwsza(t):
     """Obniza tylko pierwsza litere — .lower() zjadalby skrotowce.
 
@@ -643,7 +669,7 @@ def tresc(r, poprzednia, nastepna):
                 </div>
             </div>
         </section>
-{pomiary.sekcja(r['klient'], r['domena'])}{nawigacja_realizacji}
+{sekcja_dlaczego(r)}{pomiary.sekcja(r['klient'], r['domena'])}{nawigacja_realizacji}
         <!-- CTA -->
         <section>
             <div class="container">

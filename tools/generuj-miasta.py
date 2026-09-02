@@ -73,6 +73,10 @@ MIASTA = [
              "Cały projekt da się poprowadzić zdalnie — tak robię większość zleceń. Ale przy Wodzisławiu spotkanie nie jest problemem i&nbsp;przy niektórych projektach po prostu przyspiesza sprawę, zwłaszcza gdy trzeba obejrzeć zakład albo zebrać zdjęcia."),
             ("Czy strona z&nbsp;Raciborza będzie widoczna w&nbsp;Wodzisławiu?",
              "To zależy nie od tego, gdzie mieszka wykonawca, tylko gdzie działa Twoja firma. Google ustala widoczność lokalną na podstawie Profilu Firmy, adresu i&nbsp;obsługiwanego obszaru — a&nbsp;nie na podstawie tego, kto zrobił stronę."),
+            ("Mam klientów i&nbsp;w&nbsp;Wodzisławiu, i&nbsp;w&nbsp;Raciborzu. Pod które miasto pozycjonować?",
+             "Pod oba, ale nie tą samą treścią. Jedna strona może celować w&nbsp;dwa sąsiednie miasta, jeśli ma osobną podstronę dla każdego i&nbsp;realnie różną treść. Inaczej Google potraktuje je jak duplikat i&nbsp;sam wybierze jedną — zwykle nie tę, na której Ci zależy."),
+            ("Wolę rozmawiać twarzą w&nbsp;twarz. Dojedziesz?",
+             "Dojadę, to niecałe pół godziny. Zwykle wystarczy jedno spotkanie na starcie, żeby zobaczyć firmę i&nbsp;zebrać zdjęcia, a&nbsp;resztę prowadzę zdalnie. Dojazdu nie doliczam do wyceny."),
         ],
     ),
     dict(
@@ -98,6 +102,10 @@ MIASTA = [
              "Warto, jeśli masz wyraźną specjalizację albo cierpliwość. Nie warto, jeśli liczysz, że sama strona załatwi sprawę w&nbsp;kwartał. Na pierwszej rozmowie mówię, w&nbsp;której z&nbsp;tych sytuacji jesteś — również wtedy, gdy odpowiedź brzmi „nie zaczynajmy”."),
             ("Robisz strony tylko dla firm z&nbsp;Raciborza?",
              "Nie. Cały proces prowadzę zdalnie, więc lokalizacja nie jest przeszkodą. Znajomość rynku ma znaczenie przy pozycjonowaniu lokalnym, ale Rybnik to obszar, który znam — jest po sąsiedzku."),
+            ("Konkurencja w&nbsp;Rybniku ma już dobre strony. Co mi da nowa?",
+             "Sama nowa strona nie przeskoczy kogoś, kto siedzi wysoko od lat. Daje natomiast dwie rzeczy: przestajesz odpadać w&nbsp;momencie, w&nbsp;którym klient porównuje Cię z&nbsp;konkurencją, i&nbsp;masz fundament, na którym pozycjonowanie ma się na czym oprzeć. Bez tego drugiego pierwsze i&nbsp;tak nie ruszy."),
+            ("Czy w&nbsp;Rybniku wystarczy sama strona, czy trzeba dokładać reklamy?",
+             "Przy tak nasyconym rynku reklama bywa jedynym sposobem, żeby pojawić się szybko — ale to koszt stały, który znika razem z&nbsp;budżetem. Pozycjonowanie działa odwrotnie: wolniej i&nbsp;trwalej. Zwykle sensowne jest jedno i&nbsp;drugie, tylko w&nbsp;innych momentach."),
         ],
     ),
     dict(
@@ -123,6 +131,10 @@ MIASTA = [
              "Tak. Cały projekt prowadzę zdalnie, a&nbsp;przy pozycjonowaniu lokalnym liczy się adres i&nbsp;obszar działania Twojej firmy, nie mój. Kędzierzyn to zresztą pół godziny drogi."),
             ("Czym różni się strona B2B od zwykłej firmowej?",
              "Innym punktem ciężkości. Zamiast budowania emocji — sprawdzalne fakty: zakres, uprawnienia, referencje, dane rejestrowe. Kupujący w&nbsp;firmie musi móc uzasadnić wybór przełożonemu, a&nbsp;nie tylko sam się przekonać."),
+            ("Nie sprzedaję konsumentom, tylko firmom. Co powinno być na takiej stronie?",
+             "Co innego niż na stronie dla klienta z&nbsp;ulicy. Liczą się konkretne dane: zakres i&nbsp;skala usług, zasoby albo park maszynowy, uprawnienia i&nbsp;certyfikaty, referencje wymienione z&nbsp;nazwy oraz szybka ścieżka do zapytania ofertowego. Ładne zdjęcia są tu dodatkiem, nie argumentem."),
+            ("Klientów mam z&nbsp;polecenia. Czy strona jest mi w&nbsp;ogóle potrzebna?",
+             "Polecenie i&nbsp;tak kończy się sprawdzeniem w&nbsp;Google — ktoś wpisuje nazwę firmy, zanim zadzwoni. Strona nie musi wtedy zdobywać klienta, tylko potwierdzić, że firma istnieje naprawdę i&nbsp;wygląda poważnie. To inna rola i&nbsp;zwykle tańsza strona."),
         ],
     ),
     dict(
@@ -148,6 +160,10 @@ MIASTA = [
              "Ma, i&nbsp;to większy niż w&nbsp;dużym — właśnie dlatego, że mało kto ją tu ma. Przy niskiej konkurencji koszt wejścia na pierwsze miejsce jest ułamkiem tego, co trzeba wydać w&nbsp;Rybniku."),
             ("Ile trwa wyjście na pierwszą stronę w&nbsp;Google?",
              "W&nbsp;Głubczycach zwykle szybciej niż gdzie indziej w&nbsp;regionie — bywa, że dwa, trzy miesiące. Nie obiecuję konkretnej pozycji, bo decyduje o&nbsp;niej Google, ale realnie startujesz tu z&nbsp;lepszej sytuacji niż w&nbsp;większym mieście."),
+            ("Głubczyce są małe. Czy warto celować też w&nbsp;okoliczne miejscowości?",
+             "Zwykle tak — przy mniejszym mieście sam rynek bywa za wąski, żeby utrzymać firmę z&nbsp;samego Google. Wtedy ma sens osobna podstrona dla każdego obsługiwanego kierunku, ale tylko wtedy, gdy naprawdę tam jeździsz. Strona obiecująca dojazd, którego nie ma, kosztuje więcej, niż daje."),
+            ("Ile kosztuje najtańsza sensowna strona?",
+             "Najtańszy sensowny wariant to landing page: jedna strona z&nbsp;jednym celem, od&nbsp;1&nbsp;500&nbsp;zł netto. Pełna strona firmowa zaczyna się od&nbsp;2&nbsp;000&nbsp;zł. Widełki są jawne, bez formularza — stoją w&nbsp;cenniku."),
         ],
     ),
 ]
