@@ -262,12 +262,12 @@ def strona(m, stempel):
     <meta property="og:url" content="{url}">
     <meta property="og:title" content="Strony internetowe {bezp(m["miasto"])} | WebStudio47">
     <meta property="og:description" content="{bezp(m["opisMeta"])}">
-    <meta property="og:image" content="{BAZA}/og-image.png">
+    <meta property="og:image" content="{BAZA}/og-image.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Strony internetowe {bezp(m["miasto"])} | WebStudio47">
     <meta name="twitter:description" content="{bezp(m["opisMeta"])}">
-    <meta name="twitter:image" content="{BAZA}/og-image.png">
+    <meta name="twitter:image" content="{BAZA}/og-image.jpg">
 
     <!-- Zgoda na cookies (Google Consent Mode v2) — MUSI byc przed gtag.js -->
     <script>

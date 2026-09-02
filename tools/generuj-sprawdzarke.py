@@ -242,12 +242,12 @@ def buduj(stempel):
     <meta property="og:url" content="{URL}">
     <meta property="og:title" content="{TYTUL}">
     <meta property="og:description" content="{OPIS}">
-    <meta property="og:image" content="{BAZA}/og-image.png">
+    <meta property="og:image" content="{BAZA}/og-image.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{TYTUL}">
     <meta name="twitter:description" content="{OPIS}">
-    <meta name="twitter:image" content="{BAZA}/og-image.png">
+    <meta name="twitter:image" content="{BAZA}/og-image.jpg">
 
     <!-- Zgoda na cookies (Google Consent Mode v2) — MUSI byc przed gtag.js -->
     <script>
