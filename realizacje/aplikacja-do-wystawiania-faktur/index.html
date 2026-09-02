@@ -15,7 +15,7 @@
          sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
     <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v=1788329909">
+    <link rel="stylesheet" href="/style.css?v=1788330424">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -251,6 +251,19 @@
             </div>
         </section>
 
+        <!-- Dlaczego tak -->
+        <section>
+            <div class="container">
+                <div class="prose reveal">
+                    <h2>Dlaczego tak, a&nbsp;nie inaczej</h2>
+                    <p>Założyłem, że nikt nie szuka „generatora faktur” ot tak — trafia tu z wyszukiwarki, w środku roboty, z konkretnym pytaniem. Dlatego strona główna jest przedsionkiem, a samo narzędzie stoi pod osobnym adresem. Blog i FAQ odpowiadają na pytania, od których zaczyna się szukanie: faktura korygująca, faktura bez NIP, split payment, KSeF.</p>
+                    <p>Nie ma cennika, nie ma planów, nie ma ekranu rejestracji. Dane faktury zostają w przeglądarce i nie idą na serwer. To decyzja z ceną: bez kont nie powstaje baza użytkowników, nie ma listy adresów, nie ma odzyskania dokumentu po wyczyszczeniu przeglądarki.</p>
+                    <p>Ciężar aplikacji schowałem za przyciskiem. Po drugiej stronie jest podgląd dokumentu, baza kontrahentów, eksport do KSeF, tryb ciemny i skróty klawiszowe.</p>
+                    <p>Pomiar PageSpeed z dnia badania: 88 na komórce, 99 na komputerze. To nie jest dowód na sprzedaż — to informacja o tym, ile trwa dojście do formularza. Osiemdziesiąt osiem, nie sto — narzędzie, które liczy i składa dokument w przeglądarce, ma swój koszt.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Pomiary Lighthouse -->
         <section>
             <div class="container">
@@ -390,8 +403,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788329909" defer></script>
-    <script src="/consent.js?v=1788329909" defer></script>
+    <script src="/script.js?v=1788330424" defer></script>
+    <script src="/consent.js?v=1788330424" defer></script>
 </body>
 
 </html>

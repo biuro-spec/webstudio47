@@ -82,22 +82,28 @@ REALIZACJE = [
         domena="holaperros.pl",
         miniatura="holaperros-thumb.webp",
         tytul="Strona dla salonu groomerskiego — hOla Perros",
-        opisMeta="Strona dla salonu pielęgnacji psów w Raciborzu: rezerwacja terminu, cennik usług, galeria metamorfoz i sklepik. Zobacz, jak powstała.",
+        opisMeta="Strona dla salonu pielęgnacji psów w Raciborzu: cennik usług z czasem zabiegu, galeria metamorfoz, sklepik i szybki kontakt. Zobacz, jak powstała.",
         h1="Strona dla salonu groomerskiego",
-        lead="Salon pielęgnacji i&nbsp;strzyżenia psów w&nbsp;Raciborzu. Marka premium, która musiała wyglądać premium także w&nbsp;internecie — i&nbsp;jednocześnie odbierać rezerwacje bez telefonu.",
+        lead="Salon pielęgnacji i&nbsp;strzyżenia psów w&nbsp;Raciborzu. Marka premium, która musiała wyglądać premium także w&nbsp;internecie — i&nbsp;skrócić drogę od obejrzenia cennika do umówienia wizyty.",
         wyzwanie=[
             "Groomer sprzedaje coś, czego nie widać na cenniku: <strong>spokój psa podczas wizyty</strong>. Suchy wykaz usług i&nbsp;cen tego nie odda — trzeba było pokazać atmosferę salonu i&nbsp;efekt pracy.",
-            "Drugi problem był praktyczny. Umawianie przez telefon w&nbsp;trakcie strzyżenia oznacza przerwanie pracy albo nieodebrane połączenie. Strona musiała przejąć część tego ruchu.",
+            "Drugi problem był praktyczny. Najczęstsze pytania — ile trwa zabieg i&nbsp;ile kosztuje przy takim psie — wracały w&nbsp;każdej rozmowie. Strona musiała odpowiedzieć na nie, zanim ktokolwiek podniesie słuchawkę.",
         ],
         zbudowane=[
-            ("Rezerwacja terminu online", "Klient wybiera usługę i&nbsp;termin bez dzwonienia. Zgłoszenie trafia na skrzynkę salonu, a&nbsp;właścicielka nie przerywa pracy z&nbsp;psem."),
+            ("Trzy drogi do umówienia wizyty", "Telefon, WhatsApp z&nbsp;gotową treścią wiadomości i&nbsp;Instagram, obok siebie w&nbsp;jednej sekcji. Świadomie bez kalendarza z&nbsp;automatycznym wyborem godziny: czas zabiegu waha się od&nbsp;1,5 do&nbsp;4 godzin i&nbsp;zależy od psa, więc automat obiecywałby termin, którego nie zawsze da się dotrzymać."),
             ("Galeria metamorfoz", "Zdjęcia przed i&nbsp;po są tu głównym argumentem sprzedażowym — pokazują poziom wykonania lepiej niż jakikolwiek opis."),
             ("Przejrzysty cennik według rozmiaru psa", "Najczęstsze pytanie w&nbsp;tej branży brzmi „ile to będzie kosztować u&nbsp;mojego psa”. Odpowiedź jest na stronie, nie w&nbsp;rozmowie telefonicznej."),
-            ("Sklepik z&nbsp;kosmetykami", "Dodatkowy kanał sprzedaży dla produktów używanych w&nbsp;salonie."),
+            ("Sklepik z&nbsp;akcesoriami", "Ręcznie zdobione obroże i&nbsp;złote zawieszki z&nbsp;grawerem — dodatkowy kanał sprzedaży obok samych zabiegów."),
             ("Blog poradnikowy", "Treści o&nbsp;pielęgnacji, które ściągają ruch z&nbsp;wyszukiwarki na długo po publikacji."),
         ],
         design="Jasna, elegancka typografia z&nbsp;krojem szeryfowym w&nbsp;nagłówkach — celowo bliżej estetyki salonu kosmetycznego niż sklepu zoologicznego. Marka jest premium i&nbsp;wygląd strony miał to potwierdzać, zanim klient przeczyta pierwsze zdanie.",
-        tagi=["Groomer", "Rezerwacje online", "Sklep", "Blog", "SEO lokalne"],
+        dlaczego=[
+            "Strona główna to jedna długa strona i kolejność sekcji nie jest przypadkowa: kto prowadzi salon, menu zabiegów, cennik, sklepik, najczęstsze pytania, kontakt. Blog i metamorfozy dostały osobne adresy, poza tą stroną.",
+            "Nie zrobiłem kalendarza z automatycznym wyborem godziny ani formularza rezerwacji. Czas zabiegu jest różny i cennik podaje go przy każdej pozycji: od 1,5 do 4 godzin. Umawianie prowadzą trzy przyciski: telefon, WhatsApp z gotową treścią wiadomości i Instagram. Sklepik też został bez koszyka: trzy pozycje i jeden przycisk „Zapytaj o dostępne wzory”, zamiast udawanego sklepu internetowego.",
+            "Kompromis dotyczył wyglądu. Marka jest premium, więc chciałem dużego zdjęcia na wejściu, szeryfowych nagłówków i złota — a to kosztuje czas ładowania. Zdjęcie otwierające ma podane wymiary i jest wczytywane z najwyższym priorytetem. Ceny podałem widełkami, nie jedną kwotą, razem z orientacyjnym czasem zabiegu. Wolałem napisać to wprost na stronie niż tłumaczyć przy odbiorze psa.",
+            "PageSpeed Insights zmierzył 92 na telefonie i 100 na komputerze. To pomiar z jednego dnia, nie dowód na sprzedaż.",
+        ],
+        tagi=["Groomer", "Cennik z czasem zabiegu", "Sklepik", "Blog", "SEO lokalne"],
     ),
     dict(
         slug="strona-dla-zlotej-raczki",
@@ -122,6 +128,12 @@ REALIZACJE = [
             ("Opinie sąsiadów", "Społeczny dowód słuszności w&nbsp;formie, która pasuje do usługi lokalnej: rekomendacja od kogoś z&nbsp;okolicy."),
         ],
         design="Zieleń i&nbsp;biel, dużo powietrza, duże przyciski. Strona ma być czytelna dla osoby po pięćdziesiątce przeglądającej ją na telefonie — bo to jest realny klient tej usługi.",
+        dlaczego=[
+            "Strona główna nie jest katalogiem usług, tylko odpowiedzią na pytanie „czy wpuszczę tę osobę do mieszkania”. Konkret przeniosłem na osobne adresy: montaż mebli, drobna hydraulika, lampy i gniazdka, lustra i telewizory, poprawki po fachowcach. Każdy ma własny nagłówek i własne pytania na dole.",
+            "Odradziłem formułę „wycena indywidualna”. Cennik z widełkami stoi na osobnej podstronie, razem z minimalną wartością zlecenia i zasadą dojazdu poza miasto. Ostateczna wycena i tak jest przed startem, i tak jest to na stronie napisane.",
+            "Nie zrobiłem bloga ani rezerwacji online, choć u innych klientów robię jedno i drugie. Formularz nie trafia do żadnego panelu ani skrzynki — składa wiadomość na WhatsAppa. Nie ma czego pilnować i nie ma się gdzie logować. Nie budowałem też osobnych stron pod każdą wieś w powiecie; jest jedna lista miejscowości.",
+            "PageSpeed pokazał 89 na komórce i 97 na komputerze. To pomiar z jednego dnia, nie dowód na sprzedaż, i ważniejszy jest tu ten gorszy wynik. Strona ma się pokazać, zanim ktoś wróci do wyników.",
+        ],
         tagi=["Usługi lokalne", "Konwersja", "Ilustracja", "SEO lokalne"],
     ),
     dict(
@@ -146,6 +158,12 @@ REALIZACJE = [
             ("Szybkie ładowanie", "Bez zbędnych bibliotek. Ktoś w&nbsp;sytuacji kryzysowej nie czeka na animacje."),
         ],
         design="Czysta struktura, wyraźna hierarchia, duży kontrast. Estetyka jest tu drugorzędna — pierwszorzędne jest to, żeby w&nbsp;piętnaście sekund dało się znaleźć właściwą usługę i&nbsp;numer telefonu.",
+        dlaczego=[
+            "Cała strona to jeden dokument, a menu to kotwice do sekcji. Nie ma podstron, bo nie ma po co ich klikać. Klient tej firmy przychodzi z jedną sprawą — zalane mieszkanie, remont do posprzątania, pluskwy — i chce dojść do numeru telefonu bez przeładowania strony. Numer stoi w nagłówku od pierwszej sekundy.",
+            "Ramą całej strony jest jedna osoba. Na pierwszym ekranie stoi „Jedna osoba — Ty znasz mnie z imienia”, a w sekcji „Dlaczego warto zadzwonić” — „Jedna osoba — zawsze ta sama”. To była decyzja, nie skromność. Firma jednoosobowa może udawać dużą i wtedy przegrywa na każdym punkcie, którego nie ma. Może też zrobić z tego argument: dzwonisz do konkretnego człowieka, ten sam człowiek przyjeżdża i sprząta.",
+            "W menu jest „Cennik”, a na stronie nie ma żadnych kwot ani widełek. Odradziłem je: przy sprzątaniu po zbieractwie czy po zalaniu wycena zależy od tego, co zastanie się na miejscu, a kwota z internetu, której potem nie da się dotrzymać, kosztuje więcej niż jej brak. Zamiast cen strona powtarza zasadę — „Wycenę podaję dopiero po oględzinach miejsca pracy”. Nie ma też opinii klientów ani galerii „przed i po”; przy części tych zleceń nie wypada o nie prosić.",
+            "PageSpeed z dnia pomiaru: 99 na komputerze, 77 na komórce. To nie jest dowód na sprzedaż, tylko informacja, ile strona każe czekać. Przy usługach takich jak sprzątanie po zalaniu czy po zgonie ma to znaczenie — to sytuacje, których nikt nie planował. 77 nie jest wynikiem idealnym i tego nie ukrywam.",
+        ],
         tagi=["Usługi", "Marketing", "Konwersja", "SEO"],
     ),
     dict(
@@ -171,6 +189,12 @@ REALIZACJE = [
             ("Optymalizacja wydajności", "WebP, leniwe ładowanie obrazów i&nbsp;dzielenie kodu. Strona z&nbsp;animacjami nie musi być ciężka."),
         ],
         design="Chłodna paleta błękitów, mocne zdjęcia urządzeń, duże liczby przy stażu firmy. Wszystko podporządkowane jednemu przekazowi: to nie jest firma założona w&nbsp;zeszłym roku.",
+        dlaczego=[
+            "Strona główna jest jedna i mieści wszystko w sekcjach: firma, oferta, salon, pytania, kontakt. Nie rozbiłem sześciu usług na sześć podstron, bo klient tej firmy nie przegląda menu — szuka w upał albo przy awarii lady chłodniczej. Osobne adresy dostały tylko realizacje i blog.",
+            "Dwa numery telefonu są rozdzielone celowo: serwis i właściciel osobno, salon sprzedaży osobno. Kto dzwoni z awarią, nie trafia do sprzedawcy klimatyzatorów. Przy adresie salonu dopisałem punkt orientacyjny — „1 Maja 4, przy SP Orlen”.",
+            "Cennika nie ma i to była moja rekomendacja. Koszt montażu zależy od typu urządzenia, liczby jednostek i warunków technicznych — kwota podana z góry byłaby albo zawyżona na zapas, albo do odwołania przy pierwszej wizycie. Zamiast niej w pytaniach stoi wprost, od czego ta cena zależy, i że wycena u klienta jest bezpłatna. Wolę stronę, która czegoś nie obiecuje, niż taką, która się z obietnicy wycofuje.",
+            "Pomiar PageSpeed z dnia sprawdzenia: 96 na komputerze, 67 na komórce. Ten niższy wynik to cena za animowane wejście i duże zdjęcia urządzeń — zapłacona świadomie. Gdyby to była strona pogotowia, wyciąłbym animację bez wahania. Numer telefonu siedzi w górnym pasku, nie tylko na dole w kontakcie.",
+        ],
         tagi=["Klimatyzacja", "Animacje", "Panel klienta", "Blog"],
     ),
     dict(
@@ -201,6 +225,12 @@ REALIZACJE = [
             ("Dane strukturalne placówki medycznej", "Godziny, adres i&nbsp;zakres usług podane w&nbsp;formie, którą Google rozumie i&nbsp;pokazuje w&nbsp;wynikach."),
         ],
         design="Biel, błękit i&nbsp;dużo przestrzeni. Świadomie bez efektów — w&nbsp;tej branży „wow” jest podejrzane, a&nbsp;spokój wiarygodny.",
+        dlaczego=[
+            "Zaznaczam od razu: pod tym adresem stoi jeszcze poprzednia strona centrum, moja wersja nie jest wdrożona. Piszę więc o decyzjach, nie o efekcie na żywo. Pierwsza dotyczyła układu. Dotychczasowa strona rozkłada się na specjalizacje — neurologia, logopedia, psychologia, dietetyka, każda osobno w menu. Pacjent nie myśli nazwami działów, tylko sprawą, z którą przychodzi. Ułożyłem stronę wokół tej sprawy, a nazwy specjalizacji zostawiłem jako drugą warstwę.",
+            "Punkt pobrań dostał osobne miejsce, bo ma osobne godziny: działa krócej niż reszta centrum. Ktoś, kto zobaczy godziny placówki i przyjedzie po południu, przyjedzie na nic. Dołożyłem do tego zasady przygotowania do badania.",
+            "Nie zrobiłem rejestracji online i to była decyzja, nie zaniechanie. Na stronie stoją dwa numery telefonu i nie ma żadnego systemu rezerwacji terminów. Formularz rezerwacji, którego nikt nie obsługuje w trakcie dyżuru, jest gorszy niż widoczny numer, bo obiecuje termin, którego nie potwierdza. Odpuściłem też animacje i efekty. W medycynie strona ma uspokajać, a nie robić wrażenie.",
+            "Nie mam wyniku PageSpeed do pokazania i nie podstawię pod niego cudzej pracy. Pomiar zrobię, kiedy moja wersja stanie pod adresem. Szybkość znaczy tu zresztą co innego niż w sklepie: nikt nie porzuca koszyka, ale ktoś sprawdza godziny punktu pobrań na telefonie, w biegu.",
+        ],
         tagi=["Medycyna", "UX", "Dostępność", "SEO"],
     ),
     dict(
@@ -226,6 +256,12 @@ REALIZACJE = [
             ("Galeria z&nbsp;prawdziwych zabezpieczeń", "Zdjęcia z&nbsp;realnych wydarzeń zamiast zdjęć stockowych karetek."),
         ],
         design="Czerwień i&nbsp;granat, mocne zdjęcia, wyraźna hierarchia. Powaga bez straszenia — to usługa, przy której estetyka ma schodzić na drugi plan wobec czytelności.",
+        dlaczego=[
+            "Na pierwszym ekranie stoją dwa numery telefonu i przycisk „Zadzwoń teraz\", a numer jedzie z użytkownikiem w pływającym guziku przez całą długość strony. Formularza kontaktowego na stronie głównej nie ma. Osoba szukająca transportu dla leżącego krewnego nie czeka na odpowiedź mailem. Drugi przycisk, „Wyceń transport\", obsługuje tych, którzy planują z wyprzedzeniem.",
+            "Na stronie głównej nie ma mapy, nie ma FAQ ani pełnego cennika. Jest za to sekcja „Zgodność z prawem\": wpis do rejestru podmiotów leczniczych, normy ambulansów, uprawnienia ratowników. Leży poniżej usług — rodzinie pacjenta nie wchodzi w drogę, a organizator imprezy masowej znajduje tam dane, których potrzebuje do własnej dokumentacji, bez dzwonienia.",
+            "Firma ma dziś transport, zabezpieczenia imprez, szkolenia, punkt pobrań i opiekę pielęgniarską. W sekcji usług transport stoi pierwszy, szkolenia niżej. Blog zbiera artykuły w kategoriach Transport medyczny, Prawo, Zabezpieczenia i Pierwsza pomoc — każdy tytuł to jedno pytanie wpisywane w wyszukiwarkę.",
+            "Wynik PageSpeed — 90 na komórce, 99 na komputerze — to pomiar z jednego dnia i nie mówi nic o sprzedaży. Szybkość nie jest tu punktem w rankingu, tylko warunkiem, żeby numer zdążył się w ogóle pokazać.",
+        ],
         tagi=["Ratownictwo", "Architektura informacji", "SEO"],
     ),
     dict(
@@ -251,6 +287,12 @@ REALIZACJE = [
             ("Panel klienta dla wracających", "Zapisani kontrahenci i&nbsp;historia dokumentów dla tych, którzy fakturują regularnie."),
         ],
         design="Interfejs narzędziowy, nie marketingowy. Formularz zajmuje środek ekranu, wszystko inne schodzi z&nbsp;drogi. Przy aplikacji użytkowej najlepszy design to ten, którego się nie zauważa.",
+        dlaczego=[
+            "Założyłem, że nikt nie szuka „generatora faktur” ot tak — trafia tu z wyszukiwarki, w środku roboty, z konkretnym pytaniem. Dlatego strona główna jest przedsionkiem, a samo narzędzie stoi pod osobnym adresem. Blog i FAQ odpowiadają na pytania, od których zaczyna się szukanie: faktura korygująca, faktura bez NIP, split payment, KSeF.",
+            "Nie ma cennika, nie ma planów, nie ma ekranu rejestracji. Dane faktury zostają w przeglądarce i nie idą na serwer. To decyzja z ceną: bez kont nie powstaje baza użytkowników, nie ma listy adresów, nie ma odzyskania dokumentu po wyczyszczeniu przeglądarki.",
+            "Ciężar aplikacji schowałem za przyciskiem. Po drugiej stronie jest podgląd dokumentu, baza kontrahentów, eksport do KSeF, tryb ciemny i skróty klawiszowe.",
+            "Pomiar PageSpeed z dnia badania: 88 na komórce, 99 na komputerze. To nie jest dowód na sprzedaż — to informacja o tym, ile trwa dojście do formularza. Osiemdziesiąt osiem, nie sto — narzędzie, które liczy i składa dokument w przeglądarce, ma swój koszt.",
+        ],
         tagi=["SaaS", "Aplikacja webowa", "Panel klienta", "PDF"],
     ),
     dict(
@@ -275,6 +317,12 @@ REALIZACJE = [
             ("Rozbudowana część treściowa", "Horoskop roczny i&nbsp;materiały wyjaśniające — to one przyprowadzają ruch z&nbsp;wyszukiwarki do narzędzi."),
         ],
         design="Ciemna, nocna paleta ze złotem i&nbsp;szeryfowym krojem w&nbsp;nagłówkach. Temat jest poważny i&nbsp;wyraźnie zaznaczony w&nbsp;komunikacie: „nie przepowiadamy przyszłości”.",
+        dlaczego=[
+            "W menu 9 Dom nie ma „o nas” ani „oferty”. Każda z ośmiu pozycji — Ścieżka, Mapa Życia, Dla par, Rodzina, Mapy, Kosmogram, Numerologia, Horoskop 2026 — jest narzędziem, które coś liczy. Strona główna też niczego nie sprzedaje: układa sześć pytań, od „Kim jestem?” do „Co teraz?”. Tak zbudowałem tę nawigację, bo tutaj nikt nie wchodzi po nazwę techniki. Wchodzi z pytaniem i nie zna słownictwa, którym się na nie odpowiada.",
+            "Nie postawiłem bramki przed wynikiem. Kosmogram liczy się bez konta i bez płatności; panel jest dla osób, które wracają, a nie przepustką. Zrezygnowałem też z horoskopów dla dwunastu znaków, choć to najprostsza droga po ruch z wyszukiwarki. Serwis liczy pozycje z zodiaku syderycznego i taka rubryka byłaby doklejona wbrew reszcie — w pytaniach i odpowiedziach przy horoskopie rocznym stoi to wprost.",
+            "Pomiar szybkości z dnia sprawdzenia: 73 na komórce, 94 na komputerze. Aplikacja z ośmioma kalkulatorami, kalendarzami dat i wyszukiwaniem miejsc waży więcej niż strona z ofertą. Wygrała dokładność: pod kalkulatorem stoi sekcja „jak to liczymy”, bo w narzędziu liczącym rozbieżność z innym serwisem podważa cały wynik.",
+            "Dla tej branży ten wynik znaczy co innego niż dla usługi lokalnej. Do warsztatu czy salonu ktoś wchodzi po numer telefonu i odchodzi po chwili — tam pierwsze sekundy są całym kontaktem. Tutaj użytkownik przyszedł wypełnić formularz z datą i miejscem urodzenia. Krytyczny jest moment po kliknięciu „oblicz”, a nie pierwsza sekunda. Punkty na komórce zostają jako dług do spłacenia.",
+        ],
         tagi=["Aplikacja", "Kalkulatory", "Panel", "Treści"],
     ),
     dict(
@@ -299,6 +347,12 @@ REALIZACJE = [
             ("Wyraźne postawienie sprawy", "„Tarot, który nie wróży — pomaga myśleć”. Deklaracja, która ustawia oczekiwania i&nbsp;odróżnia serwis od konkurencji."),
         ],
         design="Głęboka zieleń butelkowa, złote akcenty, ilustracje kart jako główny element wizualny. Estetyka rytuału, nie jarmarku.",
+        dlaczego=[
+            "W mapie strony jest ponad sto adresów: 78 stron pojedynczych kart, 12 znaków zodiaku, dwanaście tekstów w dziale Wiedza, do tego strona główna, rozkład i karta dnia. Każdy z nich może być pierwszym, jaki ktoś zobaczy, dlatego strona karty kończy się przejściem do poprzedniej i następnej oraz odnośnikiem do rozkładu. Treść nie jest dodatkiem do narzędzia, tylko drogą do niego.",
+            "Nie ma kont, newslettera ani reklam — na rozkładzie stoi wprost „nie wymaga konta”. Dziennik odczytów zapisuje się wyłącznie w przeglądarce i strona mówi to wprost, razem z ceną tej decyzji: nie trafia na serwer, znika po wyczyszczeniu danych przeglądarki i nie zobaczysz go na innym urządzeniu. Wybrałem to świadomie: wejście bez bramki zamiast zbierania adresów. Zamiast konta został link — adres zapisanego rozkładu odtwarza dokładnie ten sam układ.",
+            "Jedno tarcie zostawiłem celowo. Własne pytanie jest osobnym krokiem, przed wyborem układu i przed odsłonięciem kart — dodatkowy przystanek tuż przed efektem. Serwis stoi na zdaniu, które sam wypisuje na stronie rozkładu: „Pytanie jest tu najważniejsze — ważniejsze niż to, które karty wypadną”. Odradziłem też obiecywanie przyszłości; nagłówek strony głównej brzmi „Tarot, który nie wróży. Pomaga myśleć.”.",
+            "Pomiar PageSpeed: 97 na komórce, 100 na komputerze — jeden pomiar z jednego dnia, nie dowód na cokolwiek poza szybkością. W serwisie treściowym liczy się on nie tylko na stronie głównej, bo wejściem może być każda z podstron.",
+        ],
         tagi=["Serwis treściowy", "Narzędzie", "SEO", "Bez rejestracji"],
     ),
 ]
