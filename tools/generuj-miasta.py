@@ -66,7 +66,7 @@ MIASTA = [
         specyfika=[
             ("Jeden obszar, dwa miasta", "Ustawiam obsługiwany obszar w&nbsp;Profilu Firmy tak, żeby obejmował Wodzisław i&nbsp;Racibórz. Wiele firm traci tu połowę zasięgu, zostawiając domyślny promień wokół adresu."),
             ("Spotkanie na żywo w&nbsp;cenie", "Przy projektach ze zdjęciami i&nbsp;materiałami do zebrania osobiste spotkanie oszczędza tygodnie wymiany maili. Z&nbsp;Raciborza to rzut beretem."),
-            ("Konkurencja średnia", "Mniejsza niż w&nbsp;Rybniku, większa niż w&nbsp;Głubczycach. Realny termin na pierwsze efekty pozycjonowania: cztery do sześciu miesięcy."),
+            ("Konkurencja średnia", "Mniejsza niż w&nbsp;Rybniku, większa niż w&nbsp;Głubczycach. Realny termin na pierwsze efekty pozycjonowania: od czterech do sześciu miesięcy."),
         ],
         pytania=[
             ("Czy pracujesz zdalnie, czy trzeba się spotkać?",
@@ -97,7 +97,7 @@ MIASTA = [
             ("Czy warto w&nbsp;ogóle walczyć o&nbsp;Rybnik?",
              "Warto, jeśli masz wyraźną specjalizację albo cierpliwość. Nie warto, jeśli liczysz, że sama strona załatwi sprawę w&nbsp;kwartał. Na pierwszej rozmowie mówię, w&nbsp;której z&nbsp;tych sytuacji jesteś — również wtedy, gdy odpowiedź brzmi „nie zaczynajmy”."),
             ("Robisz strony tylko dla firm z&nbsp;Raciborza?",
-             "Nie. Cały proces prowadzę zdalnie, więc lokalizacja nie ogranicza. Znajomość rynku ma znaczenie przy pozycjonowaniu lokalnym, ale Rybnik to obszar, który znam — jest po sąsiedzku."),
+             "Nie. Cały proces prowadzę zdalnie, więc lokalizacja nie jest przeszkodą. Znajomość rynku ma znaczenie przy pozycjonowaniu lokalnym, ale Rybnik to obszar, który znam — jest po sąsiedzku."),
         ],
     ),
     dict(
@@ -368,7 +368,7 @@ def strona(m, stempel):
         <section class="section-alt">
             <div class="container">
                 <div class="prose reveal">
-                    <h2>Jak wygląda rynek w {bezp(m["miastoMs"])}</h2>
+                    <h2>Jak wygląda rynek w&nbsp;{bezp(m["miastoMs"])}</h2>
 {rynek}
                 </div>
             </div>
@@ -416,7 +416,7 @@ def strona(m, stempel):
             <div class="container">
                 <div class="cta-band glass reveal">
                     <h2 class="text-gradient">Porozmawiajmy o Twojej stronie</h2>
-                    <p>Piętnaście minut przez telefon i wiesz, ile to kosztuje, ile potrwa i czy w Twojej
+                    <p>Piętnaście minut przez telefon i&nbsp;wiesz, ile to kosztuje, ile potrwa i&nbsp;czy w&nbsp;Twojej
                         branży w {bezp(m["miastoMs"])} w ogóle warto. Bez zobowiązań.</p>
                     <div class="cta-band-btns">
                         <a href="tel:+48602622840" class="btn btn-primary">Zadzwoń: 602 622 840</a>
@@ -434,7 +434,7 @@ def strona(m, stempel):
                 <div class="footer-brand">
                     <div class="footer-logo font-special">&lt;WebStudio<span>47</span>&gt;</div>
                     <p class="footer-tagline">Strony internetowe dla firm, które traktują swój biznes poważnie. Nie
-                        robię stron dla każdego — i właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
+                        robię stron dla każdego — i&nbsp;właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
                 </div>
                 <div class="footer-nav">
                     <p class="footer-heading">Oferta</p>

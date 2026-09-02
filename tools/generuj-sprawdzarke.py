@@ -95,7 +95,7 @@ PYTANIA = [
      "Nie zbieram Twojego adresu ani wyniku — po kliknięciu trafiasz wprost "
      "na stronę Google, a ja nie dowiaduję się nawet o Twojej wizycie."),
     ("Mam niski wynik wydajności. To źle?",
-     "Zależy jak niski i jaka to strona. Poniżej 50 na telefonie to realny "
+     "Zależy, jak niski i jaka to strona. Poniżej 50 na telefonie to realny "
      "problem: część odwiedzających wychodzi, zanim strona się pokaże. "
      "Między 50 a 90 jest do poprawienia, ale nie pali się. Powyżej 90 nie ma "
      "o czym mówić. Najczęstsza przyczyna niskiego wyniku to nieskompresowane "
@@ -406,7 +406,7 @@ def buduj(stempel):
                 <div class="footer-brand">
                     <div class="footer-logo font-special">&lt;WebStudio<span>47</span>&gt;</div>
                     <p class="footer-tagline">Strony internetowe dla firm, które traktują swój biznes poważnie. Nie
-                        robię stron dla każdego — i właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
+                        robię stron dla każdego — i&nbsp;właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
                 </div>
                 <div class="footer-nav">
                     <p class="footer-heading">Oferta</p>

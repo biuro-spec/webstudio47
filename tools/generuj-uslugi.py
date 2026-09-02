@@ -42,7 +42,7 @@ USLUGI = [
         lead="Wizytówka Twojego biznesu w&nbsp;sieci. Szybka, czytelna i&nbsp;przygotowana pod wyszukiwarkę — żeby klienci znajdowali Cię sami, a&nbsp;nie z&nbsp;polecenia.",
         akapity=[
             "Dla firmy usługowej to zwykle najrozsądniejszy wybór. Pokazuje, że istniejesz naprawdę, odpowiada na pytania, które klient i&nbsp;tak zadałby przez telefon, i&nbsp;daje Google coś, co można pozycjonować.",
-            "W&nbsp;cenie dostajesz indywidualny projekt graficzny, wersję mobilną, formularz z&nbsp;zabezpieczeniem przed spamem, certyfikat SSL, zgodność z&nbsp;RODO oraz podpięte Analytics i&nbsp;Search Console — żebyś od pierwszego dnia widział, kto wchodzi i&nbsp;skąd.",
+            "W&nbsp;cenie dostajesz indywidualny projekt graficzny, wersję mobilną, formularz z&nbsp;zabezpieczeniem przed spamem, certyfikat SSL, zgodność z&nbsp;RODO oraz podpięte Analytics i&nbsp;Search Console — żeby od pierwszego dnia było widać, kto wchodzi i&nbsp;skąd.",
         ],
         punkty=["Do kilkunastu podstron", "Blog albo galeria realizacji",
                 "2 000 – 5 000 zł netto", "Realizacja 3–5 tygodni"],
@@ -73,7 +73,7 @@ USLUGI = [
     ),
     dict(
         klucz="efekt-wow",
-        etykieta="03 / 04 · Gdy marka ma wyróżniać",
+        etykieta="03 / 04 · Gdy marka ma się wyróżniać",
         tytul="Strona z efektem „wow”",
         lead="Animacje, interaktywne elementy i&nbsp;design premium. Strona, po której klient mówi: „chcę tak samo”.",
         akapity=[
@@ -99,7 +99,7 @@ USLUGI = [
             "Przykład z&nbsp;portfolio: generator faktur działający w&nbsp;przeglądarce bez zakładania konta, z&nbsp;trzema typami dokumentów i&nbsp;liczeniem zgodnym z&nbsp;przepisami. Albo panel, w&nbsp;którym właściciel firmy sam dodaje realizacje, bez dzwonienia do wykonawcy strony.",
         ],
         punkty=["Logowanie i&nbsp;role", "Baza danych i&nbsp;raporty",
-                "od 8 000 zł netto", "Realizacja od 8 tygodni"],
+                "Od 8 000 zł netto", "Realizacja od 8 tygodni"],
         obraz="wystawfakture-thumb.webp",
         obrazAlt="WystawFakture.eu — aplikacja do wystawiania faktur online",
         obrazPodpis="WystawFakture.eu — faktury bez rejestracji",

@@ -23,6 +23,16 @@ import pomiary
 KATALOG = pathlib.Path(__file__).resolve().parent.parent
 BAZA = "https://webstudio47.pl"
 
+def mala_pierwsza(t):
+    """Obniza tylko pierwsza litere — .lower() zjadalby skrotowce.
+
+    „Aplikacja SaaS" po .lower() stawala sie „aplikacja saas", i to
+    zarowno w danych strukturalnych, jak i w atrybucie alt czytanym przez
+    czytnik ekranu. Dla pozostalych branz wynik jest taki sam jak dotad.
+    """
+    return t[:1].lower() + t[1:]
+
+
 def bezp(tekst):
     """html.escape, ale nie psuje twardych spacji wpisanych w tresci.
 
@@ -124,7 +134,7 @@ REALIZACJE = [
         h1="Strona dla firmy klimatyzacyjnej",
         lead="Montaż i&nbsp;serwis klimatyzacji oraz chłodnictwo przemysłowe. Firma z&nbsp;Raciborza działająca od 1997 roku — z&nbsp;dorobkiem, którego wcześniej nie było widać w&nbsp;internecie.",
         wyzwanie=[
-            "Firma z&nbsp;takim stażem ma coś, czego nowe podmioty nie kupią za żadne pieniądze: <strong>ćwierć wieku realizacji</strong>. Problem w&nbsp;tym, że w&nbsp;internecie wyglądała jak każda inna.",
+            "Firma z&nbsp;takim stażem ma coś, czego nowe podmioty nie kupią za żadne pieniądze: <strong>blisko trzydzieści lat realizacji</strong>. Problem w&nbsp;tym, że w&nbsp;internecie wyglądała jak każda inna.",
             "Druga rzecz: klimatyzacja to dwa różne rynki naraz. Osoba montująca split w&nbsp;salonie i&nbsp;zakład potrzebujący chłodni to inni klienci z&nbsp;innymi pytaniami.",
         ],
         zbudowane=[
@@ -183,7 +193,7 @@ REALIZACJE = [
             "Pierwszy dzwoni pod wpływem stresu i&nbsp;chce wiedzieć, czy da się dziś. Drugi porównuje oferty i&nbsp;potrzebuje zakresu, uprawnień i&nbsp;konkretów do przetargu.",
         ],
         zbudowane=[
-            ("Rozdzielenie ścieżek od pierwszego ekranu", "Transport pacjenta i zabezpieczenie wydarzeń jako dwie osobne drogi. Nikt nie musi czytać nie swojej sekcji."),
+            ("Rozdzielenie ścieżek od pierwszego ekranu", "Transport pacjenta i&nbsp;zabezpieczenie wydarzeń jako dwie osobne drogi. Nikt nie musi czytać nie swojej sekcji."),
             ("Konkret zamiast ogólników przy zabezpieczeniach", "Rodzaje zespołów, wyposażenie, zakres — to, czego szuka organizator wypełniający dokumentację."),
             ("Prosty, spokojny język przy transporcie", "Bez żargonu medycznego. Osoba w&nbsp;stresie ma zrozumieć od pierwszego czytania."),
             ("Telefon dostępny z&nbsp;każdego miejsca", "W tej branży kontakt telefoniczny wygrywa z&nbsp;formularzem i&nbsp;strona to odzwierciedla."),
@@ -301,7 +311,7 @@ def naglowek_strony(r, stempel):
     schema_dzielo = {
         "@context": "https://schema.org",
         "@type": "CreativeWork",
-        "name": f"{r['klient']} — {r['branza'].lower()}",
+        "name": f"{r['klient']} — {mala_pierwsza(r['branza'])}",
         "headline": r["tytul"],
         "description": r["opisMeta"],
         "url": url,
@@ -457,7 +467,7 @@ def stopka(stempel):
                 <div class="footer-brand">
                     <div class="footer-logo font-special">&lt;WebStudio<span>47</span>&gt;</div>
                     <p class="footer-tagline">Strony internetowe dla firm, które traktują swój biznes poważnie. Nie
-                        robię stron dla każdego — i właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
+                        robię stron dla każdego — i&nbsp;właśnie dlatego te, które robię, wyglądają tak, jak wyglądają.</p>
                 </div>
                 <div class="footer-nav">
                     <p class="footer-heading">Oferta</p>
@@ -592,7 +602,7 @@ def tresc(r, poprzednia, nastepna):
             <div class="container">
                 <figure class="realizacja-zrzut reveal">
                     <img src="/{r["miniatura"].replace("-thumb.", "-hero.")}" width="1600" height="900" loading="lazy" decoding="async"
-                        alt="Strona internetowa {bezp(r["klient"])} — {bezp(r["branza"].lower())}{bezp(lokalizacja)}">
+                        alt="Strona internetowa {bezp(r["klient"])} — {bezp(mala_pierwsza(r["branza"]))}{bezp(lokalizacja)}">
                     <figcaption>{podpis_zrzutu}</figcaption>
                 </figure>
             </div>
@@ -640,7 +650,7 @@ def tresc(r, poprzednia, nastepna):
                 <div class="cta-band glass reveal">
                     <h2 class="text-gradient">Chcesz taką stronę dla siebie?</h2>
                     <p>Piętnaście minut rozmowy i wiesz, ile to kosztuje w Twoim przypadku i ile potrwa.
-                        Widełki cenowe znajdziesz w <a href="/cennik/">cenniku</a>.</p>
+                        Widełki cenowe znajdziesz w&nbsp;<a href="/cennik/">cenniku</a>.</p>
                     <div class="cta-band-btns">
                         <a href="tel:+48602622840" class="btn btn-primary">Zadzwoń: 602 622 840</a>
                         <a href="/kontakt/" class="btn btn-outline">Opisz swój projekt</a>
