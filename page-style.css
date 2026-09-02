@@ -2194,11 +2194,15 @@
             animation-range: contain 0% contain 100%;
         }
 
+        /* Naglowek jest centrowany w rdzeniu przez left:50% + translateX(-50%).
+           Klatka, ktora ustawia transform bez translateX, WYCINA to centrowanie
+           i pastylka startuje w polowie ekranu (zgloszone 2026-09-02). Kazda
+           klatka musi wiec niesc translateX(-50%). */
         @keyframes zbuduje-menu {
-            0%   { transform: translateY(0);     opacity: 1; }
-            7%   { transform: translateY(-130%); opacity: 0; }
-            86%  { transform: translateY(-130%); opacity: 0; }
-            100% { transform: translateY(0);     opacity: 1; }
+            0%   { transform: translateX(-50%) translateY(0);     opacity: 1; }
+            7%   { transform: translateX(-50%) translateY(-130%); opacity: 0; }
+            86%  { transform: translateX(-50%) translateY(-130%); opacity: 0; }
+            100% { transform: translateX(-50%) translateY(0);     opacity: 1; }
         }
     }
 }
