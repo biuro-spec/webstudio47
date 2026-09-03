@@ -2253,10 +2253,18 @@
    w kolko od pierwszej klatki.
 
    Zostaja jako efekt WEJSCIA: gradient przechodzi dwa razy, polysk raz
-   i obraz sie uspokaja. Naglowki sekcji nizej zachowuja puls bez zmian
-   — sa pod zagieciem, wiec pomiaru nie dotykaja. */
-.hero .text-gradient,
-.hero .text-gradient-alt {
+   i obraz sie uspokaja.
+
+   2026-09-02, ciag dalszy: regula byla tylko dla .hero (strona glowna).
+   Podstrony maja .page-hero z tym samym .text-gradient w h1 — i ten pulsowal
+   w kolko. Efekt: /tworzenie-stron-internetowych-raciborz/ 72–78 na komorce
+   (Speed Index 3,9 s, Style & Layout 1,4 s), strona glowna 96. Do tego
+   animacja background-position NIE jest kompozytowana (Lighthouse:
+   "Unsupported CSS Property: background-position-x"), wiec kazdy pulsujacy
+   naglowek sekcji liczy uklad co klatke przez caly pobyt na stronie, takze
+   pod zagieciem. Dlatego ograniczenie idzie na WSZYSTKIE .text-gradient. */
+.text-gradient,
+.text-gradient-alt {
     animation-iteration-count: 2;
 }
 
