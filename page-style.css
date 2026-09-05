@@ -2271,3 +2271,38 @@
 .hero .shimmer {
     animation-iteration-count: 1;
 }
+
+/* ---------------------------------------------------------------------------
+   Portfolio: jedno tlo dla hero i galerii lukowej (2026-09-05)
+
+   Wczesniej hero mialo dwa animowane kola aurory (::before/::after, 35 s
+   i 40 s w kolko), przyciete do wysokosci hero; ponizej byl plaski #0a0a0f.
+   Krawedz sekcji wygladala jak szew. Do tego byla to nieskonczona animacja
+   nad zagieciem, czyli pulapka Speed Index znana ze strony glownej.
+
+   Teraz aurora lezy na <main> i schodzi lagodnie ok. 170vh, wiec hero i
+   galeria maja wspolne tlo, a kola w hero sa wylaczone. Statyczna, zero
+   kosztu na watku glownym. */
+.portfolio-main {
+    position: relative;
+}
+.portfolio-main::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 170vh;
+    pointer-events: none;
+    background:
+        radial-gradient(64vw 60vh at 74% 16%, rgba(124, 58, 237, 0.19), transparent 64%),
+        radial-gradient(60vw 56vh at 20% 52%, rgba(6, 182, 212, 0.15), transparent 64%),
+        radial-gradient(76vw 46vh at 50% 100%, rgba(139, 92, 246, 0.09), transparent 70%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+}
+.portfolio-main > * {
+    position: relative;
+}
+.portfolio-page-hero::before,
+.portfolio-page-hero::after {
+    display: none;
+}
