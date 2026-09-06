@@ -2308,71 +2308,55 @@
 }
 
 /* ---------------------------------------------------------------------------
-   „Czego będę od Ciebie potrzebował": lista, która odhacza się sama (2026-09-05)
+   „Czego będę od Ciebie potrzebował": talia kart (2026-09-05)
 
-   Bramka: sekcja oglądana raz na wizytę, cel = wyjaśnienie (to jest lista do
-   odhaczenia, nie sześć kafli). Każda karta ma WŁASNĄ oś przewijania
-   (view-timeline). Gdy karta przechodzi przez środek ekranu: numer ustępuje,
-   w jego miejscu rysuje się ptaszek w kółku (stroke-dashoffset po pathLength
-   = 100), po górnej krawędzi przechodzi linia akcentu (clip-path), karta
-   dostaje cień światła w rogu (opacity). Kolumny w rzędzie odhaczają się
-   jedna po drugiej dzięki przesuniętym zakresom.
+   Po odrzuceniu wersji „odhaczanie" (sześć rzeczy naraz = chaos): tu dzieje
+   się JEDNA rzecz naraz. Karty są bezpośrednimi dziećmi .needs-talia i są
+   przypięte (sticky) pod nagłówkiem AŻ DO KOŃCA kontenera, więc każda
+   następna wjeżdża NA poprzednią i układa się stos. Kolejne karty siedzą
+   12 px niżej, poprzednie maleją i przygasają pod spodem, więc ich krawędzie
+   wystają jak w talii.
 
-   Wejście karty zostaje w .reveal (IntersectionObserver, transform na karcie),
-   dlatego tutaj NIC nie animuje transformu samej karty — tylko jej dzieci.
-   Bez wsparcia animation-timeline i przy ograniczonym ruchu: obecny wygląd
-   (numery, brak ptaszków). Zero JS. */
-.need-item {
-    overflow: hidden;   /* linia akcentu i poświata nie wychodzą poza zaokrąglenie */
+   PUŁAPKA z pierwszej wersji: karta w osobnym slocie odpina się, gdy kończy
+   się slot — czyli ZANIM następna dojedzie. Stos nigdy nie powstał. Stąd
+   jeden kontener i przerwy-osie między kartami: przerwa i (między kartą i
+   a i+1) ma własny view-timeline, a karta i maleje wtedy, gdy dół przerwy
+   (= góra karty i+1) wędruje od dołu ekranu do linii przypięcia:
+   contain 0% → exit ~80%. Karty NIE mają .reveal (wejście robi stos).
+   Bez wsparcia animation-timeline i przy reduced-motion: zwykła lista
+   z 20 px odstępu. Zero JS. */
+.needs-talia {
+    max-width: 760px;
+    margin: 0 auto;
 }
-.need-check {
-    position: absolute;
-    top: 22px;
-    right: 24px;
-    width: 46px;
-    height: 46px;
-    fill: none;
-    stroke: var(--accent-cyan);
-    stroke-width: 2.4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    opacity: 0;
-    pointer-events: none;
-    filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.35));
+.talia-przerwa {
+    height: 20px;
 }
-.need-check circle,
-.need-check path {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
+.needs-talia .need-item {
+    padding: 36px 40px;
+    min-height: 200px;
+    transform-origin: 50% 0;
 }
-.need-item::before {
-    /* linia „odhaczone" po górnej krawędzi */
-    content: '';
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 2px;
-    background: var(--grad-primary);
-    clip-path: inset(0 100% 0 0);
-    pointer-events: none;
+.needs-talia .need-item:hover {
+    transform: none;
+    border-color: var(--glass-border);
+    background: var(--glass-bg);
 }
-.need-item::after {
-    /* poświata w rogu, gdzie ląduje ptaszek */
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(38% 46% at 88% 12%, rgba(6, 182, 212, 0.16), transparent 70%);
-    opacity: 0;
-    pointer-events: none;
+.needs-talia .need-number {
+    font-size: 3.4rem;
+    top: 14px;
+    right: 28px;
 }
-.need-item > * {
-    position: relative;   /* treść nad poświatą */
+.needs-talia .need-item h3 {
+    font-size: 1.45rem;
+    max-width: 78%;
 }
-.need-item .need-number,
-.need-item .need-check {
-    position: absolute;
+.needs-talia .need-item p {
+    font-size: 1.08rem;
+    max-width: 60ch;
 }
 .needs-koniec {
-    margin: 36px auto 0;
+    margin: 40px auto 0;
     text-align: center;
     color: var(--text-secondary);
 }
@@ -2388,68 +2372,47 @@
 
 @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-        .need-item {
-            view-timeline: --need block;
+        .needs-talia {
+            timeline-scope: --p1, --p2, --p3, --p4, --p5;
+            padding-bottom: 6vh;
         }
-        .need-item .need-number {
-            animation: need-numer linear both;
-            animation-timeline: --need;
-            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
+        .talia-przerwa {
+            height: clamp(300px, 52vh, 520px);
         }
-        .need-check {
-            animation: need-odznaka linear both;
-            animation-timeline: --need;
-            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
+        .needs-talia > :nth-child(2)  { view-timeline: --p1 block; }
+        .needs-talia > :nth-child(4)  { view-timeline: --p2 block; }
+        .needs-talia > :nth-child(6)  { view-timeline: --p3 block; }
+        .needs-talia > :nth-child(8)  { view-timeline: --p4 block; }
+        .needs-talia > :nth-child(10) { view-timeline: --p5 block; }
+        .needs-talia .need-item {
+            position: sticky;
+            top: calc(var(--header-height) + 36px + var(--i, 0) * 12px);
+            /* --glass-bg jest półprzezroczyste; w stosie karta musi kryć poprzednią */
+            background: linear-gradient(180deg, #161620, #0e0e16);
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;      /* .glass rozmywa tło; w stosie to tylko koszt i przebijanie */
+            box-shadow: 0 -12px 34px rgba(0, 0, 0, 0.4);
+            z-index: calc(1 + var(--i, 0));   /* kolejność stosu jawnie: nowsza karta wyżej */
+            animation: talia-cofnij linear both;
+            animation-range: contain 0% exit 80%;
         }
-        .need-check circle {
-            animation: need-kolko linear both;
-            animation-timeline: --need;
-            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
-        }
-        .need-check path {
-            animation: need-ptaszek linear both;
-            animation-timeline: --need;
-            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
-        }
-        .need-item::before {
-            animation: need-linia linear both;
-            animation-timeline: --need;
-            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
-        }
-        .need-item::after {
-            animation: need-poswiata linear both;
-            animation-timeline: --need;
-            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
-        }
-        /* rząd odhacza się od lewej: każda kolumna zaczyna nieco później */
-        .needs-grid .need-item:nth-child(3n+2) { --need-od: cover 37%; --need-do: cover 67%; }
-        .needs-grid .need-item:nth-child(3n+3) { --need-od: cover 44%; --need-do: cover 74%; }
+        .needs-talia > :nth-child(1)  { --i: 0; animation-timeline: --p1; }
+        .needs-talia > :nth-child(3)  { --i: 1; animation-timeline: --p2; }
+        .needs-talia > :nth-child(5)  { --i: 2; animation-timeline: --p3; }
+        .needs-talia > :nth-child(7)  { --i: 3; animation-timeline: --p4; }
+        .needs-talia > :nth-child(9)  { --i: 4; animation-timeline: --p5; }
+        .needs-talia > :nth-child(11) { --i: 5; animation: none; }   /* wierzch talii */
     }
 }
-@keyframes need-numer {
-    from { opacity: 0.25; transform: none; }
-    to   { opacity: 0.07; transform: translateX(-30px) scale(0.86); }
+/* Przygaszanie przez filter, NIE przez opacity: przezroczysta karta pokazywała
+   karty leżące pod nią (tekst 01 prześwitywał przez 02). brightness na warstwie
+   kompozytowanej jest tanie i karta zostaje kryta. */
+@keyframes talia-cofnij {
+    from { transform: scale(1) translateY(0); filter: brightness(1); }
+    to   { transform: scale(0.93) translateY(-14px); filter: brightness(0.5); }
 }
-@keyframes need-odznaka {
-    from { opacity: 0; transform: scale(0.82) rotate(-10deg); }
-    40%  { opacity: 1; transform: none; }
-    to   { opacity: 1; transform: none; }
-}
-@keyframes need-kolko {
-    from { stroke-dashoffset: 100; }
-    60%  { stroke-dashoffset: 0; }
-    to   { stroke-dashoffset: 0; }
-}
-@keyframes need-ptaszek {
-    0%, 50% { stroke-dashoffset: 100; }
-    92%     { stroke-dashoffset: 0; }
-    to      { stroke-dashoffset: 0; }
-}
-@keyframes need-linia {
-    from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 0 0 0); }
-}
-@keyframes need-poswiata {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+@media (max-width: 640px) {
+    .needs-talia .need-item { padding: 26px 22px; }
+    .needs-talia .need-number { font-size: 2.6rem; top: 10px; right: 18px; }
+    .needs-talia .need-item h3 { max-width: 70%; }
 }
