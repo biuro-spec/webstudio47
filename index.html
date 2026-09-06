@@ -27,7 +27,7 @@
     <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/inter-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="style.css?v=1788717730">
+    <link rel="stylesheet" href="style.css?v=1788722698">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -259,6 +259,27 @@
     </section>
 
     <!-- Services Section -->
+    <!-- Pokaz: prawdziwa strona klienta w ramce, ktora prostuje sie z pochylenia pod scrollem.
+         Port komponentu ContainerScroll (Aceternity, React + Framer Motion) na czysty CSS:
+         view-timeline sekcji steruje rotateX/scale karty i przesunieciem tytulu. -->
+    <section class="pokaz" aria-labelledby="pokaz-tytul">
+        <div class="container pokaz-scena">
+            <div class="pokaz-naglowek">
+                <h2 id="pokaz-tytul" class="text-gradient">Tak wygląda strona pisana od zera</h2>
+                <p>Salon hOla Perros w&nbsp;Raciborzu. Nie makieta i&nbsp;nie szablon: żywa strona, którą możesz otworzyć na telefonie.</p>
+            </div>
+            <a class="pokaz-karta" href="/realizacje/strona-dla-salonu-groomerskiego/" aria-label="Zobacz, jak powstała strona hOla Perros">
+                <span class="pokaz-ekran">
+                    <img src="pokaz-holaperros.webp" srcset="pokaz-holaperros-m.webp 800w, pokaz-holaperros.webp 1400w"
+                        sizes="(max-width: 860px) 92vw, min(1000px, 84vw)" width="1400" height="860"
+                        alt="Strona główna hOla Perros: różowy salon groomerski w Raciborzu, hero z groomerką i golden retrieverem"
+                        loading="lazy" decoding="async">
+                </span>
+                <span class="pokaz-podpis">Zobacz, jak powstała</span>
+            </a>
+        </div>
+    </section>
+
     <section class="services" id="services">
         <div class="container">
             <div class="section-header reveal">
@@ -844,8 +865,8 @@
     </aside>
 
 
-    <script src="script.js?v=1788717730" defer></script>
-    <script src="/consent.js?v=1788717730" defer></script>
+    <script src="script.js?v=1788722698" defer></script>
+    <script src="/consent.js?v=1788722698" defer></script>
 </body>
 
 </html>
