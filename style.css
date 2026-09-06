@@ -2310,3 +2310,150 @@
 .portfolio-page-hero::after {
     display: none;
 }
+
+/* ---------------------------------------------------------------------------
+   „Czego będę od Ciebie potrzebował": lista, która odhacza się sama (2026-09-05)
+
+   Bramka: sekcja oglądana raz na wizytę, cel = wyjaśnienie (to jest lista do
+   odhaczenia, nie sześć kafli). Każda karta ma WŁASNĄ oś przewijania
+   (view-timeline). Gdy karta przechodzi przez środek ekranu: numer ustępuje,
+   w jego miejscu rysuje się ptaszek w kółku (stroke-dashoffset po pathLength
+   = 100), po górnej krawędzi przechodzi linia akcentu (clip-path), karta
+   dostaje cień światła w rogu (opacity). Kolumny w rzędzie odhaczają się
+   jedna po drugiej dzięki przesuniętym zakresom.
+
+   Wejście karty zostaje w .reveal (IntersectionObserver, transform na karcie),
+   dlatego tutaj NIC nie animuje transformu samej karty — tylko jej dzieci.
+   Bez wsparcia animation-timeline i przy ograniczonym ruchu: obecny wygląd
+   (numery, brak ptaszków). Zero JS. */
+.need-item {
+    overflow: hidden;   /* linia akcentu i poświata nie wychodzą poza zaokrąglenie */
+}
+.need-check {
+    position: absolute;
+    top: 22px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    fill: none;
+    stroke: var(--accent-cyan);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.35));
+}
+.need-check circle,
+.need-check path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+}
+.need-item::before {
+    /* linia „odhaczone" po górnej krawędzi */
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: var(--grad-primary);
+    clip-path: inset(0 100% 0 0);
+    pointer-events: none;
+}
+.need-item::after {
+    /* poświata w rogu, gdzie ląduje ptaszek */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(38% 46% at 88% 12%, rgba(6, 182, 212, 0.16), transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+}
+.need-item > * {
+    position: relative;   /* treść nad poświatą */
+}
+.need-item .need-number,
+.need-item .need-check {
+    position: absolute;
+}
+.needs-koniec {
+    margin: 36px auto 0;
+    text-align: center;
+    color: var(--text-secondary);
+}
+.needs-koniec a {
+    color: var(--accent-cyan);
+    font-weight: 600;
+    text-decoration: none;
+}
+.needs-koniec a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .need-item {
+            view-timeline: --need block;
+        }
+        .need-item .need-number {
+            animation: need-numer linear both;
+            animation-timeline: --need;
+            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
+        }
+        .need-check {
+            animation: need-odznaka linear both;
+            animation-timeline: --need;
+            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
+        }
+        .need-check circle {
+            animation: need-kolko linear both;
+            animation-timeline: --need;
+            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
+        }
+        .need-check path {
+            animation: need-ptaszek linear both;
+            animation-timeline: --need;
+            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
+        }
+        .need-item::before {
+            animation: need-linia linear both;
+            animation-timeline: --need;
+            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
+        }
+        .need-item::after {
+            animation: need-poswiata linear both;
+            animation-timeline: --need;
+            animation-range: var(--need-od, cover 30%) var(--need-do, cover 60%);
+        }
+        /* rząd odhacza się od lewej: każda kolumna zaczyna nieco później */
+        .needs-grid .need-item:nth-child(3n+2) { --need-od: cover 37%; --need-do: cover 67%; }
+        .needs-grid .need-item:nth-child(3n+3) { --need-od: cover 44%; --need-do: cover 74%; }
+    }
+}
+@keyframes need-numer {
+    from { opacity: 0.25; transform: none; }
+    to   { opacity: 0.07; transform: translateX(-30px) scale(0.86); }
+}
+@keyframes need-odznaka {
+    from { opacity: 0; transform: scale(0.82) rotate(-10deg); }
+    40%  { opacity: 1; transform: none; }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes need-kolko {
+    from { stroke-dashoffset: 100; }
+    60%  { stroke-dashoffset: 0; }
+    to   { stroke-dashoffset: 0; }
+}
+@keyframes need-ptaszek {
+    0%, 50% { stroke-dashoffset: 100; }
+    92%     { stroke-dashoffset: 0; }
+    to      { stroke-dashoffset: 0; }
+}
+@keyframes need-linia {
+    from { clip-path: inset(0 100% 0 0); }
+    to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes need-poswiata {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
