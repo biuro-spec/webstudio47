@@ -2420,3 +2420,77 @@
     .needs-talia .need-number { font-size: 2.6rem; top: 10px; right: 18px; }
     .needs-talia .need-item h3 { max-width: 70%; }
 }
+
+/* ---------------------------------------------------------------------------
+   Pasek liczb (.stats): grunt zmienia kolor pod scrollem (2026-09-05)
+
+   Rdzeń miał tu DWIE nieskończone animacje: glassShimmer 8 s na ::before
+   (koła aurory) i reflectionSlide 6 s na ::after (przesuwająca się kreska).
+   Sekcja leży tuż pod hero, czyli w pierwszym ekranie na wielu monitorach —
+   ta sama pułapka Speed Index co puls gradientu. Obie idą precz.
+
+   Zamiast tego kolor gruntu jest funkcją przewijania: w trakcie całej
+   widocznej drogi sekcji (cover 0 → 100 %) warstwa A (fiolet z lewej, cyjan
+   z prawej) wygasa, a warstwa B (cyjan z lewej, fiolet z prawej, mocniejsza)
+   wchodzi — tło „przechyla się" z fioletu w cyjan, gdy pasek wędruje przez
+   ekran. Kreska odbicia jedzie z lewej do prawej też pod scrollem
+   (transform). Wszystko na opacity/transform, czyli na kompozytorze, i tylko
+   podczas przewijania. Bez wsparcia i przy reduced-motion: warstwa A stoi. */
+.stats::before {
+    animation: none;
+    background:
+        radial-gradient(ellipse 70% 90% at 28% 50%, rgba(124, 58, 237, 0.20), transparent 62%),
+        radial-gradient(ellipse 70% 90% at 72% 50%, rgba(6, 182, 212, 0.12), transparent 62%);
+}
+.stats::after {
+    /* z kreski odbicia robimy drugą warstwę gruntu; kreska wraca niżej jako .stats-blik */
+    animation: none;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(ellipse 70% 90% at 26% 40%, rgba(6, 182, 212, 0.22), transparent 62%),
+        radial-gradient(ellipse 70% 90% at 76% 60%, rgba(139, 92, 246, 0.26), transparent 62%),
+        radial-gradient(ellipse 40% 60% at 50% 100%, rgba(59, 130, 246, 0.14), transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+}
+.stats-blik {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.6), rgba(6, 182, 212, 0.4), transparent);
+    transform: translateX(-100%);
+    pointer-events: none;
+}
+.stats .container {
+    position: relative;     /* liczby nad warstwami */
+}
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .stats {
+            view-timeline: --stats block;
+        }
+        .stats::before {
+            animation: stats-grunt-a linear both;
+            animation-timeline: --stats;
+            animation-range: cover 0% cover 100%;
+        }
+        .stats::after {
+            animation: stats-grunt-b linear both;
+            animation-timeline: --stats;
+            animation-range: cover 0% cover 100%;
+        }
+        .stats-blik {
+            animation: stats-blik linear both;
+            animation-timeline: --stats;
+            animation-range: cover 0% cover 100%;
+        }
+    }
+}
+@keyframes stats-grunt-a { from { opacity: 1; }   to { opacity: 0.15; } }
+@keyframes stats-grunt-b { from { opacity: 0; }   to { opacity: 1; } }
+@keyframes stats-blik    { from { transform: translateX(-100%); } to { transform: translateX(calc(100% / 0.6)); } }
