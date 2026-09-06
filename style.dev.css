@@ -2381,7 +2381,9 @@
             padding-bottom: 6vh;
         }
         .talia-przerwa {
-            height: clamp(300px, 52vh, 520px);
+            /* Krotsza przerwa = krotsze okno, w ktorym dwie karty nachodza na
+               siebie w polowie. Dluga przerwa wygladala jak zawieszony przeskok. */
+            height: clamp(260px, 42vh, 420px);
         }
         .needs-talia > :nth-child(2)  { view-timeline: --p1 block; }
         .needs-talia > :nth-child(4)  { view-timeline: --p2 block; }
@@ -2406,14 +2408,43 @@
         .needs-talia > :nth-child(7)  { --i: 3; animation-timeline: --p4; }
         .needs-talia > :nth-child(9)  { --i: 4; animation-timeline: --p5; }
         .needs-talia > :nth-child(11) { --i: 5; animation: none; }   /* wierzch talii */
+        .needs-talia .need-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(180deg, #161620, #0e0e16);
+            opacity: 0;
+            pointer-events: none;
+            animation: talia-zakryj linear both;
+            animation-range: contain 0% exit 80%;
+        }
+        .needs-talia > :nth-child(1)::after  { animation-timeline: --p1; }
+        .needs-talia > :nth-child(3)::after  { animation-timeline: --p2; }
+        .needs-talia > :nth-child(5)::after  { animation-timeline: --p3; }
+        .needs-talia > :nth-child(7)::after  { animation-timeline: --p4; }
+        .needs-talia > :nth-child(9)::after  { animation-timeline: --p5; }
+        .needs-talia > :nth-child(11)::after { animation: none; }
     }
 }
-/* Przygaszanie przez filter, NIE przez opacity: przezroczysta karta pokazywała
-   karty leżące pod nią (tekst 01 prześwitywał przez 02). brightness na warstwie
-   kompozytowanej jest tanie i karta zostaje kryta. */
+/* Karta cofnięta jest WĘŻSZA (scale 0,93), więc zza karty na wierzchu wystaje
+   jej górny pasek — a tam siedzi nagłówek i numer. Zgłoszone jako „przycięty
+   tekst nachodzi na kartę". Dlatego cofnięcie zakrywa treść WŁASNYM tłem karty
+   (::after), zamiast tylko ją przygaszać: ze stosu wystaje wtedy czysta ciemna
+   krawędź, jak w talii. Filter brightness wycięty — nakładka robi to samo
+   taniej i bez ryzyka, że coś prześwituje. */
 @keyframes talia-cofnij {
-    from { transform: scale(1) translateY(0); filter: brightness(1); }
-    to   { transform: scale(0.93) translateY(-14px); filter: brightness(0.5); }
+    from { transform: scale(1) translateY(0); }
+    to   { transform: scale(0.93) translateY(-14px); }
+}
+/* Zakrycie musi domknac sie ZANIM nastepna karta przetnie poprzednia w polowie
+   zdania — inaczej ze stosu wystaje ucieta linia tekstu. Stad pelne krycie juz
+   przy 65 % drogi, a nie na koncu. */
+@keyframes talia-zakryj {
+    from { opacity: 0; }
+    25%  { opacity: 0; }
+    65%  { opacity: 1; }
+    to   { opacity: 1; }
 }
 @media (max-width: 640px) {
     .needs-talia .need-item { padding: 26px 22px; }
@@ -2615,5 +2646,53 @@
     @keyframes pokaz-prostuj {
         from { transform: rotateX(16deg) scale(0.94); }
         to   { transform: rotateX(0deg) scale(1); }
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   Case studies: zrzut prostuje się z pochylenia pod scrollem (2026-09-05)
+
+   Ten sam ruch co sekcja „pokaz" na stronie głównej, tylko delikatniejszy:
+   zrzut leży wysoko na stronie (zaraz pod hero), więc pochylenie startowe
+   jest mniejsze (16°) i domyka się szybciej. Zakres liczony od wejścia
+   figury w ekran; przy pierwszym renderze części widocznej od razu CSS daje
+   stan bazowy (prosto), więc nic nie „przeskakuje”.
+
+   Figura nie ma .reveal (patrz generuj-realizacje.py) — dwie rzeczy piszące
+   transform na jednym elemencie się gryzą. Bez wsparcia animation-timeline
+   i przy reduced-motion: zrzut stoi prosto, tak jak dotąd. Zero JS. */
+.zrzut-scena .container {
+    perspective: 1200px;
+}
+.realizacja-zrzut {
+    transform-origin: 50% 65%;
+    will-change: transform;
+}
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .zrzut-scena {
+            view-timeline: --zrzut block;
+        }
+        .realizacja-zrzut {
+            animation: zrzut-prostuj linear both;
+            animation-timeline: --zrzut;
+            animation-range: entry 10% cover 40%;
+        }
+    }
+}
+@keyframes zrzut-prostuj {
+    from {
+        transform: rotateX(16deg) scale(0.95);
+        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.45);
+    }
+    to {
+        transform: rotateX(0deg) scale(1);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+}
+@media (max-width: 860px) {
+    @keyframes zrzut-prostuj {
+        from { transform: rotateX(12deg) scale(0.93); box-shadow: 0 26px 40px rgba(0, 0, 0, 0.4); }
+        to   { transform: rotateX(0deg) scale(1);     box-shadow: 0 12px 26px rgba(0, 0, 0, 0.26); }
     }
 }

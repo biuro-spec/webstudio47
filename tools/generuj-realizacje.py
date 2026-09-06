@@ -698,10 +698,12 @@ def tresc(r, poprzednia, nastepna):
             </div>
         </section>
 
-        <!-- Zrzut -->
-        <section style="padding-top:0">
+        <!-- Zrzut. Klasa zrzut-scena wlacza pochylenie 3D prostujace sie pod
+             scrollem (page-style.css). Figura NIE ma juz .reveal: to samo pisalo
+             transform co animacja i efekty sie gryzly. -->
+        <section class="zrzut-scena" style="padding-top:0">
             <div class="container">
-                <figure class="realizacja-zrzut reveal">
+                <figure class="realizacja-zrzut">
                     <img src="/{r["miniatura"].replace("-thumb.", "-hero.")}" width="1600" height="900" loading="lazy" decoding="async"
                         alt="Strona internetowa {bezp(r["klient"])} — {bezp(mala_pierwsza(r["branza"]))}{bezp(lokalizacja)}">
                     <figcaption>{podpis_zrzutu}</figcaption>

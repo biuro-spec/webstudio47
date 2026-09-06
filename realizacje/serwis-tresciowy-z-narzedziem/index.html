@@ -16,9 +16,7 @@
          sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
     <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonty/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonty/inter-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v=1788722698">
+    <link rel="stylesheet" href="/style.css?v=1788723415">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -185,10 +183,12 @@
             </div>
         </section>
 
-        <!-- Zrzut -->
-        <section style="padding-top:0">
+        <!-- Zrzut. Klasa zrzut-scena wlacza pochylenie 3D prostujace sie pod
+             scrollem (page-style.css). Figura NIE ma juz .reveal: to samo pisalo
+             transform co animacja i efekty sie gryzly. -->
+        <section class="zrzut-scena" style="padding-top:0">
             <div class="container">
-                <figure class="realizacja-zrzut reveal">
+                <figure class="realizacja-zrzut">
                     <img src="/karta-dnia-hero.webp" width="1600" height="900" loading="lazy" decoding="async"
                         alt="Strona internetowa Karta Dnia — serwis treściowy">
                     <figcaption>Karta Dnia — <a href="https://karta-dnia.pl" target="_blank" rel="noopener">karta-dnia.pl</a></figcaption>
@@ -403,8 +403,8 @@
         </button>
     </aside>
 
-    <script src="/script.js?v=1788722698" defer></script>
-    <script src="/consent.js?v=1788722698" defer></script>
+    <script src="/script.js?v=1788723415" defer></script>
+    <script src="/consent.js?v=1788723415" defer></script>
 </body>
 
 </html>
