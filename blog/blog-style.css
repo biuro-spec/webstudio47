@@ -209,6 +209,12 @@
     color: var(--text-secondary);
 }
 
+/* Blok „Przeczytaj też" ma własną siatkę i nie jest listą wypunktowaną —
+   inaczej odjeżdża od swojego nagłówka o 1,5rem. */
+.blog-content .blog-pokrewne ul {
+    margin: 0;
+}
+
 .blog-content li {
     margin-bottom: 0.5rem;
     line-height: 1.7;

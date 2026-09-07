@@ -2714,6 +2714,8 @@
     letter-spacing: 2px;
     color: var(--text-secondary);
 }
+/* .blog-content ul z blog-style.css dokłada margines 1,5rem z lewej — lista
+   odjeżdżała od własnego nagłówka. Stąd jawne zerowanie marginesu. */
 .blog-pokrewne ul {
     list-style: none;
     margin: 0;
