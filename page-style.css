@@ -2692,3 +2692,38 @@
         to   { transform: rotateX(0deg) scale(1);     box-shadow: 0 12px 26px rgba(0, 0, 0, 0.26); }
     }
 }
+
+/* Blok „Przeczytaj też" na końcu wpisu (2026-09-05). Powód nie jest kosmetyczny:
+   każdy wpis miał tylko dwa linki wewnętrzne i dwa z nich Google zostawił
+   nieindeksowane. Zobacz tools/linki-blog.py. */
+.blog-pokrewne {
+    margin: 48px 0 0;
+    padding: 26px 28px;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    background: var(--glass-bg);
+}
+.blog-pokrewne h2 {
+    font-size: 1.05rem;
+    margin: 0 0 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+}
+.blog-pokrewne ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+.blog-pokrewne a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 1.5;
+}
+.blog-pokrewne a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
