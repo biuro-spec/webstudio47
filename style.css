@@ -2949,13 +2949,26 @@
         max-width: 220px;
         transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    #main-header.scrolled {
-        width: min(94%, 440px);
+    /* Pigułka o 5% mniejsza (prośba właściciela 2026-10-11): 440→418 px,
+       wysokość, logo i przycisk w tej samej proporcji. Tylko stan zwinięty. */
+    #main-header.scrolled:not(:hover):not(:focus-within) {
+        width: min(94%, 418px);
+        padding: 9.5px 0;
+    }
+    #main-header.scrolled:not(:hover):not(:focus-within) .logo {
+        font-size: 1.33rem;
+    }
+    #main-header.scrolled:not(:hover):not(:focus-within) .btn-primary {
+        padding: 9.5px 19px;
+        font-size: 0.855rem;
     }
     #main-header.scrolled .nav-container {
         justify-content: space-between;
         gap: 0;
         padding: 0 10px 0 28px;
+    }
+    #main-header.scrolled:not(:hover):not(:focus-within) .nav-container {
+        padding: 0 9.5px 0 26.5px;
     }
     #main-header.scrolled .nav-links {
         gap: 0;
