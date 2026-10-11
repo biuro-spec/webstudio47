@@ -126,7 +126,12 @@ Strona główna (2026-10-11): **nić** przez „Jak to wygląda?” (SVG + `view
 z `view-timeline-inset: 40% 40%`, kropki = `.step::before`) i **wykres przed/po**
 Alaski (`.szybkosc`, pomiary PSI 2–3.10.2026). Pułapka: `vector-effect:
 non-scaling-stroke` psuje `pathLength` — linia rysuje się kawałkami. Nie dodawaj.
-Liczby na wykresie są prawdziwe; nowe pomiary = nowa data w nocie pod wykresem. Poniższe
+Liczby na wykresie są prawdziwe; nowe pomiary = nowa data w nocie pod wykresem.
+**Menu (2026-10-11):** po przewinięciu zwija się do pigułki (logo + telefon), rozwija
+na hover/`:focus-within`, tylko `(hover: hover) and (pointer: fine)`; w galerii usług
+znika na czas sceny (`uslugi-menu`). **PUŁAPKA: style.css = rdzeń + doklejony
+page-style.css** — nowy CSS pisz w `page-style.css` i uruchom `tools/sklej-css.py`;
+dopisek na końcu style.css skrypt skasuje. Skrypt pisze CRLF — ujednolić do LF. Poniższe
 skille to szanują; te z GSAP-em i Lenisem są na czarnej liście niżej.
 
 | Skill | Kiedy |
