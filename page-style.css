@@ -1690,14 +1690,36 @@
             height: 100vh;
             display: grid;
             place-items: center;
-            /* Nagłówek jest przyklejony na górze — panel musi mu ustąpić */
-            padding: calc(var(--header-height) + 40px) 32px 40px;
+            /* Menu znika na czas sceny (niżej), więc panel centruje się
+               w pełnym oknie — ten sam odstęp u góry i u dołu. */
+            padding: 40px 32px;
             will-change: opacity, transform;
             animation-timing-function: cubic-bezier(0.45, 0.05, 0.15, 1);
             animation-fill-mode: both;
             animation-timeline: --uslugi;
             /* „contain" = odcinek, w którym scena wypełnia okno w całości */
             animation-range: contain 0% contain 100%;
+        }
+
+        /* Menu schodzi z drogi na czas galerii usług i wraca przed końcem
+           sceny (prośba właściciela 2026-10-11). Nagłówek leży POZA sceną,
+           stąd timeline-scope na <body>, zawężony :has do strony ze sceną.
+           Każda klatka niesie translateX(-50%) — inaczej znika centrowanie
+           pastylki (ta sama pułapka co przy zbuduje-menu). `visibility`
+           w środku sceny: niewidoczne menu nie łapie kliknięć ani fokusu. */
+        body:has(.uslugi-scena) {
+            timeline-scope: --uslugi;
+        }
+        body:has(.uslugi-scena) #main-header {
+            animation: uslugi-menu linear both;
+            animation-timeline: --uslugi;
+            animation-range: contain 0% contain 100%;
+        }
+        @keyframes uslugi-menu {
+            0%   { transform: translateX(-50%) translateY(0);     opacity: 1; visibility: visible; }
+            5%   { transform: translateX(-50%) translateY(-130%); opacity: 0; visibility: hidden; }
+            93%  { transform: translateX(-50%) translateY(-130%); opacity: 0; visibility: hidden; }
+            100% { transform: translateX(-50%) translateY(0);     opacity: 1; visibility: visible; }
         }
 
         .usluga-panel:nth-child(1) { animation-name: uslugi-panel-1; }
@@ -1861,6 +1883,18 @@
     .usluga-obraz figcaption {
         padding: 9px 14px;
         font-size: 0.8rem;
+    }
+}
+
+/* Gdy menu chowa się na czas sceny (uslugi-menu, 2026-10-11), panel nie musi
+   mu ustępować — w niskim oknie odstęp u góry i u dołu jest równy, więc treść
+   stoi na środku ekranu. Musi stać PO trybie ciasnym, bo nadpisuje jego padding. */
+@media (min-width: 1000px) and (max-height: 920px) and (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .usluga-panel {
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
     }
 }
 
@@ -2728,4 +2762,223 @@
 .blog-pokrewne a:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
+}
+
+/* Przejścia między podstronami (cross-document View Transitions, Interop 2026).
+   Nagłówek ma własną nazwę, więc zostaje na miejscu; podmienia się tylko treść.
+   Przeglądarki bez wsparcia po prostu ładują stronę jak dotąd.
+   Przy prefers-reduced-motion przejścia są wyłączone. */
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
+    #main-header {
+        view-transition-name: naglowek;
+    }
+    ::view-transition-old(root) {
+        animation: vt-wyjscie 0.16s cubic-bezier(0.4, 0, 1, 1) both;
+    }
+    ::view-transition-new(root) {
+        animation: vt-wejscie 0.34s cubic-bezier(0, 0, 0.2, 1) 0.05s both;
+    }
+    ::view-transition-group(naglowek) {
+        animation-duration: 0.34s;
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+@keyframes vt-wyjscie {
+    to { opacity: 0; }
+}
+@keyframes vt-wejscie {
+    from { opacity: 0; transform: translateY(10px); }
+}
+
+/* ===== Nić przez „Jak to wygląda?” (2026-10-11) =====
+   Linia SVG łączy cztery kroki i rysuje się w miarę przewijania; kropki przy
+   krokach zapalają się, gdy linia do nich dojdzie. Czysty CSS: view-timeline
+   na .process-steps, zawężony insetem do pasa w połowie ekranu, więc
+   „czubek” linii zawsze jest tam, gdzie czytasz.
+   Bez wsparcia animation-timeline i przy prefers-reduced-motion: linia
+   narysowana w całości, kropki zapalone — stan końcowy, nic nie znika. */
+.process-steps { position: relative; }
+.process .section-header { margin-bottom: 76px; }
+.nic { position: absolute; pointer-events: none; overflow: visible; }
+.nic path { fill: none; stroke-width: 2; stroke-linecap: round; }
+/* BEZ vector-effect: non-scaling-stroke — psuje pathLength i linia rysowała się kawałkami. */
+.nic .nic-tlo { stroke: rgba(255, 255, 255, 0.08); }
+.nic-pion { display: none; }
+.step::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: -6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    border: 2px solid var(--accent-cyan);
+    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15), 0 0 18px rgba(6, 182, 212, 0.45);
+    box-sizing: border-box;
+}
+@media (min-width: 1025px) {
+    .process-steps { grid-template-columns: repeat(4, 1fr); }
+    /* od kropki pierwszego kroku do kropki ostatniego: 100% minus jedna kolumna */
+    .nic-poziom { left: 0; top: -44px; height: 40px; width: calc(75% + 30px); }
+}
+@media (max-width: 1024px) {
+    .process .section-header { margin-bottom: 40px; }
+    .process-steps { grid-template-columns: 1fr; gap: 28px; max-width: 600px; margin-inline: auto; padding-left: 48px; }
+    .nic-poziom { display: none; }
+    .nic-pion { display: block; left: 8px; top: 20px; bottom: 24px; width: 12px; height: calc(100% - 44px); }
+    .step { padding-top: 46px; }
+    .step::before { top: 14px; left: -40px; }
+}
+@keyframes nic-rysuj { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes nic-kropka {
+    from { background: var(--bg-primary); border-color: rgba(255, 255, 255, 0.25); box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+}
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .process-steps { view-timeline: --nic block; view-timeline-inset: 40% 40%; }
+        .nic .nic-linia {
+            stroke-dasharray: 1 1;
+            animation: nic-rysuj linear both;
+            animation-timeline: --nic;
+            animation-range: cover 0% cover 100%;
+        }
+        .step::before { animation: nic-kropka linear both; animation-timeline: --nic; }
+        .step:nth-of-type(1)::before { animation-range: cover 0% cover 3%; }
+        .step:nth-of-type(2)::before { animation-range: cover 31% cover 35%; }
+        .step:nth-of-type(3)::before { animation-range: cover 64% cover 68%; }
+        .step:nth-of-type(4)::before { animation-range: cover 96% cover 100%; }
+        @media (max-width: 1024px) {
+            .step:nth-of-type(2)::before { animation-range: cover 22% cover 26%; }
+            .step:nth-of-type(3)::before { animation-range: cover 47% cover 51%; }
+            .step:nth-of-type(4)::before { animation-range: cover 72% cover 76%; }
+        }
+    }
+}
+
+/* ===== Wykres „przed i po” — Alaska, PageSpeed na telefonie (2026-10-11) =====
+   Prawdziwe pomiary PSI z 2 i 3 października 2026. Paski rosną przy wjeździe
+   w kadr (view-timeline), najpierw „przed”, potem „po”. Liczby są zwykłym
+   tekstem w HTML — czytnik ekranu i Google widzą je bez animacji. */
+.szybkosc { padding: var(--section-pady, 100px) 0; }
+.wykres { max-width: 900px; margin: 0 auto; padding: 36px 40px; display: grid; gap: 34px; }
+.wykres-wiersz { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr); gap: 16px 40px; align-items: center; }
+.wykres-opis h3 { font-size: 1.1rem; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.wykres-opis p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+.wykres-zysk {
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em;
+    color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 999px; padding: 2px 10px;
+    white-space: nowrap;
+}
+.wykres-slupki { display: grid; gap: 10px; }
+.slupek { display: grid; grid-template-columns: 44px minmax(0, 1fr) 72px; align-items: center; gap: 12px; }
+.slupek-kto { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); }
+.slupek-tor { height: 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.05); overflow: hidden; }
+.slupek-pasek { display: block; height: 100%; width: var(--w); border-radius: inherit; transform-origin: left center; }
+.slupek-przed .slupek-pasek { background: rgba(255, 255, 255, 0.28); }
+.slupek-po .slupek-pasek { background: var(--grad-primary); box-shadow: 0 0 16px rgba(139, 92, 246, 0.35); }
+.slupek-liczba { font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.slupek-przed .slupek-liczba { color: var(--text-secondary); }
+.slupek-po .slupek-liczba { color: var(--text-primary); font-weight: 700; }
+.wykres-nota { font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid var(--glass-border); padding-top: 20px; }
+.wykres-nota a { color: var(--accent-cyan); text-underline-offset: 4px; }
+@media (max-width: 768px) {
+    .wykres { padding: 26px 20px; gap: 28px; }
+    .wykres-wiersz { grid-template-columns: 1fr; }
+    .slupek { grid-template-columns: 40px minmax(0, 1fr) 64px; gap: 10px; }
+}
+@keyframes slupek-rosnij { from { transform: scaleX(0); } }
+@keyframes slupek-pokaz { from { opacity: 0; } }
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .wykres-wiersz { view-timeline: --wiersz block; }
+        .slupek-pasek, .slupek-liczba { animation-timeline: --wiersz; animation-fill-mode: both; animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+        .slupek-pasek { animation-name: slupek-rosnij; }
+        .slupek-liczba { animation-name: slupek-pokaz; }
+        .slupek-przed .slupek-pasek, .slupek-przed .slupek-liczba { animation-range: entry 40% cover 40%; }
+        .slupek-po .slupek-pasek, .slupek-po .slupek-liczba { animation-range: entry 90% cover 52%; }
+    }
+}
+
+/* ===== Menu: pigułka po przewinięciu (wzór: untillabs.com, 2026-10-11) =====
+   Po przewinięciu (header.scrolled, script.js: scrollY > 80) pełne menu zwija
+   się do pigułki: logo po lewej, telefon po prawej. Linki chowają się przez
+   max-width — szerokość nagłówka przechodzi między dwiema długościami, więc
+   animuje się płynnie (auto by skakało).
+   Najechanie albo fokus klawiatury (:focus-within) rozwija menu z powrotem —
+   linki nie przepadają. Tylko przy myszy: na dotyku nie ma najechania, więc
+   tablet zostaje przy pełnym pasku, a telefon przy hamburgerze.
+   Szkło: mocniejszy gradient w kolorach marki, jasna krawędź u góry,
+   rozmycie z podbitym nasyceniem (jak u Until: blur + brightness + contrast). */
+#main-header::before {
+    background:
+        linear-gradient(135deg, rgba(139, 92, 246, 0.16) 0%, rgba(10, 10, 15, 0.42) 42%, rgba(10, 10, 15, 0.42) 58%, rgba(6, 182, 212, 0.14) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(22px) saturate(1.6) brightness(1.08) contrast(1.06);
+    -webkit-backdrop-filter: blur(22px) saturate(1.6) brightness(1.08) contrast(1.06);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+#main-header.scrolled::before {
+    background:
+        linear-gradient(135deg, rgba(139, 92, 246, 0.28) 0%, rgba(14, 12, 28, 0.72) 38%, rgba(10, 18, 30, 0.72) 62%, rgba(6, 182, 212, 0.24) 100%);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+        0 14px 40px rgba(0, 0, 0, 0.45),
+        0 0 34px rgba(139, 92, 246, 0.18);
+}
+#main-header .btn-primary {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d5cf6 40%, #06b6d4 100%);
+    box-shadow: 0 4px 18px rgba(139, 92, 246, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+    #main-header .nav-links li {
+        max-width: 220px;
+        transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #main-header.scrolled {
+        width: min(94%, 440px);
+    }
+    #main-header.scrolled .nav-container {
+        justify-content: space-between;
+        gap: 0;
+        padding: 0 10px 0 28px;
+    }
+    #main-header.scrolled .nav-links {
+        gap: 0;
+    }
+    #main-header.scrolled .nav-links li:not(:last-child) {
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+    }
+    /* Rozwinięcie: najechanie albo fokus klawiatury */
+    #main-header.scrolled:hover,
+    #main-header.scrolled:focus-within {
+        width: min(94%, 980px);
+    }
+    #main-header.scrolled:hover .nav-links,
+    #main-header.scrolled:focus-within .nav-links {
+        gap: 32px;
+    }
+    #main-header.scrolled:hover .nav-links li:not(:last-child),
+    #main-header.scrolled:focus-within .nav-links li:not(:last-child) {
+        max-width: 220px;
+        opacity: 1;
+        pointer-events: auto;
+        transition-delay: 0.08s;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #main-header .nav-links li { transition: none; }
 }
