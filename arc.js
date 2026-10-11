@@ -33,6 +33,14 @@
     var ROZSTAW = 33;    // stopni miedzy sasiednimi kartami
 
     var pozycja = 0;     // biezaca pozycja w "kartach" (moze byc ulamkowa)
+
+    // Przystanki przy przewijaniu (2026-10-11, prosba wlasciciela): gdy karta
+    // dojedzie na srodek, luk stoi przez kawalek przewijania, a srodkowa karta
+    // lekko sie powieksza. POSTOJ = polowa strefy postoju w „kartach”.
+    var POSTOJ = 0.22;
+    var POWIEKSZENIE = 0.08;
+    var postojCel = 0;   // 1 = jestesmy w strefie postoju
+    var postoj = 0;      // wygladzona wartosc 0..1 (sterowanie skala)
     var cel = 0;         // dokad zmierzamy
     var animacja = null;
 
@@ -50,6 +58,8 @@
             k.style.setProperty('--x', x.toFixed(1) + 'px');
             k.style.setProperty('--z', z.toFixed(1) + 'px');
             k.style.setProperty('--kat', (-kat).toFixed(2) + 'deg');
+            var skala = 1 + POWIEKSZENIE * postoj * Math.max(0, 1 - Math.abs(i - pozycja) * 1.5);
+            k.style.setProperty('--skala', skala.toFixed(4));
 
             // Im dalej od srodka, tym ciemniej
             var dystans = Math.abs(odchylka);
@@ -72,9 +82,11 @@
 
     function animuj() {
         var roznica = cel - pozycja;
+        postoj += (postojCel - postoj) * 0.14;
 
-        if (Math.abs(roznica) < 0.0008) {
+        if (Math.abs(roznica) < 0.0008 && Math.abs(postojCel - postoj) < 0.002) {
             pozycja = cel;
+            postoj = postojCel;
             ustawKarty();
             animacja = null;
             return;
@@ -86,6 +98,7 @@
     }
 
     function doCelu(nowy) {
+        postojCel = 0;   // strzalki, kolko, przeciaganie: bez powiekszenia
         cel = Math.max(0, Math.min(karty.length - 1, nowy));
         if (!animacja) animacja = requestAnimationFrame(animuj);
     }
@@ -218,8 +231,28 @@
         var zakres = scena.offsetHeight - window.innerHeight;
         if (zakres <= 0) return;
         var p = -scena.getBoundingClientRect().top / zakres;
-        if (p < 0 || p > 1) return;
-        cel = Math.max(0, Math.min(karty.length - 1, p * (karty.length - 1)));
+        if (p < 0 || p > 1) {
+            if (postojCel !== 0) {
+                postojCel = 0;
+                if (!animacja) animacja = requestAnimationFrame(animuj);
+            }
+            return;
+        }
+        // Schodki zamiast rowni: wokol kazdej calkowitej pozycji strefa
+        // postoju (karta stoi na srodku), pomiedzy nimi plynny przejazd.
+        // Na granicy strefy przejazd startuje od zera — bez skoku.
+        var f = p * (karty.length - 1);
+        var najblizsza = Math.round(f);
+        var d = f - najblizsza;
+        if (Math.abs(d) < POSTOJ) {
+            cel = najblizsza;
+            postojCel = 1;
+        } else {
+            var znak = d < 0 ? -1 : 1;
+            cel = najblizsza + znak * (Math.abs(d) - POSTOJ) / (0.5 - POSTOJ) * 0.5;
+            postojCel = 0;
+        }
+        cel = Math.max(0, Math.min(karty.length - 1, cel));
         if (!animacja) animacja = requestAnimationFrame(animuj);
     }
 

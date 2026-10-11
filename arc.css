@@ -172,7 +172,8 @@
         translate(-50%, -50%)
         translateX(var(--x, 0px))
         translateZ(var(--z, 0px))
-        rotateY(var(--kat, 0deg));
+        rotateY(var(--kat, 0deg))
+        scale(var(--skala, 1));
 
     transform-style: preserve-3d;
     transition: opacity 0.35s ease;
@@ -458,7 +459,9 @@
     }
 
     .arc-on .arc-scena {
-        height: 340vh;
+        /* 420vh (bylo 340): przystanki przy kartach (arc.js) zabieraja
+           czesc przewijania, wiec scena jest dluzsza, by przejazd nie byl nerwowy */
+        height: 420vh;
     }
 
     .arc-on .arc-klej {
