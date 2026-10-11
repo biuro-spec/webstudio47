@@ -72,6 +72,10 @@ Stawki SEO są propozycją agenta — nie zostały potwierdzone przez właścici
 
 **5. Dane strukturalne FAQ muszą być zgodne co do znaku z widocznym tekstem.**
 Google tego wymaga. Przy zmianie pytania w `<summary>` popraw też JSON-LD.
+**Nigdy nie wpisuj encji `&nbsp;` do JSON-LD** — JSON ich nie dekoduje i Google
+czyta dosłowne „w&nbsp;Google”. W schemacie ma być prawdziwa twarda spacja
+(znak U+00A0), tak jak w widocznym tekście. Generatory w `tools/` robią to
+przez `html.unescape` (poprawione 2026-10-11).
 
 **6. Sprawdzaj linki zewnętrzne przed pisaniem o realizacjach.** Trzy z siedmiu
 były martwe (dwie wygasłe domeny, jedna literówka: `alaska-rp.pl` zamiast
@@ -112,7 +116,12 @@ i zawsze sprawdzaj `location.href`, czy przeglądarka nie stoi na stronie błęd
 ### Do ruchu i animacji
 
 Strona ma dziś poziomą galerię usług na `view-timeline` i łukową galerię
-realizacji w `arc.js` — obie bez jednej zewnętrznej biblioteki. Poniższe
+realizacji w `arc.js` — obie bez jednej zewnętrznej biblioteki.
+Od 2026-10-11 podstrony przełączają się przez cross-document View Transitions
+(`@view-transition` na końcu `style.css`, nagłówek ma `view-transition-name:
+naglowek`), a każda podstrona ma `<script type="speculationrules">`: prefetch
+po najechaniu, prerender dopiero przy kliknięciu (żeby GA4 nie liczył wizyt,
+których nie było). Nowa podstrona = skopiuj ten blok przed `</body>`. Poniższe
 skille to szanują; te z GSAP-em i Lenisem są na czarnej liście niżej.
 
 | Skill | Kiedy |
