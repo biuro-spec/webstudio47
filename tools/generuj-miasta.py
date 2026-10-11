@@ -239,8 +239,10 @@ def strona(m, stempel):
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            {"@type": "Question", "name": p,
-             "acceptedAnswer": {"@type": "Answer", "text": o}}
+            # html.unescape: w treści są encje &nbsp;, a JSON ich nie dekoduje,
+            # więc bez tego Google czytałby dosłowne „w&nbsp;Google”.
+            {"@type": "Question", "name": html.unescape(p),
+             "acceptedAnswer": {"@type": "Answer", "text": html.unescape(o)}}
             for p, o in m["pytania"]
         ],
     }

@@ -25,7 +25,7 @@
     <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/inter-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v=1788780926">
+    <link rel="stylesheet" href="/style.css?v=1791694909">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -186,7 +186,7 @@
         },
         {
           "@type": "Question",
-          "name": "Czy cena może wzrosnąć w trakcie projektu?",
+          "name": "Czy cena może wzrosnąć w trakcie projektu?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Nie, jeśli zakres się nie zmienia. Umówiona kwota obowiązuje do końca. Cena rośnie tylko wtedy, gdy w trakcie dokładamy coś, czego nie było w ustaleniach — na przykład sklep zamiast formularza. Wtedy mówię o tym od razu, przed rozpoczęciem pracy, a nie na fakturze."
@@ -202,7 +202,7 @@
         },
         {
           "@type": "Question",
-          "name": "Czy trzeba zapłacić wszystko z góry?",
+          "name": "Czy trzeba zapłacić wszystko z góry?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Nie. Standardowo dzielę płatność na dwie części: 40 procent zaliczki przy starcie i 60 procent po uruchomieniu strony. Przy większych projektach dzielimy na etapy. Zaliczka jest po to, żebyśmy oboje traktowali termin poważnie."
@@ -647,6 +647,10 @@
 
     <script src="/script.js?v=1788780926" defer></script>
     <script src="/consent.js?v=1788780926" defer></script>
+<script type="speculationrules">
+{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}],
+ "prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"conservative"}]}
+</script>
 </body>
 
 </html>

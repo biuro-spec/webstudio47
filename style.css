@@ -2733,3 +2733,32 @@
     text-decoration: underline;
     text-underline-offset: 4px;
 }
+
+/* Przejścia między podstronami (cross-document View Transitions, Interop 2026).
+   Nagłówek ma własną nazwę, więc zostaje na miejscu; podmienia się tylko treść.
+   Przeglądarki bez wsparcia po prostu ładują stronę jak dotąd.
+   Przy prefers-reduced-motion przejścia są wyłączone. */
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
+    #main-header {
+        view-transition-name: naglowek;
+    }
+    ::view-transition-old(root) {
+        animation: vt-wyjscie 0.16s cubic-bezier(0.4, 0, 1, 1) both;
+    }
+    ::view-transition-new(root) {
+        animation: vt-wejscie 0.34s cubic-bezier(0, 0, 0.2, 1) 0.05s both;
+    }
+    ::view-transition-group(naglowek) {
+        animation-duration: 0.34s;
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+@keyframes vt-wyjscie {
+    to { opacity: 0; }
+}
+@keyframes vt-wejscie {
+    from { opacity: 0; transform: translateY(10px); }
+}

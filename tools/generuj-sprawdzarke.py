@@ -14,6 +14,7 @@ GET buduje `?url=`. JS tylko dokleja `https://`, gdy ktoś go pominie.
 Uruchomienie:  python tools/generuj-sprawdzarke.py
 """
 
+import html
 import json
 import pathlib
 import sys
@@ -202,8 +203,9 @@ def schematy(stempel):
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            {"@type": "Question", "name": p,
-             "acceptedAnswer": {"@type": "Answer", "text": o}}
+            # html.unescape: encje &nbsp; z treści JSON zostawiłby dosłownie.
+            {"@type": "Question", "name": html.unescape(p),
+             "acceptedAnswer": {"@type": "Answer", "text": html.unescape(o)}}
             for p, o in PYTANIA
         ],
     }
