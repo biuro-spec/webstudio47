@@ -2948,15 +2948,16 @@
     /* Pigułka o 5% mniejsza (prośba właściciela 2026-10-11): 440→418 px,
        wysokość, logo i przycisk w tej samej proporcji. Tylko stan zwinięty. */
     #main-header.scrolled:not(:hover):not(:focus-within) {
-        width: min(94%, 418px);
+        width: min(94%, 409px);
         padding: 9.5px 0;
     }
     #main-header.scrolled:not(:hover):not(:focus-within) .logo {
         font-size: 1.33rem;
     }
     #main-header.scrolled:not(:hover):not(:focus-within) .btn-primary {
-        padding: 9.5px 19px;
-        font-size: 0.855rem;
+        /* przycisk o kolejne 7% mniejszy (2026-10-11), pigułka węższa o tyle samo */
+        padding: 8.8px 17.7px;
+        font-size: 0.795rem;
     }
     #main-header.scrolled .nav-container {
         justify-content: space-between;
