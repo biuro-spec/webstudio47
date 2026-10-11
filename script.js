@@ -353,10 +353,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // L = lewa krawędź toru w oknie BEZ transformu; svg zaczyna się na
         // lewej krawędzi okna i kończy tyle samo za prawym końcem toru.
         var L = Math.round(kont.parentElement.getBoundingClientRect().left + kont.offsetLeft);
-        var szer = kont.offsetWidth + 2 * L;
+        var ekran = document.documentElement.clientWidth;
+        // W trybie przesuwu (wąski tor = statyczny, szeroki = jazda) tor startuje
+        // przesunięty w PRAWO o T0 (krok 01 na środku), więc linia musi mieć
+        // zapas z lewej: svg zaczyna się cały ekran przed lewą krawędzią okna.
+        var jazda = kont.offsetWidth > ekran;
+        var C = Math.min(1152, ekran - 48);
+        var T0 = jazda ? C / 2 - 190 : 0;
+        var Z = jazda ? ekran : L;            // zapas z lewej (w px svg)
+        var szer = kont.offsetWidth + Z + (jazda ? ekran : L);
         var wys = Math.ceil(kont.offsetHeight);
         var vw = szer;
-        svg.style.left = (-L) + 'px';
+        svg.style.left = (-Z) + 'px';
         svg.style.top = '0px';
         svg.style.width = szer + 'px';
         svg.style.height = wys + 'px';
@@ -367,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // linię o kilkadziesiąt pikseli względem gwiazdek.
         var P = [];
         for (var i = 0; i < kroki.length; i++) {
-            P.push({ x: L + kroki[i].offsetLeft, y: Math.round(kroki[i].offsetTop + ZNACZNIK_Y) });
+            P.push({ x: Z + kroki[i].offsetLeft, y: Math.round(kroki[i].offsetTop + ZNACZNIK_Y) });
         }
         var d = 'M 0 ' + P[0].y + ' H ' + P[0].x;
         var doZnacznika = [d];
@@ -393,8 +401,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Start rysowania: w chwili przyklejenia sceny linia jest już narysowana
         // do ~55% szerokości ekranu (czubek w okolicy środka), dalej rośnie
         // razem z przesuwem toru. --nic-s = ułamek długości narysowany na starcie.
-        var ekran = document.documentElement.clientWidth;
-        var X0 = ekran * 0.55;
+        // punkt svg, który na starcie przesuwu leży na 55% szerokości ekranu:
+        // ekranX = svgX - Z + L + T0
+        var X0 = ekran * 0.55 + Z - L - T0;
         var lo = 0, hi = calosc;
         for (var k = 0; k < 24; k++) {
             var mid = (lo + hi) / 2;

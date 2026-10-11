@@ -3064,11 +3064,15 @@
             animation-range: contain 6% contain 94%;
             will-change: transform;
         }
-        .process-steps .step { max-width: 330px; }
-        /* tor kończy się równo z prawą krawędzią kontenera */
+        .process-steps .step { max-width: 380px; }
+        .process-steps .step h3 { font-size: 1.35rem; }
+        .process-steps .step p { font-size: 1.05rem; line-height: 1.65; }
+        /* Start: krok 01 na środku ekranu; koniec: krok 04 na środku.
+           C = szerokość treści kontenera, więc C/2 to środek ekranu względem
+           lewej krawędzi toru; 190px = połowa bloku kroku; 75% = trzy kolumny. */
         @keyframes proces-jazda {
-            from { transform: translateX(0); }
-            to   { transform: translateX(calc(-100% + min(1152px, 100vw - 48px))); }
+            from { transform: translateX(calc(min(1152px, 100vw - 48px) / 2 - 190px)); }
+            to   { transform: translateX(calc(min(1152px, 100vw - 48px) / 2 - 190px - 75%)); }
         }
         /* linia startuje już narysowana do środka ekranu (--nic-s z script.js)
            i rośnie w tym samym zakresie co przesuw toru */
@@ -3081,6 +3085,11 @@
         }
         .step::before, .step::after {
             animation-range: contain calc(6% + var(--nic-p, 0) * 0.88%) contain calc(10% + var(--nic-p, 0) * 0.88%);
+        }
+        /* krok 01 stoi na środku od początku jazdy — jego gwiazdka świeci od razu */
+        .process-steps .step:nth-of-type(1)::before,
+        .process-steps .step:nth-of-type(1)::after {
+            animation-range: entry 60% entry 100%;
         }
     }
 }
