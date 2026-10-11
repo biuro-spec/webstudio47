@@ -3022,3 +3022,69 @@
 @media (prefers-reduced-motion: reduce) {
     #main-header .nav-links li { transition: none; }
 }
+
+/* ===== „Jak to wygląda?” — przesuw w bok (wzór: untillabs.com/roadmap, 2026-10-11) =====
+   Sekcja jest sceną (300vh), kontener przykleja się na ekran, a przewijanie
+   w dół przesuwa tor kroków w lewo — jak jazda po linii. Linia (kształt liczy
+   script.js) dorysowuje się w tym samym tempie, gwiazdki zapalają się, gdy
+   linia do nich dojdzie. Oś: view-timeline --nic na całej sekcji, zakres
+   „contain” = czas przyklejenia.
+   Tylko szeroki ekran + ruch dozwolony + wsparcie animation-timeline;
+   inaczej zostaje statyczna „roadmapa” schodkowa (wyżej).
+   PUŁAPKA: globalne section{overflow:hidden} zabija sticky — tu overflow: clip
+   (nie tworzy kontenera przewijania, więc sticky działa). */
+@media (min-width: 1025px) and (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .process {
+            height: 300vh;
+            padding: 0;
+            overflow: clip;
+            view-timeline: --nic block;
+        }
+        .process > .container {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        /* miejsce na menu-pigułkę u góry; schodki niższe, by całość
+           zmieściła się w oknie 1536×690 bez nachodzenia na tytuł */
+        .process > .container { padding-top: 84px; padding-bottom: 16px; }
+        .process .section-header { margin-bottom: 52px; }
+        .process-steps .step:nth-of-type(2) { margin-top: 60px; }
+        .process-steps .step:nth-of-type(3) { margin-top: 120px; }
+        .process-steps .step:nth-of-type(4) { margin-top: 180px; }
+        .process-steps {
+            /* tor na ~2 ekrany; kroki rozstawione szeroko, tekst wąski */
+            width: max(2400px, 185vw);
+            max-width: none;
+            view-timeline: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            animation: proces-jazda linear both;
+            animation-timeline: --nic;
+            animation-range: contain 6% contain 94%;
+            will-change: transform;
+        }
+        .process-steps .step { max-width: 330px; }
+        /* tor kończy się równo z prawą krawędzią kontenera */
+        @keyframes proces-jazda {
+            from { transform: translateX(0); }
+            to   { transform: translateX(calc(-100% + min(1152px, 100vw - 48px))); }
+        }
+        /* linia startuje już narysowana do środka ekranu (--nic-s z script.js)
+           i rośnie w tym samym zakresie co przesuw toru */
+        /* Zwykłe nic-rysuj (1 → 0), ale zakres zaczyna się WCZEŚNIEJ niż
+           przesuw toru — o tyle, by w chwili startu przesuwu (contain 6%)
+           linia była już narysowana do środka ekranu. --nic-r0 liczy script.js.
+           (var() w @keyframes dawało przeskok zamiast płynnego przejścia.) */
+        .nic .nic-linia {
+            animation-range: contain calc(var(--nic-r0, 6) * 1%) contain 94%;
+        }
+        .step::before, .step::after {
+            animation-range: contain calc(6% + var(--nic-p, 0) * 0.88%) contain calc(10% + var(--nic-p, 0) * 0.88%);
+        }
+    }
+}

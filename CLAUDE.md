@@ -126,7 +126,12 @@ Strona główna (2026-10-11): **nić-roadmapa** przez „Jak to wygląda?” (wz
 linia od krawędzi do krawędzi okna, schodzi łukami do schodkowych kroków; kształt
 liczy `script.js` z `offsetLeft/offsetTop` — NIE z getBoundingClientRect, bo `.reveal`
 przesuwa kroki transformem; gwiazdki = `.step::before/::after`, moment zapalenia
-`--nic-p` z długości ścieżki) i **wykres przed/po**
+`--nic-p` z długości ścieżki) — od 1025 px i bez reduced-motion sekcja jest **sceną z przesuwem w bok**
+(`.process` 300vh, kontener sticky, tor `proces-jazda`; linia dorysowuje się
+z zakresem cofniętym o `--nic-r0`, żeby na starcie sięgała środka ekranu).
+PUŁAPKA: `var()` w `@keyframes` dla `stroke-dashoffset` dawało przeskok
+w połowie zamiast płynnej zmiany — przesuwaj zakres, nie wartości klatek.
+**Portfolio (arc.js):** przystanki łuku przy każdej karcie + powiększenie 1,08. i **wykres przed/po**
 Alaski (`.szybkosc`, pomiary PSI 2–3.10.2026). Pułapka: `vector-effect:
 non-scaling-stroke` psuje `pathLength` — linia rysuje się kawałkami. Nie dodawaj.
 Liczby na wykresie są prawdziwe; nowe pomiary = nowa data w nocie pod wykresem.

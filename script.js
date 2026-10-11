@@ -348,27 +348,32 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         kont.classList.add('nic-gotowa');
-        var rk = kont.getBoundingClientRect();
-        var vw = document.documentElement.clientWidth;
-        var wys = Math.ceil(rk.height);
-        svg.style.left = (-rk.left) + 'px';
+        // Współrzędne z układu (offset*), nie z getBoundingClientRect: tor może
+        // być przesunięty transformem (przesuw w bok), a kroki mają .reveal.
+        // L = lewa krawędź toru w oknie BEZ transformu; svg zaczyna się na
+        // lewej krawędzi okna i kończy tyle samo za prawym końcem toru.
+        var L = Math.round(kont.parentElement.getBoundingClientRect().left + kont.offsetLeft);
+        var szer = kont.offsetWidth + 2 * L;
+        var wys = Math.ceil(kont.offsetHeight);
+        var vw = szer;
+        svg.style.left = (-L) + 'px';
         svg.style.top = '0px';
-        svg.style.width = vw + 'px';
+        svg.style.width = szer + 'px';
         svg.style.height = wys + 'px';
-        svg.setAttribute('viewBox', '0 0 ' + vw + ' ' + wys);
+        svg.setAttribute('viewBox', '0 0 ' + szer + ' ' + wys);
 
         // offsetLeft/offsetTop, NIE getBoundingClientRect: kroki mają .reveal
         // (translateY(40px) do czasu wjazdu) — pomiar z transformem przesuwał
         // linię o kilkadziesiąt pikseli względem gwiazdek.
         var P = [];
         for (var i = 0; i < kroki.length; i++) {
-            P.push({ x: Math.round(rk.left + kroki[i].offsetLeft), y: Math.round(kroki[i].offsetTop + ZNACZNIK_Y) });
+            P.push({ x: L + kroki[i].offsetLeft, y: Math.round(kroki[i].offsetTop + ZNACZNIK_Y) });
         }
         var d = 'M 0 ' + P[0].y + ' H ' + P[0].x;
         var doZnacznika = [d];
         for (i = 0; i < P.length - 1; i++) {
             var a = P[i], b = P[i + 1];
-            var luk = Math.min(240, (b.x - a.x) * 0.6);
+            var luk = Math.min(460, (b.x - a.x) * 0.6);
             var start = b.x - luk - 24;
             var srodek = start + luk / 2;
             d += ' H ' + start +
@@ -384,8 +389,27 @@ document.addEventListener('DOMContentLoaded', () => {
         tlo.setAttribute('d', d);
         linia.setAttribute('d', d);
         var calosc = dlugosc(d);
+
+        // Start rysowania: w chwili przyklejenia sceny linia jest już narysowana
+        // do ~55% szerokości ekranu (czubek w okolicy środka), dalej rośnie
+        // razem z przesuwem toru. --nic-s = ułamek długości narysowany na starcie.
+        var ekran = document.documentElement.clientWidth;
+        var X0 = ekran * 0.55;
+        var lo = 0, hi = calosc;
+        for (var k = 0; k < 24; k++) {
+            var mid = (lo + hi) / 2;
+            if (miarka.getPointAtLength(mid).x < X0) lo = mid; else hi = mid;
+        }
+        var start = calosc ? lo / calosc : 0;
+        // przesuw toru trwa od contain 6% do 94% (88 pkt); linia ma ten sam
+        // koniec, a start cofnięty tak, by w 6% miała już ułamek `start`
+        var r0 = 6 - start / (1 - start) * 88;
+        svg.style.setProperty('--nic-r0', r0.toFixed(2));
+
+        // --nic-p: w którym % OSI (nie długości) linia dochodzi do znacznika
         for (i = 0; i < kroki.length; i++) {
-            var p = calosc ? dlugosc(doZnacznika[i]) / calosc * 100 : 0;
+            var m = calosc ? dlugosc(doZnacznika[i]) / calosc : 0;
+            var p = Math.max(0, (m - start) / (1 - start)) * 100;
             kroki[i].style.setProperty('--nic-p', p.toFixed(1));
         }
     }
