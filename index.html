@@ -27,7 +27,7 @@
     <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/inter-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="style.css?v=1791694909">
+    <link rel="stylesheet" href="style.css?v=1791696574">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -214,6 +214,16 @@
                 <p>Prosto, konkretnie, bez przeciągania</p>
             </div>
             <div class="process-steps">
+                <svg class="nic nic-poziom" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                    <defs><linearGradient id="nic-grad-poziom" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+                    <path class="nic-tlo" d="M0 20 C50 2 50 38 100 20 S150 2 200 20 S250 38 300 20"/>
+                    <path class="nic-linia" d="M0 20 C50 2 50 38 100 20 S150 2 200 20 S250 38 300 20" pathLength="1" stroke="url(#nic-grad-poziom)"/>
+                </svg>
+                <svg class="nic nic-pion" viewBox="0 0 12 300" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                    <defs><linearGradient id="nic-grad-pion" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+                    <path class="nic-tlo" d="M6 0 V300"/>
+                    <path class="nic-linia" d="M6 0 V300" pathLength="1" stroke="url(#nic-grad-pion)"/>
+                </svg>
                 <div class="step reveal">
                     <span class="step-num">01</span>
                     <h3>Telefon</h3>
@@ -277,6 +287,58 @@
                 </span>
                 <span class="pokaz-podpis">Zobacz, jak powstała</span>
             </a>
+        </div>
+    </section>
+
+    <section class="szybkosc" aria-labelledby="szybkosc-tytul">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 id="szybkosc-tytul" class="text-gradient">Szybkość, którą widać w&nbsp;liczbach</h2>
+                <p>Strona Alaski, firmy klimatyzacyjnej z&nbsp;Raciborza. Ta sama strona przed moimi poprawkami i&nbsp;dzień po nich, zmierzona przez Google PageSpeed na telefonie.</p>
+            </div>
+            <div class="wykres glass">
+                <div class="wykres-wiersz">
+                    <div class="wykres-opis">
+                        <h3>Wynik wydajności <span class="wykres-zysk">+30 punktów</span></h3>
+                        <p>Ocena Google od 0 do 100. Im więcej, tym lepiej.</p>
+                    </div>
+                    <div class="wykres-slupki">
+                        <div class="slupek slupek-przed" style="--w:66%"><span class="slupek-kto">Przed</span><span class="slupek-tor"><span class="slupek-pasek"></span></span><span class="slupek-liczba">66</span></div>
+                        <div class="slupek slupek-po" style="--w:96%"><span class="slupek-kto">Po</span><span class="slupek-tor"><span class="slupek-pasek"></span></span><span class="slupek-liczba">96</span></div>
+                    </div>
+                </div>
+                <div class="wykres-wiersz">
+                    <div class="wykres-opis">
+                        <h3>Pierwszy widok na ekranie <span class="wykres-zysk">3× szybciej</span></h3>
+                        <p>Ile czekasz, zanim cokolwiek się pokaże. Im mniej, tym lepiej.</p>
+                    </div>
+                    <div class="wykres-slupki">
+                        <div class="slupek slupek-przed" style="--w:100%"><span class="slupek-kto">Przed</span><span class="slupek-tor"><span class="slupek-pasek"></span></span><span class="slupek-liczba">4,8&nbsp;s</span></div>
+                        <div class="slupek slupek-po" style="--w:31%"><span class="slupek-kto">Po</span><span class="slupek-tor"><span class="slupek-pasek"></span></span><span class="slupek-liczba">1,5&nbsp;s</span></div>
+                    </div>
+                </div>
+                <div class="wykres-wiersz">
+                    <div class="wykres-opis">
+                        <h3>Cała strona widoczna <span class="wykres-zysk">2,7× szybciej</span></h3>
+                        <p>Ile czekasz na największy element, zwykle zdjęcie. Im mniej, tym lepiej.</p>
+                    </div>
+                    <div class="wykres-slupki">
+                        <div class="slupek slupek-przed" style="--w:100%"><span class="slupek-kto">Przed</span><span class="slupek-tor"><span class="slupek-pasek"></span></span><span class="slupek-liczba">5,4&nbsp;s</span></div>
+                        <div class="slupek slupek-po" style="--w:37%"><span class="slupek-kto">Po</span><span class="slupek-tor"><span class="slupek-pasek"></span></span><span class="slupek-liczba">2,0&nbsp;s</span></div>
+                    </div>
+                </div>
+                <div class="wykres-wiersz">
+                    <div class="wykres-opis">
+                        <h3>Dane do pobrania <span class="wykres-zysk">o&nbsp;połowę mniej</span></h3>
+                        <p>Ile danych ściąga telefon. Im mniej, tym lepiej.</p>
+                    </div>
+                    <div class="wykres-slupki">
+                        <div class="slupek slupek-przed" style="--w:100%"><span class="slupek-kto">Przed</span><span class="slupek-tor"><span class="slupek-pasek"></span></span><span class="slupek-liczba">711&nbsp;KB</span></div>
+                        <div class="slupek slupek-po" style="--w:50%"><span class="slupek-kto">Po</span><span class="slupek-tor"><span class="slupek-pasek"></span></span><span class="slupek-liczba">355&nbsp;KB</span></div>
+                    </div>
+                </div>
+                <p class="wykres-nota">Pomiary Google PageSpeed na telefonie z&nbsp;2 i&nbsp;3 października 2026. Animacje zostały, zniknęły tylko fonty i&nbsp;ikony ściągane z&nbsp;obcych serwerów. <a href="/realizacje/strona-dla-firmy-klimatyzacyjnej/">Co dokładnie poprawiłem</a></p>
+            </div>
         </div>
     </section>
 

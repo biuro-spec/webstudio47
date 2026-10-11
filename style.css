@@ -2762,3 +2762,115 @@
 @keyframes vt-wejscie {
     from { opacity: 0; transform: translateY(10px); }
 }
+
+/* ===== Nić przez „Jak to wygląda?” (2026-10-11) =====
+   Linia SVG łączy cztery kroki i rysuje się w miarę przewijania; kropki przy
+   krokach zapalają się, gdy linia do nich dojdzie. Czysty CSS: view-timeline
+   na .process-steps, zawężony insetem do pasa w połowie ekranu, więc
+   „czubek” linii zawsze jest tam, gdzie czytasz.
+   Bez wsparcia animation-timeline i przy prefers-reduced-motion: linia
+   narysowana w całości, kropki zapalone — stan końcowy, nic nie znika. */
+.process-steps { position: relative; }
+.process .section-header { margin-bottom: 76px; }
+.nic { position: absolute; pointer-events: none; overflow: visible; }
+.nic path { fill: none; stroke-width: 2; stroke-linecap: round; }
+/* BEZ vector-effect: non-scaling-stroke — psuje pathLength i linia rysowała się kawałkami. */
+.nic .nic-tlo { stroke: rgba(255, 255, 255, 0.08); }
+.nic-pion { display: none; }
+.step::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: -6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    border: 2px solid var(--accent-cyan);
+    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15), 0 0 18px rgba(6, 182, 212, 0.45);
+    box-sizing: border-box;
+}
+@media (min-width: 1025px) {
+    .process-steps { grid-template-columns: repeat(4, 1fr); }
+    /* od kropki pierwszego kroku do kropki ostatniego: 100% minus jedna kolumna */
+    .nic-poziom { left: 0; top: -44px; height: 40px; width: calc(75% + 30px); }
+}
+@media (max-width: 1024px) {
+    .process .section-header { margin-bottom: 40px; }
+    .process-steps { grid-template-columns: 1fr; gap: 28px; max-width: 600px; margin-inline: auto; padding-left: 48px; }
+    .nic-poziom { display: none; }
+    .nic-pion { display: block; left: 8px; top: 20px; bottom: 24px; width: 12px; height: calc(100% - 44px); }
+    .step { padding-top: 46px; }
+    .step::before { top: 14px; left: -40px; }
+}
+@keyframes nic-rysuj { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes nic-kropka {
+    from { background: var(--bg-primary); border-color: rgba(255, 255, 255, 0.25); box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+}
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .process-steps { view-timeline: --nic block; view-timeline-inset: 40% 40%; }
+        .nic .nic-linia {
+            stroke-dasharray: 1 1;
+            animation: nic-rysuj linear both;
+            animation-timeline: --nic;
+            animation-range: cover 0% cover 100%;
+        }
+        .step::before { animation: nic-kropka linear both; animation-timeline: --nic; }
+        .step:nth-of-type(1)::before { animation-range: cover 0% cover 3%; }
+        .step:nth-of-type(2)::before { animation-range: cover 31% cover 35%; }
+        .step:nth-of-type(3)::before { animation-range: cover 64% cover 68%; }
+        .step:nth-of-type(4)::before { animation-range: cover 96% cover 100%; }
+        @media (max-width: 1024px) {
+            .step:nth-of-type(2)::before { animation-range: cover 22% cover 26%; }
+            .step:nth-of-type(3)::before { animation-range: cover 47% cover 51%; }
+            .step:nth-of-type(4)::before { animation-range: cover 72% cover 76%; }
+        }
+    }
+}
+
+/* ===== Wykres „przed i po” — Alaska, PageSpeed na telefonie (2026-10-11) =====
+   Prawdziwe pomiary PSI z 2 i 3 października 2026. Paski rosną przy wjeździe
+   w kadr (view-timeline), najpierw „przed”, potem „po”. Liczby są zwykłym
+   tekstem w HTML — czytnik ekranu i Google widzą je bez animacji. */
+.szybkosc { padding: var(--section-pady, 100px) 0; }
+.wykres { max-width: 900px; margin: 0 auto; padding: 36px 40px; display: grid; gap: 34px; }
+.wykres-wiersz { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr); gap: 16px 40px; align-items: center; }
+.wykres-opis h3 { font-size: 1.1rem; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.wykres-opis p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+.wykres-zysk {
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em;
+    color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 999px; padding: 2px 10px;
+    white-space: nowrap;
+}
+.wykres-slupki { display: grid; gap: 10px; }
+.slupek { display: grid; grid-template-columns: 44px minmax(0, 1fr) 72px; align-items: center; gap: 12px; }
+.slupek-kto { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); }
+.slupek-tor { height: 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.05); overflow: hidden; }
+.slupek-pasek { display: block; height: 100%; width: var(--w); border-radius: inherit; transform-origin: left center; }
+.slupek-przed .slupek-pasek { background: rgba(255, 255, 255, 0.28); }
+.slupek-po .slupek-pasek { background: var(--grad-primary); box-shadow: 0 0 16px rgba(139, 92, 246, 0.35); }
+.slupek-liczba { font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.slupek-przed .slupek-liczba { color: var(--text-secondary); }
+.slupek-po .slupek-liczba { color: var(--text-primary); font-weight: 700; }
+.wykres-nota { font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid var(--glass-border); padding-top: 20px; }
+.wykres-nota a { color: var(--accent-cyan); text-underline-offset: 4px; }
+@media (max-width: 768px) {
+    .wykres { padding: 26px 20px; gap: 28px; }
+    .wykres-wiersz { grid-template-columns: 1fr; }
+    .slupek { grid-template-columns: 40px minmax(0, 1fr) 64px; gap: 10px; }
+}
+@keyframes slupek-rosnij { from { transform: scaleX(0); } }
+@keyframes slupek-pokaz { from { opacity: 0; } }
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .wykres-wiersz { view-timeline: --wiersz block; }
+        .slupek-pasek, .slupek-liczba { animation-timeline: --wiersz; animation-fill-mode: both; animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+        .slupek-pasek { animation-name: slupek-rosnij; }
+        .slupek-liczba { animation-name: slupek-pokaz; }
+        .slupek-przed .slupek-pasek, .slupek-przed .slupek-liczba { animation-range: entry 40% cover 40%; }
+        .slupek-po .slupek-pasek, .slupek-po .slupek-liczba { animation-range: entry 90% cover 52%; }
+    }
+}
