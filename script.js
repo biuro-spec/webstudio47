@@ -313,6 +313,96 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 
+// ===== Nić „roadmapa” w „Jak to wygląda?” (2026-10-11, wzór: untillabs.com) =====
+// Liczy KSZTAŁT linii z prawdziwych pozycji znaczników kroków: od lewej
+// krawędzi okna poziomo do kroku 1, łukiem w dół do kroku 2 itd., na końcu
+// do prawej krawędzi okna. Rysowanie przewijaniem robi CSS (view-timeline).
+// Ustawia też --nic-p na krokach: w ilu % długości linii leży znacznik,
+// żeby gwiazdka zapalała się dokładnie wtedy, gdy linia do niej dojdzie.
+// Tylko od 1025 px; wężej działa pionowa nić z samego CSS.
+(function () {
+    var kont = document.querySelector('.process-steps');
+    if (!kont) return;
+    var svg = kont.querySelector('.nic-poziom');
+    if (!svg) return;
+    var tlo = svg.querySelector('.nic-tlo');
+    var linia = svg.querySelector('.nic-linia');
+    var kroki = kont.querySelectorAll('.step');
+    var szeroki = window.matchMedia('(min-width: 1025px)');
+    var NS = 'http://www.w3.org/2000/svg';
+    var miarka = document.createElementNS(NS, 'path');
+    miarka.setAttribute('fill', 'none');
+    miarka.setAttribute('stroke', 'none');
+    svg.appendChild(miarka);
+    var ZNACZNIK_Y = -26; // to samo co top w .step::before
+
+    function dlugosc(d) {
+        miarka.setAttribute('d', d);
+        return miarka.getTotalLength();
+    }
+
+    function rysuj() {
+        if (!szeroki.matches || kroki.length < 2) {
+            kont.classList.remove('nic-gotowa');
+            for (var j = 0; j < kroki.length; j++) kroki[j].style.removeProperty('--nic-p');
+            return;
+        }
+        kont.classList.add('nic-gotowa');
+        var rk = kont.getBoundingClientRect();
+        var vw = document.documentElement.clientWidth;
+        var wys = Math.ceil(rk.height);
+        svg.style.left = (-rk.left) + 'px';
+        svg.style.top = '0px';
+        svg.style.width = vw + 'px';
+        svg.style.height = wys + 'px';
+        svg.setAttribute('viewBox', '0 0 ' + vw + ' ' + wys);
+
+        // offsetLeft/offsetTop, NIE getBoundingClientRect: kroki mają .reveal
+        // (translateY(40px) do czasu wjazdu) — pomiar z transformem przesuwał
+        // linię o kilkadziesiąt pikseli względem gwiazdek.
+        var P = [];
+        for (var i = 0; i < kroki.length; i++) {
+            P.push({ x: Math.round(rk.left + kroki[i].offsetLeft), y: Math.round(kroki[i].offsetTop + ZNACZNIK_Y) });
+        }
+        var d = 'M 0 ' + P[0].y + ' H ' + P[0].x;
+        var doZnacznika = [d];
+        for (i = 0; i < P.length - 1; i++) {
+            var a = P[i], b = P[i + 1];
+            var luk = Math.min(240, (b.x - a.x) * 0.6);
+            var start = b.x - luk - 24;
+            var srodek = start + luk / 2;
+            d += ' H ' + start +
+                 ' C ' + srodek + ' ' + a.y + ' ' + srodek + ' ' + b.y + ' ' + (start + luk) + ' ' + b.y +
+                 ' H ' + b.x;
+            doZnacznika.push(d);
+        }
+        // za ostatnim krokiem łagodnie w dół i do prawej krawędzi okna
+        var o = P[P.length - 1];
+        var dol = o.y + 56;
+        d += ' H ' + (vw - 140) + ' C ' + (vw - 70) + ' ' + o.y + ' ' + (vw - 70) + ' ' + dol + ' ' + vw + ' ' + dol;
+
+        tlo.setAttribute('d', d);
+        linia.setAttribute('d', d);
+        var calosc = dlugosc(d);
+        for (i = 0; i < kroki.length; i++) {
+            var p = calosc ? dlugosc(doZnacznika[i]) / calosc * 100 : 0;
+            kroki[i].style.setProperty('--nic-p', p.toFixed(1));
+        }
+    }
+
+    var czeka = false;
+    function zaplanuj() {
+        if (czeka) return;
+        czeka = true;
+        requestAnimationFrame(function () { czeka = false; rysuj(); });
+    }
+    rysuj();
+    if ('ResizeObserver' in window) new ResizeObserver(zaplanuj).observe(kont);
+    window.addEventListener('resize', zaplanuj);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(zaplanuj);
+    if (szeroki.addEventListener) szeroki.addEventListener('change', zaplanuj);
+})();
+
 // ===== Rejestracja workera — wylacznie po to, zeby dalo sie zainstalowac =====
 // Chrome proponuje „zainstaluj aplikacje" dopiero, gdy widzi workera z obsluga
 // fetch. Sam worker nic nie cache'uje (patrz komentarz w sw.js), wiec nie ma

@@ -2797,69 +2797,91 @@
     from { opacity: 0; transform: translateY(10px); }
 }
 
-/* ===== Nić przez „Jak to wygląda?” (2026-10-11) =====
-   Linia SVG łączy cztery kroki i rysuje się w miarę przewijania; kropki przy
-   krokach zapalają się, gdy linia do nich dojdzie. Czysty CSS: view-timeline
-   na .process-steps, zawężony insetem do pasa w połowie ekranu, więc
-   „czubek” linii zawsze jest tam, gdzie czytasz.
-   Bez wsparcia animation-timeline i przy prefers-reduced-motion: linia
-   narysowana w całości, kropki zapalone — stan końcowy, nic nie znika. */
+/* ===== Nić przez „Jak to wygląda?” — wersja „roadmapa” (wzór: untillabs.com, 2026-10-11) =====
+   Jedna linia biegnie od lewej do prawej krawędzi OKNA (full-bleed), a między
+   krokami schodzi łukiem w dół: kroki stoją schodkowo, każdy niżej. Przy
+   każdym kroku znacznik — czteroramienna gwiazdka z pionową kreską.
+   Kształt linii liczy script.js (nicRoadmapa) z PRAWDZIWYCH pozycji znaczników,
+   więc łuki trafiają w kroki przy każdej szerokości okna; rysowanie przewijaniem
+   robi CSS (view-timeline, pas w połowie ekranu).
+   Bez JS: linii nie ma (svg ukryte), znaczniki zostają. Bez animation-timeline
+   i przy prefers-reduced-motion: linia narysowana, znaczniki zapalone. */
 .process-steps { position: relative; }
 .process .section-header { margin-bottom: 76px; }
 .nic { position: absolute; pointer-events: none; overflow: visible; }
-.nic path { fill: none; stroke-width: 2; stroke-linecap: round; }
-/* BEZ vector-effect: non-scaling-stroke — psuje pathLength i linia rysowała się kawałkami. */
-.nic .nic-tlo { stroke: rgba(255, 255, 255, 0.08); }
+.nic path { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* BEZ vector-effect: non-scaling-stroke — psuje pathLength i linia rysuje się kawałkami. */
+.nic .nic-tlo { stroke: rgba(255, 255, 255, 0.09); }
+.nic .nic-linia { filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.55)); }
 .nic-pion { display: none; }
-.step::before {
+.nic-poziom { display: none; }
+
+/* Znacznik: gwiazdka (::before) + pionowa kreska (::after), środek = punkt na linii */
+.step::before,
+.step::after {
     content: "";
     position: absolute;
-    top: -30px;
-    left: -6px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--accent-cyan);
-    border: 2px solid var(--accent-cyan);
-    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15), 0 0 18px rgba(6, 182, 212, 0.45);
-    box-sizing: border-box;
+    left: 0;
+    top: -26px;
+    pointer-events: none;
 }
+.step::before {
+    width: 18px;
+    height: 18px;
+    margin: -9px 0 0 -9px;
+    clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
+    background: linear-gradient(135deg, #c4b5fd, var(--accent-cyan));
+    filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.9));
+}
+.step::after {
+    width: 1px;
+    height: 56px;
+    margin: -28px 0 0 -0.5px;
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0), rgba(139, 92, 246, 0.9) 50%, rgba(6, 182, 212, 0));
+}
+
 @media (min-width: 1025px) {
-    .process-steps { grid-template-columns: repeat(4, 1fr); }
-    /* od kropki pierwszego kroku do kropki ostatniego: 100% minus jedna kolumna */
-    .nic-poziom { left: 0; top: -44px; height: 40px; width: calc(75% + 30px); }
+    .process-steps { grid-template-columns: repeat(4, 1fr); gap: 40px; padding-bottom: 24px; }
+    /* schodki: każdy krok o stopień niżej, linia schodzi do niego łukiem */
+    .process-steps .step:nth-of-type(2) { margin-top: 80px; }
+    .process-steps .step:nth-of-type(3) { margin-top: 160px; }
+    .process-steps .step:nth-of-type(4) { margin-top: 240px; }
+    .process-steps.nic-gotowa .nic-poziom { display: block; }
 }
 @media (max-width: 1024px) {
     .process .section-header { margin-bottom: 40px; }
     .process-steps { grid-template-columns: 1fr; gap: 28px; max-width: 600px; margin-inline: auto; padding-left: 48px; }
-    .nic-poziom { display: none; }
     .nic-pion { display: block; left: 8px; top: 20px; bottom: 24px; width: 12px; height: calc(100% - 44px); }
     .step { padding-top: 46px; }
-    .step::before { top: 14px; left: -40px; }
+    .step::before, .step::after { top: 20px; left: -34px; }
 }
 @keyframes nic-rysuj { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
-@keyframes nic-kropka {
-    from { background: var(--bg-primary); border-color: rgba(255, 255, 255, 0.25); box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+@keyframes nic-znacznik {
+    from { opacity: 0.25; transform: scale(0.55) rotate(-45deg); filter: none; }
 }
+@keyframes nic-kreska { from { opacity: 0; transform: scaleY(0.3); } }
 @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-        .process-steps { view-timeline: --nic block; view-timeline-inset: 40% 40%; }
+        .process-steps { view-timeline: --nic block; view-timeline-inset: 38% 38%; }
         .nic .nic-linia {
             stroke-dasharray: 1 1;
             animation: nic-rysuj linear both;
             animation-timeline: --nic;
             animation-range: cover 0% cover 100%;
         }
-        .step::before { animation: nic-kropka linear both; animation-timeline: --nic; }
-        .step:nth-of-type(1)::before { animation-range: cover 0% cover 3%; }
-        .step:nth-of-type(2)::before { animation-range: cover 31% cover 35%; }
-        .step:nth-of-type(3)::before { animation-range: cover 64% cover 68%; }
-        .step:nth-of-type(4)::before { animation-range: cover 96% cover 100%; }
-        @media (max-width: 1024px) {
-            .step:nth-of-type(2)::before { animation-range: cover 22% cover 26%; }
-            .step:nth-of-type(3)::before { animation-range: cover 47% cover 51%; }
-            .step:nth-of-type(4)::before { animation-range: cover 72% cover 76%; }
+        /* --nic-p: gdzie (w % długości linii) leży znacznik kroku — liczy script.js;
+           domyślne wartości pasują do linii pionowej (telefon, tablet). */
+        .step::before, .step::after {
+            animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation-fill-mode: both;
+            animation-timeline: --nic;
+            animation-range: cover calc(var(--nic-p, 0) * 1%) cover calc(var(--nic-p, 0) * 1% + 5%);
         }
+        .step::before { animation-name: nic-znacznik; }
+        .step::after { animation-name: nic-kreska; }
+        .step:nth-of-type(2) { --nic-p: 24; }
+        .step:nth-of-type(3) { --nic-p: 49; }
+        .step:nth-of-type(4) { --nic-p: 73; }
     }
 }
 

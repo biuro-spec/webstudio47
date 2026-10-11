@@ -122,8 +122,11 @@ Od 2026-10-11 podstrony przełączają się przez cross-document View Transition
 naglowek`), a każda podstrona ma `<script type="speculationrules">`: prefetch
 po najechaniu, prerender dopiero przy kliknięciu (żeby GA4 nie liczył wizyt,
 których nie było). Nowa podstrona = skopiuj ten blok przed `</body>`.
-Strona główna (2026-10-11): **nić** przez „Jak to wygląda?” (SVG + `view-timeline`
-z `view-timeline-inset: 40% 40%`, kropki = `.step::before`) i **wykres przed/po**
+Strona główna (2026-10-11): **nić-roadmapa** przez „Jak to wygląda?” (wzór untillabs:
+linia od krawędzi do krawędzi okna, schodzi łukami do schodkowych kroków; kształt
+liczy `script.js` z `offsetLeft/offsetTop` — NIE z getBoundingClientRect, bo `.reveal`
+przesuwa kroki transformem; gwiazdki = `.step::before/::after`, moment zapalenia
+`--nic-p` z długości ścieżki) i **wykres przed/po**
 Alaski (`.szybkosc`, pomiary PSI 2–3.10.2026). Pułapka: `vector-effect:
 non-scaling-stroke` psuje `pathLength` — linia rysuje się kawałkami. Nie dodawaj.
 Liczby na wykresie są prawdziwe; nowe pomiary = nowa data w nocie pod wykresem.
