@@ -121,7 +121,12 @@ Od 2026-10-11 podstrony przełączają się przez cross-document View Transition
 (`@view-transition` na końcu `style.css`, nagłówek ma `view-transition-name:
 naglowek`), a każda podstrona ma `<script type="speculationrules">`: prefetch
 po najechaniu, prerender dopiero przy kliknięciu (żeby GA4 nie liczył wizyt,
-których nie było). Nowa podstrona = skopiuj ten blok przed `</body>`. Poniższe
+których nie było). Nowa podstrona = skopiuj ten blok przed `</body>`.
+Strona główna (2026-10-11): **nić** przez „Jak to wygląda?” (SVG + `view-timeline`
+z `view-timeline-inset: 40% 40%`, kropki = `.step::before`) i **wykres przed/po**
+Alaski (`.szybkosc`, pomiary PSI 2–3.10.2026). Pułapka: `vector-effect:
+non-scaling-stroke` psuje `pathLength` — linia rysuje się kawałkami. Nie dodawaj.
+Liczby na wykresie są prawdziwe; nowe pomiary = nowa data w nocie pod wykresem. Poniższe
 skille to szanują; te z GSAP-em i Lenisem są na czarnej liście niżej.
 
 | Skill | Kiedy |
