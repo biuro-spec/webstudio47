@@ -122,25 +122,39 @@ Od 2026-10-11 podstrony przełączają się przez cross-document View Transition
 naglowek`), a każda podstrona ma `<script type="speculationrules">`: prefetch
 po najechaniu, prerender dopiero przy kliknięciu (żeby GA4 nie liczył wizyt,
 których nie było). Nowa podstrona = skopiuj ten blok przed `</body>`.
-Strona główna (2026-10-11): **nić-roadmapa** przez „Jak to wygląda?” (wzór untillabs:
-linia od krawędzi do krawędzi okna, schodzi łukami do schodkowych kroków; kształt
-liczy `script.js` z `offsetLeft/offsetTop` — NIE z getBoundingClientRect, bo `.reveal`
-przesuwa kroki transformem; gwiazdki = `.step::before/::after`, moment zapalenia
-`--nic-p` z długości ścieżki) — od 1025 px i bez reduced-motion sekcja jest **sceną z przesuwem w bok**
-(`.process` 300vh, kontener sticky, tor `proces-jazda`; linia dorysowuje się
-z zakresem cofniętym o `--nic-r0`, żeby na starcie sięgała środka ekranu).
-PUŁAPKA: `var()` w `@keyframes` dla `stroke-dashoffset` dawało przeskok
-w połowie zamiast płynnej zmiany — przesuwaj zakres, nie wartości klatek.
-**Portfolio (arc.js):** przystanki łuku przy każdej karcie + powiększenie 1,08. i **wykres przed/po**
-Alaski (`.szybkosc`, pomiary PSI 2–3.10.2026). Pułapka: `vector-effect:
-non-scaling-stroke` psuje `pathLength` — linia rysuje się kawałkami. Nie dodawaj.
-Liczby na wykresie są prawdziwe; nowe pomiary = nowa data w nocie pod wykresem.
+
+**Strona główna (2026-10-11):**
+- **Nić-roadmapa** przez „Jak to wygląda?” (wzór untillabs.com/roadmap): linia od
+  krawędzi do krawędzi okna schodzi łukami do schodkowych kroków. Kształt liczy
+  `script.js` z `offsetLeft/offsetTop` — NIE z getBoundingClientRect, bo `.reveal`
+  przesuwa kroki transformem. Gwiazdki = `.step::before/::after`, moment zapalenia
+  `--nic-p` z długości ścieżki.
+- Od 1025 px i bez reduced-motion sekcja jest **sceną z przesuwem w bok**
+  (`.process` 300vh, kontener sticky, tor `proces-jazda`; krok 01 na środku na
+  starcie, 04 na końcu). Linia dorysowuje się z zakresem cofniętym o `--nic-r0`,
+  żeby na starcie sięgała środka ekranu.
+- **Wykres przed/po** Alaski (`.szybkosc`, pomiary PSI 2–3.10.2026). Liczby są
+  prawdziwe; nowe pomiary = nowa data w nocie pod wykresem.
+- PUŁAPKI: `var()` w `@keyframes` dla `stroke-dashoffset` daje przeskok w połowie
+  zamiast płynnej zmiany — przesuwaj zakres, nie wartości klatek.
+  `vector-effect: non-scaling-stroke` psuje `pathLength` — linia rysuje się kawałkami.
+
 **Menu (2026-10-11):** po przewinięciu zwija się do pigułki (logo + telefon), rozwija
 na hover/`:focus-within`, tylko `(hover: hover) and (pointer: fine)`; w galerii usług
-znika na czas sceny (`uslugi-menu`). **PUŁAPKA: style.css = rdzeń + doklejony
-page-style.css** — nowy CSS pisz w `page-style.css` i uruchom `tools/sklej-css.py`;
-dopisek na końcu style.css skrypt skasuje. Skrypt pisze CRLF — ujednolić do LF. Poniższe
-skille to szanują; te z GSAP-em i Lenisem są na czarnej liście niżej.
+znika na czas sceny (`uslugi-menu`).
+
+**Portfolio (arc.js):** przystanki łuku przy każdej karcie + powiększenie 1,08.
+
+**Cały serwis (2026-10-11):** pierścień przycisku „do góry” = postęp czytania
+(`scroll(root)`, zamiast wiecznego `ringRotate`); wyniki Lighthouse na realizacjach
+to wskaźniki jak w PSI (`--w` w HTML z `tools/pomiary.py`); ptaszek w potwierdzeniu
+formularza.
+
+**PUŁAPKA: style.css = rdzeń + doklejony page-style.css** — nowy CSS pisz
+w `page-style.css` i uruchom `tools/sklej-css.py`; dopisek na końcu style.css
+skrypt skasuje. Skrypt pisze CRLF — ujednolić do LF.
+
+Poniższe skille to szanują; te z GSAP-em i Lenisem są na czarnej liście niżej.
 
 | Skill | Kiedy |
 |---|---|

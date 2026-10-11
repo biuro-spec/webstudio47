@@ -3097,3 +3097,104 @@
         }
     }
 }
+
+/* ===== 1. Przycisk „do góry” = wskaźnik postępu czytania (2026-10-11) =====
+   Zamiast pierścienia kręcącego się w kółko (ringRotate, infinite — koszt
+   w PageSpeed i ruch bez znaczenia) pierścień wypełnia się od 0 do 100%
+   razem z przewijaniem strony: scroll(root), zero JS.
+   Bez wsparcia animation-timeline: pełny, nieruchomy pierścień. */
+@property --postep {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 100;
+}
+.scroll-top-btn::before {
+    animation: none;
+    /* cienki pierścień (3 px), środek przezroczysty — strzałka zostaje czytelna */
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+    background: conic-gradient(from 0deg,
+        var(--accent-purple) 0%,
+        var(--accent-cyan) calc(var(--postep) * 1%),
+        rgba(255, 255, 255, 0.1) calc(var(--postep) * 1%));
+}
+@keyframes postep-czytania {
+    from { --postep: 0; }
+    to   { --postep: 100; }
+}
+@supports (animation-timeline: scroll()) {
+    .scroll-top-btn::before {
+        animation: postep-czytania linear both;
+        animation-timeline: scroll(root block);
+    }
+}
+
+/* ===== 2. Wyniki Lighthouse jako wskaźniki jak w PageSpeed (2026-10-11) =====
+   Liczba stoi w pierścieniu, który przy wjeździe kafelków w kadr (.wyniki.reveal
+   dostaje .active z script.js) wypełnia się raz do wartości wyniku.
+   --w (wynik 0–100) ustawia HTML/generator (tools/pomiary.py). Liczba jest
+   zwykłym tekstem — widoczna od początku, czytnik ekranu czyta ją normalnie.
+   Przy reduced-motion pierścień od razu pełny. */
+@property --wynik {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+}
+.wynik-liczba {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 104px;
+    height: 104px;
+    font-size: 2.2rem;
+    font-variant-numeric: tabular-nums;
+}
+.wynik-liczba::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    --wynik: var(--w, 0);
+    background: conic-gradient(var(--kolor-wyniku, #6ee7b7) calc(var(--wynik) * 1%), rgba(255, 255, 255, 0.08) 0);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
+}
+.wynik[data-poziom="dobry"]  { --kolor-wyniku: #34d399; }
+.wynik[data-poziom="sredni"] { --kolor-wyniku: #fbbf24; }
+.wynik[data-poziom="slaby"]  { --kolor-wyniku: #f87171; }
+@keyframes wynik-wskaznik {
+    from { --wynik: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+    .wyniki.reveal.active .wynik-liczba::before {
+        animation: wynik-wskaznik 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.15s both;
+    }
+    .wyniki.reveal.active .wynik:nth-child(2) .wynik-liczba::before { animation-delay: 0.23s; }
+    .wyniki.reveal.active .wynik:nth-child(3) .wynik-liczba::before { animation-delay: 0.31s; }
+    .wyniki.reveal.active .wynik:nth-child(4) .wynik-liczba::before { animation-delay: 0.39s; }
+}
+
+/* ===== 3. Ptaszek w potwierdzeniu wysłania formularza (2026-10-11) =====
+   Wjazd komunikatu już jest (@starting-style wyżej). Przy sukcesie ptaszek
+   rysuje się kreską: 400 ms po 100 ms przerwy. Reduced-motion: od razu gotowy. */
+.form-status.ok:has(.status-ptaszek) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: start;
+}
+.status-ptaszek {
+    width: 26px;
+    height: 26px;
+    margin-top: 1px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.status-ptaszek path { stroke-dasharray: 1 1; }
+@keyframes ptaszek-rysuj { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+    .status-ptaszek path { animation: ptaszek-rysuj 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0.1s both; }
+}

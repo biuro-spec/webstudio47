@@ -58,7 +58,7 @@ def wiersz(w, etykieta):
     for klucz, nazwa in KATEGORIE:
         wynik = w[klucz]
         karty.append(
-            '                    <div class="wynik" data-poziom="' + poziom(wynik) + '">\n'
+            '                    <div class="wynik" data-poziom="' + poziom(wynik) + '" style="--w:' + str(wynik) + '">\n'
             '                        <span class="wynik-liczba">' + str(wynik) + '</span>\n'
             '                        <span class="wynik-nazwa">' + nazwa + '</span>\n'
             '                    </div>'

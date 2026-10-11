@@ -164,7 +164,7 @@
             .then(function (data) {
                 if (!data || data.status !== 'ok') throw new Error(data && data.message ? data.message : 'Odpowiedź serwera bez potwierdzenia.');
 
-                setStatus('ok', '<strong>Dziękuję — wiadomość dotarła.</strong><br>Odzywam się w ciągu jednego dnia roboczego. Jeśli sprawa jest pilna, dzwoń: <a href="tel:+48602622840">602 622 840</a>.');
+                setStatus('ok', '<svg class="status-ptaszek" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg><span><strong>Dziękuję — wiadomość dotarła.</strong><br>Odzywam się w ciągu jednego dnia roboczego. Jeśli sprawa jest pilna, dzwoń: <a href="tel:+48602622840">602 622 840</a>.</span>');
                 form.reset();
 
                 if (typeof gtag === 'function') {
