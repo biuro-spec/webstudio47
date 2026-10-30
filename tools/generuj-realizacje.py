@@ -28,13 +28,23 @@ def stempel_z_glownej():
     Zegar sprawial, ze kazda przebudowa rozjezdzala strony generowane wzgledem
     pisanych recznie (sprawdz.py: "rozjechane stemple w roznych plikach").
     Podbicie stempla to osobna operacja na wszystkich 27 plikach po zmianie
-    CSS/JS, a nie efekt uboczny generatora."""
+    CSS/JS, a nie efekt uboczny generatora.
+
+    KAZDY plik ma wlasny stempel: 30.10.2026 na stronie glownej stalo
+    style.css?v=1791706808, script.js?v=1791699581 i consent.js?v=1788780926,
+    bo kazdy byl podbijany przy innej zmianie. Branie jednego stempla dla
+    wszystkich trzech rozjezdzalo generowane strony wzgledem recznych."""
     s = (KATALOG / "index.html").read_text(encoding="utf-8")
-    i = s.index("style.css?v=") + len("style.css?v=")
-    j = i
-    while s[j].isdigit():
-        j += 1
-    return int(s[i:j])
+
+    def wartosc(plik):
+        i = s.index(f"{plik}?v=") + len(f"{plik}?v=")
+        j = i
+        while s[j].isdigit():
+            j += 1
+        return int(s[i:j])
+
+    return {"css": wartosc("style.css"), "script": wartosc("script.js"),
+            "consent": wartosc("consent.js")}
 
 
 def sekcja_dlaczego(r):
@@ -223,35 +233,32 @@ REALIZACJE = [
         branza="Placówka medyczna",
         miasto="Racibórz",
         domena="life-centrum.pl",
-        # Projekt w toku: pod life-centrum.pl stoi jeszcze stary WordPress,
-        # nasza wersja nie jest wdrozona. Bez tej flagi strona obiecywalaby
-        # „zobacz na zywo” i prowadzila na cudza prace — a oferta obok mowi
-        # „strony pisane od zera, bez kilkunastu wtyczek”.
-        wRealizacji=True,
         miniatura="life-centrum-thumb.webp",
         tytul="Strona dla przychodni — Life-Centrum",
-        opisMeta="Strona dla centrum zdrowia w Raciborzu: usługi medyczne, punkt pobrań, lekarze specjaliści. Zobacz, jak powstała.",
+        opisMeta="Strona dla centrum zdrowia w Raciborzu: wyszukiwarka 1608 badań z cenami, punkt pobrań, specjaliści. Zobacz, jak powstała.",
         h1="Strona dla placówki medycznej",
-        lead="Centrum zdrowia w&nbsp;Raciborzu: lekarze specjaliści, punkt pobrań krwi, usługi pielęgniarskie. Placówka, do której trafia się w&nbsp;konkretnej sprawie i&nbsp;chce się szybko wiedzieć, czy to właściwe miejsce.",
+        lead="Centrum zdrowia w&nbsp;Raciborzu: laboratorium, lekarze specjaliści, usługi pielęgniarskie. Placówka, do której trafia się z&nbsp;konkretnym pytaniem — ile kosztuje badanie, czy potrzeba skierowania, o&nbsp;której otwierają punkt pobrań.",
         wyzwanie=[
-            "Pacjent nie przegląda strony przychodni dla przyjemności. Ma pytanie — <strong>czy przyjmuje tu ortopeda, o&nbsp;której otwierają punkt pobrań, czy trzeba być na czczo</strong> — i&nbsp;chce odpowiedzi w&nbsp;kilkanaście sekund.",
+            "Pacjent nie przegląda strony przychodni dla przyjemności. Ma pytanie — <strong>czy przyjmuje tu neurolog, o&nbsp;której otwierają punkt pobrań, czy trzeba być na czczo</strong> — i&nbsp;chce odpowiedzi w&nbsp;kilkanaście sekund.",
+            "Najtrudniejszy był cennik. <strong>1608 badań</strong> leżało w&nbsp;pliku PDF, którego nikt nie przewinie na telefonie. Pacjent dzwonił, żeby zapytać o&nbsp;cenę jednego badania, a&nbsp;rejestracja odkładała pracę, żeby ją odczytać.",
             "Strona medyczna ma też inny ciężar niż zwykła firmowa: musi budzić zaufanie, nie sprzedawać. Każdy element sprzedażowy działa tu przeciwko sobie.",
         ],
         zbudowane=[
-            ("Architektura informacji wokół pytań pacjenta", "Nie wokół struktury organizacyjnej placówki. Punkt wejścia to potrzeba, nie dział."),
-            ("Sekcja punktu pobrań z&nbsp;zasadami przygotowania", "Najczęściej zadawane pytanie w&nbsp;każdej placówce z&nbsp;laboratorium — odpowiedź jest na stronie, nie w&nbsp;słuchawce."),
+            ("Wyszukiwarka 1608 badań", "Pacjent wpisuje nazwę albo skrót — TSH, morfologia, ferrytyna — i&nbsp;od razu widzi cenę, czas oczekiwania i&nbsp;to, czy musi być na czczo."),
+            ("Ponad 240 badań z&nbsp;własną stroną", "Po co się je robi, jak się przygotować, ile czeka się na wynik. To one odpowiadają na pytania wpisywane w&nbsp;Google w&nbsp;środku nocy."),
+            ("Strony dla siedmiu gmin powiatu", "Kuźnia Raciborska, Krzyżanowice, Krzanowice, Pietrowice Wielkie, Nędza, Rudnik, Kornowac — każda z&nbsp;własną treścią o&nbsp;pobraniu krwi w&nbsp;domu."),
+            ("Sekcja punktu pobrań z&nbsp;zasadami przygotowania", "Punkt ma krótsze godziny niż reszta centrum. Kto tego nie wie, przyjeżdża na nic."),
             ("Prezentacja specjalistów", "Twarz i&nbsp;specjalizacja. W&nbsp;medycynie zaufanie buduje konkretna osoba, nie logo."),
             ("Spokojna, czytelna typografia", "Duży stopień pisma, wysoki kontrast, dużo światła. Część pacjentów to osoby starsze."),
-            ("Dane strukturalne placówki medycznej", "Godziny, adres i&nbsp;zakres usług podane w&nbsp;formie, którą Google rozumie i&nbsp;pokazuje w&nbsp;wynikach."),
         ],
         design="Biel, błękit i&nbsp;dużo przestrzeni. Świadomie bez efektów — w&nbsp;tej branży „wow” jest podejrzane, a&nbsp;spokój wiarygodny.",
         dlaczego=[
-            "Zaznaczam od razu: pod tym adresem stoi jeszcze poprzednia strona centrum, moja wersja nie jest wdrożona. Piszę więc o decyzjach, nie o efekcie na żywo. Pierwsza dotyczyła układu. Dotychczasowa strona rozkłada się na specjalizacje — neurologia, logopedia, psychologia, dietetyka, każda osobno w menu. Pacjent nie myśli nazwami działów, tylko sprawą, z którą przychodzi. Ułożyłem stronę wokół tej sprawy, a nazwy specjalizacji zostawiłem jako drugą warstwę.",
-            "Punkt pobrań dostał osobne miejsce, bo ma osobne godziny: działa krócej niż reszta centrum. Ktoś, kto zobaczy godziny placówki i przyjedzie po południu, przyjedzie na nic. Dołożyłem do tego zasady przygotowania do badania.",
-            "Nie zrobiłem rejestracji online i to była decyzja, nie zaniechanie. Na stronie stoją dwa numery telefonu i nie ma żadnego systemu rezerwacji terminów. Formularz rezerwacji, którego nikt nie obsługuje w trakcie dyżuru, jest gorszy niż widoczny numer, bo obiecuje termin, którego nie potwierdza. Odpuściłem też animacje i efekty. W medycynie strona ma uspokajać, a nie robić wrażenie.",
-            "Nie mam wyniku PageSpeed do pokazania i nie podstawię pod niego cudzej pracy. Pomiar zrobię, kiedy moja wersja stanie pod adresem. Szybkość znaczy tu zresztą co innego niż w sklepie: nikt nie porzuca koszyka, ale ktoś sprawdza godziny punktu pobrań na telefonie, w biegu.",
+            "Pierwsza decyzja dotyczyła układu. Poprzednia strona rozkładała się na specjalizacje — neurologia, logopedia, psychologia, dietetyka, każda osobno w menu. Pacjent nie myśli nazwami działów, tylko sprawą, z którą przychodzi. Ułożyłem stronę wokół tej sprawy, a nazwy specjalizacji zostawiłem jako drugą warstwę.",
+            "Druga i najważniejsza: cennik przestał być plikiem do pobrania, a stał się wyszukiwarką. Katalog ma 1608 pozycji i w formie PDF-u był martwy — nikt nie szuka słowa „ferrytyna” w dokumencie na ekranie telefonu. Teraz pacjent wpisuje nazwę i w sekundę ma cenę. Ponad 240 najczęściej szukanych badań dostało własne strony z opisem, bo pytanie „po co robi się to badanie” pada częściej niż pytanie o cenę.",
+            "Nie zrobiłem rejestracji online i to była decyzja, nie zaniechanie. Na stronie stoją numery telefonu i nie ma systemu rezerwacji terminów. Formularz, którego nikt nie obsługuje w trakcie dyżuru, jest gorszy niż widoczny numer, bo obiecuje termin, którego nie potwierdza. Odpuściłem też animacje i efekty. W medycynie strona ma uspokajać, a nie robić wrażenie.",
+            "Wyniki po podmianie, zmierzone 30 października 2026. PageSpeed: 98 na komórce, 100 na komputerze. Search Console za 28 dni: 175 kliknięć i 4967 wyświetleń, strona główna na średniej pozycji 4,4, wyszukiwarka badań na 8,4. Dla porównania 28 dni przed podmianą, na poprzedniej stronie: 108 kliknięć i 2810 wyświetleń. Część tego wzrostu to po prostu nowe podstrony, których wcześniej nie było — ale to też jest efekt tej pracy, a nie zbieg okoliczności.",
         ],
-        tagi=["Medycyna", "UX", "Dostępność", "SEO"],
+        tagi=["Medycyna", "Wyszukiwarka", "UX", "SEO"],
     ),
     dict(
         slug="strona-dla-transportu-medycznego",
@@ -406,6 +413,7 @@ def sprawdz_dlugosc(tytul, opis, gdzie):
 # ——— Szablon ————————————————————————————————————————————————————————
 
 def naglowek_strony(r, stempel):
+    s_css = stempel["css"]
     url = f"{BAZA}/realizacje/{r['slug']}/"
     sprawdz_dlugosc(f'{r["tytul"]} | WebStudio47', r["opisMeta"], r["slug"])
     schema_dzielo = {
@@ -461,7 +469,7 @@ def naglowek_strony(r, stempel):
          sie po podmianie fontu i LCP przesuwa sie o ~2 s (2026-09-01). -->
     <link rel="preload" href="/fonty/spacegrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonty/spacegrotesk-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v={stempel}">
+    <link rel="stylesheet" href="/style.css?v={s_css}">
 
     <!-- Fonty self-hosted w style.css - patrz komentarz tamze -->
 
@@ -560,6 +568,7 @@ NAWIGACJA = '''
 
 
 def stopka(stempel):
+    s_js, s_consent = stempel["script"], stempel["consent"]
     return f'''
     <!-- Footer -->
     <footer>
@@ -623,8 +632,8 @@ def stopka(stempel):
         </button>
     </aside>
 
-    <script src="/script.js?v={stempel}" defer></script>
-    <script src="/consent.js?v={stempel}" defer></script>
+    <script src="/script.js?v={s_js}" defer></script>
+    <script src="/consent.js?v={s_consent}" defer></script>
 </body>
 
 </html>
@@ -782,7 +791,7 @@ def main():
         (cel / 'index.html').write_text(strona, encoding='utf-8')
         print(f"  realizacje/{r['slug']}/  ({len(strona) // 1024} KB)")
 
-    print(f"\nWygenerowano {len(REALIZACJE)} stron, stempel ?v={stempel}")
+    print(f"\nWygenerowano {len(REALIZACJE)} stron, stemple {stempel}")
 
 
 if __name__ == '__main__':
